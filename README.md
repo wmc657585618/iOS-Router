@@ -37,7 +37,7 @@
 /**
  跳转到指定路径 能够获取回调
  */
-- (HiRouterBuilder *) build:(NSString *)path callBack:(RouterCallBack)callBack;
+- (HiRouterBuilder *) build:(NSString *)path callBack:(HiRouterCallBack)callBack;
 
 /**
  跳转到指定路径 能够传参和回调
@@ -70,7 +70,7 @@
 ```
 @property (copy, nonatomic) HiRouterCallBack callBack;
 
-viewController 需要持有 RouterCallBack 对象,
+viewController 需要持有 HiRouterCallBack 对象,
 
 self.callBack = [HiRouter.instance callBackForViewController:self];
 
