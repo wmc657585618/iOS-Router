@@ -6,9 +6,9 @@
 //  Copyright © 2018年 Four. All rights reserved.
 //
 
-#import "RouterBuilder.h"
+#import "HiRouterBuilder.h"
 
-@implementation RouterBuilder
+@implementation HiRouterBuilder
 
 - (void) pushWithContext:(UIViewController *)contextViewController animated:(BOOL)animated {
     

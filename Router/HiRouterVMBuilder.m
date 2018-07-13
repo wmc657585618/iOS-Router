@@ -6,9 +6,9 @@
 //  Copyright © 2018年 Four. All rights reserved.
 //
 
-#import "RouterVMBuilder.h"
+#import "HiRouterVMBuilder.h"
 
-@implementation RouterVMBuilder
+@implementation HiRouterVMBuilder
 
 - (void) bind {
     

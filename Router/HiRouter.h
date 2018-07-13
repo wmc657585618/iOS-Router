@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RouterBuilder.h"
+#import "HiRouterBuilder.h"
 
-#import "RouterVMBuilderGroup.h"
+#import "HiRouterVMBuilderGroup.h"
 
-typedef void(^RouterCallBack)(NSDictionary *callBack);
+typedef void(^HiRouterCallBack)(NSDictionary *callBack);
 
-@interface Router : NSObject
+@interface HiRouter : NSObject
 
 /**
  * instance
  */
-@property (readonly, nonatomic, class) Router *instance;
+@property (readonly, nonatomic, class) HiRouter *instance;
 
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
 
@@ -31,22 +31,22 @@ typedef void(^RouterCallBack)(NSDictionary *callBack);
 /**
  no parameters no callback
  */
-- (RouterBuilder *) build:(NSString *)path;
+- (HiRouterBuilder *) build:(NSString *)path;
 
 /**
  with parameters
  */
-- (RouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters;
+- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters;
 
 /**
  with callback
  */
-- (RouterBuilder *) build:(NSString *)path callBack:(RouterCallBack)callBack;
+- (HiRouterBuilder *) build:(NSString *)path callBack:(HiRouterCallBack)callBack;
 
 /**
  with parameters and callback
  */
-- (RouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters callBack:(RouterCallBack)callBack;
+- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters callBack:(HiRouterCallBack)callBack;
 
 /**
  get parameters
@@ -56,7 +56,7 @@ typedef void(^RouterCallBack)(NSDictionary *callBack);
 /**
  get callback
  */
-- (RouterCallBack) callBackForViewController:(UIViewController *)viewController;
+- (HiRouterCallBack) callBackForViewController:(UIViewController *)viewController;
 /******************** page ********************/
 
 /* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
@@ -66,22 +66,22 @@ typedef void(^RouterCallBack)(NSDictionary *callBack);
 /**
  build for path
  */
-- (RouterVMBuilder *) buildViewModel:(NSString *)path;
+- (HiRouterVMBuilder *) buildViewModel:(NSString *)path;
 
 /**
  build view and model in dynamic
  */
-- (RouterVMBuilder *) buildViewModelInDynamic:(id<RouterViewModel>)objectA objectB:(id<RouterViewModel>)objectB;
+- (HiRouterVMBuilder *) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
 
 /**
  update view and model of builder
  */
-- (void) updateVMBuilder:(RouterVMBuilder *)builder objectA:(id<RouterViewModel>)objectA objectB:(id<RouterViewModel>)objectB;
+- (void) updateVMBuilder:(HiRouterVMBuilder *)builder objectA:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
 
 /**
  build view model group with reuseIdentifier
  */
-- (RouterVMBuilder *) buildViewModeGrouplInDynamic:(id<RouterViewModel>)objectA objectB:(id<RouterViewModel>)objectB reuseIdentifier:(NSString *)reuseIdentifier group:(RouterVMBuilderGroup *)group;
+- (HiRouterVMBuilder *) buildViewModeGrouplInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB reuseIdentifier:(NSString *)reuseIdentifier group:(HiRouterVMBuilderGroup *)group;
 /******************** view model ********************/
 
 

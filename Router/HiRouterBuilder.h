@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RouterBuilder : NSObject
+@interface HiRouterBuilder : NSObject
 
 @property (strong, nonatomic) UIViewController *viewController;
 

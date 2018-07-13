@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RouterProtocol.h"
+#import "HiRouterProtocol.h"
 
-@interface MeTableViewCellModel : NSObject<RouterViewModel>
+@interface MeTableViewCellModel : NSObject<HiRouterViewModel>
 
 @property (copy, nonatomic) NSString *name;
 

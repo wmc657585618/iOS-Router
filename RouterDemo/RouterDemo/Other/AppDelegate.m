@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "Router.h"
+#import "HiRouter.h"
 
 @interface AppDelegate ()
 
@@ -24,13 +24,13 @@
     
     NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
     
-    [Router.instance registRoute:dictionary];
+    [HiRouter.instance registRoute:dictionary];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     self.window.backgroundColor = UIColor.whiteColor;
     
-    self.window.rootViewController = [Router.instance build:@"tab"].viewController;
+    self.window.rootViewController = [HiRouter.instance build:@"tab"].viewController;
     
     [self.window makeKeyAndVisible];
     

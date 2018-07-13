@@ -8,7 +8,7 @@
 
 #import "TabBarController.h"
 
-#import "Router.h"
+#import "HiRouter.h"
 
 #import "NavigationController.h"
 
@@ -21,14 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIViewController *home = [Router.instance build:@"home"].viewController;
+    UIViewController *home = [HiRouter.instance build:@"home"].viewController;
     
     NavigationController *homeNav = [[NavigationController alloc] initWithRootViewController:home];
     
     homeNav.tabBarItem.title = @"home";
 
     
-    UIViewController *me = [Router.instance build:@"me"].viewController;
+    UIViewController *me = [HiRouter.instance build:@"me"].viewController;
     
     NavigationController *meNav = [[NavigationController alloc] initWithRootViewController:me];
     

@@ -10,13 +10,13 @@
 
 @interface MeTableViewCellModel ()
 
-@property (copy, nonatomic) RouterCommond commond;
+@property (copy, nonatomic) HiRouterCommond commond;
 
 @end
 
 @implementation MeTableViewCellModel
 
-- (void)invorkerCommond:(RouterCommond)invorkerCommond {
+- (void)invorkerCommond:(HiRouterCommond)invorkerCommond {
     
     self.commond = invorkerCommond;
 }

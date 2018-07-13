@@ -8,11 +8,11 @@
 
 #import "LoginViewController.h"
 
-#import "Router.h"
+#import "HiRouter.h"
 
 @interface LoginViewController ()
 
-@property (copy, nonatomic) RouterCallBack callBack;
+@property (copy, nonatomic) HiRouterCallBack callBack;
 
 @property (strong, nonatomic) UITextField *userNameTextField;
 
@@ -77,7 +77,7 @@
     [self.view addSubview:button];
     
     
-    self.callBack = [Router.instance callBackForViewController:self];
+    self.callBack = [HiRouter.instance callBackForViewController:self];
 }
 
 - (void) dismiss {

@@ -6,9 +6,9 @@
 //  Copyright © 2018年 Four. All rights reserved.
 //
 
-#import "Router.h"
+#import "HiRouter.h"
 
-@interface Router ()<NSCopying,NSMutableCopying>
+@interface HiRouter ()<NSCopying,NSMutableCopying>
 
 /**
  route dictionary
@@ -19,13 +19,13 @@
 
 @property (strong, nonatomic) NSMutableDictionary *parametersDictionary;
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, RouterCallBack> *callBackDictionary;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, HiRouterCallBack> *callBackDictionary;
 
 @end
 
-static Router *_instance = nil;
+static HiRouter *_instance = nil;
 
-@implementation Router
+@implementation HiRouter
 
 /*********** instance router ***********/
 + (instancetype)instance {
@@ -41,17 +41,17 @@ static Router *_instance = nil;
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
 
-    return Router.instance;
+    return HiRouter.instance;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
 
-    return Router.instance;
+    return HiRouter.instance;
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
 
-    return Router.instance;
+    return HiRouter.instance;
 }
 /*********** instance router ***********/
 
@@ -68,11 +68,11 @@ static Router *_instance = nil;
     return _parametersDictionary;
 }
 
-- (NSMutableDictionary<NSString *,RouterCallBack> *)callBackDictionary {
+- (NSMutableDictionary<NSString *,HiRouterCallBack> *)callBackDictionary {
     
     if (!_callBackDictionary) {
         
-        _callBackDictionary = [[NSMutableDictionary<NSString *,RouterCallBack> alloc] init];
+        _callBackDictionary = [[NSMutableDictionary<NSString *,HiRouterCallBack> alloc] init];
     }
     
     return _callBackDictionary;
@@ -120,26 +120,26 @@ static Router *_instance = nil;
 /* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
 
 /******************** page ********************/
-- (RouterBuilder *) build:(NSString *)path {
+- (HiRouterBuilder *) build:(NSString *)path {
     
     return [self build:path withParameters:nil];
 }
 
-- (RouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters {
+- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters {
     
     return [self build:path withParameters:parameters callBack:nil];
 }
 
-- (RouterBuilder *) build:(NSString *)path callBack:(RouterCallBack)callBack {
+- (HiRouterBuilder *) build:(NSString *)path callBack:(HiRouterCallBack)callBack {
 
     return [self build:path withParameters:nil callBack:callBack];
 }
 
-- (RouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters callBack:(RouterCallBack)callBack {
+- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters callBack:(HiRouterCallBack)callBack {
     
     id object = [self objectWithPath:path];
     
-    RouterBuilder *builder = [[RouterBuilder alloc] init];
+    HiRouterBuilder *builder = [[HiRouterBuilder alloc] init];
     
     if (object && [object isKindOfClass:UIViewController.class]) {
         
@@ -178,11 +178,11 @@ static Router *_instance = nil;
 /**
  get callback
  */
-- (RouterCallBack) callBackForViewController:(UIViewController *)viewController {
+- (HiRouterCallBack) callBackForViewController:(UIViewController *)viewController {
     
     NSString *key = [self keyWithObject:viewController];
 
-    RouterCallBack callBack = [self.callBackDictionary objectForKey:key];
+    HiRouterCallBack callBack = [self.callBackDictionary objectForKey:key];
     
     [self.callBackDictionary removeObjectForKey:key];
     
@@ -197,7 +197,7 @@ static Router *_instance = nil;
 /**
  build for path
  */
-- (RouterVMBuilder *) buildViewModel:(NSString *)path {
+- (HiRouterVMBuilder *) buildViewModel:(NSString *)path {
     
     NSDictionary *dictionary = [self._viewModelRouteDictionary objectForKey:path];
     
@@ -215,9 +215,9 @@ static Router *_instance = nil;
 /**
  build view and model in dynamic
  */
-- (RouterVMBuilder *) buildViewModelInDynamic:(id<RouterViewModel>)objectA objectB:(id<RouterViewModel>)objectB {
+- (HiRouterVMBuilder *) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB {
     
-    RouterVMBuilder *builder = [[RouterVMBuilder alloc] init];
+    HiRouterVMBuilder *builder = [[HiRouterVMBuilder alloc] init];
 
     [self updateVMBuilder:builder objectA:objectA objectB:objectB];
     
@@ -227,7 +227,7 @@ static Router *_instance = nil;
 /**
  update view and model of builder
  */
-- (void) updateVMBuilder:(RouterVMBuilder *)builder objectA:(id<RouterViewModel>)objectA objectB:(id<RouterViewModel>)objectB {
+- (void) updateVMBuilder:(HiRouterVMBuilder *)builder objectA:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB {
     
     builder.receiver = objectA;
     
@@ -239,9 +239,9 @@ static Router *_instance = nil;
 /**
  build view model group with reuseIdentifier
  */
-- (RouterVMBuilder *) buildViewModeGrouplInDynamic:(id<RouterViewModel>)objectA objectB:(id<RouterViewModel>)objectB reuseIdentifier:(NSString *)reuseIdentifier group:(RouterVMBuilderGroup *)group {
+- (HiRouterVMBuilder *) buildViewModeGrouplInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB reuseIdentifier:(NSString *)reuseIdentifier group:(HiRouterVMBuilderGroup *)group {
     
-    RouterVMBuilder *builder = [self buildViewModelInDynamic:objectA objectB:objectB];
+    HiRouterVMBuilder *builder = [self buildViewModelInDynamic:objectA objectB:objectB];
     
     [group setVMBuilder:builder forKey:reuseIdentifier];
     

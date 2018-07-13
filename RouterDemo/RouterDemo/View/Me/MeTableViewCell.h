@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "RouterProtocol.h"
+#import "HiRouterProtocol.h"
 
-@interface MeTableViewCell : UITableViewCell<RouterViewModel>
+@interface MeTableViewCell : UITableViewCell<HiRouterViewModel>
 
 @end

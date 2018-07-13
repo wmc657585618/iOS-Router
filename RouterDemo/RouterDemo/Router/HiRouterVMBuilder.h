@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RouterProtocol.h"
+#import "HiRouterProtocol.h"
 
-@interface RouterVMBuilder : NSObject
+@interface HiRouterVMBuilder : NSObject
 
-@property (strong, nonatomic) id<RouterViewModel> receiver;
+@property (strong, nonatomic) id<HiRouterViewModel> receiver;
 
-@property (strong, nonatomic) id<RouterViewModel> invorker;
+@property (strong, nonatomic) id<HiRouterViewModel> invorker;
 
 - (void) bind;
 

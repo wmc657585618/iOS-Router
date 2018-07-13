@@ -10,7 +10,7 @@
 
 @interface MeTableViewCell ()
 
-@property (copy, nonatomic) RouterCommond commond;
+@property (copy, nonatomic) HiRouterCommond commond;
 
 @property (strong, nonatomic) UIButton *submitButton;
 
@@ -93,7 +93,7 @@
     self.submitButton.frame = CGRectMake(CGRectGetMaxX(self.passwordTextField.frame) + 10, 10, 40, 40);
 }
 
-- (void)invorkerCommond:(RouterCommond)invorkerCommond {
+- (void)invorkerCommond:(HiRouterCommond)invorkerCommond {
     
     self.commond = invorkerCommond;
 }

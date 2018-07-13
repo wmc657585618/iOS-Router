@@ -8,7 +8,7 @@
 
 #import "MeViewController.h"
 
-#import "Router.h"
+#import "HiRouter.h"
 
 #import "MeTableViewCell.h"
 
@@ -20,7 +20,9 @@
 
 @property (copy, nonatomic) NSArray<MeTableViewCellModel *> *dataSource;
 
-@property (strong, nonatomic) RouterVMBuilderGroup *builderGroup;
+@property (strong, nonatomic) HiRouterVMBuilderGroup *builderGroup;
+
+@property (strong, nonatomic) HiRouterVMBuilder *vmBuilder;
 
 @end
 
@@ -46,11 +48,11 @@ static NSString * const CellID = @"MeViewController";
     return _tableView;
 }
 
-- (RouterVMBuilderGroup *)builderGroup {
+- (HiRouterVMBuilderGroup *)builderGroup {
     
     if (!_builderGroup) {
         
-        _builderGroup = [[RouterVMBuilderGroup alloc] init];
+        _builderGroup = [[HiRouterVMBuilderGroup alloc] init];
     }
     
     return _builderGroup;
@@ -107,17 +109,17 @@ static NSString * const CellID = @"MeViewController";
     
     NSString *key = [[NSString alloc] initWithFormat:@"cell%02ld",indexPath.row];
     
-    RouterVMBuilder *builder = [self.builderGroup vmBuilderForKey:key];
+    HiRouterVMBuilder *builder = [self.builderGroup vmBuilderForKey:key];
     
     MeTableViewCellModel *model = self.dataSource[indexPath.row];
     
     if (builder) {
         
-        [Router.instance updateVMBuilder:builder objectA:meCell objectB:model];
+        [HiRouter.instance updateVMBuilder:builder objectA:meCell objectB:model];
         
     } else {
         
-        [Router.instance buildViewModeGrouplInDynamic:meCell objectB:model reuseIdentifier:key group:self.builderGroup];
+        [HiRouter.instance buildViewModeGrouplInDynamic:meCell objectB:model reuseIdentifier:key group:self.builderGroup];
     }
     
     [model doAction];

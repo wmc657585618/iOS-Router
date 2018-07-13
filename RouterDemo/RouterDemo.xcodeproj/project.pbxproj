@@ -10,10 +10,10 @@
 		1C65583220F5FC4D00862997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C65583120F5FC4D00862997 /* Assets.xcassets */; };
 		1C65583520F5FC4D00862997 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C65583320F5FC4D00862997 /* LaunchScreen.storyboard */; };
 		1C65583820F5FC4E00862997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65583720F5FC4E00862997 /* main.m */; };
-		1C65584820F5FC9C00862997 /* RouterVMBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65583F20F5FC9C00862997 /* RouterVMBuilder.m */; };
-		1C65584920F5FC9C00862997 /* Router.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65584220F5FC9C00862997 /* Router.m */; };
-		1C65584A20F5FC9C00862997 /* RouterBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65584320F5FC9C00862997 /* RouterBuilder.m */; };
-		1C65584B20F5FC9C00862997 /* RouterVMBuilderGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65584420F5FC9C00862997 /* RouterVMBuilderGroup.m */; };
+		1C65584820F5FC9C00862997 /* HiRouterVMBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65583F20F5FC9C00862997 /* HiRouterVMBuilder.m */; };
+		1C65584920F5FC9C00862997 /* HiRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65584220F5FC9C00862997 /* HiRouter.m */; };
+		1C65584A20F5FC9C00862997 /* HiRouterBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65584320F5FC9C00862997 /* HiRouterBuilder.m */; };
+		1C65584B20F5FC9C00862997 /* HiRouterVMBuilderGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65584420F5FC9C00862997 /* HiRouterVMBuilderGroup.m */; };
 		1C65585320F5FCF800862997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65585220F5FCF800862997 /* AppDelegate.m */; };
 		1C65585520F5FDB600862997 /* Pages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C65585420F5FDB600862997 /* Pages.plist */; };
 		1C65587320F6022800862997 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65586620F6022800862997 /* LoginViewController.m */; };
@@ -32,15 +32,15 @@
 		1C65583420F5FC4D00862997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C65583620F5FC4D00862997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C65583720F5FC4E00862997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1C65583F20F5FC9C00862997 /* RouterVMBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterVMBuilder.m; sourceTree = "<group>"; };
-		1C65584020F5FC9C00862997 /* RouterVMBuilderGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterVMBuilderGroup.h; sourceTree = "<group>"; };
-		1C65584120F5FC9C00862997 /* RouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterProtocol.h; sourceTree = "<group>"; };
-		1C65584220F5FC9C00862997 /* Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Router.m; sourceTree = "<group>"; };
-		1C65584320F5FC9C00862997 /* RouterBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterBuilder.m; sourceTree = "<group>"; };
-		1C65584420F5FC9C00862997 /* RouterVMBuilderGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterVMBuilderGroup.m; sourceTree = "<group>"; };
-		1C65584520F5FC9C00862997 /* RouterVMBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterVMBuilder.h; sourceTree = "<group>"; };
-		1C65584620F5FC9C00862997 /* Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Router.h; sourceTree = "<group>"; };
-		1C65584720F5FC9C00862997 /* RouterBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterBuilder.h; sourceTree = "<group>"; };
+		1C65583F20F5FC9C00862997 /* HiRouterVMBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterVMBuilder.m; sourceTree = "<group>"; };
+		1C65584020F5FC9C00862997 /* HiRouterVMBuilderGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterVMBuilderGroup.h; sourceTree = "<group>"; };
+		1C65584120F5FC9C00862997 /* HiRouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterProtocol.h; sourceTree = "<group>"; };
+		1C65584220F5FC9C00862997 /* HiRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouter.m; sourceTree = "<group>"; };
+		1C65584320F5FC9C00862997 /* HiRouterBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterBuilder.m; sourceTree = "<group>"; };
+		1C65584420F5FC9C00862997 /* HiRouterVMBuilderGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterVMBuilderGroup.m; sourceTree = "<group>"; };
+		1C65584520F5FC9C00862997 /* HiRouterVMBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterVMBuilder.h; sourceTree = "<group>"; };
+		1C65584620F5FC9C00862997 /* HiRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouter.h; sourceTree = "<group>"; };
+		1C65584720F5FC9C00862997 /* HiRouterBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterBuilder.h; sourceTree = "<group>"; };
 		1C65585120F5FCF800862997 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1C65585220F5FCF800862997 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1C65585420F5FDB600862997 /* Pages.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Pages.plist; sourceTree = "<group>"; };
@@ -108,15 +108,15 @@
 		1C65583E20F5FC9C00862997 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				1C65584620F5FC9C00862997 /* Router.h */,
-				1C65584220F5FC9C00862997 /* Router.m */,
-				1C65584720F5FC9C00862997 /* RouterBuilder.h */,
-				1C65584320F5FC9C00862997 /* RouterBuilder.m */,
-				1C65584120F5FC9C00862997 /* RouterProtocol.h */,
-				1C65584520F5FC9C00862997 /* RouterVMBuilder.h */,
-				1C65583F20F5FC9C00862997 /* RouterVMBuilder.m */,
-				1C65584020F5FC9C00862997 /* RouterVMBuilderGroup.h */,
-				1C65584420F5FC9C00862997 /* RouterVMBuilderGroup.m */,
+				1C65584620F5FC9C00862997 /* HiRouter.h */,
+				1C65584220F5FC9C00862997 /* HiRouter.m */,
+				1C65584720F5FC9C00862997 /* HiRouterBuilder.h */,
+				1C65584320F5FC9C00862997 /* HiRouterBuilder.m */,
+				1C65584120F5FC9C00862997 /* HiRouterProtocol.h */,
+				1C65584520F5FC9C00862997 /* HiRouterVMBuilder.h */,
+				1C65583F20F5FC9C00862997 /* HiRouterVMBuilder.m */,
+				1C65584020F5FC9C00862997 /* HiRouterVMBuilderGroup.h */,
+				1C65584420F5FC9C00862997 /* HiRouterVMBuilderGroup.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -295,14 +295,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C65583820F5FC4E00862997 /* main.m in Sources */,
-				1C65584B20F5FC9C00862997 /* RouterVMBuilderGroup.m in Sources */,
+				1C65584B20F5FC9C00862997 /* HiRouterVMBuilderGroup.m in Sources */,
 				1C65588020F60B6E00862997 /* MeTableViewCellModel.m in Sources */,
-				1C65584820F5FC9C00862997 /* RouterVMBuilder.m in Sources */,
-				1C65584A20F5FC9C00862997 /* RouterBuilder.m in Sources */,
+				1C65584820F5FC9C00862997 /* HiRouterVMBuilder.m in Sources */,
+				1C65584A20F5FC9C00862997 /* HiRouterBuilder.m in Sources */,
 				1C65588520F60D2A00862997 /* MeTableViewCell.m in Sources */,
 				1C65587320F6022800862997 /* LoginViewController.m in Sources */,
 				1C65587520F6022800862997 /* HomeViewController.m in Sources */,
-				1C65584920F5FC9C00862997 /* Router.m in Sources */,
+				1C65584920F5FC9C00862997 /* HiRouter.m in Sources */,
 				1C65587620F6022800862997 /* TabBarController.m in Sources */,
 				1C65587B20F6092800862997 /* ParametersViewController.m in Sources */,
 				1C65587720F6022800862997 /* NavigationController.m in Sources */,

@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^RouterCommond)(NSDictionary *commond);
+typedef void(^HiRouterCommond)(NSDictionary *commond);
 
-@protocol RouterViewModel <NSObject>
+@protocol HiRouterViewModel <NSObject>
 
 @optional
-- (void) invorkerCommond:(RouterCommond)invorkerCommond;
+- (void) invorkerCommond:(HiRouterCommond)invorkerCommond;
 
 - (void) received:(NSDictionary *)receive;
 

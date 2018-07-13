@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 
-#import "Router.h"
+#import "HiRouter.h"
 
 @interface HomeViewController ()
 
@@ -65,7 +65,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [[Router.instance build:@"login" callBack:^(NSDictionary *callBack) {
+    [[HiRouter.instance build:@"login" callBack:^(NSDictionary *callBack) {
     
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
@@ -80,7 +80,7 @@
 
 - (void) parameters {
     
-    [[Router.instance build:@"parameters" withParameters:@{@"name":@"tom"}] pushWithContext:self animated:true];
+    [[HiRouter.instance build:@"parameters" withParameters:@{@"name":@"tom"}] pushWithContext:self animated:true];
 }
 
 - (void)didReceiveMemoryWarning {

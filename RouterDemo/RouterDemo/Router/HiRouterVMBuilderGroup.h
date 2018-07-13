@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RouterVMBuilder.h"
+#import "HiRouterVMBuilder.h"
 
-@interface RouterVMBuilderGroup : NSObject
+@interface HiRouterVMBuilderGroup : NSObject
 
-- (void) setVMBuilder:(RouterVMBuilder *)builder forKey:(NSString *)key;
+- (void) setVMBuilder:(HiRouterVMBuilder *)builder forKey:(NSString *)key;
 
 /*
  maybe return is nill
  */
-- (RouterVMBuilder *) vmBuilderForKey:(NSString *)key;
+- (HiRouterVMBuilder *) vmBuilderForKey:(NSString *)key;
 
 @property (readonly, nonatomic) NSArray *allBuilders;
 

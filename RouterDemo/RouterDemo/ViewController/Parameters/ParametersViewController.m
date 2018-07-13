@@ -8,7 +8,7 @@
 
 #import "ParametersViewController.h"
 
-#import "Router.h"
+#import "HiRouter.h"
 
 @interface ParametersViewController ()
 
@@ -37,7 +37,7 @@
     
     self.view.backgroundColor = UIColor.whiteColor;
     
-    NSDictionary *dictionary = [Router.instance parametersForViewController:self];
+    NSDictionary *dictionary = [HiRouter.instance parametersForViewController:self];
     
     
     self.displayLabel.frame = CGRectMake(10, 100, self.view.bounds.size.width - 20, 100);
