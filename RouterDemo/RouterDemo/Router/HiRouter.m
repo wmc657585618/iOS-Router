@@ -96,7 +96,7 @@ static HiRouter *_instance = nil;
     
     NSAssert(class != nil, @"⚠️ has no class : %@!",className);
     
-    id vc = [class alloc];
+    id vc = [[class alloc] init];
     
     NSAssert([vc isKindOfClass:UIViewController.class], @"⚠️ class is not UIViewController!");
     
@@ -147,6 +147,8 @@ static HiRouter *_instance = nil;
     }
     
     NSString *key = [self keyWithObject:object];
+    
+    NSAssert(key.length > 0,@"⚠️ key is nill");
     
     if (parameters) {
         
