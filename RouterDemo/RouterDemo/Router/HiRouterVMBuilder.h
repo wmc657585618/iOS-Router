@@ -12,10 +12,6 @@
 
 @interface HiRouterVMBuilder : NSObject
 
-@property (strong, nonatomic) id<HiRouterViewModel> receiver;
-
-@property (strong, nonatomic) id<HiRouterViewModel> invorker;
-
-- (void) bind;
++ (void) bind:(id<HiRouterViewModel>)objcA objcB:(id<HiRouterViewModel>)objcB;
 
 @end

@@ -23,8 +23,6 @@ typedef void(^HiRouterCallBack)(NSDictionary *callBack);
 
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
 
-- (void) registViewModelRoute:(NSDictionary<NSString *, NSDictionary *> *)viewModelRouteDictionary;
-
 /* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
 
 /******************** page ********************/
@@ -64,24 +62,10 @@ typedef void(^HiRouterCallBack)(NSDictionary *callBack);
 /******************** view model ********************/
 
 /**
- build for path
- */
-- (HiRouterVMBuilder *) buildViewModel:(NSString *)path;
-
-/**
  build view and model in dynamic
  */
 - (HiRouterVMBuilder *) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
 
-/**
- update view and model of builder
- */
-- (void) updateVMBuilder:(HiRouterVMBuilder *)builder objectA:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
-
-/**
- build view model group with reuseIdentifier
- */
-- (HiRouterVMBuilder *) buildViewModeGrouplInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB reuseIdentifier:(NSString *)reuseIdentifier group:(HiRouterVMBuilderGroup *)group;
 /******************** view model ********************/
 
 

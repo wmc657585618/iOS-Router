@@ -10,34 +10,25 @@
 
 @implementation HiRouterVMBuilder
 
-- (void) bind {
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [self.invorker invorkerCommond:^(NSDictionary *commond) {
-       
-        __strong typeof(weakSelf) strongSelf = weakSelf;
++ (void) bind:(id<HiRouterViewModel>)objcA objcB:(id<HiRouterViewModel>)objcB {
 
-        if ([strongSelf.receiver respondsToSelector:@selector(received:)]) {
-            
-            [strongSelf.receiver received:commond];
-        }
-    }];
-    
-    [self.receiver invorkerCommond:^(NSDictionary *commond) {
-        
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+    [self pBind:objcA objcB:objcB];
+    [self pBind:objcB objcB:objcA];
 
-        if ([strongSelf.invorker respondsToSelector:@selector(received:)]) {
-            
-            [strongSelf.invorker received:commond];
+}
+
++ (void) pBind:(id<HiRouterViewModel>)objcA objcB:(id<HiRouterViewModel>)objcB {
+
+    __weak typeof(objcB) weakB = objcB;
+
+    [objcA invorkerCommond:^(NSDictionary *commond) {
+
+        __strong typeof(weakB) strongB = weakB;
+
+        if ([strongB respondsToSelector:@selector(received:)]) {
+
+            [strongB received:commond];
         }
     }];
 }
-
-- (void)dealloc
-{
-    NSLog(@"dealloc %@",self);
-}
-
 @end

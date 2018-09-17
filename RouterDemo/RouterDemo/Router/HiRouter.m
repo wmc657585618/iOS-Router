@@ -13,9 +13,7 @@
 /**
  route dictionary
  */
-@property (copy, nonatomic) NSDictionary<NSString *, NSString *> *_routeDictionary;
-
-@property (copy, nonatomic) NSDictionary<NSString *, NSDictionary *> *_viewModelRouteDictionary;
+@property (copy, nonatomic) NSDictionary<NSString *, NSString *> *pRouteDictionary;
 
 @property (strong, nonatomic) NSMutableDictionary *parametersDictionary;
 
@@ -33,7 +31,7 @@ static HiRouter *_instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
 
-        _instance = [[super allocWithZone:NULL] init] ;
+        _instance = (HiRouter *) [[super allocWithZone:NULL] init];
     });
 
     return _instance;
@@ -88,7 +86,7 @@ static HiRouter *_instance = nil;
 
 - (id) objectWithPath:(NSString *)path {
     
-    NSString *className = [self._routeDictionary objectForKey:path];
+    NSString *className = [self.pRouteDictionary objectForKey:path];
     
     NSAssert(className.length > 0, @"⚠️ no path match : %@!",path);
     
@@ -109,12 +107,7 @@ static HiRouter *_instance = nil;
 /*********** regist router ***********/
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary {
     
-    self._routeDictionary = routeDictionary;
-}
-
-- (void) registViewModelRoute:(NSDictionary<NSString *, NSDictionary *> *)viewModelRouteDictionary {
-    
-    self._viewModelRouteDictionary = viewModelRouteDictionary;
+    self.pRouteDictionary = routeDictionary;
 }
 
 /* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
@@ -195,60 +188,16 @@ static HiRouter *_instance = nil;
 /* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
 
 /************* view model *************/
-
-/**
- build for path
- */
-- (HiRouterVMBuilder *) buildViewModel:(NSString *)path {
-    
-    NSDictionary *dictionary = [self._viewModelRouteDictionary objectForKey:path];
-    
-    NSString *receiver = [dictionary objectForKey:@"receiver"];
-    
-    NSString *invorker = [dictionary objectForKey:@"invorker"];
-    
-    Class receiverClass = NSClassFromString(receiver);
-    
-    Class invorkerClass = NSClassFromString(invorker);
-    
-    return [self buildViewModelInDynamic:[receiverClass new] objectB:[invorkerClass new]];
-}
-
 /**
  build view and model in dynamic
  */
-- (HiRouterVMBuilder *) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB {
-    
-    HiRouterVMBuilder *builder = [[HiRouterVMBuilder alloc] init];
 
-    [self updateVMBuilder:builder objectA:objectA objectB:objectB];
-    
-    return builder;
+- (void) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB {
+
+
+    [HiRouterVMBuilder bind:objectA objcB:objectB];
 }
 
-/**
- update view and model of builder
- */
-- (void) updateVMBuilder:(HiRouterVMBuilder *)builder objectA:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB {
-    
-    builder.receiver = objectA;
-    
-    builder.invorker = objectB;
-    
-    [builder bind];
-}
-
-/**
- build view model group with reuseIdentifier
- */
-- (HiRouterVMBuilder *) buildViewModeGrouplInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB reuseIdentifier:(NSString *)reuseIdentifier group:(HiRouterVMBuilderGroup *)group {
-    
-    HiRouterVMBuilder *builder = [self buildViewModelInDynamic:objectA objectB:objectB];
-    
-    [group setVMBuilder:builder forKey:reuseIdentifier];
-    
-    return builder;
-}
 /************* view model *************/
 
 @end

@@ -107,21 +107,9 @@ static NSString * const CellID = @"MeViewController";
 
     MeTableViewCell *meCell = (MeTableViewCell *)cell;
     
-    NSString *key = [[NSString alloc] initWithFormat:@"cell%02ld",indexPath.row];
-    
-    HiRouterVMBuilder *builder = [self.builderGroup vmBuilderForKey:key];
-    
     MeTableViewCellModel *model = self.dataSource[indexPath.row];
-    
-    if (builder) {
-        
-        [HiRouter.instance updateVMBuilder:builder objectA:meCell objectB:model];
-        
-    } else {
-        
-        [HiRouter.instance buildViewModeGrouplInDynamic:meCell objectB:model reuseIdentifier:key group:self.builderGroup];
-    }
-    
+
+    [HiRouter.instance buildViewModelInDynamic:model objectB:meCell];
     [model doAction];
 }
 
