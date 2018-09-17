@@ -20,10 +20,6 @@
 
 @property (copy, nonatomic) NSArray<MeTableViewCellModel *> *dataSource;
 
-@property (strong, nonatomic) HiRouterVMBuilderGroup *builderGroup;
-
-@property (strong, nonatomic) HiRouterVMBuilder *vmBuilder;
-
 @end
 
 static NSString * const CellID = @"MeViewController";
@@ -46,16 +42,6 @@ static NSString * const CellID = @"MeViewController";
     }
     
     return _tableView;
-}
-
-- (HiRouterVMBuilderGroup *)builderGroup {
-    
-    if (!_builderGroup) {
-        
-        _builderGroup = [[HiRouterVMBuilderGroup alloc] init];
-    }
-    
-    return _builderGroup;
 }
 
 - (void)viewDidLoad {

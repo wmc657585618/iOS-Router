@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "HiRouterBuilder.h"
-
-#import "HiRouterVMBuilderGroup.h"
+#import "HiRouterVMBuilder.h"
 
 typedef void(^HiRouterCallBack)(NSDictionary *callBack);
 
@@ -64,7 +63,7 @@ typedef void(^HiRouterCallBack)(NSDictionary *callBack);
 /**
  build view and model in dynamic
  */
-- (HiRouterVMBuilder *) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
+- (void) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
 
 /******************** view model ********************/
 

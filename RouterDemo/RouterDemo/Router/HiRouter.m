@@ -7,6 +7,7 @@
 //
 
 #import "HiRouter.h"
+#import "HiRouterVMBuilder.h"
 
 @interface HiRouter ()<NSCopying,NSMutableCopying>
 
