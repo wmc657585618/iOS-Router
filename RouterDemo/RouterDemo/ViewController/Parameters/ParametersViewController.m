@@ -8,9 +8,9 @@
 
 #import "ParametersViewController.h"
 
-#import "HiRouter.h"
+#import "HiRouter_h.h"
 
-@interface ParametersViewController ()
+@interface ParametersViewController ()<HiRouterPageProtocol>
 
 @property (strong, nonatomic) UILabel *displayLabel;
 
@@ -37,16 +37,16 @@
     
     self.view.backgroundColor = UIColor.whiteColor;
     
-    NSDictionary *dictionary = [HiRouter.instance parametersForViewController:self];
-    
     
     self.displayLabel.frame = CGRectMake(10, 100, self.view.bounds.size.width - 20, 100);
     
     [self.view addSubview:self.displayLabel];
-    
-    self.displayLabel.text = dictionary.description;
 }
 
+- (void)recivedParameters:(NSDictionary *)parameters {
+ 
+     self.displayLabel.text = parameters.description;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

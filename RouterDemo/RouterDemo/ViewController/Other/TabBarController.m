@@ -8,7 +8,7 @@
 
 #import "TabBarController.h"
 
-#import "HiRouter.h"
+#import "HiRouter_h.h"
 
 #import "NavigationController.h"
 

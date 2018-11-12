@@ -7,11 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "HiRouterProtocol.h"
 
 @interface HiRouterVMBuilder : NSObject
 
 + (void) bind:(id<HiRouterViewModel>)objcA objcB:(id<HiRouterViewModel>)objcB;
+
++ (void) objc:(id<HiRouterViewModel>)objc postData:(id)data;
+
+@end
+
+@interface NSObject (delegate)
+
+@property (nonatomic, weak) id<HiRouterViewModel> hi_private_delegate;
 
 @end

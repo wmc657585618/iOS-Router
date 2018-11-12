@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "HiRouterBuilder.h"
-#import "HiRouterVMBuilder.h"
+#import "HiFilterProtocol.h"
 
 typedef void(^HiRouterCallBack)(NSDictionary *callBack);
 
@@ -20,52 +20,15 @@ typedef void(^HiRouterCallBack)(NSDictionary *callBack);
  */
 @property (readonly, nonatomic, class) HiRouter *instance;
 
+@property (readonly, nonatomic) NSDictionary<NSString *, NSString *> *routeDictionary;
+
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
 
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
-/******************** page ********************/
 /**
- no parameters no callback
+ regist filer
+
+ @param path filt path
  */
-- (HiRouterBuilder *) build:(NSString *)path;
-
-/**
- with parameters
- */
-- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters;
-
-/**
- with callback
- */
-- (HiRouterBuilder *) build:(NSString *)path callBack:(HiRouterCallBack)callBack;
-
-/**
- with parameters and callback
- */
-- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters callBack:(HiRouterCallBack)callBack;
-
-/**
- get parameters
- */
-- (NSDictionary *) parametersForViewController:(UIViewController *)viewController;
-
-/**
- get callback
- */
-- (HiRouterCallBack) callBackForViewController:(UIViewController *)viewController;
-/******************** page ********************/
-
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
-/******************** view model ********************/
-
-/**
- build view and model in dynamic
- */
-- (void) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
-
-/******************** view model ********************/
-
+- (void)registFilter:(id<HiFilterProtocol>)filter forPath:(NSString *)path;
 
 @end

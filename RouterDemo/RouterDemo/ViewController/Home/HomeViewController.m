@@ -8,9 +8,11 @@
 
 #import "HomeViewController.h"
 
-#import "HiRouter.h"
+#import "HiRouter_h.h"
 
-@interface HomeViewController ()
+#import "HiPathFilter.h"
+
+@interface HomeViewController ()<HiRouterPageProtocol>
 
 @property (strong, nonatomic) UILabel *displayLabel;
 
@@ -61,26 +63,48 @@
     [self.view addSubview:self.displayLabel];
 }
 
-- (void) showLogin {
+- (void) showLogin { 
+
+//    NSURL *url = [NSURL URLWithString:@"http://www.testurl.com:8080/subpath/subsubpath?uid=123&gid=456"];
+//    [[[HiPathFilter alloc] init] pathFilterWithURL:url];
     
-    __weak typeof(self) weakSelf = self;
+    NSArray *array = @[@"login",@"login/sub1",@"login/sub1/sub2",@"afdf"];
     
-    [[HiRouter.instance build:@"login" callBack:^(NSDictionary *callBack) {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self LIKE 'login*'"];
     
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        
-        NSString *name = [callBack objectForKey:@"name"];
-        
-        NSString *password = [callBack objectForKey:@"password"];
-        
-        strongSelf.displayLabel.text = [[NSString alloc] initWithFormat:@"name : %@ \npassword: %@", name, password];
-        
-    }] presentWithContext:self animated:true completion:nil];
+    NSLog(@"%@",[array filteredArrayUsingPredicate:predicate]);
+    
+    [[HiRouter.instance build:@"login" fromViewController:self] presentWithContext:self animated:true completion:nil];
+    
+//    __weak typeof(self) weakSelf = self;
+//
+//    [[HiRouter.instance build:@"login" callBack:^(NSDictionary *callBack) {
+//
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//
+//        NSString *name = [callBack objectForKey:@"name"];
+//
+//        NSString *password = [callBack objectForKey:@"password"];
+//
+//        strongSelf.displayLabel.text = [[NSString alloc] initWithFormat:@"name : %@ \npassword: %@", name, password];
+//
+//    }] presentWithContext:self animated:true completion:nil];
+}
+
+- (void)recivedCallBack:(NSDictionary *)callBack {
+
+    NSString *name = [callBack objectForKey:@"name"];
+
+    NSString *password = [callBack objectForKey:@"password"];
+
+    self.displayLabel.text = [[NSString alloc] initWithFormat:@"name : %@ \npassword: %@", name, password];
 }
 
 - (void) parameters {
     
-    [[HiRouter.instance build:@"parameters" withParameters:@{@"name":@"tom"}] pushWithContext:self animated:true];
+    [[HiRouter.instance build:@"parameters" fromViewController:self withParameters:@{@"name":@"tom"}] pushWithContext:self animated:true];
+    
+//    [[HiRouter.instance build:@"parameters" withParameters:@{@"name":@"tom"}] pushWithContext:self animated:true];
 }
 
 - (void)didReceiveMemoryWarning {

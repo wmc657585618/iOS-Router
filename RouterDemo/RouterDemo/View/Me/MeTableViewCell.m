@@ -10,8 +10,6 @@
 
 @interface MeTableViewCell ()
 
-@property (copy, nonatomic) HiRouterCommond commond;
-
 @property (strong, nonatomic) UIButton *submitButton;
 
 @property (strong, nonatomic) UITextField *userNameTextField;
@@ -93,11 +91,6 @@
     self.submitButton.frame = CGRectMake(CGRectGetMaxX(self.passwordTextField.frame) + 10, 10, 40, 40);
 }
 
-- (void)invorkerCommond:(HiRouterCommond)invorkerCommond {
-    
-    self.commond = invorkerCommond;
-}
-
 - (void)received:(NSDictionary *)receive {
     
     self.userNameTextField.text = [receive objectForKey:@"name"];
@@ -107,13 +100,11 @@
 
 - (void) doAction {
     
-    if (self.commond) {
-        
-        NSString *name = self.userNameTextField.text;
-
-        NSString *password = self.passwordTextField.text;
-
-        self.commond(@{@"name":name,@"password":password});
-    }
+    NSString *name = self.userNameTextField.text;
+    
+    NSString *password = self.passwordTextField.text;
+    
+    [HiRouter.instance invork:self postData:@{@"name":name,@"password":password}];
 }
+
 @end

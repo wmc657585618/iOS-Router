@@ -10,16 +10,9 @@
 
 @interface MeTableViewCellModel ()
 
-@property (copy, nonatomic) HiRouterCommond commond;
-
 @end
 
 @implementation MeTableViewCellModel
-
-- (void)invorkerCommond:(HiRouterCommond)invorkerCommond {
-    
-    self.commond = invorkerCommond;
-}
 
 - (void)received:(NSDictionary *)receive {
     
@@ -30,14 +23,11 @@
 
 - (void) doAction {
     
-    if (self.commond) {
-        
-        NSString *name = self.name.length > 0 ? self.name : @"";
-        
-        NSString *password = self.password.length > 0 ? self.password : @"";
-
-        self.commond(@{@"name":name,@"password":password});
-    }
+    NSString *name = self.name.length > 0 ? self.name : @"";
+    
+    NSString *password = self.password.length > 0 ? self.password : @"";
+    
+    [HiRouter.instance invork:self postData:@{@"name":name,@"password":password}];
 }
 
 @end

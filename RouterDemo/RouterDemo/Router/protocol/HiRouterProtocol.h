@@ -8,15 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^HiRouterCommond)(NSDictionary *commond);
-
 @protocol HiRouterViewModel <NSObject>
 
-@optional
-- (void) invorkerCommond:(HiRouterCommond)invorkerCommond;
+- (void) received:(id)receive;
 
-- (void) received:(NSDictionary *)receive;
+// this delegate has implemented
+@optional
+@property(nonatomic,weak) id<HiRouterViewModel>hi_private_delegate;
 
 @end
-
 

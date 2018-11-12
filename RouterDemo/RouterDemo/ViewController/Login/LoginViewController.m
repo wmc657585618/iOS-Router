@@ -8,9 +8,9 @@
 
 #import "LoginViewController.h"
 
-#import "HiRouter.h"
+#import "HiRouter_h.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<HiRouterPageProtocol>
 
 @property (copy, nonatomic) HiRouterCallBack callBack;
 
@@ -77,21 +77,18 @@
     [self.view addSubview:button];
     
     
-    self.callBack = [HiRouter.instance callBackForViewController:self];
+//    self.callBack = [HiRouter.instance callBackForViewController:self];
 }
 
 - (void) dismiss {
     
     [self.view endEditing:true];
     
-    if (self.callBack) {
-        
-        NSString *name = self.userNameTextField.text;
-        
-        NSString *password = self.passwordTextField.text;
-        
-        self.callBack(@{@"name":name,@"password":password});
-    }
+    NSString *name = self.userNameTextField.text;
+    
+    NSString *password = self.passwordTextField.text;
+    
+    [HiRouter.instance routerCallBackFromViewController:self callBackParameters:@{@"name":name,@"password":password}];
     
     [self dismissViewControllerAnimated:true completion:nil];
 }
