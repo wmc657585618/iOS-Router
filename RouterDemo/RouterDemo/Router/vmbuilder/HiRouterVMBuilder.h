@@ -17,8 +17,6 @@
 
 @end
 
-@interface NSObject (delegate)
-
-@property (nonatomic, weak) id<HiRouterViewModel> hi_private_delegate;
+@interface NSObject (delegate)<HiRouterViewModel>
 
 @end

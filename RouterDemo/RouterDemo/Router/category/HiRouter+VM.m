@@ -9,7 +9,7 @@
 #import "HiRouter+VM.h"
 
 @implementation HiRouter (VM)
-/************* view model *************/
+
 /**
  build view and model in dynamic
  */
@@ -23,5 +23,5 @@
     
     [HiRouterVMBuilder objc:invork postData:data];
 }
-/************* view model *************/
+
 @end

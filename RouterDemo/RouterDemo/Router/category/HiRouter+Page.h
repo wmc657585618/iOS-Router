@@ -21,9 +21,7 @@
 
 @end
 
-@interface UIViewController (Hi_delegate)
-
-@property (nonatomic, weak) id<HiRouterPageProtocol> hi_private_page_delegate;
+@interface UIViewController (Hi_delegate)<HiRouterPageProtocol>
 
 @end
 

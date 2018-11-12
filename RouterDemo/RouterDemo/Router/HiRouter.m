@@ -22,6 +22,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary<NSString *, id<HiFilterProtocol>> *filters;
 
+@property (strong, nonatomic) NSLock *lock;
 @end
 
 static HiRouter *_instance = nil;
@@ -56,8 +57,6 @@ static HiRouter *_instance = nil;
 }
 /*********** instance router ***********/
 
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
 /****************** lazy ******************/
 - (NSMutableDictionary *)parametersDictionary {
     
@@ -87,28 +86,42 @@ static HiRouter *_instance = nil;
     
     return _callBackDictionary;
 }
+
+- (NSLock *)lock {
+    
+    if (!_lock) {
+        
+        _lock = [[NSLock alloc] init];
+    }
+    
+    return _lock;
+}
+
 /****************** lazy ******************/
 
 #pragma mark - public
 /*********** regist router ***********/
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary {
     
-    self.pRouteDictionary = routeDictionary;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        self.pRouteDictionary = routeDictionary;
+    });
 }
-
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
-
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
 
 - (void)registFilter:(id<HiFilterProtocol>)filter forPath:(NSString *)path {
     
+    [self.lock lock];
+    
     [self.filters setObject:filter forKey:path];
+    
+    [self.lock unlock];
 }
 
 - (NSDictionary<NSString *,NSString *> *)routeDictionary {
     
     return self.pRouteDictionary;
 }
+
 @end

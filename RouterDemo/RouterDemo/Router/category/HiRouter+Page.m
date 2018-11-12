@@ -11,8 +11,6 @@
 
 @implementation HiRouter (Page)
 
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
 - (NSString *) keyWithObject:(UIViewController *)object {
     
     return NSStringFromClass(object.class);
@@ -38,8 +36,6 @@
     
     return nil;
 }
-
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
 
 /******************** page ********************/
 - (HiRouterBuilder *) build:(NSString *)path {
