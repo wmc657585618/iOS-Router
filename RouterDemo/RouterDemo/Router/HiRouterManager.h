@@ -6,11 +6,11 @@
 //  Copyright © 2018 Four. All rights reserved.
 //
 
-#ifndef HIRouter_h_h
-#define HIRouter_h_h
+#ifndef HiRouterManager_h
+#define HiRouterManager_h
 
 #import "HiRouter+VM.h"
 #import "HiRouter+Page.h"
 
 
-#endif /* HIRouter_h_h */
+#endif /* HiRouterManager_h */

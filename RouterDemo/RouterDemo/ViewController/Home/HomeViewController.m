@@ -8,9 +8,7 @@
 
 #import "HomeViewController.h"
 
-#import "HiRouter_h.h"
-
-#import "HiPathFilter.h"
+#import "HiRouterManager.h"
 
 @interface HomeViewController ()<HiRouterPageProtocol>
 
@@ -63,32 +61,9 @@
     [self.view addSubview:self.displayLabel];
 }
 
-- (void) showLogin { 
-
-//    NSURL *url = [NSURL URLWithString:@"http://www.testurl.com:8080/subpath/subsubpath?uid=123&gid=456"];
-//    [[[HiPathFilter alloc] init] pathFilterWithURL:url];
-    
-    NSArray *array = @[@"login",@"login/sub1",@"login/sub1/sub2",@"afdf"];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self LIKE 'login*'"];
-    
-    NSLog(@"%@",[array filteredArrayUsingPredicate:predicate]);
+- (void) showLogin {
     
     [[HiRouter.instance build:@"login" fromViewController:self] presentWithContext:self animated:true completion:nil];
-    
-//    __weak typeof(self) weakSelf = self;
-//
-//    [[HiRouter.instance build:@"login" callBack:^(NSDictionary *callBack) {
-//
-//        __strong typeof(weakSelf) strongSelf = weakSelf;
-//
-//        NSString *name = [callBack objectForKey:@"name"];
-//
-//        NSString *password = [callBack objectForKey:@"password"];
-//
-//        strongSelf.displayLabel.text = [[NSString alloc] initWithFormat:@"name : %@ \npassword: %@", name, password];
-//
-//    }] presentWithContext:self animated:true completion:nil];
 }
 
 - (void)recivedCallBack:(NSDictionary *)callBack {
@@ -103,8 +78,6 @@
 - (void) parameters {
     
     [[HiRouter.instance build:@"parameters" fromViewController:self withParameters:@{@"name":@"tom"}] pushWithContext:self animated:true];
-    
-//    [[HiRouter.instance build:@"parameters" withParameters:@{@"name":@"tom"}] pushWithContext:self animated:true];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,11 +8,9 @@
 
 #import "LoginViewController.h"
 
-#import "HiRouter_h.h"
+#import "HiRouterManager.h"
 
 @interface LoginViewController ()<HiRouterPageProtocol>
-
-@property (copy, nonatomic) HiRouterCallBack callBack;
 
 @property (strong, nonatomic) UITextField *userNameTextField;
 

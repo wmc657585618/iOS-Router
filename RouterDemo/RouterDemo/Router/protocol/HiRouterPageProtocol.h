@@ -15,6 +15,4 @@
 
 - (void)recivedCallBack:(id)callBack;
 
-@property (nonatomic,weak) id<HiRouterPageProtocol>hi_private_page_delegate;
-
 @end

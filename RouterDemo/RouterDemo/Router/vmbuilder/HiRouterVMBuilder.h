@@ -11,12 +11,8 @@
 
 @interface HiRouterVMBuilder : NSObject
 
-+ (void) bind:(id<HiRouterViewModel>)objcA objcB:(id<HiRouterViewModel>)objcB;
++ (void) bind:(NSObject<HiRouterViewModel> *)objcA objcB:(NSObject<HiRouterViewModel> *)objcB;
 
-+ (void) objc:(id<HiRouterViewModel>)objc postData:(id)data;
-
-@end
-
-@interface NSObject (delegate)<HiRouterViewModel>
++ (void) objc:(NSObject<HiRouterViewModel> *)objc postData:(id)data;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "HiRouter+Page.h"
 #import <objc/runtime.h>
+#import "UIViewController+HiRouter_page_delegate.h"
 
 @implementation HiRouter (Page)
 
@@ -37,6 +38,18 @@
     return nil;
 }
 
+- (UIViewController<HiRouterPageProtocol> *) viewControllerWithPaht:(NSString *)path parameters:(id)parameters {
+    
+    UIViewController<HiRouterPageProtocol> *pViewController = [self viewControllerWithPath:path];
+
+    if (pViewController && [pViewController respondsToSelector:@selector(recivedParameters:)]) {
+        
+        [pViewController recivedParameters:parameters];
+    }
+    
+    return pViewController;
+}
+
 /******************** page ********************/
 - (HiRouterBuilder *) build:(NSString *)path {
     
@@ -49,16 +62,21 @@
 }
 
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters {
-
-    UIViewController<HiRouterPageProtocol> *pViewController = [self viewControllerWithPath:path];
+    
+    // check filter
+    NSObject<HiFilterProtocol> * objce = [self.filters objectForKey:path];
+    NSString *realPath = path;
+    id realParameters = parameters;
+    
+    if (objce) {
+        realPath = objce.forwardPath == nil ? path : objce.forwardPath;
+        realParameters = objce.defaultParameters == nil ? parameters : objce.defaultParameters;
+    }
     
     HiRouterBuilder *builder = [[HiRouterBuilder alloc] init];
     
-    if (pViewController && [pViewController respondsToSelector:@selector(recivedParameters:)]) {
-        
-        [pViewController recivedParameters:parameters];
-    }
-
+    UIViewController<HiRouterPageProtocol> *pViewController = [self viewControllerWithPaht:realPath parameters:realParameters];
+    
     pViewController.hi_private_page_delegate = viewController;
     
     builder.viewController = pViewController;

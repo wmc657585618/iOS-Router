@@ -10,11 +10,8 @@
 
 @protocol HiRouterViewModel <NSObject>
 
-- (void) received:(id)receive;
-
-// this delegate has implemented
 @optional
-@property(nonatomic,weak) id<HiRouterViewModel>hi_private_delegate;
+- (void) received:(id)receive;
 
 @end
 

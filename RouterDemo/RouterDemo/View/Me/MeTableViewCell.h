@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "HiRouter_h.h"
+#import "HiRouterManager.h"
 
 @interface MeTableViewCell : UITableViewCell<HiRouterViewModel>
 

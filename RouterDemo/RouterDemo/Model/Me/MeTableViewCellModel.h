@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HiRouter_h.h"
+#import "HiRouterManager.h"
 
 @interface MeTableViewCellModel : NSObject<HiRouterViewModel>
 

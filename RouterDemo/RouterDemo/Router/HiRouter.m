@@ -14,15 +14,12 @@
 /**
  route dictionary
  */
-@property (copy, nonatomic) NSDictionary<NSString *, NSString *> *pRouteDictionary;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSString *> *pRouteDictionary;
 
-@property (strong, nonatomic) NSMutableDictionary *parametersDictionary;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject<HiFilterProtocol> *> *pFilters;
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, HiRouterCallBack> *callBackDictionary;
-
-@property (strong, nonatomic) NSMutableDictionary<NSString *, id<HiFilterProtocol>> *filters;
-
-@property (strong, nonatomic) NSLock *lock;
+@property (strong, nonatomic) NSLock *filterLock;
+@property (strong, nonatomic) NSLock *routerLock;
 @end
 
 static HiRouter *_instance = nil;
@@ -58,43 +55,39 @@ static HiRouter *_instance = nil;
 /*********** instance router ***********/
 
 /****************** lazy ******************/
-- (NSMutableDictionary *)parametersDictionary {
+- (NSMutableDictionary<NSString *,NSString *> *)pRouteDictionary {
     
-    if (!_parametersDictionary) {
-        
-        _parametersDictionary = [[NSMutableDictionary alloc] init];
+    if (!_pRouteDictionary) {
+        _pRouteDictionary = [NSMutableDictionary dictionary];
     }
-    
-    return _parametersDictionary;
+    return _pRouteDictionary;
 }
 
-- (NSMutableDictionary *)filters {
+- (NSMutableDictionary *)pFilters {
     
-    if (!_filters) {
-        _filters = [[NSMutableDictionary alloc] init];
+    if (!_pFilters) {
+        _pFilters = [[NSMutableDictionary alloc] init];
     }
     
-    return _filters;
+    return _pFilters;
 }
 
-- (NSMutableDictionary<NSString *,HiRouterCallBack> *)callBackDictionary {
+- (NSLock *)filterLock {
     
-    if (!_callBackDictionary) {
+    if (!_filterLock) {
         
-        _callBackDictionary = [[NSMutableDictionary<NSString *,HiRouterCallBack> alloc] init];
+        _filterLock = [[NSLock alloc] init];
     }
     
-    return _callBackDictionary;
+    return _filterLock;
 }
 
-- (NSLock *)lock {
+- (NSLock *)routerLock {
     
-    if (!_lock) {
-        
-        _lock = [[NSLock alloc] init];
+    if (!_routerLock) {
+        _routerLock = [[NSLock alloc] init];
     }
-    
-    return _lock;
+    return _routerLock;
 }
 
 /****************** lazy ******************/
@@ -103,25 +96,32 @@ static HiRouter *_instance = nil;
 /*********** regist router ***********/
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary {
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        
-        self.pRouteDictionary = routeDictionary;
-    });
+    [self.routerLock lock];
+    
+    [self.pRouteDictionary addEntriesFromDictionary:routeDictionary];
+    
+    [self.routerLock unlock];
 }
 
-- (void)registFilter:(id<HiFilterProtocol>)filter forPath:(NSString *)path {
+- (void)registFilter:(NSObject<HiFilterProtocol> *)filter {
     
-    [self.lock lock];
+    [self.filterLock lock];
     
-    [self.filters setObject:filter forKey:path];
+    if (filter.originPath) {
+        [self.pFilters setObject:filter forKey:filter.originPath];
+    }
     
-    [self.lock unlock];
+    [self.filterLock unlock];
 }
 
 - (NSDictionary<NSString *,NSString *> *)routeDictionary {
     
     return self.pRouteDictionary;
+}
+
+- (NSDictionary *)filters {
+    
+    return self.pFilters;
 }
 
 @end

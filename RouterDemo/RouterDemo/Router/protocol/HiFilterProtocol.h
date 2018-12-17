@@ -10,7 +10,8 @@
 
 @protocol HiFilterProtocol <NSObject>
 
-@required
-- (BOOL)filterWithURL:(NSURL *)url;
+@property (nonatomic,readonly) NSString *originPath;
+@property (nonatomic,readonly) NSString *forwardPath;
+@property (nonatomic,readonly) id defaultParameters;
 
 @end

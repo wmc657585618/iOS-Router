@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 
-#import "HiRouter_h.h"
+#import "HiRouterManager.h"
+#import "HiFilerObject.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,9 @@
     NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
     
     [HiRouter.instance registRoute:dictionary];
+    
+    // filter
+    [HiRouter.instance registFilter:[[HiFilerObject alloc] init]];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     

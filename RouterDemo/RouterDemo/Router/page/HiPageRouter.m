@@ -7,13 +7,7 @@
 //
 
 #import "HiPageRouter.h"
-#import "HiPageFilter.h"
 
 @implementation HiPageRouter
-
-- (void)preHandlerWtihPath:(NSString *)path {
-    
-    
-}
 
 @end

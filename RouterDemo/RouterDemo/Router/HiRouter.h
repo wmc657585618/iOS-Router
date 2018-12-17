@@ -11,7 +11,7 @@
 #import "HiRouterBuilder.h"
 #import "HiFilterProtocol.h"
 
-typedef void(^HiRouterCallBack)(NSDictionary *callBack);
+NS_ASSUME_NONNULL_BEGIN
 
 @interface HiRouter : NSObject
 
@@ -21,14 +21,15 @@ typedef void(^HiRouterCallBack)(NSDictionary *callBack);
 @property (readonly, nonatomic, class) HiRouter *instance;
 
 @property (readonly, nonatomic) NSDictionary<NSString *, NSString *> *routeDictionary;
+@property (readonly, nonatomic) NSDictionary<NSString *, NSObject<HiFilterProtocol> *> *filters;
 
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
 
 /**
  regist filer
-
- @param path filt path
  */
-- (void)registFilter:(id<HiFilterProtocol>)filter forPath:(NSString *)path;
+- (void) registFilter:(NSObject<HiFilterProtocol> *)filter;
 
 @end
+
+NS_ASSUME_NONNULL_END
