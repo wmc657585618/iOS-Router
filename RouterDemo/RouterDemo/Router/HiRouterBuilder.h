@@ -7,25 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import <UIKit/UIKit.h>
+#import "HiRouterDefine.h"
 
 @interface HiRouterBuilder : NSObject
 
-@property (strong, nonatomic) UIViewController *viewController;
+@property (weak, nonatomic) UIViewController *fromViewController;
+@property (strong, nonatomic) UIViewController *toViewController;
 
-/**
- push viewController
+@property (nonatomic,assign) HiRouterNavigationAction navigationAction;
 
- @param contextViewController current viewController
- */
-- (void) pushWithContext:(UIViewController *)contextViewController animated:(BOOL)animated;
-
-/**
- present viewController
-
- @param contextViewController current viewController
- */
-- (void) presentWithContext:(UIViewController *)contextViewController animated:(BOOL)animated completion:(void (^ __nullable)(void))completion;
+// fromviewcontroller present or push toviewcontroller
+// completion just for present
+- (void)buildAnimated:(BOOL)animated completion:(void(^)(void))completion;
 
 @end

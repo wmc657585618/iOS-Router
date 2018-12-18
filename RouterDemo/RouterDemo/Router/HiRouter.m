@@ -52,6 +52,7 @@ static HiRouter *_instance = nil;
 
     return HiRouter.instance;
 }
+
 /*********** instance router ***********/
 
 /****************** lazy ******************/
@@ -68,17 +69,14 @@ static HiRouter *_instance = nil;
     if (!_pFilters) {
         _pFilters = [[NSMutableDictionary alloc] init];
     }
-    
     return _pFilters;
 }
 
 - (NSLock *)filterLock {
     
     if (!_filterLock) {
-        
         _filterLock = [[NSLock alloc] init];
     }
-    
     return _filterLock;
 }
 

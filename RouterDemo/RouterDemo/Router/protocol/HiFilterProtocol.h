@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HiRouterDefine.h"
 
 @protocol HiFilterProtocol <NSObject>
 
 @property (nonatomic,readonly) NSString *originPath;
 @property (nonatomic,readonly) NSString *forwardPath;
 @property (nonatomic,readonly) id defaultParameters;
+@property (nonatomic,readonly) HiRouterNavigationAction navigationAction;
 
 @end

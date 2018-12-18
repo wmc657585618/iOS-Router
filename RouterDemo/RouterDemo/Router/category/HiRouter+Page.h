@@ -13,16 +13,15 @@
 
 - (HiRouterBuilder *) build:(NSString *)path;
 
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController;
+- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterNavigationAction)action;
 
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters;
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterNavigationAction)action;
+
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterNavigationAction)action;
 
 - (BOOL) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters;
 
 @end
 
-@interface UIViewController (Hi_delegate)<HiRouterPageProtocol>
-
-@end
 
 

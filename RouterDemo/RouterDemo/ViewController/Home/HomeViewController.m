@@ -63,7 +63,9 @@
 
 - (void) showLogin {
     
-    [[HiRouter.instance build:@"login" fromViewController:self] presentWithContext:self animated:true completion:nil];
+    [[HiRouter.instance build:@"login" fromViewController:self action:HiRouterNavigationActionPresent] buildAnimated:true completion:^{
+        
+    }];
 }
 
 - (void)recivedCallBack:(NSDictionary *)callBack {
@@ -77,7 +79,7 @@
 
 - (void) parameters {
     
-    [[HiRouter.instance build:@"parameters" fromViewController:self withParameters:@{@"name":@"tom"}] pushWithContext:self animated:true];
+    [[HiRouter.instance build:@"parameters" fromViewController:self withParameters:@{@"name":@"tom"} action:HiRouterNavigationActionPush] buildAnimated:true completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

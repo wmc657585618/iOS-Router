@@ -22,4 +22,10 @@
     
     return @{@"key":@"default"};
 }
+
+- (HiRouterNavigationAction)navigationAction {
+    
+    return HiRouterNavigationActionPush;
+}
+
 @end

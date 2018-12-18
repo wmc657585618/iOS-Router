@@ -12,6 +12,9 @@
 #import "HiFilerObject.h"
 
 @interface AppDelegate ()
+@property (nonatomic,assign) HiFilerObject *ass;
+@property (nonatomic,weak) HiFilerObject *wea;
+
 
 @end
 
@@ -34,7 +37,7 @@
     
     self.window.backgroundColor = UIColor.whiteColor;
     
-    self.window.rootViewController = [HiRouter.instance build:@"tab"].viewController;
+    self.window.rootViewController = [HiRouter.instance build:@"tab"].toViewController;
     
     [self.window makeKeyAndVisible];
     

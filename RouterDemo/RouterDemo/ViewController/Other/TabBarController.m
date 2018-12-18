@@ -21,14 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIViewController *home = [HiRouter.instance build:@"home"].viewController;
+    UIViewController *home = [HiRouter.instance build:@"home"].toViewController;
     
     NavigationController *homeNav = [[NavigationController alloc] initWithRootViewController:home];
     
     homeNav.tabBarItem.title = @"home";
 
     
-    UIViewController *me = [HiRouter.instance build:@"me"].viewController;
+    UIViewController *me = [HiRouter.instance build:@"me"].toViewController;
     
     NavigationController *meNav = [[NavigationController alloc] initWithRootViewController:me];
     
