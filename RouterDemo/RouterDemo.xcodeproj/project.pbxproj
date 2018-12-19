@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1C55A52D21C7C26F00B6A1C8 /* HiFilerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55A52C21C7C26F00B6A1C8 /* HiFilerObject.m */; };
+		1C55A57B21C9EA8B00B6A1C8 /* HiRouterPageReleasObsever.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55A57A21C9EA8B00B6A1C8 /* HiRouterPageReleasObsever.m */; };
+		1C55A57E21C9ED0200B6A1C8 /* UIViewController+HiRouter_page_delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C55A57D21C9ED0200B6A1C8 /* UIViewController+HiRouter_page_delegate.m */; };
 		1C5BAF5A2199612D00D7399E /* HiRouterVMBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BAF582199612D00D7399E /* HiRouterVMBuilder.m */; };
 		1C5BAF5E2199748600D7399E /* HiRouter+Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BAF5D2199748600D7399E /* HiRouter+Page.m */; };
 		1C5BAF61219974B800D7399E /* HiRouter+VM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BAF60219974B800D7399E /* HiRouter+VM.m */; };
@@ -34,6 +36,10 @@
 		1C55A52B21C7C26F00B6A1C8 /* HiFilerObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiFilerObject.h; sourceTree = "<group>"; };
 		1C55A52C21C7C26F00B6A1C8 /* HiFilerObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiFilerObject.m; sourceTree = "<group>"; };
 		1C55A53721C8BEE400B6A1C8 /* HiRouterDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouterDefine.h; sourceTree = "<group>"; };
+		1C55A57921C9EA8B00B6A1C8 /* HiRouterPageReleasObsever.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouterPageReleasObsever.h; sourceTree = "<group>"; };
+		1C55A57A21C9EA8B00B6A1C8 /* HiRouterPageReleasObsever.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiRouterPageReleasObsever.m; sourceTree = "<group>"; };
+		1C55A57C21C9ED0200B6A1C8 /* UIViewController+HiRouter_page_delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HiRouter_page_delegate.h"; sourceTree = "<group>"; };
+		1C55A57D21C9ED0200B6A1C8 /* UIViewController+HiRouter_page_delegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HiRouter_page_delegate.m"; sourceTree = "<group>"; };
 		1C5BAF582199612D00D7399E /* HiRouterVMBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterVMBuilder.m; sourceTree = "<group>"; };
 		1C5BAF592199612D00D7399E /* HiRouterVMBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterVMBuilder.h; sourceTree = "<group>"; };
 		1C5BAF5C2199748600D7399E /* HiRouter+Page.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HiRouter+Page.h"; sourceTree = "<group>"; };
@@ -76,7 +82,6 @@
 		1CC3B10021918836003AF24E /* HiPageRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiPageRouter.m; sourceTree = "<group>"; };
 		1CC3B10521918887003AF24E /* HiRouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterProtocol.h; sourceTree = "<group>"; };
 		1CC3B10921919918003AF24E /* HiFilterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiFilterProtocol.h; sourceTree = "<group>"; };
-		1CF03CDB21AF93DC003CB94E /* UIViewController+HiRouter_page_delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HiRouter_page_delegate.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +122,8 @@
 				1C5BAF60219974B800D7399E /* HiRouter+VM.m */,
 				1C5BAF62219974C400D7399E /* HiRouter+Filter.h */,
 				1C5BAF63219974C400D7399E /* HiRouter+Filter.m */,
-				1CF03CDB21AF93DC003CB94E /* UIViewController+HiRouter_page_delegate.h */,
+				1C55A57C21C9ED0200B6A1C8 /* UIViewController+HiRouter_page_delegate.h */,
+				1C55A57D21C9ED0200B6A1C8 /* UIViewController+HiRouter_page_delegate.m */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 			children = (
 				1CC3B0FE21918836003AF24E /* HiPageRouter.h */,
 				1CC3B10021918836003AF24E /* HiPageRouter.m */,
+				1C55A57921C9EA8B00B6A1C8 /* HiRouterPageReleasObsever.h */,
+				1C55A57A21C9EA8B00B6A1C8 /* HiRouterPageReleasObsever.m */,
 			);
 			path = page;
 			sourceTree = "<group>";
@@ -369,10 +377,12 @@
 				1C65583820F5FC4E00862997 /* main.m in Sources */,
 				1C65588020F60B6E00862997 /* MeTableViewCellModel.m in Sources */,
 				1C65584A20F5FC9C00862997 /* HiRouterBuilder.m in Sources */,
+				1C55A57E21C9ED0200B6A1C8 /* UIViewController+HiRouter_page_delegate.m in Sources */,
 				1C55A52D21C7C26F00B6A1C8 /* HiFilerObject.m in Sources */,
 				1C65588520F60D2A00862997 /* MeTableViewCell.m in Sources */,
 				1C65587320F6022800862997 /* LoginViewController.m in Sources */,
 				1C65587520F6022800862997 /* HomeViewController.m in Sources */,
+				1C55A57B21C9EA8B00B6A1C8 /* HiRouterPageReleasObsever.m in Sources */,
 				1C5BAF64219974C400D7399E /* HiRouter+Filter.m in Sources */,
 				1C65584920F5FC9C00862997 /* HiRouter.m in Sources */,
 				1CC3B10221918836003AF24E /* HiPageRouter.m in Sources */,

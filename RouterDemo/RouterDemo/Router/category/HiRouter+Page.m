@@ -7,26 +7,7 @@
 //
 
 #import "HiRouter+Page.h"
-#import <objc/runtime.h>
 #import "UIViewController+HiRouter_page_delegate.h"
-
-@interface UIViewController (Hi_delegate)<HiRouterPageProtocol>
-
-@property (nonatomic,weak) id<HiRouterPageProtocol> hi_private_page_delegate;
-
-@end
-
-@implementation UIViewController (delegate)
-
-- (void)setHi_private_page_delegate:(id<HiRouterPageProtocol>)hi_private_page_delegate {
-    objc_setAssociatedObject(self, @selector(hi_private_page_delegate), hi_private_page_delegate, OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (id<HiRouterPageProtocol>)hi_private_page_delegate {
-    return objc_getAssociatedObject(self, @selector(hi_private_page_delegate));
-}
-
-@end
 
 @implementation HiRouter (Page)
 

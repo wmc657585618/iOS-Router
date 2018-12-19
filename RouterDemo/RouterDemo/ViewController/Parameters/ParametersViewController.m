@@ -37,7 +37,6 @@
     
     self.view.backgroundColor = UIColor.whiteColor;
     
-    
     self.displayLabel.frame = CGRectMake(10, 100, self.view.bounds.size.width - 20, 100);
     
     [self.view addSubview:self.displayLabel];
@@ -47,6 +46,7 @@
  
      self.displayLabel.text = parameters.description;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

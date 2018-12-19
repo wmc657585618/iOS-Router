@@ -12,9 +12,6 @@
 #import "HiFilerObject.h"
 
 @interface AppDelegate ()
-@property (nonatomic,assign) HiFilerObject *ass;
-@property (nonatomic,weak) HiFilerObject *wea;
-
 
 @end
 
