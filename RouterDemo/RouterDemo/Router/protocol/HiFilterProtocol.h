@@ -11,9 +11,23 @@
 
 @protocol HiFilterProtocol <NSObject>
 
-@property (nonatomic,readonly) NSString *originPath;
+// like path/path1/path2/path3 , path/path1, path/path1/path2, path/path1/path2/path3 ....
+// if you want to filt all,like this paht*, then path1 and path2 will be filt, * all
+@property (nonatomic,readonly) NSString *filtPath;
+@property (nonatomic,copy) NSString *originPath;
 @property (nonatomic,readonly) NSString *forwardPath;
 @property (nonatomic,readonly) id defaultParameters;
+
+@end
+
+@protocol HiPageFilterProtocol <HiFilterProtocol>
+
 @property (nonatomic,readonly) HiRouterNavigationAction navigationAction;
+
+@end
+
+@protocol HiNetworkFilterProtocol <HiFilterProtocol>
+
+@property (nonatomic,readonly) NSString *result;
 
 @end

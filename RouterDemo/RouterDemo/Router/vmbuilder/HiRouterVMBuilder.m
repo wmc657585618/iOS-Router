@@ -19,7 +19,7 @@
 
 @interface NSObject (hi_delegate)<HiRouterViewModel>
 
-@property (nonatomic,weak) id<HiRouterViewModel> hi_private_delegate;
+@property (nonatomic,weak) NSObject<HiRouterViewModel> * hi_private_delegate;
 @property (nonatomic,strong) NSObjectReleaseObsever *releaseObsever;
 
 @end

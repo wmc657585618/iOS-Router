@@ -8,10 +8,23 @@
 
 #import "HiFilerObject.h"
 
+@interface HiFilerObject ()
+@property (nonatomic,copy) NSString *pOriginPath;
+
+@end
+
 @implementation HiFilerObject
 
-- (NSString *)originPath {
+- (NSString *)filtPath {
     return @"login";
+}
+
+- (NSString *)originPath {
+    return self.pOriginPath;
+}
+
+- (void)setOriginPath:(NSString *)originPath {
+    self.pOriginPath = originPath;
 }
 
 - (NSString *)forwardPath {

@@ -28,7 +28,7 @@
     [HiRouter.instance registRoute:dictionary];
     
     // filter
-    [HiRouter.instance registFilter:[[HiFilerObject alloc] init]];
+    [HiRouter.instance registPageFilter:[[HiFilerObject alloc] init]];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     

@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HiFilterProtocol.h"
+#import "HiRouterPageProtocol.h"
 
 @protocol HiRouterViewModel <NSObject>
 

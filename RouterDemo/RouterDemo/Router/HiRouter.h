@@ -21,14 +21,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic, class) HiRouter *instance;
 
 @property (readonly, nonatomic) NSDictionary<NSString *, NSString *> *routeDictionary;
-@property (readonly, nonatomic) NSDictionary<NSString *, NSObject<HiFilterProtocol> *> *filters;
+@property (readonly, nonatomic) NSDictionary<NSString *, NSObject<HiPageFilterProtocol> *> *pageFilters;
+@property (readonly, nonatomic) NSDictionary<NSString *, NSObject<HiNetworkFilterProtocol> *> *networkFilters;
 
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
 
 /**
  regist filer
  */
-- (void) registFilter:(NSObject<HiFilterProtocol> *)filter;
+- (void) registPageFilter:(NSObject<HiPageFilterProtocol> *)filter;
+
+- (void)registNetworkFilter:(NSObject<HiNetworkFilterProtocol> *)filter;
 
 @end
 

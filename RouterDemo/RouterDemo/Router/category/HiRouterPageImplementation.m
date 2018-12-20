@@ -1,14 +1,12 @@
 //
-//  HiRouter+Page.m
+//  HiRouterPageImplementation.m
 //  RouterDemo
 //
-//  Created by four on 2018/11/12.
+//  Created by four on 2018/12/20.
 //  Copyright © 2018 Four. All rights reserved.
 //
 
-#import "HiRouter+Page.h"
-#import "UIViewController+HiRouter_page_delegate.h"
-#import "HiRouter+Filter.h"
+#import "HiRouterCategory.h"
 
 @implementation HiRouter (Page)
 
@@ -38,7 +36,7 @@
 - (UIViewController<HiRouterPageProtocol> *) viewControllerWithPath:(NSString *)path parameters:(id)parameters {
     
     UIViewController<HiRouterPageProtocol> *pViewController = [self viewControllerWithPath:path];
-
+    
     if (pViewController && [pViewController respondsToSelector:@selector(recivedParameters:)]) {
         
         [pViewController recivedParameters:parameters];
@@ -92,7 +90,7 @@
 }
 
 - (BOOL) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters {
-   
+    
     if ([viewController.hi_private_page_delegate respondsToSelector:@selector(recivedCallBack:)]) {
         
         // post data to delegate

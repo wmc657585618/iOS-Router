@@ -16,9 +16,11 @@
  */
 @property (strong, nonatomic) NSMutableDictionary<NSString *, NSString *> *pRouteDictionary;
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject<HiFilterProtocol> *> *pFilters;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject<HiPageFilterProtocol> *> *pPageFilters;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject<HiNetworkFilterProtocol> *> *pNetworFilters;
 
-@property (strong, nonatomic) NSLock *filterLock;
+@property (strong, nonatomic) NSLock *pageFilterLock;
+@property (strong, nonatomic) NSLock *networkFilterLock;
 @property (strong, nonatomic) NSLock *routerLock;
 @end
 
@@ -64,20 +66,36 @@ static HiRouter *_instance = nil;
     return _pRouteDictionary;
 }
 
-- (NSMutableDictionary *)pFilters {
+- (NSMutableDictionary *)pPageFilters {
     
-    if (!_pFilters) {
-        _pFilters = [[NSMutableDictionary alloc] init];
+    if (!_pPageFilters) {
+        _pPageFilters = [[NSMutableDictionary alloc] init];
     }
-    return _pFilters;
+    return _pPageFilters;
 }
 
-- (NSLock *)filterLock {
+- (NSMutableDictionary *)pNetworFilters {
     
-    if (!_filterLock) {
-        _filterLock = [[NSLock alloc] init];
+    if (!_pNetworFilters) {
+        _pNetworFilters = [[NSMutableDictionary alloc] init];
     }
-    return _filterLock;
+    return _pNetworFilters;
+}
+
+- (NSLock *)pageFilterLock {
+    
+    if (!_pageFilterLock) {
+        _pageFilterLock = [[NSLock alloc] init];
+    }
+    return _pageFilterLock;
+}
+
+- (NSLock *)networkFilterLock {
+    
+    if (!_networkFilterLock) {
+        _networkFilterLock = [[NSLock alloc] init];
+    }
+    return _networkFilterLock;
 }
 
 - (NSLock *)routerLock {
@@ -101,15 +119,26 @@ static HiRouter *_instance = nil;
     [self.routerLock unlock];
 }
 
-- (void)registFilter:(NSObject<HiFilterProtocol> *)filter {
+- (void)registPageFilter:(NSObject<HiPageFilterProtocol> *)filter {
     
-    [self.filterLock lock];
+    [self.pageFilterLock lock];
     
-    if (filter.originPath) {
-        [self.pFilters setObject:filter forKey:filter.originPath];
+    if ([filter conformsToProtocol:@protocol(HiPageFilterProtocol)] && filter.filtPath.length > 0) {
+        [self.pPageFilters setObject:filter forKey:filter.filtPath];
     }
     
-    [self.filterLock unlock];
+    [self.pageFilterLock unlock];
+}
+
+- (void)registNetworkFilter:(NSObject<HiNetworkFilterProtocol> *)filter {
+
+    [self.networkFilterLock lock];
+    
+    if ([filter conformsToProtocol:@protocol(HiNetworkFilterProtocol)] && filter.filtPath > 0) {
+        [self.pNetworFilters setObject:filter forKey:filter.filtPath];
+    }
+    
+    [self.networkFilterLock unlock];
 }
 
 - (NSDictionary<NSString *,NSString *> *)routeDictionary {
@@ -117,9 +146,14 @@ static HiRouter *_instance = nil;
     return self.pRouteDictionary;
 }
 
-- (NSDictionary *)filters {
+- (NSDictionary *)pageFilters {
     
-    return self.pFilters;
+    return self.pPageFilters;
+}
+
+- (NSDictionary<NSString *,NSObject<HiNetworkFilterProtocol> *> *)networkFilters {
+    
+    return self.pNetworFilters;
 }
 
 @end
