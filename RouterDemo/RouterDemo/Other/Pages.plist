@@ -2,17 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>home</key>
-	<string>HomeViewController</string>
-	<key>login</key>
-	<string>LoginViewController</string>
-	<key>me</key>
-	<string>MeViewController</string>
-	<key>tab</key>
-	<string>TabBarController</string>
-	<key>nav</key>
-	<string>NavigationController</string>
-	<key>parameters</key>
-	<string>ParametersViewController</string>
+	<key>root</key>
+	<string>HiRootViewController</string>
+	<key>parametes/main</key>
+	<string>HiParametesViewController</string>
+	<key>parametes/main/receive</key>
+	<string>HiParametesReceiveViewController</string>
+	<key>callback/main</key>
+	<string>HiCallBackViewController</string>
+	<key>callback/sub</key>
+	<string>HiCallBackSubViewController</string>
+	<key>network/main</key>
+	<string>HiNetworkFilterViewController</string>
 </dict>
 </plist>

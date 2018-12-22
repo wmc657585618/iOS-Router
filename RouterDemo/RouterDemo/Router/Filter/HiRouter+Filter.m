@@ -20,7 +20,7 @@
         return [string isValidateRegularByExpression:filter.filterRegex];
     }];
     
-    NSArray *array = [self.pageFilters.allValues filteredArrayUsingPredicate:predicate];
+    NSArray *array = [filterArray filteredArrayUsingPredicate:predicate];
     
     NSArray *result = [array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         

@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 #import "HiRouterManager.h"
-#import "HiFilerObject.h"
+#import "HiRootNavigationViewController.h"
 
 @interface AppDelegate ()
 
@@ -27,14 +27,11 @@
     
     [HiRouter.instance registRoute:dictionary];
     
-    // filter
-    [HiRouter.instance registPageFilter:[[HiFilerObject alloc] init]];
-    
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     self.window.backgroundColor = UIColor.whiteColor;
     
-    self.window.rootViewController = [HiRouter.instance build:@"tab"].toViewController;
+    self.window.rootViewController = [[HiRootNavigationViewController alloc] initWithRootViewController:[HiRouter.instance build:@"root"].toViewController];
     
     [self.window makeKeyAndVisible];
     

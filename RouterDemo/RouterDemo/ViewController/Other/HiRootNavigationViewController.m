@@ -1,27 +1,22 @@
 //
-//  NavigationController.m
+//  HiRootNavigationViewController.m
 //  RouterDemo
 //
-//  Created by Four on 2018/7/11.
-//  Copyright © 2018年 Four. All rights reserved.
+//  Created by four on 2018/12/22.
+//  Copyright © 2018 Four. All rights reserved.
 //
 
-#import "NavigationController.h"
+#import "HiRootNavigationViewController.h"
 
-@interface NavigationController ()
+@interface HiRootNavigationViewController ()
 
 @end
 
-@implementation NavigationController
+@implementation HiRootNavigationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*
