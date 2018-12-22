@@ -9,8 +9,7 @@
 #ifndef HiRouterManager_h
 #define HiRouterManager_h
 
-#import "HiRouter+VM.h"
-#import "HiRouter+Page.h"
+#import "HiRouterCategory.h"
 
 
 #endif /* HiRouterManager_h */

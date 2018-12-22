@@ -7,6 +7,7 @@
 //
 
 #import "HiRouterCategory.h"
+#import "HiRouterVMBuilder.h"
 
 @implementation HiRouter (VM)
 
@@ -14,12 +15,12 @@
  build view and model in dynamic
  */
 
-- (void) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB {
+- (void) buildViewModelInDynamic:(NSObject<HiRouterViewModel> *)objectA objectB:(NSObject<HiRouterViewModel> *)objectB {
     
     [HiRouterVMBuilder bind:objectA objcB:objectB];
 }
 
-- (void) invork:(id<HiRouterViewModel>)invork postData:(id)data {
+- (void) invork:(NSObject<HiRouterViewModel> *)invork postData:(id)data {
     
     [HiRouterVMBuilder objc:invork postData:data];
 }

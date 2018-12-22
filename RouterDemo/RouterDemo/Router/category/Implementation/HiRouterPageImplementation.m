@@ -1,12 +1,12 @@
 //
-//  HiRouter+Page.m
+//  HiRouterPageImplementation.m
 //  RouterDemo
 //
-//  Created by four on 2018/11/12.
+//  Created by four on 2018/12/20.
 //  Copyright © 2018 Four. All rights reserved.
 //
 
-#import "HiRouter+Page.h"
+#import "HiRouterCategory.h"
 #import "UIViewController+HiRouter_page_delegate.h"
 #import "HiRouter+Filter.h"
 
@@ -38,7 +38,7 @@
 - (UIViewController<HiRouterPageProtocol> *) viewControllerWithPath:(NSString *)path parameters:(id)parameters {
     
     UIViewController<HiRouterPageProtocol> *pViewController = [self viewControllerWithPath:path];
-
+    
     if (pViewController && [pViewController respondsToSelector:@selector(recivedParameters:)]) {
         
         [pViewController recivedParameters:parameters];
@@ -47,7 +47,7 @@
     return pViewController;
 }
 
-/******************** page ********************/
+#pragma mark - public
 - (HiRouterBuilder *) build:(NSString *)path {
     
     return [self build:path action:HiRouterNavigationActionNone];
@@ -66,7 +66,7 @@
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterNavigationAction)action{
     
     // check filter
-    NSObject<HiPageFilterProtocol> * objce = [self pageFilterWithPath:path];
+    id<HiPageFilterProtocol> objce = [self pageFilterWithPath:path];
     
     NSString *realPath = path;
     id realParameters = parameters;
@@ -76,7 +76,7 @@
     
     if (objce) {
         realPath = objce.forwardPath == nil ? path : objce.forwardPath;
-        realParameters = objce.defaultParameters == nil ? parameters : objce.defaultParameters;
+        realParameters = objce.parameters == nil ? parameters : objce.parameters;
         builder.navigationAction = objce.navigationAction;
     }
     
@@ -92,7 +92,7 @@
 }
 
 - (BOOL) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters {
-   
+    
     if ([viewController.hi_private_page_delegate respondsToSelector:@selector(recivedCallBack:)]) {
         
         // post data to delegate

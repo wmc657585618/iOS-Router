@@ -11,19 +11,19 @@
 
 @implementation UIViewController (HiRouter_page_delegate)
 
--(void)setReleaseObsever:(HiRouterPageReleasObsever *)releaseObsever {
-    objc_setAssociatedObject(self, @selector(releaseObsever), releaseObsever, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+-(void)setReleaseObserver:(HiRouterPageReleasObserver *)releaseObserver {
+    objc_setAssociatedObject(self, @selector(releaseObserver), releaseObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (HiRouterPageReleasObsever *)releaseObsever {
-    return objc_getAssociatedObject(self, @selector(releaseObsever));
+- (HiRouterPageReleasObserver *)releaseObserver {
+    return objc_getAssociatedObject(self, @selector(releaseObserver));
 }
 
 - (void)setHi_private_page_delegate:(UIViewController<HiRouterPageProtocol> *)hi_private_page_delegate {
     
     // if hi_private_page_delegate released, self.hi_private_page_delegate will set nil;
     if (hi_private_page_delegate) {
-        hi_private_page_delegate.releaseObsever = [[HiRouterPageReleasObsever alloc] initWithObsever:self];
+        hi_private_page_delegate.releaseObserver = [[HiRouterPageReleasObserver alloc] initWithObserver:self];
     }
     objc_setAssociatedObject(self, @selector(hi_private_page_delegate), hi_private_page_delegate, OBJC_ASSOCIATION_ASSIGN);
 }

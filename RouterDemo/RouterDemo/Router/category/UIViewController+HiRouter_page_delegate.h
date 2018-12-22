@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HiRouterPageProtocol.h"
 
-#import "HiRouterPageReleasObsever.h" // for set hi_private_page_delegate = nil;
+#import "HiRouterPageReleasObserver.h" // for set hi_private_page_delegate = nil;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (HiRouter_page_delegate)<HiRouterPageProtocol>
 
 @property (nonatomic,weak) UIViewController<HiRouterPageProtocol> *hi_private_page_delegate;
-@property (nonatomic,strong) HiRouterPageReleasObsever *releaseObsever;
+@property (nonatomic,strong) HiRouterPageReleasObserver *releaseObserver;
 
 @end
 

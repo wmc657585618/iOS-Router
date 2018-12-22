@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HiRouter (Filter)
 
-- (NSObject<HiPageFilterProtocol> *)pageFilterWithPath:(NSString *)path;
+- (id<HiPageFilterProtocol>)pageFilterWithPath:(NSString *)path;
 
-- (NSObject<HiNetworkFilterProtocol> *)nwtworkFilterWithPath:(NSString *)path;
+- (id<HiNetworkFilterProtocol>)networkFilterWithURLString:(NSString *)urlString;
 
 @end
 

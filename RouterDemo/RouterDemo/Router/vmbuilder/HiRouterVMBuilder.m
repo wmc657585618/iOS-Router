@@ -9,35 +9,35 @@
 #import "HiRouterVMBuilder.h"
 #import <objc/runtime.h>
 
-// release obsever
-@interface NSObjectReleaseObsever : NSObject
+// release observer
+@interface NSObjectReleaseObserver : NSObject
 
-@property (nonatomic,weak) NSObject *obsever;
-- (instancetype)initWithObsever:(NSObject *)obsever;
+@property (nonatomic,weak) NSObject *observer;
+- (instancetype)initWithObsever:(NSObject *)observer;
 
 @end
 
 @interface NSObject (hi_delegate)<HiRouterViewModel>
 
 @property (nonatomic,weak) NSObject<HiRouterViewModel> * hi_private_delegate;
-@property (nonatomic,strong) NSObjectReleaseObsever *releaseObsever;
+@property (nonatomic,strong) NSObjectReleaseObserver *releaseObserver;
 
 @end
 
 @implementation NSObject (hi_delegate)
 
-- (void)setReleaseObsever:(NSObjectReleaseObsever *)releaseObsever {
-    objc_setAssociatedObject(self, @selector(releaseObsever), releaseObsever, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setReleaseObserver:(NSObjectReleaseObserver *)releaseObserver {
+    objc_setAssociatedObject(self, @selector(releaseObserver), releaseObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSObjectReleaseObsever *)releaseObsever {
-    return objc_getAssociatedObject(self, @selector(releaseObsever));
+- (NSObjectReleaseObserver *)releaseObserver {
+    return objc_getAssociatedObject(self, @selector(releaseObserver));
 }
 
 - (void)setHi_private_delegate:(NSObject<HiRouterViewModel> *)hi_private_delegate {
     
     if (hi_private_delegate) {
-        hi_private_delegate.releaseObsever = [[NSObjectReleaseObsever alloc] initWithObsever:self];
+        hi_private_delegate.releaseObserver = [[NSObjectReleaseObserver alloc] initWithObsever:self];
     }
     
     objc_setAssociatedObject(self, @selector(hi_private_delegate), hi_private_delegate, OBJC_ASSOCIATION_ASSIGN);
@@ -50,19 +50,19 @@
 @end
 
 
-@implementation NSObjectReleaseObsever
+@implementation NSObjectReleaseObserver
 
-- (instancetype)initWithObsever:(NSObject *)obsever
+- (instancetype)initWithObsever:(NSObject *)observer
 {
     self = [super init];
     if (self) {
-        _obsever = obsever;
+        _observer = observer;
     }
     return self;
 }
 
 - (void)dealloc {
-    self.obsever.hi_private_delegate = nil;
+    self.observer.hi_private_delegate = nil;
 }
 
 @end

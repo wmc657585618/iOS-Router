@@ -11,9 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiRouterPageReleasObsever : NSObject
+@interface HiRouterPageReleasObserver : NSObject
 
-- (instancetype)initWithObsever:(UIViewController *)obsever;
+- (instancetype)initWithObserver:(UIViewController *)observer;
 
 @end
 

@@ -16,8 +16,8 @@
  */
 @property (strong, nonatomic) NSMutableDictionary<NSString *, NSString *> *pRouteDictionary;
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject<HiPageFilterProtocol> *> *pPageFilters;
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject<HiNetworkFilterProtocol> *> *pNetworFilters;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, id<HiPageFilterProtocol>> *pPageFilters;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, id<HiNetworkFilterProtocol>> *pNetworFilters;
 
 @property (strong, nonatomic) NSLock *pageFilterLock;
 @property (strong, nonatomic) NSLock *networkFilterLock;
@@ -119,23 +119,23 @@ static HiRouter *_instance = nil;
     [self.routerLock unlock];
 }
 
-- (void)registPageFilter:(NSObject<HiPageFilterProtocol> *)filter {
+- (void)registPageFilter:(id<HiPageFilterProtocol>)filter {
     
     [self.pageFilterLock lock];
     
-    if ([filter conformsToProtocol:@protocol(HiPageFilterProtocol)] && filter.filtPath.length > 0) {
-        [self.pPageFilters setObject:filter forKey:filter.filtPath];
+    if ([filter conformsToProtocol:@protocol(HiPageFilterProtocol)] && filter.filterRegex.length > 0) {
+        [self.pPageFilters setObject:filter forKey:filter.filterRegex];
     }
     
     [self.pageFilterLock unlock];
 }
 
-- (void)registNetworkFilter:(NSObject<HiNetworkFilterProtocol> *)filter {
+- (void)registNetworkFilter:(id<HiNetworkFilterProtocol>)filter {
 
     [self.networkFilterLock lock];
     
-    if ([filter conformsToProtocol:@protocol(HiNetworkFilterProtocol)] && filter.filtPath > 0) {
-        [self.pNetworFilters setObject:filter forKey:filter.filtPath];
+    if ([filter conformsToProtocol:@protocol(HiNetworkFilterProtocol)] && filter.filterRegex > 0) {
+        [self.pNetworFilters setObject:filter forKey:filter.filterRegex];
     }
     
     [self.networkFilterLock unlock];
@@ -151,7 +151,7 @@ static HiRouter *_instance = nil;
     return self.pPageFilters;
 }
 
-- (NSDictionary<NSString *,NSObject<HiNetworkFilterProtocol> *> *)networkFilters {
+- (NSDictionary<NSString *,id<HiNetworkFilterProtocol>> *)networkFilters {
     
     return self.pNetworFilters;
 }

@@ -9,8 +9,7 @@
 #import "HiRouter.h"
 #import "HiRouterProtocol.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
+/******************** page ********************/
 @interface HiRouter (Page)
 
 - (HiRouterBuilder *) build:(NSString *)path;
@@ -25,27 +24,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface HiRouter (VM)
-
 /******************** view model ********************/
+@interface HiRouter (VM)
 
 /**
  build view and model in dynamic
  */
-- (void) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
+- (void) buildViewModelInDynamic:(NSObject<HiRouterViewModel> *)objectA objectB:(NSObject<HiRouterViewModel> *)objectB;
 
-- (void) invork:(id<HiRouterViewModel>)invork postData:(id)data;
-
-/******************** view model ********************/
+- (void) invork:(NSObject<HiRouterViewModel> *)invork postData:(id)data;
 
 @end
 
-@interface HiRouter (Filter)
+/******************** Network ********************/
+@interface HiRouter (Network)
 
-- (NSObject<HiPageFilterProtocol> *)pageFilterWithPath:(NSString *)path;
-
-- (NSObject<HiNetworkFilterProtocol> *)nwtworkFilterWithPath:(NSString *)path;
+// maybe nil
+- (id<HiNetworkFilterProtocol>)performURL:(NSString *)url parameters:(id)parameters;
 
 @end
-
-NS_ASSUME_NONNULL_END

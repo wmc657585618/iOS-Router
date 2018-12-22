@@ -15,12 +15,17 @@
 
 @implementation HiFilerObject
 
-- (NSString *)filtPath {
+- (NSString *)filterRegex {
     return @"login";
 }
 
 - (NSString *)originPath {
     return self.pOriginPath;
+}
+
+- (NSUInteger)priority {
+    
+    return 1000;
 }
 
 - (void)setOriginPath:(NSString *)originPath {
@@ -31,9 +36,13 @@
     return @"parameters";
 }
 
-- (id)defaultParameters {
+- (id)parameters {
     
     return @{@"key":@"default"};
+}
+
+- (void)setParameters:(id)parameters {
+    
 }
 
 - (HiRouterNavigationAction)navigationAction {
