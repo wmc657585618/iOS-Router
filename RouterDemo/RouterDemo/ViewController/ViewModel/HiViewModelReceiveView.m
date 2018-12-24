@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) UITextView *textView;
 @property (nonatomic,strong) UILabel *titleLabel;
+@property (nonatomic,strong) UIButton *button;
 
 @end
 
@@ -38,6 +39,17 @@
     return _textView;
 }
 
+- (UIButton *)button {
+    
+    if (!_button) {
+        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button.backgroundColor = UIColor.groupTableViewBackgroundColor;
+        [_button setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
+        [_button setTitle:@"send back data" forState:UIControlStateNormal];
+    }
+    return _button;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -45,6 +57,9 @@
 
         [self addSubview:self.textView];
         [self addSubview:self.titleLabel];
+        [self addSubview:self.button];
+
+        [self.button addTarget:self action:@selector(sendBack) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -54,7 +69,9 @@
 
     self.titleLabel.frame = CGRectMake(0, 0, frame.size.width, 44);
 
-    self.textView.frame = CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame) + 10, frame.size.width, frame.size.height - 54);
+    self.textView.frame = CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame) + 2, frame.size.width, frame.size.height - 94);
+
+    self.button.frame = CGRectMake(0, CGRectGetMaxY(self.textView.frame) + 8, frame.size.width, 44);
 }
 
 - (void)received:(id)receive {
@@ -62,4 +79,9 @@
     self.textView.text = receive;
 }
 
+
+- (void)sendBack {
+
+    [self postData:self.textView.text];
+}
 @end

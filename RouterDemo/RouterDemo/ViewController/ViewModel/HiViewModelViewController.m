@@ -44,11 +44,10 @@
     self.vmView.frame = CGRectMake(x, 100, width, 180);
     [self.view addSubview:self.vmView];
     
-    self.receiveView.frame = CGRectMake(x, CGRectGetMaxY(self.vmView.frame) + 40, width, 180);
+    self.receiveView.frame = CGRectMake(x, CGRectGetMaxY(self.vmView.frame) + 40, width, 224);
     [self.view addSubview:self.receiveView];
     
     [self.receiveView bindObject:self.vmView];
 }
-
 
 @end

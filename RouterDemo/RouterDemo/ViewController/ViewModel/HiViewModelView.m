@@ -60,5 +60,10 @@
     [self postData:self.textView.text];
 }
 
+- (void)received:(id)receive {
+
+    self.textView.text = receive;
+}
+
 
 @end
