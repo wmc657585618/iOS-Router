@@ -46,8 +46,8 @@
 }
 
 - (void)post {
-    
-    [HiRouter.instance routerCallBackFromViewController:self callBackParameters:self.textView.text];
+
+    [self hi_callBackParameters:self.textView.text];
     [self.navigationController popViewControllerAnimated:true];
 }
 

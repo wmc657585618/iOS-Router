@@ -52,8 +52,8 @@
 }
 
 - (void)push {
-    
-    [[HiRouter.instance build:@"callback/sub" fromViewController:self action:HiRouterNavigationActionPush] buildAnimated:true completion:nil];
+
+    [self hi_pushPath:@"callback/sub" animated:true];
 }
 
 - (void)recivedCallBack:(id)callBack {

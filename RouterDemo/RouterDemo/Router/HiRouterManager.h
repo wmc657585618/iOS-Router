@@ -9,7 +9,7 @@
 #ifndef HiRouterManager_h
 #define HiRouterManager_h
 
-#import "HiRouterCategory.h"
+#import "UIViewController+HiRouterNavigationAction.h"
 
 
 #endif /* HiRouterManager_h */

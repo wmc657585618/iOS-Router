@@ -46,7 +46,8 @@
 }
 
 - (void)post {
-    [[HiRouter.instance build:@"parametes/main/receive" fromViewController:self withParameters:self.textView.text action:HiRouterNavigationActionPush] buildAnimated:true completion:nil];
+
+    [self hi_pushPath:@"parametes/main/receive" withParameters:self.textView.text animated:true];
 }
 
 @end

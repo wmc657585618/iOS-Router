@@ -93,7 +93,8 @@ static NSString *const cellID = @"HiRootViewController";
 
             break;
     }
-    [[HiRouter.instance build:path fromViewController:self action:HiRouterNavigationActionPush] buildAnimated:true completion:nil];
+
+    [self hi_pushPath:path animated:true];
 }
 
 @end
