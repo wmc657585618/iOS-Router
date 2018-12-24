@@ -9,208 +9,115 @@
 ```
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
 ```
-> 该方法是将页面注册到路由,字典中的 key 表示页面路劲,value 表示页面类型
-
-> 例如:
-
-```
- {
- 	"home" : "HomeViewController"
- }
-```
-
-> 其中 : home 表示 HomeViewCon 的路径 , HomeViewController 表示 home 对应的 class,
 
 #### 使用
-##### 跳转指定路径
 ```
 /**
- 跳转到指定路径
- */
+ 创建 viewcontroller
+*/
 - (HiRouterBuilder *) build:(NSString *)path;
 
 /**
- 跳转到指定路径 并且可以传参
- */
-- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters;
+创建 viewcontroller, 并且设置导航跳转方式
+*/
+- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterNavigationAction)action;
 
 /**
- 跳转到指定路径 能够获取回调
- */
-- (HiRouterBuilder *) build:(NSString *)path callBack:(HiRouterCallBack)callBack;
+创建 viewcontroller, 设置 源 viewcontroller 和导航跳转方式
+*/
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterNavigationAction)action;
 
 /**
- 跳转到指定路径 能够传参和回调
- */
-- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters callBack:(HiRouterCallBack)callBack;
-```
-> 例子:
+创建 viewcontroller, 设置 源 viewcontroller ，参数和导航跳转方式
+*/
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterNavigationAction)action;
 
-```
-[HiRouter.instance build:path callBack:^(NSDictionary *callBack) {
-         
- }];
-```
-
-```
-[HiRouter.instance build:path withParameters:@{key : value}];
-```
-
-##### 获取参数
-```
-- (NSDictionary *) parametersForViewController:(UIViewController *)viewController;
-```
-
-##### 获取回调(相邻 viewController 间回调)
-```
-- (HiRouterCallBack) callBackForViewController:(UIViewController *)viewController;
-```
-> 例子:
-
-```
-@property (copy, nonatomic) HiRouterCallBack callBack;
-
-viewController 需要持有 HiRouterCallBack 对象,
-
-self.callBack = [HiRouter.instance callBackForViewController:self];
-
-在需要回传的地方
-self.callBack(@{ key : value});
-
+/**
+viewcontroller 回调
+*/
+- (BOOL) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters;
 ```
 
 ### view model
-#### 注册 view model
-```
-- (void) registViewModelRoute:(NSDictionary<NSString *, NSDictionary *> *)viewModelRouteDictionary;
-```
-> 该方法是通过注册的方式绑定 view 和 model
-
-> 字典的格式是:
-
-```
-{
-	"login" : {
-					"receiver" : "LoginReceiver",
-					"invorker" : "LoginInvorker"
-				}
-}
-```
-
-> 其中 login 表示需要绑定的路径, 
-> 
-> receiver invorker 是固定字段,表示需要绑定的对象, 
-> 
-> LoginReceiver LoginInvorker 表示对应的 class,
-
-#### 使用
+#### 绑定 view 和 model
 ```
 /**
- 通过注册路径的方式
- */
-- (HiRouterVMBuilder *) buildViewModel:(NSString *)path;
+绑定 view 和 model
+*/
+- (void) buildViewModelInDynamic:(NSObject<HiRouterViewModel> *)objectA objectB:(NSObject<HiRouterViewModel> *)objectB;
 
 /**
- 动态手动绑定 view model
- */
-- (HiRouterVMBuilder *) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
+object 回调
+*/
+- (void) invork:(NSObject<HiRouterViewModel> *)invork postData:(id)data;
+
+```
+
+### 网络拦截器
+```
+/**
+url 预处理
+*/
+- (id<HiNetworkFilterProtocol>)performURL:(NSString *)url parameters:(id)parameters;
+
+```
+
+### HiRouterPageProtocol
+```
+/**
+接受到其它页面传来的参数
+*/
+- (void)recivedParameters:(id)parameters;
 
 /**
-  更新绑定的 view model
- */
-- (void) updateVMBuilder:(HiRouterVMBuilder *)builder objectA:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
+接受到其它页面回传过来的参数
+*/
+- (void)recivedCallBack:(id)callBack;
+```
+
+### HiFilterProtocol
+```
+/**
+优先级
+当多个过滤条件满足时，执行优先级高的
+*/
+@property (nonatomic,readonly) NSUInteger priority;
 
 /**
-  绑定一组 view model
- */
-- (HiRouterVMBuilder *) buildViewModeGrouplInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB reuseIdentifier:(NSString *)reuseIdentifier group:(HiRouterVMBuilderGroup *)group;
+过滤条件
+*/
+@property (nonatomic,readonly) NSString *filterRegex;
+
+/**
+源路径
+过滤器会将拦截到的路径回传过来
+*/
+@property (nonatomic,copy) NSString *originPath;
+
+/**
+转发的路径
+*/
+@property (nonatomic,readonly) NSString *forwardPath;
+
+/**
+参数
+*/
+@property (nonatomic,strong) id parameters;
 ```
 
-##### 绑定 view model( view 和 model 是一一对应,不能一对多);
-> 在创建 view 和 model 的地方需要持有 HiRouterVMBuilder 或者 HiRouterVMBuilderGroup
-> 
-> HiRouterVMBuilder 单一的绑定
-> 
-> HiRouterVMBuilderGroup 可以绑定一组
-
+### HiPageFilterProtocol
 ```
-@property (strong, nonatomic) HiRouterVMBuilder *vmBuilder;
-
-@property (strong, nonatomic) HiRouterVMBuilderGroup *builderGroup;
+/**
+跳转方式
+*/
+@property (nonatomic,readonly) HiRouterNavigationAction navigationAction;
 ```
 
-##### HiRouterVMBuilder
-> 通过注册路径的方式创建可以获取到 对应的 view 和 model 的实例, view 和 model 已经绑定
-> 
-> 手动绑定需要指定 view 和 model,
-
-
-##### HiRouterVMBuilderGroup
-> 包含了一组 HiRouterVMBuilder
-> 
-> 可以通过 key 获取 HiRouterVMBuilder.
-
-#### view 和 model
-##### HiRouterViewModel 接口
+### HiNetworkFilterProtocol
 ```
-- (void) invorkerCommond:(HiRouterCommond)invorkerCommond;
-
-- (void) received:(NSDictionary *)receive;
-```
-> view 和 model 必须遵循 RouterViewModel 接口
-
-```
-#import "HiRouterProtocol.h"
-
-@interface Model : NSObject<HiRouterViewModel>
-
-```
-##### model 层
-```
-@property (copy, nonatomic) HiRouterCommond commond;
-
-- (void)invorkerCommond:(HiRouterCommond)invorkerCommond {
-    
-    self.commond = invorkerCommond;
-}
-```
-> model 需要持有 HiRouterCommond 对象, 实现 HiRouterViewModel 接口
-
-> 在需要将数据传送给 view 时调用
-
-```
-self.commond(@{ key : value});
-```
-
-> 接受 view 传来的数据
-
-```
-- (void)received:(NSDictionary *)receive {
-    
-}
-```
-
-##### view 层
-```
-@property (copy, nonatomic) HiRouterCommond commond;
-
-- (void)invorkerCommond:(HiRouterCommond)invorkerCommond {
-    
-    self.commond = invorkerCommond;
-}
-```
-> view 需要持有 HiRouterCommond 对象, 实现 HiRouterViewModel 接口
-
-> 在需要将数据传送给 model 时调用
-
-```
-self.commond(@{ key : value});
-```
-
-> 接受 model 传来的数据
-
-```
-- (void)received:(NSDictionary *)receive {
-    
-}
+/**
+自定义 结果
+可以是 上传方式： POST,GET...
+*/
+@property (nonatomic,readonly) NSString *result;
 ```

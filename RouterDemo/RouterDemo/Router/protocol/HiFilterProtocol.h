@@ -29,6 +29,6 @@
 
 @protocol HiNetworkFilterProtocol <HiFilterProtocol>
 
-@property (nonatomic,readonly) NSString *result; // like method get post put ...
+@property (nonatomic,readonly) NSString *result; // like method: get post put ...
 
 @end
