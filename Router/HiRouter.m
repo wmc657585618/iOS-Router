@@ -13,12 +13,14 @@
 /**
  route dictionary
  */
-@property (copy, nonatomic) NSDictionary<NSString *, NSString *> *pRouteDictionary;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSString *> *pRouteDictionary;
 
-@property (strong, nonatomic) NSMutableDictionary *parametersDictionary;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, id<HiPageFilterProtocol>> *pPageFilters;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, id<HiNetworkFilterProtocol>> *pNetworFilters;
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, HiRouterCallBack> *callBackDictionary;
-
+@property (strong, nonatomic) NSLock *pageFilterLock;
+@property (strong, nonatomic) NSLock *networkFilterLock;
+@property (strong, nonatomic) NSLock *routerLock;
 @end
 
 static HiRouter *_instance = nil;
@@ -51,153 +53,106 @@ static HiRouter *_instance = nil;
 
     return HiRouter.instance;
 }
+
 /*********** instance router ***********/
 
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
+/****************** lazy ******************/
+- (NSMutableDictionary<NSString *,NSString *> *)pRouteDictionary {
+    
+    if (!_pRouteDictionary) {
+        _pRouteDictionary = [NSMutableDictionary dictionary];
+    }
+    return _pRouteDictionary;
+}
+
+- (NSMutableDictionary *)pPageFilters {
+    
+    if (!_pPageFilters) {
+        _pPageFilters = [[NSMutableDictionary alloc] init];
+    }
+    return _pPageFilters;
+}
+
+- (NSMutableDictionary *)pNetworFilters {
+    
+    if (!_pNetworFilters) {
+        _pNetworFilters = [[NSMutableDictionary alloc] init];
+    }
+    return _pNetworFilters;
+}
+
+- (NSLock *)pageFilterLock {
+    
+    if (!_pageFilterLock) {
+        _pageFilterLock = [[NSLock alloc] init];
+    }
+    return _pageFilterLock;
+}
+
+- (NSLock *)networkFilterLock {
+    
+    if (!_networkFilterLock) {
+        _networkFilterLock = [[NSLock alloc] init];
+    }
+    return _networkFilterLock;
+}
+
+- (NSLock *)routerLock {
+    
+    if (!_routerLock) {
+        _routerLock = [[NSLock alloc] init];
+    }
+    return _routerLock;
+}
 
 /****************** lazy ******************/
-- (NSMutableDictionary *)parametersDictionary {
-    
-    if (!_parametersDictionary) {
-        
-        _parametersDictionary = [[NSMutableDictionary alloc] init];
-    }
-    
-    return _parametersDictionary;
-}
-
-- (NSMutableDictionary<NSString *,HiRouterCallBack> *)callBackDictionary {
-    
-    if (!_callBackDictionary) {
-        
-        _callBackDictionary = [[NSMutableDictionary<NSString *,HiRouterCallBack> alloc] init];
-    }
-    
-    return _callBackDictionary;
-}
-/****************** lazy ******************/
-
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
-- (NSString *) keyWithObject:(UIViewController *)object {
-    
-    return NSStringFromClass(object.class);
-}
-
-- (id) objectWithPath:(NSString *)path {
-    
-    NSString *className = [self.pRouteDictionary objectForKey:path];
-    
-    NSAssert(className.length > 0, @"⚠️ no path match : %@!",path);
-    
-    Class class = NSClassFromString(className);
-    
-    NSAssert(class != nil, @"⚠️ has no class : %@!",className);
-    
-    id vc = [[class alloc] init];
-    
-    NSAssert([vc isKindOfClass:UIViewController.class], @"⚠️ class is not UIViewController!");
-    
-    return vc;
-}
-
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
 
 #pragma mark - public
 /*********** regist router ***********/
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary {
     
-    self.pRouteDictionary = routeDictionary;
+    [self.routerLock lock];
+    
+    [self.pRouteDictionary addEntriesFromDictionary:routeDictionary];
+    
+    [self.routerLock unlock];
 }
 
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
-/******************** page ********************/
-- (HiRouterBuilder *) build:(NSString *)path {
+- (void)registPageFilter:(id<HiPageFilterProtocol>)filter {
     
-    return [self build:path withParameters:nil];
-}
-
-- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters {
+    [self.pageFilterLock lock];
     
-    return [self build:path withParameters:parameters callBack:nil];
-}
-
-- (HiRouterBuilder *) build:(NSString *)path callBack:(HiRouterCallBack)callBack {
-
-    return [self build:path withParameters:nil callBack:callBack];
-}
-
-- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters callBack:(HiRouterCallBack)callBack {
-    
-    id object = [self objectWithPath:path];
-    
-    HiRouterBuilder *builder = [[HiRouterBuilder alloc] init];
-    
-    if (object && [object isKindOfClass:UIViewController.class]) {
-        
-        builder.viewController = (UIViewController *)object;
+    if ([filter conformsToProtocol:@protocol(HiPageFilterProtocol)] && filter.filterRegex.length > 0) {
+        [self.pPageFilters setObject:filter forKey:filter.filterRegex];
     }
     
-    NSString *key = [self keyWithObject:object];
+    [self.pageFilterLock unlock];
+}
+
+- (void)registNetworkFilter:(id<HiNetworkFilterProtocol>)filter {
+
+    [self.networkFilterLock lock];
     
-    NSAssert(key.length > 0,@"⚠️ key is nill");
-    
-    if (parameters) {
-        
-        [self.parametersDictionary setObject:parameters forKey:key];
+    if ([filter conformsToProtocol:@protocol(HiNetworkFilterProtocol)] && filter.filterRegex > 0) {
+        [self.pNetworFilters setObject:filter forKey:filter.filterRegex];
     }
     
-    if (callBack) {
-        
-        [self.callBackDictionary setObject:callBack forKey:key];
-    }
-    
-    return builder;
+    [self.networkFilterLock unlock];
 }
 
-/**
- get parameters
- */
-- (NSDictionary *) parametersForViewController:(UIViewController *)viewController {
+- (NSDictionary<NSString *,NSString *> *)routeDictionary {
     
-    NSString *key = [self keyWithObject:viewController];
-    
-    NSDictionary *dic = [self.parametersDictionary objectForKey:key];
-    
-    [self.parametersDictionary removeObjectForKey:key];
-    
-    return dic;
+    return self.pRouteDictionary;
 }
 
-/**
- get callback
- */
-- (HiRouterCallBack) callBackForViewController:(UIViewController *)viewController {
+- (NSDictionary *)pageFilters {
     
-    NSString *key = [self keyWithObject:viewController];
-
-    HiRouterCallBack callBack = [self.callBackDictionary objectForKey:key];
-    
-    [self.callBackDictionary removeObjectForKey:key];
-    
-    return callBack;
-}
-/******************** page ********************/
-
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
-/************* view model *************/
-/**
- build view and model in dynamic
- */
-
-- (void) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB {
-
-
-    [HiRouterVMBuilder bind:objectA objcB:objectB];
+    return self.pPageFilters;
 }
 
-/************* view model *************/
+- (NSDictionary<NSString *,id<HiNetworkFilterProtocol>> *)networkFilters {
+    
+    return self.pNetworFilters;
+}
 
 @end

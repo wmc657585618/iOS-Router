@@ -7,16 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef void(^HiRouterCommond)(NSDictionary *commond);
+#import "HiFilterProtocol.h"
+#import "HiRouterPageProtocol.h"
 
 @protocol HiRouterViewModel <NSObject>
 
 @optional
-- (void) invorkerCommond:(HiRouterCommond)invorkerCommond;
-
-- (void) received:(NSDictionary *)receive;
+- (void) received:(id)receive;
 
 @end
-
 

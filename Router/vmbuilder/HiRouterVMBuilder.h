@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "HiRouterProtocol.h"
 
 @interface HiRouterVMBuilder : NSObject
 
-+ (void) bind:(id<HiRouterViewModel>)objcA objcB:(id<HiRouterViewModel>)objcB;
++ (void) bind:(NSObject<HiRouterViewModel> *)objcA objcB:(NSObject<HiRouterViewModel> *)objcB;
+
++ (void) objc:(NSObject<HiRouterViewModel> *)objc postData:(id)data;
 
 @end

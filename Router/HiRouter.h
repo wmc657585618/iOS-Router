@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "HiRouterBuilder.h"
+#import "HiFilterProtocol.h"
 
-#import "HiRouterVMBuilderGroup.h"
-
-typedef void(^HiRouterCallBack)(NSDictionary *callBack);
+NS_ASSUME_NONNULL_BEGIN
 
 @interface HiRouter : NSObject
 
@@ -21,52 +20,19 @@ typedef void(^HiRouterCallBack)(NSDictionary *callBack);
  */
 @property (readonly, nonatomic, class) HiRouter *instance;
 
+@property (readonly, nonatomic) NSDictionary<NSString *, NSString *> *routeDictionary;
+@property (readonly, nonatomic) NSDictionary<NSString *, id<HiPageFilterProtocol>> *pageFilters;
+@property (readonly, nonatomic) NSDictionary<NSString *, id<HiNetworkFilterProtocol>> *networkFilters;
+
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
 
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
-/******************** page ********************/
 /**
- no parameters no callback
+ regist filer
  */
-- (HiRouterBuilder *) build:(NSString *)path;
+- (void) registPageFilter:(id<HiPageFilterProtocol>)filter;
 
-/**
- with parameters
- */
-- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters;
-
-/**
- with callback
- */
-- (HiRouterBuilder *) build:(NSString *)path callBack:(HiRouterCallBack)callBack;
-
-/**
- with parameters and callback
- */
-- (HiRouterBuilder *) build:(NSString *)path withParameters:(NSDictionary *)parameters callBack:(HiRouterCallBack)callBack;
-
-/**
- get parameters
- */
-- (NSDictionary *) parametersForViewController:(UIViewController *)viewController;
-
-/**
- get callback
- */
-- (HiRouterCallBack) callBackForViewController:(UIViewController *)viewController;
-/******************** page ********************/
-
-/* 💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐 */
-
-/******************** view model ********************/
-
-/**
- build view and model in dynamic
- */
-- (HiRouterVMBuilder *) buildViewModelInDynamic:(id<HiRouterViewModel>)objectA objectB:(id<HiRouterViewModel>)objectB;
-
-/******************** view model ********************/
-
+- (void) registNetworkFilter:(id<HiNetworkFilterProtocol>)filter;
 
 @end
+
+NS_ASSUME_NONNULL_END

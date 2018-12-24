@@ -10,20 +10,18 @@
 
 @implementation HiRouterBuilder
 
-- (void) pushWithContext:(UIViewController *)contextViewController animated:(BOOL)animated {
+- (void)buildAnimated:(BOOL)animated completion:(void(^)(void))completion {
     
-    if (self.viewController) {
-        
-        [contextViewController.navigationController pushViewController:self.viewController animated:animated];
+    switch (self.navigationAction) {
+        case HiRouterNavigationActionPush:
+            [self.fromViewController.navigationController pushViewController:self.toViewController animated:animated];
+            break;
+        case HiRouterNavigationActionPresent:
+            [self.fromViewController presentViewController:self.toViewController animated:animated completion:completion];
+            break;
+        case HiRouterNavigationActionNone:
+            
+            break;
     }
 }
-
-- (void) presentWithContext:(UIViewController *)contextViewController animated:(BOOL)animated completion:(void (^ __nullable)(void))completion {
-    
-    if (self.viewController) {
-
-        [contextViewController presentViewController:self.viewController animated:animated completion:completion];
-    }
-}
-
 @end
