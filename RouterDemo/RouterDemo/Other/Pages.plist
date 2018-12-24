@@ -14,5 +14,13 @@
 	<string>HiCallBackSubViewController</string>
 	<key>network/main</key>
 	<string>HiNetworkFilterViewController</string>
+	<key>page/main</key>
+	<string>HiPageFilterViewController</string>
+	<key>page/sub/sub1</key>
+	<string>HiPageSub1ViewController</string>
+	<key>page/sub/sub2</key>
+	<string>HiPageSub2ViewController</string>
+	<key>page/error</key>
+	<string>HiPageErrorViewController</string>
 </dict>
 </plist>
