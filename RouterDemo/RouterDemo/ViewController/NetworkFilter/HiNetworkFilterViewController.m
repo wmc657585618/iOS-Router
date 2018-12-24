@@ -83,7 +83,7 @@
     self.filter.forward = self.resultField.text;
     self.filter.filter = self.filterField.text;
     
-    HiNetworkFilter *filter = [HiRouter.instance performURL:self.urlField.text parameters:nil];
+    HiNetworkFilter *filter = (HiNetworkFilter *)[HiRouter.instance performURL:self.urlField.text parameters:nil];
     
     self.filterLabel.text = filter.forwardPath;
 }

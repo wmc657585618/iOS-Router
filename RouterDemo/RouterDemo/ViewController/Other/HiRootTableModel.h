@@ -13,6 +13,7 @@ typedef enum : NSUInteger {
     HiRootTableModelTypePage,
     HiRootTableModelTypeCallBack,
     HiRootTableModelTypeParametes,
+    HiRootTableModelTypeViewModel,
 } HiRootTableModelType;
 NS_ASSUME_NONNULL_BEGIN
 

@@ -10,6 +10,6 @@
 #define HiRouterManager_h
 
 #import "UIViewController+HiRouterNavigationAction.h"
-
+#import "NSObject+HiRouter.h"
 
 #endif /* HiRouterManager_h */

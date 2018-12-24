@@ -42,7 +42,8 @@ static NSString *const cellID = @"HiRootViewController";
     HiRootTableModel *parametes = [[HiRootTableModel alloc] initWithTitle:@"push to parametes" type:HiRootTableModelTypeParametes];
     HiRootTableModel *network = [[HiRootTableModel alloc] initWithTitle:@"push to network" type:HiRootTableModelTypeNetwork];
     HiRootTableModel *page = [[HiRootTableModel alloc] initWithTitle:@"push to page" type:HiRootTableModelTypePage];
-    NSArray *array = @[callBack,parametes,network,page];
+    HiRootTableModel *viewModel = [[HiRootTableModel alloc] initWithTitle:@"push to view model" type:HiRootTableModelTypeViewModel];
+    NSArray *array = @[callBack,parametes,network,page,viewModel];
     
     self.dataSource = array;
     
@@ -90,6 +91,10 @@ static NSString *const cellID = @"HiRootViewController";
             break;
         case HiRootTableModelTypeParametes:
             path = @"parametes/main";
+
+            break;
+        case HiRootTableModelTypeViewModel:
+            path = @"viewmodel";
 
             break;
     }
