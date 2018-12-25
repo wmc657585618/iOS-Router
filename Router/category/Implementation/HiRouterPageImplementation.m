@@ -7,8 +7,75 @@
 //
 
 #import "HiRouterCategory.h"
-#import "UIViewController+HiRouter_page_delegate.h"
 #import "HiRouter+Filter.h"
+#import <objc/runtime.h>
+
+// for release delegate
+@interface HiRouterPageReleasObserver : NSObject
+
+@property (nonatomic,weak) UIViewController *observer;
+
+- (instancetype)initWithObserver:(UIViewController *)observer;
+
+@end
+
+// private delegate
+@interface UIViewController (HiRouter_page_delegate)<HiRouterPageProtocol>
+
+@property (nonatomic,weak) UIViewController<HiRouterPageProtocol> *hi_private_page_delegate;
+@property (nonatomic,strong) HiRouterPageReleasObserver *pReleaseObserver;
+
+@end
+
+@implementation UIViewController (HiRouter_page_delegate)
+- (void)setPReleaseObserver:(HiRouterPageReleasObserver *)pReleaseObserver{
+    objc_setAssociatedObject(self, @selector(pReleaseObserver), pReleaseObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (HiRouterPageReleasObserver *)pReleaseObserver {
+    return objc_getAssociatedObject(self, @selector(pReleaseObserver));
+}
+
+- (void)setReleaseObserver:(UIViewController *)observer {
+    self.pReleaseObserver = [[HiRouterPageReleasObserver alloc] initWithObserver:observer];
+}
+
+- (void)setHi_private_page_delegate:(UIViewController<HiRouterPageProtocol> *)hi_private_page_delegate {
+    
+    // if hi_private_page_delegate released, self.hi_private_page_delegate will set nil;
+    if (hi_private_page_delegate) {
+        [hi_private_page_delegate setReleaseObserver:self];
+    }
+    objc_setAssociatedObject(self, @selector(hi_private_page_delegate), hi_private_page_delegate, OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (UIViewController<HiRouterPageProtocol> *)hi_private_page_delegate {
+    return objc_getAssociatedObject(self, @selector(hi_private_page_delegate));
+}
+
+@end
+
+#pragma mark - ReleasObserver implementation
+@implementation HiRouterPageReleasObserver
+
+- (instancetype)initWithObserver:(UIViewController *)observer
+{
+    self = [super init];
+    if (self) {
+        _observer = observer;
+    }
+    return self;
+}
+
+- (void)dealloc {
+    
+    if ([self.observer respondsToSelector:@selector(hi_private_page_delegate)]) {
+        self.observer.hi_private_page_delegate = nil;
+    }
+}
+
+@end
+
 
 @implementation HiRouter (Page)
 

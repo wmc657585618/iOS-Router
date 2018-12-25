@@ -68,10 +68,8 @@
 }
 
 - (void)dealloc {
-    
-    if ([self.observer respondsToSelector:@selector(hi_private_page_delegate)]) {
-        self.observer.hi_private_page_delegate = nil;
-    }
+
+    self.observer.hi_private_page_delegate = nil;
 }
 
 @end

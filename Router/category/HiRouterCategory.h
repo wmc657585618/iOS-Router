@@ -32,7 +32,7 @@
  */
 - (void) buildViewModelInDynamic:(NSObject<HiRouterViewModel> *)objectA objectB:(NSObject<HiRouterViewModel> *)objectB;
 
-- (void) invork:(NSObject<HiRouterViewModel> *)invork postData:(id)data;
+- (BOOL) invork:(NSObject<HiRouterViewModel> *)invork postData:(id)data;
 
 @end
 

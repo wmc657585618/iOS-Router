@@ -7,7 +7,7 @@
 //
 
 #import "HiRouter+Filter.h"
-#import "NSString+HiPredicate.h"
+#import "NSObjectHiCategory.h"
 
 @implementation HiRouter (Filter)
 

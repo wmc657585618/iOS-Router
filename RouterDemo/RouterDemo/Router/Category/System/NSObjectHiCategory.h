@@ -1,16 +1,29 @@
 //
-//  UIViewController+HiRouterNavigationAction.h
+//  NSObjectHiCategory.h
 //  RouterDemo
 //
-//  Created by four on 2018/12/24.
+//  Created by four on 2018/12/25.
 //  Copyright © 2018 Four. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "HiRouterCategory.h"
-#import "HiRouterPageProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@interface NSObject (HiRouter)<HiRouterViewModel>
+
+- (void)hi_bindObject:(NSObject<HiRouterViewModel> *)object;
+
+- (void)hi_postData:(id)data;
+
+@end
+
+@interface NSString (HiPredicate)
+
+-(BOOL)isValidateRegularByExpression:(NSString *)strExpression;
+
+@end
 
 @interface UIViewController (HiRouterNavigationAction)<HiRouterPageProtocol>
 
@@ -21,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)hi_presentPath:(NSString *)path withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion;
 
 - (void)hi_callBackParameters:(id)callBackParameters;
+
 @end
 
 NS_ASSUME_NONNULL_END
