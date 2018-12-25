@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C5BAF5A2199612D00D7399E /* HiRouterVMBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BAF582199612D00D7399E /* HiRouterVMBuilder.m */; };
 		1C65583220F5FC4D00862997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C65583120F5FC4D00862997 /* Assets.xcassets */; };
 		1C65583520F5FC4D00862997 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C65583320F5FC4D00862997 /* LaunchScreen.storyboard */; };
 		1C65583820F5FC4E00862997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65583720F5FC4E00862997 /* main.m */; };
@@ -41,10 +40,7 @@
 
 /* Begin PBXFileReference section */
 		1C55A53721C8BEE400B6A1C8 /* HiRouterDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouterDefine.h; sourceTree = "<group>"; };
-		1C5BAF582199612D00D7399E /* HiRouterVMBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterVMBuilder.m; sourceTree = "<group>"; };
-		1C5BAF592199612D00D7399E /* HiRouterVMBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterVMBuilder.h; sourceTree = "<group>"; };
 		1C5BAF662199763E00D7399E /* HiRouterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterManager.h; sourceTree = "<group>"; };
-		1C5BAF672199791C00D7399E /* HiRouterPageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouterPageProtocol.h; sourceTree = "<group>"; };
 		1C65582520F5FC4C00862997 /* RouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C65583120F5FC4D00862997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C65583420F5FC4D00862997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,7 +79,6 @@
 		1CC3B0FE21918836003AF24E /* HiPageRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiPageRouter.h; sourceTree = "<group>"; };
 		1CC3B10021918836003AF24E /* HiPageRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiPageRouter.m; sourceTree = "<group>"; };
 		1CC3B10521918887003AF24E /* HiRouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterProtocol.h; sourceTree = "<group>"; };
-		1CC3B10921919918003AF24E /* HiFilterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiFilterProtocol.h; sourceTree = "<group>"; };
 		1CD3FC4021CE333C00B8C924 /* HiRouterPageImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterPageImplementation.m; sourceTree = "<group>"; };
 		1CD3FC4121CE333C00B8C924 /* HiRouterVMImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterVMImplementation.m; sourceTree = "<group>"; };
 		1CD3FC4221CE333C00B8C924 /* HiRouterNetworkImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterNetworkImplementation.m; sourceTree = "<group>"; };
@@ -114,15 +109,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C5BAF572199612D00D7399E /* vmbuilder */ = {
-			isa = PBXGroup;
-			children = (
-				1C5BAF592199612D00D7399E /* HiRouterVMBuilder.h */,
-				1C5BAF582199612D00D7399E /* HiRouterVMBuilder.m */,
-			);
-			path = vmbuilder;
-			sourceTree = "<group>";
-		};
 		1C5BAF5B2199745F00D7399E /* category */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +157,6 @@
 				1C55A53721C8BEE400B6A1C8 /* HiRouterDefine.h */,
 				1CC3B0FC21918836003AF24E /* page */,
 				1C5BAF5B2199745F00D7399E /* category */,
-				1C5BAF572199612D00D7399E /* vmbuilder */,
 				1CC3B10421918887003AF24E /* protocol */,
 				1C866C4A21CB8E60001E56FF /* Filter */,
 			);
@@ -285,8 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				1CC3B10521918887003AF24E /* HiRouterProtocol.h */,
-				1C5BAF672199791C00D7399E /* HiRouterPageProtocol.h */,
-				1CC3B10921919918003AF24E /* HiFilterProtocol.h */,
 			);
 			path = protocol;
 			sourceTree = "<group>";
@@ -428,7 +411,6 @@
 				1C97796021D0C24100C9859A /* HiViewModelView.m in Sources */,
 				1CC3B10221918836003AF24E /* HiPageRouter.m in Sources */,
 				1C97796621D0C5FB00C9859A /* HiViewModelReceiveView.m in Sources */,
-				1C5BAF5A2199612D00D7399E /* HiRouterVMBuilder.m in Sources */,
 				1C97793521D0899500C9859A /* HiPageFilter.m in Sources */,
 				1CD3FC4521CE333C00B8C924 /* HiRouterNetworkImplementation.m in Sources */,
 				1C65585320F5FCF800862997 /* AppDelegate.m in Sources */,

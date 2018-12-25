@@ -48,8 +48,9 @@ viewcontroller 回调
 
 /**
 object 回调
+return success or failed
 */
-- (void) invork:(NSObject<HiRouterViewModel> *)invork postData:(id)data;
+- (BOOL) invork:(NSObject<HiRouterViewModel> *)invork postData:(id)data;
 
 ```
 
