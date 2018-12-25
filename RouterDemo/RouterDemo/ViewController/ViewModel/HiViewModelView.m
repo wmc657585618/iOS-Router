@@ -57,7 +57,7 @@
 
 - (void)sendString {
     
-    [self postData:self.textView.text];
+    [self hi_postData:self.textView.text];
 }
 
 - (void)received:(id)receive {
