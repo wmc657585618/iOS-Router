@@ -137,21 +137,21 @@
     id realParameters = parameters;
     
     HiRouterBuilder *builder = [[HiRouterBuilder alloc] init];
-    builder.navigationAction = action;
+    builder.transitioningAction = action;
     
     if (objce) {
         realPath = objce.forwardPath == nil ? path : objce.forwardPath;
         realParameters = objce.parameters == nil ? parameters : objce.parameters;
-        builder.navigationAction = objce.navigationAction;
+        builder.transitioningAction = objce.transitioningAction;
     }
     
-    UIViewController<HiRouterPageProtocol> *pViewController = [self viewControllerWithPath:realPath parameters:realParameters];
+    UIViewController<HiRouterPageProtocol> *targetViewController = [self viewControllerWithPath:realPath parameters:realParameters];
     
     // set delegate,then can callback
-    pViewController.hi_private_page_delegate = viewController;
+    targetViewController.hi_private_page_delegate = viewController;
     
-    builder.toViewController = pViewController;
-    builder.fromViewController = viewController;
+    builder.targetViewController = targetViewController;
+    builder.sourceViewController = viewController;
     
     return builder;
 }

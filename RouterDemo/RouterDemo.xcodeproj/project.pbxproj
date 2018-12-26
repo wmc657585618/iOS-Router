@@ -256,9 +256,9 @@
 			isa = PBXGroup;
 			children = (
 				1C97799E21D1E19400C9859A /* HiRouter.h */,
-				1C97799F21D1E19400C9859A /* HiRouterBuilder.m */,
 				1C9779A021D1E19400C9859A /* HiRouter.m */,
 				1C9779A121D1E19400C9859A /* HiRouterBuilder.h */,
+				1C97799F21D1E19400C9859A /* HiRouterBuilder.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";

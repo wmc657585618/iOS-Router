@@ -30,7 +30,7 @@
     
     self.window.backgroundColor = UIColor.whiteColor;
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HiRouter.instance build:@"root"].toViewController];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HiRouter.instance build:@"root"].targetViewController];
     
     [self.window makeKeyAndVisible];
     

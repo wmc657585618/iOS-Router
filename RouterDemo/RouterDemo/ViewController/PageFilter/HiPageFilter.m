@@ -43,7 +43,7 @@
     
 }
 
-- (HiRouterTransitioningAction) navigationAction{
+- (HiRouterTransitioningAction) transitioningAction{
    
     return HiRouterTransitioningActionPush;
 }
