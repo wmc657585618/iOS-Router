@@ -131,7 +131,7 @@
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterTransitioningAction)action{
     
     // check filter
-    id<HiPageFilterProtocol> objce = [self pageFilterWithPath:path];
+    id<HiPageFilterProtocol> pageFilter = [self pageFilterWithPath:path];
     
     NSString *realPath = path;
     id realParameters = parameters;
@@ -139,10 +139,10 @@
     HiRouterBuilder *builder = [[HiRouterBuilder alloc] init];
     builder.transitioningAction = action;
     
-    if (objce) {
-        realPath = objce.forwardPath == nil ? path : objce.forwardPath;
-        realParameters = objce.parameters == nil ? parameters : objce.parameters;
-        builder.transitioningAction = objce.transitioningAction;
+    if (pageFilter) {
+        realPath = pageFilter.forwardPath == nil ? path : pageFilter.forwardPath;
+        realParameters = pageFilter.parameters == nil ? parameters : pageFilter.parameters;
+        builder.transitioningAction = pageFilter.transitioningAction;
     }
     
     UIViewController<HiRouterPageProtocol> *targetViewController = [self viewControllerWithPath:realPath parameters:realParameters];

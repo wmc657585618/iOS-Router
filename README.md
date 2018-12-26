@@ -20,17 +20,17 @@
 /**
 创建 viewcontroller, 并且设置导航跳转方式
 */
-- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterNavigationAction)action;
+- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterTransitioningAction)action;
 
 /**
 创建 viewcontroller, 设置 源 viewcontroller 和导航跳转方式
 */
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterNavigationAction)action;
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterTransitioningAction)action;
 
 /**
 创建 viewcontroller, 设置 源 viewcontroller ，参数和导航跳转方式
 */
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterNavigationAction)action;
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterTransitioningAction)action;
 
 /**
 viewcontroller 回调
@@ -111,7 +111,7 @@ url 预处理
 /**
 跳转方式
 */
-@property (nonatomic,readonly) HiRouterNavigationAction navigationAction;
+@property (nonatomic,readonly) HiRouterTransitioningAction transitioningAction;
 ```
 
 ### HiNetworkFilterProtocol
