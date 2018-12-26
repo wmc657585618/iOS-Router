@@ -115,20 +115,20 @@
 #pragma mark - public
 - (HiRouterBuilder *) build:(NSString *)path {
     
-    return [self build:path action:HiRouterNavigationActionNone];
+    return [self build:path action:HiRouterTransitioningActionNone];
 }
 
-- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterNavigationAction)action {
+- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterTransitioningAction)action {
     
     return [self build:path fromViewController:nil action:action];
 }
 
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterNavigationAction)action {
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterTransitioningAction)action {
     
     return [self build:path fromViewController:viewController withParameters:nil action:action];
 }
 
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterNavigationAction)action{
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterTransitioningAction)action{
     
     // check filter
     id<HiPageFilterProtocol> objce = [self pageFilterWithPath:path];

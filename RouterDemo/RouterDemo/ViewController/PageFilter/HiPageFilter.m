@@ -43,9 +43,9 @@
     
 }
 
-- (HiRouterNavigationAction) navigationAction{
+- (HiRouterTransitioningAction) navigationAction{
    
-    return HiRouterNavigationActionPush;
+    return HiRouterTransitioningActionPush;
 }
 
 - (id)parameters {

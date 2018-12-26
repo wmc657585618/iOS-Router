@@ -13,13 +13,13 @@
 - (void)buildAnimated:(BOOL)animated completion:(void(^)(void))completion {
     
     switch (self.navigationAction) {
-        case HiRouterNavigationActionPush:
+        case HiRouterTransitioningActionPush:
             [self.fromViewController.navigationController pushViewController:self.toViewController animated:animated];
             break;
-        case HiRouterNavigationActionPresent:
+        case HiRouterTransitioningActionPresent:
             [self.fromViewController presentViewController:self.toViewController animated:animated completion:completion];
             break;
-        case HiRouterNavigationActionNone:
+        case HiRouterTransitioningActionNone:
             
             break;
     }

@@ -15,7 +15,7 @@
 @property (weak, nonatomic) UIViewController *fromViewController;
 @property (strong, nonatomic) UIViewController *toViewController;
 
-@property (nonatomic,assign) HiRouterNavigationAction navigationAction;
+@property (nonatomic,assign) HiRouterTransitioningAction navigationAction;
 
 // fromviewcontroller present or push toviewcontroller
 // completion just for present

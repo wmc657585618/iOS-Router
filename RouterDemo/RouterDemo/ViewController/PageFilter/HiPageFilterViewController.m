@@ -95,15 +95,15 @@
 }
 
 - (void)push2Erro {
-    [[HiRouter.instance build:@"page/error" fromViewController:self action:HiRouterNavigationActionPush] buildAnimated:true completion:nil];
+    [[HiRouter.instance build:@"page/error" fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
 }
 
 - (void)push2Sub1 {
-    [[HiRouter.instance build:@"page/sub/sub1" fromViewController:self action:HiRouterNavigationActionPush] buildAnimated:true completion:nil];
+    [[HiRouter.instance build:@"page/sub/sub1" fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
 }
 
 - (void)push2Sub2 {
-    [[HiRouter.instance build:@"page/sub/sub2" fromViewController:self action:HiRouterNavigationActionPush] buildAnimated:true completion:nil];
+    [[HiRouter.instance build:@"page/sub/sub2" fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
 }
 
 - (void)filterSub1:(UIButton *)button {
