@@ -33,7 +33,7 @@
 
 @end
 
-@implementation UIViewController (HiRouterNavigationAction)
+@implementation UIViewController (HiRouterTransitioningAction)
 
 - (void)hi_pushPath:(NSString *)path animated:(BOOL)animated {
     

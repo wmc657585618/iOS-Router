@@ -1,0 +1,4 @@
+NSString *const PARAMETES_MAIN= @"parametes/main"; // in HiParametesViewController.h
+
+NSString *const PARAMETES_MAIN= @"parametes/main"; // in HiParametesViewController.h
+

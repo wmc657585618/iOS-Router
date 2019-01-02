@@ -53,6 +53,7 @@
 		1C14ABA221D364B500DE248C /* HiRouterBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterBuilder.h; sourceTree = "<group>"; };
 		1C14ABA321D364B500DE248C /* HiRouterDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterDefine.h; sourceTree = "<group>"; };
 		1C14ABA521D364B500DE248C /* HiRouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterProtocol.h; sourceTree = "<group>"; };
+		1C14ABB121D3A41700DE248C /* RouterPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouterPath.h; sourceTree = "<group>"; };
 		1C65582520F5FC4C00862997 /* RouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C65583120F5FC4D00862997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C65583420F5FC4D00862997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -132,8 +133,8 @@
 		1C14AB9321D364B500DE248C /* System */ = {
 			isa = PBXGroup;
 			children = (
-				1C14AB9421D364B500DE248C /* NSObjectHiCategory.m */,
 				1C14AB9521D364B500DE248C /* NSObjectHiCategory.h */,
+				1C14AB9421D364B500DE248C /* NSObjectHiCategory.m */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -224,6 +225,7 @@
 			children = (
 				1C65585120F5FCF800862997 /* AppDelegate.h */,
 				1C65585220F5FCF800862997 /* AppDelegate.m */,
+				1C14ABB121D3A41700DE248C /* RouterPath.h */,
 				1C65585420F5FDB600862997 /* Pages.plist */,
 			);
 			path = Other;
@@ -313,6 +315,7 @@
 				1C65582120F5FC4C00862997 /* Sources */,
 				1C65582220F5FC4C00862997 /* Frameworks */,
 				1C65582320F5FC4C00862997 /* Resources */,
+				1C14ABB021D386CE00DE248C /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -368,6 +371,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C14ABB021D386CE00DE248C /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/router.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1C65582120F5FC4C00862997 /* Sources */ = {
