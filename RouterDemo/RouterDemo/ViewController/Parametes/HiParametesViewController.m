@@ -47,7 +47,7 @@
 
 - (void)post {
 
-    [self hi_pushPath:@"parametes/main/receive" withParameters:self.textView.text animated:true];
+    [self hi_pushPath:PARAMETES_MAIN_RECEIVE withParameters:self.textView.text animated:true];
 }
 
 @end

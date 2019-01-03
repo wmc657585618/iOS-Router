@@ -53,7 +53,7 @@
 
 - (void)push {
 
-    [self hi_pushPath:@"callback/sub" animated:true];
+    [self hi_pushPath:CALLBACK_SUB animated:true];
 }
 
 - (void)recivedCallBack:(id)callBack {

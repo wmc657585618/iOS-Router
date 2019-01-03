@@ -1,4 +1,4 @@
-//
+//#page/main&HiPageFilterViewController
 //  HiPageFilterViewController.h
 //  RouterDemo
 //
@@ -6,11 +6,11 @@
 //  Copyright © 2018 Four. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "HiBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiPageFilterViewController : UIViewController
+@interface HiPageFilterViewController : HiBaseViewController
 
 @end
 

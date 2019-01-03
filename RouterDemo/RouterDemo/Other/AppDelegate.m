@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "RouterPath.h"
 #import "HiRouterManager.h"
+#import "HiRouterPath.h"
 
 @interface AppDelegate ()
 
@@ -20,17 +20,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // regist route
-    NSString *path = [NSBundle.mainBundle pathForResource:@"Pages" ofType:@"plist"];
-    
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
-    
-    [HiRouter.instance registRoute:dictionary];
+    [HiRouter.instance registRoute:[HiRouterPath pathDictionary]];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     self.window.backgroundColor = UIColor.whiteColor;
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HiRouter.instance build:@"root"].targetViewController];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HiRouter.instance build:ROOT].targetViewController];
     
     [self.window makeKeyAndVisible];
     

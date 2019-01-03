@@ -1,28 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>root</key>
-	<string>HiRootViewController</string>
-	<key>parametes/main</key>
+<array>
 	<string>HiParametesViewController</string>
-	<key>parametes/main/receive</key>
 	<string>HiParametesReceiveViewController</string>
-	<key>callback/main</key>
 	<string>HiCallBackViewController</string>
-	<key>callback/sub</key>
+	<string>HiRootViewController</string>
 	<string>HiCallBackSubViewController</string>
-	<key>network/main</key>
 	<string>HiNetworkFilterViewController</string>
-	<key>page/main</key>
 	<string>HiPageFilterViewController</string>
-	<key>page/sub/sub1</key>
 	<string>HiPageSub1ViewController</string>
-	<key>page/sub/sub2</key>
 	<string>HiPageSub2ViewController</string>
-	<key>page/error</key>
 	<string>HiPageErrorViewController</string>
-	<key>viewmodel</key>
 	<string>HiViewModelViewController</string>
-</dict>
+</array>
 </plist>

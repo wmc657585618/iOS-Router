@@ -79,22 +79,22 @@ static NSString *const cellID = @"HiRootViewController";
     
     switch (model.type) {
         case HiRootTableModelTypeNetwork:
-            path = @"network/main";
+            path = NETWORK_MAIN;
             break;
         case HiRootTableModelTypePage:
-            path = @"page/main";
+            path = PAGE_MAIN;
 
             break;
         case HiRootTableModelTypeCallBack:
-            path = @"callback/main";
+            path = CALLBACK_MAIN;
 
             break;
         case HiRootTableModelTypeParametes:
-            path = @"parametes/main";
+            path = PARAMETES_MAIN;
 
             break;
         case HiRootTableModelTypeViewModel:
-            path = @"viewmodel";
+            path = VIEWMODEL;
 
             break;
     }

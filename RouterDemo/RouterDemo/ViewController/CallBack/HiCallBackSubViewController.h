@@ -1,4 +1,4 @@
-//
+//#callback/sub&HiCallBackSubViewController
 //  HiCallBackSubViewController.h
 //  RouterDemo
 //
@@ -6,11 +6,11 @@
 //  Copyright © 2018 Four. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "HiBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiCallBackSubViewController : UIViewController
+@interface HiCallBackSubViewController : HiBaseViewController
 
 @end
 

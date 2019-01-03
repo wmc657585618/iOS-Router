@@ -95,25 +95,25 @@
 }
 
 - (void)push2Erro {
-    [[HiRouter.instance build:@"page/error" fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
+    [[HiRouter.instance build:PAGE_ERROR fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
 }
 
 - (void)push2Sub1 {
-    [[HiRouter.instance build:@"page/sub/sub1" fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
+    [[HiRouter.instance build:PAGE_SUB_SUB1 fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
 }
 
 - (void)push2Sub2 {
-    [[HiRouter.instance build:@"page/sub/sub2" fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
+    [[HiRouter.instance build:PAGE_SUB_SUB2 fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
 }
 
 - (void)filterSub1:(UIButton *)button {
     button.selected = !button.isSelected;
-    self.pageSub1Filer.regex = button.selected ? @"page/sub/sub1" : @"none";
+    self.pageSub1Filer.regex = button.selected ? PAGE_SUB_SUB1 : @"none";
 }
 
 - (void)filterSub2:(UIButton *)button {
     button.selected = !button.isSelected;
-    self.pageSub2Filer.regex = button.selected ? @"page/sub/sub2" : @"none";
+    self.pageSub2Filer.regex = button.selected ? PAGE_SUB_SUB2 : @"none";
 }
 
 - (void)filterAll:(UIButton *)button {

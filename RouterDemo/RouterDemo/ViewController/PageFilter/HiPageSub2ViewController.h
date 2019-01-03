@@ -1,4 +1,4 @@
-//
+//#page/sub/sub2&HiPageSub2ViewController
 //  HiPageSub2ViewController.h
 //  RouterDemo
 //
@@ -6,11 +6,11 @@
 //  Copyright © 2018 Four. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "HiBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiPageSub2ViewController : UIViewController
+@interface HiPageSub2ViewController : HiBaseViewController
 
 @end
 
