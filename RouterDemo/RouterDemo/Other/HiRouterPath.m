@@ -3,35 +3,57 @@
 // in HiParametesViewController.h
 NSString *const PARAMETES_MAIN= @"parametes/main";
 
+NSString *const HiParametesViewController= @"HiParametesViewController";
+
 // in HiParametesReceiveViewController.h
 NSString *const PARAMETES_MAIN_RECEIVE= @"parametes/main/receive";
+
+NSString *const HiParametesReceiveViewController= @"HiParametesReceiveViewController";
 
 // in HiCallBackViewController.h
 NSString *const CALLBACK_MAIN= @"callback/main";
 
+NSString *const HiCallBackViewController= @"HiCallBackViewController";
+
 // in HiRootViewController.h
 NSString *const ROOT= @"root";
+
+NSString *const HiRootViewController= @"HiRootViewController";
 
 // in HiCallBackSubViewController.h
 NSString *const CALLBACK_SUB= @"callback/sub";
 
+NSString *const HiCallBackSubViewController= @"HiCallBackSubViewController";
+
 // in HiNetworkFilterViewController.h
 NSString *const NETWORK_MAIN= @"network/main";
+
+NSString *const HiNetworkFilterViewController= @"HiNetworkFilterViewController";
 
 // in HiPageFilterViewController.h
 NSString *const PAGE_MAIN= @"page/main";
 
+NSString *const HiPageFilterViewController= @"HiPageFilterViewController";
+
 // in HiPageSub1ViewController.h
 NSString *const PAGE_SUB_SUB1= @"page/sub/sub1";
+
+NSString *const HiPageSub1ViewController= @"HiPageSub1ViewController";
 
 // in HiPageSub2ViewController.h
 NSString *const PAGE_SUB_SUB2= @"page/sub/sub2";
 
+NSString *const HiPageSub2ViewController= @"HiPageSub2ViewController";
+
 // in HiPageErrorViewController.h
 NSString *const PAGE_ERROR= @"page/error";
 
+NSString *const HiPageErrorViewController= @"HiPageErrorViewController";
+
 // in HiViewModelViewController.h
 NSString *const VIEWMODEL= @"viewmodel";
+
+NSString *const HiViewModelViewController= @"HiViewModelViewController";
 
 @implementation HiRouterPath
 

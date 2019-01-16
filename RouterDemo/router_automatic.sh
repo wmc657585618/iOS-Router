@@ -3,6 +3,8 @@
 folder=${SRCROOT}
 file_h=$folder/RouterDemo/Other/HiRouterPath.h
 file_m=$folder/RouterDemo/Other/HiRouterPath.m
+plist_path=$folder/files.plist
+
 : > $file_h
 : > $file_m
 
@@ -11,35 +13,36 @@ echo -e "#import \"HiRouterPath.h\"\n" >> $file_m
 
 dic_m="\n"
 
+const_pre="NSString *const"
+extern_pre="extern $const_pre"
+
 filter_key_value () {
 
     str=$1
     parametes=${str#*#}
     key=${parametes%&*}
     value=${parametes#*&}
-    path=${key//\//"_"}
-    key_up=$(echo $path | tr 'a-z' 'A-Z')
+
+    key_up=$(echo ${key//\//"_"} | tr 'a-z' 'A-Z')
 
     echo -e "// in $2" >> $file_m
-    echo -e "NSString *const "$key_up"= @\"${key}\";\n" >> $file_m
-    #echo -e "NSString *const "$value"= @\"${value}\";\n" >> $file_m
+    echo -e "$const_pre "$key_up"= @\"${key}\";\n" >> $file_m
+    echo -e "$const_pre "$value"= @\"${value}\";\n" >> $file_m
 
-    echo -e "\nextern NSString *const "$key_up";" "// in $2">> $file_h
+    echo -e "\n$extern_pre "$key_up";" "// in $2">> $file_h
     dic_m=$dic_m"\t\t\t$key_up: @\"$value\",\n"
 }
 
-headers=$(/usr/libexec/PlistBuddy -c 'Print' $folder/files.plist)
-headers=${headers#*\{}
-headers=${headers%\}*}
+index=0
 
-for header in $headers;do
+while :;do
 
-    for file in $(find $folder -name $header.h); do
+    /usr/libexec/PlistBuddy -c "Print :$index" $folder/files.plist > /dev/null 2>&1 || break
+    header=`/usr/libexec/PlistBuddy -c "Print :$index" $plist_path`
 
-        filter_key_value "$(head -n 1 ${file})" $header.h
+    filter_key_value "$(head -n 1 `find $folder -name $header.h`)" $header.h
 
-    done
-
+    let "index++"
 done
 
 h_end="\n@interface HiRouterPath : NSObject\
@@ -53,12 +56,3 @@ m_end="@implementation HiRouterPath\
 \n}\
 \n\n@end"
 echo -e $m_end >> $file_m
-
-
-
-
-
-
-
-
-
