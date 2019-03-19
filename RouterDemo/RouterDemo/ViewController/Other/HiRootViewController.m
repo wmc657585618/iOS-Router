@@ -7,7 +7,6 @@
 //
 
 #import "HiRootViewController.h"
-#import "HiRouterManager.h"
 #import "HiRootTableModel.h"
 
 @interface HiRootViewController ()<UITableViewDataSource,UITableViewDelegate,HiRouterPageProtocol>
@@ -43,7 +42,8 @@ static NSString *const cellID = @"HiRootViewController";
     HiRootTableModel *network = [[HiRootTableModel alloc] initWithTitle:@"push to network" type:HiRootTableModelTypeNetwork];
     HiRootTableModel *page = [[HiRootTableModel alloc] initWithTitle:@"push to page" type:HiRootTableModelTypePage];
     HiRootTableModel *viewModel = [[HiRootTableModel alloc] initWithTitle:@"push to view model" type:HiRootTableModelTypeViewModel];
-    NSArray *array = @[callBack,parametes,network,page,viewModel];
+    HiRootTableModel *navigation = [[HiRootTableModel alloc] initWithTitle:@"push to nav" type:HiRootTableModelTypeNavigation];
+    NSArray *array = @[callBack,parametes,network,page,viewModel,navigation];
     
     self.dataSource = array;
     
@@ -96,6 +96,9 @@ static NSString *const cellID = @"HiRootViewController";
         case HiRootTableModelTypeViewModel:
             path = VIEWMODEL;
 
+            break;
+        case HiRootTableModelTypeNavigation:
+            path = NAV_FIRST;
             break;
     }
 

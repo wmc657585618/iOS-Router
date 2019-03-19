@@ -60,4 +60,13 @@
     [HiRouter.instance routerCallBackFromViewController:self callBackParameters:callBackParameters];
 }
 
+- (void)hi_popToPath:(NSString *)path animated:(BOOL)animated {
+    
+    [HiRouter.instance popToPath:path parameters:nil animated:animated];
+}
+
+- (void)hi_popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated {
+    [HiRouter.instance popToPath:path parameters:parameters animated:animated];
+}
+
 @end

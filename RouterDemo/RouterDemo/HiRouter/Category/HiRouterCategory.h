@@ -43,3 +43,19 @@
 - (id<HiNetworkFilterProtocol>)performURL:(NSString *)url parameters:(id)parameters;
 
 @end
+
+/******************** ViewController ********************/
+@interface HiRouter (ViewController)
+
+/**
+ pop to viewController
+ */
+- (void)popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated;
+
+/**
+ top viewController
+
+ @return last viewController for path
+ */
+- (UIViewController<HiRouterPageProtocol> *)topViewControllerForPath:(NSString *)path;
+@end

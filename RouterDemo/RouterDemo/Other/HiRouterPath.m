@@ -55,6 +55,26 @@ NSString *const VIEWMODEL= @"viewmodel";
 
 NSString *const HiViewModelViewController= @"HiViewModelViewController";
 
+// in HiNavigationFirstViewControoler.h
+NSString *const NAV_FIRST= @"nav/first";
+
+NSString *const HiNavigationFirstViewControoler= @"HiNavigationFirstViewControoler";
+
+// in HiNavigationFourthViewControoler.h
+NSString *const NAV_FOURTH= @"nav/fourth";
+
+NSString *const HiNavigationFourthViewControoler= @"HiNavigationFourthViewControoler";
+
+// in HiNavigationThirdViewControoler.h
+NSString *const NAV_THIRD= @"nav/third";
+
+NSString *const HiNavigationThirdViewControoler= @"HiNavigationThirdViewControoler";
+
+// in HiNavigationSecondViewControoler.h
+NSString *const NAV_SECONDE= @"nav/seconde";
+
+NSString *const HiNavigationSecondViewControoler= @"HiNavigationSecondViewControoler";
+
 @implementation HiRouterPath
 
 + (NSDictionary *)pathDictionary {
@@ -70,6 +90,10 @@ NSString *const HiViewModelViewController= @"HiViewModelViewController";
 			PAGE_SUB_SUB2: @"HiPageSub2ViewController",
 			PAGE_ERROR: @"HiPageErrorViewController",
 			VIEWMODEL: @"HiViewModelViewController",
+			NAV_FIRST: @"HiNavigationFirstViewControoler",
+			NAV_FOURTH: @"HiNavigationFourthViewControoler",
+			NAV_THIRD: @"HiNavigationThirdViewControoler",
+			NAV_SECONDE: @"HiNavigationSecondViewControoler",
 			};
 }
 

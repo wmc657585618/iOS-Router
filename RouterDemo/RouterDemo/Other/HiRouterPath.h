@@ -22,6 +22,14 @@ extern NSString *const PAGE_ERROR; // in HiPageErrorViewController.h
 
 extern NSString *const VIEWMODEL; // in HiViewModelViewController.h
 
+extern NSString *const NAV_FIRST; // in HiNavigationFirstViewControoler.h
+
+extern NSString *const NAV_FOURTH; // in HiNavigationFourthViewControoler.h
+
+extern NSString *const NAV_THIRD; // in HiNavigationThirdViewControoler.h
+
+extern NSString *const NAV_SECONDE; // in HiNavigationSecondViewControoler.h
+
 @interface HiRouterPath : NSObject
 
 @property (nonatomic, readonly, class) NSDictionary *pathDictionary;

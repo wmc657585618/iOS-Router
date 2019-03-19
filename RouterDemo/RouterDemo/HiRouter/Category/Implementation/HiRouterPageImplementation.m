@@ -153,6 +153,9 @@
     builder.targetViewController = targetViewController;
     builder.sourceViewController = viewController;
     
+    // record
+    [self.viewControllers setObject:targetViewController forKey:path];
+    
     return builder;
 }
 
