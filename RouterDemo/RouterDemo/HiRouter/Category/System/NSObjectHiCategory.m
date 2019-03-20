@@ -69,4 +69,12 @@
     [HiRouter.instance popToPath:path parameters:parameters animated:animated];
 }
 
+- (void)hi_removePath:(NSString *)path {
+    [HiRouter.instance removePath:path parameters:nil];
+}
+
+- (void)hi_removePath:(NSString *)path parameters:(id)parameters {
+    [HiRouter.instance removePath:path parameters:parameters];
+}
+
 @end

@@ -38,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)hi_popToPath:(NSString *)path animated:(BOOL)animated;
 - (void)hi_popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated;
 
+- (void)hi_removePath:(NSString *)path;
+- (void)hi_removePath:(NSString *)path parameters:(id)parameters;
+
 @end
 
 NS_ASSUME_NONNULL_END

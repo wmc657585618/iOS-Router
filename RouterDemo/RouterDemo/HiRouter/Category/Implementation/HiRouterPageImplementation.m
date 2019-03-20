@@ -104,7 +104,7 @@
     
     UIViewController<HiRouterPageProtocol> *pViewController = [self viewControllerWithPath:path];
     
-    if (pViewController && [pViewController respondsToSelector:@selector(recivedParameters:)]) {
+    if (pViewController && [pViewController respondsToSelector:@selector(recivedParameters:)] && parameters) {
         
         [pViewController recivedParameters:parameters];
     }

@@ -48,9 +48,14 @@
 @interface HiRouter (ViewController)
 
 /**
- pop to viewController
+ pop to last viewController for path
  */
 - (void)popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated;
+
+/**
+ remove viewController
+ */
+- (void)removePath:(NSString *)path parameters:(id)parameters;
 
 /**
  top viewController
