@@ -33,7 +33,7 @@
 
 @end
 
-@implementation UIViewController (HiRouterTransitioningAction)
+@implementation UIViewController (HiRouter)
 
 - (void)hi_pushPath:(NSString *)path animated:(BOOL)animated {
     
@@ -60,21 +60,28 @@
     [HiRouter.instance routerCallBackFromViewController:self callBackParameters:callBackParameters];
 }
 
-- (void)hi_popToPath:(NSString *)path animated:(BOOL)animated {
-    
-    [HiRouter.instance popToPath:path parameters:nil animated:animated];
+- (NSError *)hi_popToPath:(NSString *)path animated:(BOOL)animated {
+    return [HiRouter.instance popToPath:path parameters:nil animated:animated];
 }
 
-- (void)hi_popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated {
-    [HiRouter.instance popToPath:path parameters:parameters animated:animated];
+- (NSError *)hi_popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated {
+    return [HiRouter.instance popToPath:path parameters:parameters animated:animated];
 }
 
-- (void)hi_removePath:(NSString *)path {
-    [HiRouter.instance removePath:path parameters:nil];
+- (NSError *)hi_removePath:(NSString *)path {
+    return [HiRouter.instance removePath:path parameters:nil];
 }
 
-- (void)hi_removePath:(NSString *)path parameters:(id)parameters {
-    [HiRouter.instance removePath:path parameters:parameters];
+- (NSError *)hi_removePath:(NSString *)path parameters:(id)parameters {
+    return [HiRouter.instance removePath:path parameters:parameters];
+}
+
+- (NSError *)hi_postParameters:(id)parameters toPath:(NSString *)path {
+    return [HiRouter.instance postParameters:parameters toPath:path];
+}
+
+- (UIViewController<HiRouterPageProtocol> *)hi_topViewControllerForPath:(NSString *)path {
+    return [HiRouter.instance topViewControllerForPath:path];
 }
 
 @end

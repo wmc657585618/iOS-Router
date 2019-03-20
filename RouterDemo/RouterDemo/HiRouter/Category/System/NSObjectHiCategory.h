@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UIViewController (HiRouterTransitioningAction)<HiRouterPageProtocol>
+@interface UIViewController (HiRouter)<HiRouterPageProtocol>
 
 - (void)hi_pushPath:(NSString *)path animated:(BOOL)animated;
 - (void)hi_pushPath:(NSString *)path withParameters:(id)parameters animated:(BOOL)animated;
@@ -35,11 +35,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)hi_callBackParameters:(id)callBackParameters;
 
-- (void)hi_popToPath:(NSString *)path animated:(BOOL)animated;
-- (void)hi_popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated;
+- (NSError *)hi_popToPath:(NSString *)path animated:(BOOL)animated;
+- (NSError *)hi_popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated;
 
-- (void)hi_removePath:(NSString *)path;
-- (void)hi_removePath:(NSString *)path parameters:(id)parameters;
+- (NSError *)hi_removePath:(NSString *)path;
+- (NSError *)hi_removePath:(NSString *)path parameters:(id)parameters;
+
+- (NSError *)hi_postParameters:(id)parameters toPath:(NSString *)path;
+
+/**
+ last created viewController for path
+ */
+- (UIViewController<HiRouterPageProtocol> *)hi_topViewControllerForPath:(NSString *)path;
 
 @end
 

@@ -49,18 +49,29 @@
 
 /**
  pop to last viewController for path
+ get parameters if viewController responds recivedParameters:
+ @return nil or code:0 is no error.
  */
-- (void)popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated;
+- (NSError *)popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated;
 
 /**
  remove viewController
+ get parameters if viewController responds recivedParameters:
+ @return nil or code:0 is no error.
  */
-- (void)removePath:(NSString *)path parameters:(id)parameters;
+- (NSError *)removePath:(NSString *)path parameters:(id)parameters;
+
+/**
+ post parameters to path
+ get parameters if viewController responds recivedParameters:
+ @return nil or code:0 is no error.
+ */
+- (NSError *)postParameters:(id)parameters toPath:(NSString *)path;
 
 /**
  top viewController
 
- @return last viewController for path
+ @return last created viewController for path
  */
 - (UIViewController<HiRouterPageProtocol> *)topViewControllerForPath:(NSString *)path;
 @end

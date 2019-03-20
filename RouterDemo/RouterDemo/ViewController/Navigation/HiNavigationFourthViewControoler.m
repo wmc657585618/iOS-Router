@@ -27,9 +27,9 @@
 
 - (void)buttonClicked {
     
-//    [self hi_popToPath:NAV_SECONDE animated:true];
+    [self hi_popToPath:NAV_SECONDE animated:true];
     
-    [HiRouter.instance removePath:NAV_SECONDE parameters:nil];
+//    [HiRouter.instance removePath:NAV_SECONDE parameters:nil];
 }
 
 @end
