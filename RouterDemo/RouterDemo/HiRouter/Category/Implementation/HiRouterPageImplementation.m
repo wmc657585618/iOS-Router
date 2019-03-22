@@ -140,8 +140,8 @@
     builder.transitioningAction = action;
     
     if (pageFilter) {
-        realPath = pageFilter.forwardPath == nil ? path : pageFilter.forwardPath;
-        realParameters = pageFilter.parameters == nil ? parameters : pageFilter.parameters;
+        realPath = pageFilter.forwardPath ? : path;
+        realParameters = pageFilter.parameters ? : parameters;
         builder.transitioningAction = pageFilter.transitioningAction;
     }
     

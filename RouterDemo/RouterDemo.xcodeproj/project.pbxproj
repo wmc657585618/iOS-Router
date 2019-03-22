@@ -15,7 +15,6 @@
 		1C14ABAB21D364B500DE248C /* HiRouterBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C14ABA021D364B500DE248C /* HiRouterBuilder.m */; };
 		1C14ABAC21D364B500DE248C /* HiRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C14ABA121D364B500DE248C /* HiRouter.m */; };
 		1C1B89AB2241038F00E3C1FE /* HiRouterViewControllerImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89AA2241038E00E3C1FE /* HiRouterViewControllerImplementation.m */; };
-		1C1B89AE224106D700E3C1FE /* HiViewControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89AD224106D700E3C1FE /* HiViewControllerModel.m */; };
 		1C1B89B522410FAD00E3C1FE /* HiNavigationFirstViewControoler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89B422410FAD00E3C1FE /* HiNavigationFirstViewControoler.m */; };
 		1C1B89B822410FCB00E3C1FE /* HiNavigationSecondViewControoler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89B722410FCB00E3C1FE /* HiNavigationSecondViewControoler.m */; };
 		1C1B89BB22410FDA00E3C1FE /* HiNavigationThirdViewControoler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89BA22410FDA00E3C1FE /* HiNavigationThirdViewControoler.m */; };
@@ -61,8 +60,6 @@
 		1C14ABA321D364B500DE248C /* HiRouterDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterDefine.h; sourceTree = "<group>"; };
 		1C14ABA521D364B500DE248C /* HiRouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterProtocol.h; sourceTree = "<group>"; };
 		1C1B89AA2241038E00E3C1FE /* HiRouterViewControllerImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouterViewControllerImplementation.m; sourceTree = "<group>"; };
-		1C1B89AC224106D700E3C1FE /* HiViewControllerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiViewControllerModel.h; sourceTree = "<group>"; };
-		1C1B89AD224106D700E3C1FE /* HiViewControllerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiViewControllerModel.m; sourceTree = "<group>"; };
 		1C1B89B322410FAD00E3C1FE /* HiNavigationFirstViewControoler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNavigationFirstViewControoler.h; sourceTree = "<group>"; };
 		1C1B89B422410FAD00E3C1FE /* HiNavigationFirstViewControoler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNavigationFirstViewControoler.m; sourceTree = "<group>"; };
 		1C1B89B622410FCB00E3C1FE /* HiNavigationSecondViewControoler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNavigationSecondViewControoler.h; sourceTree = "<group>"; };
@@ -186,8 +183,6 @@
 				1C14ABA121D364B500DE248C /* HiRouter.m */,
 				1C14ABA221D364B500DE248C /* HiRouterBuilder.h */,
 				1C14ABA021D364B500DE248C /* HiRouterBuilder.m */,
-				1C1B89AC224106D700E3C1FE /* HiViewControllerModel.h */,
-				1C1B89AD224106D700E3C1FE /* HiViewControllerModel.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -464,7 +459,6 @@
 				1C97796021D0C24100C9859A /* HiViewModelView.m in Sources */,
 				1C14ABA921D364B500DE248C /* HiRouterNetworkImplementation.m in Sources */,
 				1C97796621D0C5FB00C9859A /* HiViewModelReceiveView.m in Sources */,
-				1C1B89AE224106D700E3C1FE /* HiViewControllerModel.m in Sources */,
 				1C14ABAC21D364B500DE248C /* HiRouter.m in Sources */,
 				1C97793521D0899500C9859A /* HiPageFilter.m in Sources */,
 				1CB3D09221DDB98300E66BF1 /* HiRouterPath.m in Sources */,
