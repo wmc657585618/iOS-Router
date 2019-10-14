@@ -14,7 +14,16 @@
     
     switch (self.transitioningAction) {
         case HiRouterTransitioningActionPush:
-            [self.sourceViewController.navigationController pushViewController:self.targetViewController animated:animated];
+        {
+            if ([self.sourceViewController isKindOfClass:UINavigationController.class]) {
+                UINavigationController *nav = (UINavigationController *)self.sourceViewController;
+                [nav pushViewController:self.targetViewController animated:animated];
+                
+            } else {
+                
+                [self.sourceViewController.navigationController pushViewController:self.targetViewController animated:animated];
+            }
+        }
             break;
         case HiRouterTransitioningActionPresent:
             [self.sourceViewController presentViewController:self.targetViewController animated:animated completion:completion];
