@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)hi_presentPath:(NSString *)path animated:(BOOL)animated completion:(void(^)(void))completion;
 - (void)hi_presentPath:(NSString *)path withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion;
 
+- (void)hi_presentFullScreenPath:(NSString *)path animated:(BOOL)animated completion:(void(^)(void))completion;
+- (void)hi_presentFullScreenPath:(NSString *)path withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion;
+
 - (void)hi_callBackParameters:(id)callBackParameters;
 
 - (NSError *)hi_popToPath:(NSString *)path animated:(BOOL)animated;

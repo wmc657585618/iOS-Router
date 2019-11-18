@@ -31,6 +31,15 @@
         case HiRouterTransitioningActionNone:
             
             break;
+        case HiRouterTransitioningActionPresentFullScreen:
+        {
+            if (@available(iOS 13.0, *)) {
+                self.targetViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            }
+            
+            [self.sourceViewController presentViewController:self.targetViewController animated:animated completion:completion];
+        }
+            break;
     }
 }
 @end

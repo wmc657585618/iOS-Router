@@ -55,6 +55,16 @@
     [[HiRouter.instance build:path fromViewController:self action:HiRouterTransitioningActionPresent] buildAnimated:animated completion:completion];
 }
 
+- (void)hi_presentFullScreenPath:(NSString *)path withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion{
+    
+    [[HiRouter.instance build:path fromViewController:self withParameters:parametes action:HiRouterTransitioningActionPresentFullScreen] buildAnimated:animated completion:completion];
+}
+
+- (void)hi_presentFullScreenPath:(NSString *)path animated:(BOOL)animated completion:(void(^)(void))completion{
+    
+    [[HiRouter.instance build:path fromViewController:self action:HiRouterTransitioningActionPresentFullScreen] buildAnimated:animated completion:completion];
+}
+
 - (void)hi_callBackParameters:(id)callBackParameters {
     
     [HiRouter.instance routerCallBackFromViewController:self callBackParameters:callBackParameters];
