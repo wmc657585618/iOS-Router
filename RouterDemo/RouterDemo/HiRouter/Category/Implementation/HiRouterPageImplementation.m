@@ -70,20 +70,20 @@
 #pragma mark - public
 - (HiRouterBuilder *) build:(NSString *)path {
     
-    return [self build:path action:HiRouterTransitioningActionNone];
+    return [self build:path action:nil];
 }
 
-- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterTransitioningAction)action {
+- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterAction *)action {
     
     return [self build:path fromViewController:nil action:action];
 }
 
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterTransitioningAction)action {
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterAction *)action {
     
     return [self build:path fromViewController:viewController withParameters:nil action:action];
 }
 
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterTransitioningAction)action{
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action{
     
     // check filter
     id<HiPageFilterProtocol> pageFilter = [self pageFilterWithPath:path];
@@ -92,7 +92,8 @@
     id realParameters = parameters;
     
     HiRouterBuilder *builder = [[HiRouterBuilder alloc] init];
-    builder.transitioningAction = action;
+    builder.transitioningAction = action.action;
+    builder.modalPresentationStyle = action.modalPresentationStyle;
     
     if (pageFilter) {
         realPath = pageFilter.forwardPath ? : path;

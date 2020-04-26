@@ -10,10 +10,10 @@
 #import <objc/runtime.h>
 
 typedef void(^HideallocBlock)(void);
+
 #pragma mark - interface
 @interface HiDeallocObserver : NSObject
 
-@property (nonatomic,weak) NSObject *observer;
 @property (nonatomic,copy) HideallocBlock block;
 
 @end

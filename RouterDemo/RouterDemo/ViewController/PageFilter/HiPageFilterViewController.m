@@ -95,15 +95,18 @@
 }
 
 - (void)push2Erro {
-    [[HiRouter.instance build:PAGE_ERROR fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
+    HiRouterAction *action = HiRouterAction.install(UIModalPresentationFullScreen, HiRouterTransitioningActionPush);
+    [[HiRouter.instance build:PAGE_ERROR fromViewController:self action:action] buildAnimated:true completion:nil];
 }
 
 - (void)push2Sub1 {
-    [[HiRouter.instance build:PAGE_SUB_SUB1 fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
+    HiRouterAction *action = HiRouterAction.install(UIModalPresentationFullScreen, HiRouterTransitioningActionPush);
+    [[HiRouter.instance build:PAGE_SUB_SUB1 fromViewController:self action:action] buildAnimated:true completion:nil];
 }
 
 - (void)push2Sub2 {
-    [[HiRouter.instance build:PAGE_SUB_SUB2 fromViewController:self action:HiRouterTransitioningActionPush] buildAnimated:true completion:nil];
+    HiRouterAction *action = HiRouterAction.install(UIModalPresentationFullScreen, HiRouterTransitioningActionPush);
+    [[HiRouter.instance build:PAGE_SUB_SUB2 fromViewController:self action:action] buildAnimated:true completion:nil];
 }
 
 - (void)filterSub1:(UIButton *)button {

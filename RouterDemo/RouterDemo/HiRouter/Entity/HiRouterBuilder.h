@@ -23,3 +23,15 @@
 - (void)buildAnimated:(BOOL)animated completion:(void(^)(void))completion;
 
 @end
+
+@class HiRouterAction;
+typedef HiRouterAction *(^HiRouterActionProperty)(UIModalPresentationStyle modalPresentationStyle, HiRouterTransitioningAction action);
+
+@interface HiRouterAction : NSObject
+
+@property (nonatomic,copy,class,readonly) HiRouterActionProperty install;
+@property (nonatomic,assign) UIModalPresentationStyle modalPresentationStyle;
+
+@property (nonatomic,assign) HiRouterTransitioningAction action;
+
+@end

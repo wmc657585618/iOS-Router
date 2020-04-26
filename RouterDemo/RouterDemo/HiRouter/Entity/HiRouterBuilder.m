@@ -26,6 +26,7 @@
         }
             break;
         case HiRouterTransitioningActionPresent:
+            [self presetnViewControllerWithAnimated:animated completion:completion];
             break;
         case HiRouterTransitioningActionNone:
             break;
@@ -35,5 +36,23 @@
 - (void)presetnViewControllerWithAnimated:(BOOL)animated completion:(void(^)(void))completion {
     self.targetViewController.modalPresentationStyle = self.modalPresentationStyle;
     [self.fromViewController presentViewController:self.targetViewController animated:animated completion:completion];
+}
+
+@end
+
+@implementation HiRouterAction
+
++ (HiRouterActionProperty)install {
+    
+    return ^(UIModalPresentationStyle moda, HiRouterTransitioningAction action) {
+        HiRouterAction *actionModel = [[HiRouterAction alloc] init];
+        actionModel.modalPresentationStyle = moda;
+        actionModel.action = action;
+        return actionModel;
+    };
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
 }
 @end
