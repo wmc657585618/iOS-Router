@@ -39,12 +39,14 @@
 
 - (id<HiPageFilterProtocol>)pageFilterWithPath:(NSString *)path {
     
-    return [self filterWithString:path filterArray:self.pageFilters.allValues];
+    if(self.pageFilte) return [self filterWithString:path filterArray:self.pageFilters.allValues];
+    return nil;
 }
 
 - (id<HiNetworkFilterProtocol>)networkFilterWithURLString:(NSString *)urlString {
     
-    return [self filterWithString:urlString filterArray:self.networkFilters.allValues];
+    if(self.networkFilte) return [self filterWithString:urlString filterArray:self.networkFilters.allValues];
+    return nil;
 }
 
 @end

@@ -36,6 +36,8 @@ static HiRouter *_instance = nil;
     dispatch_once(&onceToken, ^{
 
         _instance = (HiRouter *) [[super allocWithZone:NULL] init];
+        _instance.pageFilte = false;
+        _instance.networkFilte = false;
     });
 
     return _instance;
@@ -166,4 +168,5 @@ static HiRouter *_instance = nil;
     
     return self.pViewControllers;
 }
+
 @end

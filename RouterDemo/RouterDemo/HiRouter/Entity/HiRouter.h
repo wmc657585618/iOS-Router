@@ -26,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, nonatomic) NSMapTable<NSString *, UIViewController<HiRouterPageProtocol> *> *viewControllers;
 
+/** filte on or off, default is off*/
+@property (nonatomic,assign) BOOL pageFilte;
+
+/** filte on or off, default is off*/
+@property (nonatomic,assign) BOOL networkFilte;
+
 - (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
 
 /**
