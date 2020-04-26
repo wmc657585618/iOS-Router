@@ -15,31 +15,25 @@
     switch (self.transitioningAction) {
         case HiRouterTransitioningActionPush:
         {
-            if ([self.sourceViewController isKindOfClass:UINavigationController.class]) {
-                UINavigationController *nav = (UINavigationController *)self.sourceViewController;
+            if ([self.fromViewController isKindOfClass:UINavigationController.class]) {
+                UINavigationController *nav = (UINavigationController *)self.fromViewController;
                 [nav pushViewController:self.targetViewController animated:animated];
                 
             } else {
                 
-                [self.sourceViewController.navigationController pushViewController:self.targetViewController animated:animated];
+                [self.fromViewController.navigationController pushViewController:self.targetViewController animated:animated];
             }
         }
             break;
         case HiRouterTransitioningActionPresent:
-            [self.sourceViewController presentViewController:self.targetViewController animated:animated completion:completion];
             break;
         case HiRouterTransitioningActionNone:
-            
-            break;
-        case HiRouterTransitioningActionPresentFullScreen:
-        {
-            if (@available(iOS 13.0, *)) {
-                self.targetViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-            }
-            
-            [self.sourceViewController presentViewController:self.targetViewController animated:animated completion:completion];
-        }
             break;
     }
+}
+
+- (void)presetnViewControllerWithAnimated:(BOOL)animated completion:(void(^)(void))completion {
+    self.targetViewController.modalPresentationStyle = self.modalPresentationStyle;
+    [self.fromViewController presentViewController:self.targetViewController animated:animated completion:completion];
 }
 @end

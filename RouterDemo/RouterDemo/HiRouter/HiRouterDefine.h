@@ -12,8 +12,7 @@
 typedef enum : NSUInteger {
     HiRouterTransitioningActionNone,
     HiRouterTransitioningActionPush,
-    HiRouterTransitioningActionPresent, // default
-    HiRouterTransitioningActionPresentFullScreen,
+    HiRouterTransitioningActionPresent,
 } HiRouterTransitioningAction;
 
 #endif /* HiRouterDefine_h */

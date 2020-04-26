@@ -11,10 +11,12 @@
 
 @interface HiRouterBuilder : NSObject
 
-@property (weak, nonatomic) UIViewController *sourceViewController; // maybe nil
+@property (weak, nonatomic) UIViewController *fromViewController; // maybe nil
 @property (strong, nonatomic) UIViewController *targetViewController;
 
 @property (nonatomic,assign) HiRouterTransitioningAction transitioningAction;
+
+@property (nonatomic,assign) UIModalPresentationStyle modalPresentationStyle; // default UIModalPresentationFullScreen
 
 // fromviewcontroller present or push toviewcontroller
 // completion just for present

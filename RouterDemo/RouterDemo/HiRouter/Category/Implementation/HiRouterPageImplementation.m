@@ -11,33 +11,33 @@
 #import <objc/runtime.h>
 
 // for release delegate
-@interface HiRouterPageReleasObserver : NSObject
+@interface HiRouterReleasObserver : NSObject
 
-@property (nonatomic,weak) UIViewController *observer;
+@property (nonatomic,weak) NSObject *observer;
 
-- (instancetype)initWithObserver:(UIViewController *)observer;
+- (instancetype)initWithObserver:(NSObject *)observer;
 
 @end
 
 // private delegate
-@interface UIViewController (HiRouter_page_delegate)<HiRouterPageProtocol>
+@interface NSObject (HiRouter_page_delegate)<HiRouterPageProtocol>
 
-@property (nonatomic,weak) UIViewController<HiRouterPageProtocol> *hi_private_page_delegate;
-@property (nonatomic,strong) HiRouterPageReleasObserver *pReleaseObserver;
+@property (nonatomic,weak) NSObject<HiRouterPageProtocol> *hi_private_page_delegate;
+@property (nonatomic,strong) HiRouterReleasObserver *pReleaseObserver;
 
 @end
 
 @implementation UIViewController (HiRouter_page_delegate)
-- (void)setPReleaseObserver:(HiRouterPageReleasObserver *)pReleaseObserver{
+- (void)setPReleaseObserver:(HiRouterReleasObserver *)pReleaseObserver{
     objc_setAssociatedObject(self, @selector(pReleaseObserver), pReleaseObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (HiRouterPageReleasObserver *)pReleaseObserver {
+- (HiRouterReleasObserver *)pReleaseObserver {
     return objc_getAssociatedObject(self, @selector(pReleaseObserver));
 }
 
 - (void)setReleaseObserver:(UIViewController *)observer {
-    self.pReleaseObserver = [[HiRouterPageReleasObserver alloc] initWithObserver:observer];
+    self.pReleaseObserver = [[HiRouterReleasObserver alloc] initWithObserver:observer];
 }
 
 - (void)setHi_private_page_delegate:(UIViewController<HiRouterPageProtocol> *)hi_private_page_delegate {
@@ -56,7 +56,7 @@
 @end
 
 #pragma mark - ReleasObserver implementation
-@implementation HiRouterPageReleasObserver
+@implementation HiRouterReleasObserver
 
 - (instancetype)initWithObserver:(UIViewController *)observer
 {
@@ -151,7 +151,7 @@
     targetViewController.hi_private_page_delegate = viewController;
     
     builder.targetViewController = targetViewController;
-    builder.sourceViewController = viewController;
+    builder.fromViewController = viewController;
     
     // record
     [self.viewControllers setObject:targetViewController forKey:path];
