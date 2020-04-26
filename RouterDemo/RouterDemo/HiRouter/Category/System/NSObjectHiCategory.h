@@ -19,6 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+// dealloc
+@interface NSObject (HiDealloc)<HiRouterViewModel>
+
+- (void)hi_bindObject:(NSObject<HiRouterViewModel> *)object;
+
+- (void)hi_postData:(id)data;
+
+@end
+
 @interface NSString (HiPredicate)
 
 -(BOOL)isValidateRegularByExpression:(NSString *)strExpression;

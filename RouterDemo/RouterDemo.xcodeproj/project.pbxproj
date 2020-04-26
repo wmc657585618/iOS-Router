@@ -41,6 +41,7 @@
 		1CD3FC5D21CE4CF600B8C924 /* HiCallBackSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC5C21CE4CF600B8C924 /* HiCallBackSubViewController.m */; };
 		1CD3FC6121CE4E0100B8C924 /* HiNetworkFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6021CE4E0100B8C924 /* HiNetworkFilterViewController.m */; };
 		1CD3FC6421CE517500B8C924 /* HiNetworkFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */; };
+		283474552455490A0031E0CE /* HiDealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 283474542455490A0031E0CE /* HiDealloc.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,8 @@
 		1CD3FC6021CE4E0100B8C924 /* HiNetworkFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNetworkFilterViewController.m; sourceTree = "<group>"; };
 		1CD3FC6221CE517500B8C924 /* HiNetworkFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNetworkFilter.h; sourceTree = "<group>"; };
 		1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNetworkFilter.m; sourceTree = "<group>"; };
+		283474532455490A0031E0CE /* HiDealloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiDealloc.h; sourceTree = "<group>"; };
+		283474542455490A0031E0CE /* HiDealloc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiDealloc.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				1C14AB9621D364B500DE248C /* HiRouterCategory.h */,
 				1C14AB9721D364B500DE248C /* Implementation */,
 				1C14AB9B21D364B500DE248C /* Filter */,
+				283474532455490A0031E0CE /* HiDealloc.h */,
+				283474542455490A0031E0CE /* HiDealloc.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 				1C65583820F5FC4E00862997 /* main.m in Sources */,
 				1C14ABAB21D364B500DE248C /* HiRouterBuilder.m in Sources */,
 				1CD3FC5621CE4A0000B8C924 /* HiParametesReceiveViewController.m in Sources */,
+				283474552455490A0031E0CE /* HiDealloc.m in Sources */,
 				1C97792F21D0806D00C9859A /* HiPageSub2ViewController.m in Sources */,
 				1CD3FC5A21CE4CB300B8C924 /* HiCallBackViewController.m in Sources */,
 				1C1B89AB2241038F00E3C1FE /* HiRouterViewControllerImplementation.m in Sources */,

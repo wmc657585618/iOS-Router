@@ -8,68 +8,23 @@
 
 #import "HiRouterCategory.h"
 #import "HiRouter+Filter.h"
-#import <objc/runtime.h>
-
-// for release delegate
-@interface HiRouterReleasObserver : NSObject
-
-@property (nonatomic,weak) NSObject *observer;
-
-- (instancetype)initWithObserver:(NSObject *)observer;
-
-@end
+#import "HiDealloc.h"
 
 // private delegate
-@interface NSObject (HiRouter_page_delegate)<HiRouterPageProtocol>
+@interface UIViewController (HiRouter_page_delegate)<HiRouterPageProtocol>
 
-@property (nonatomic,weak) NSObject<HiRouterPageProtocol> *hi_private_page_delegate;
-@property (nonatomic,strong) HiRouterReleasObserver *pReleaseObserver;
+@property (nonatomic,weak) UIViewController<HiRouterPageProtocol> *hi_private_page_delegate;
 
 @end
 
 @implementation UIViewController (HiRouter_page_delegate)
-- (void)setPReleaseObserver:(HiRouterReleasObserver *)pReleaseObserver{
-    objc_setAssociatedObject(self, @selector(pReleaseObserver), pReleaseObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (HiRouterReleasObserver *)pReleaseObserver {
-    return objc_getAssociatedObject(self, @selector(pReleaseObserver));
-}
-
-- (void)setReleaseObserver:(UIViewController *)observer {
-    self.pReleaseObserver = [[HiRouterReleasObserver alloc] initWithObserver:observer];
-}
 
 - (void)setHi_private_page_delegate:(UIViewController<HiRouterPageProtocol> *)hi_private_page_delegate {
-    
-    // if hi_private_page_delegate released, self.hi_private_page_delegate will set nil;
-    if (hi_private_page_delegate) {
-        [hi_private_page_delegate setReleaseObserver:self];
-    }
-    objc_setAssociatedObject(self, @selector(hi_private_page_delegate), hi_private_page_delegate, OBJC_ASSOCIATION_ASSIGN);
+    [self hi_addAssingPropertyForKey:@selector(hi_private_page_delegate) value:hi_private_page_delegate];
 }
 
 - (UIViewController<HiRouterPageProtocol> *)hi_private_page_delegate {
-    return objc_getAssociatedObject(self, @selector(hi_private_page_delegate));
-}
-
-@end
-
-#pragma mark - ReleasObserver implementation
-@implementation HiRouterReleasObserver
-
-- (instancetype)initWithObserver:(UIViewController *)observer
-{
-    self = [super init];
-    if (self) {
-        _observer = observer;
-    }
-    return self;
-}
-
-- (void)dealloc {
-
-    self.observer.hi_private_page_delegate = nil;
+    return [self hi_getValueForKey:@selector(hi_private_page_delegate)];
 }
 
 @end
