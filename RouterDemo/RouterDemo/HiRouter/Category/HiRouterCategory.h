@@ -10,6 +10,8 @@
 #import "HiRouterProtocol.h"
 
 /******************** page ********************/
+typedef void(^HiRouterCallBlock)(id parameters);
+
 @interface HiRouter (Page)
 
 - (HiRouterBuilder *) build:(NSString *)path;
@@ -18,8 +20,13 @@
 
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterAction *)action;
 
+/** delegate */
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action;
 
+/** block */
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action block:(HiRouterCallBlock)block;
+
+/** 优先 delegate */
 - (BOOL) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters;
 
 @end

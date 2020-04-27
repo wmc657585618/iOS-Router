@@ -14,6 +14,7 @@
 @interface UIViewController (HiRouter_page_delegate)<HiRouterPageProtocol>
 
 @property (nonatomic,weak) UIViewController<HiRouterPageProtocol> *hi_private_page_delegate;
+@property (nonatomic,copy) HiRouterCallBlock hi_pBlock;
 
 @end
 
@@ -25,6 +26,14 @@
 
 - (UIViewController<HiRouterPageProtocol> *)hi_private_page_delegate {
     return [self hi_getValueForKey:@selector(hi_private_page_delegate)];
+}
+
+- (void)setHi_pBlock:(HiRouterCallBlock)hi_pBlock {
+    [self hi_addCopyPropertyForKey:@selector(hi_pBlock) value:hi_pBlock];
+}
+
+- (HiRouterCallBlock)hi_pBlock {
+    return [self hi_getValueForKey:@selector(hi_pBlock)];
 }
 
 @end
@@ -85,33 +94,40 @@
 
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action{
     
+    return [self build:path fromViewController:viewController withParameters:parameters action:action block:nil];
+}
+
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action block:(HiRouterCallBlock)block {
+    
     // check filter
     id<HiPageFilterProtocol> pageFilter = [self pageFilterWithPath:path];
-    
+
     NSString *realPath = path;
     id realParameters = parameters;
-    
+
     HiRouterBuilder *builder = [[HiRouterBuilder alloc] init];
     builder.transitioningAction = action.action;
     builder.modalPresentationStyle = action.modalPresentationStyle;
-    
+
     if (pageFilter) {
-        realPath = pageFilter.forwardPath ? : path;
-        realParameters = pageFilter.parameters ? : parameters;
-        builder.transitioningAction = pageFilter.transitioningAction;
+       realPath = pageFilter.forwardPath ? : path;
+       realParameters = pageFilter.parameters ? : parameters;
+       builder.transitioningAction = pageFilter.transitioningAction;
+       builder.modalPresentationStyle = pageFilter.modalPresentationStyle;
     }
-    
+
     UIViewController<HiRouterPageProtocol> *targetViewController = [self viewControllerWithPath:realPath parameters:realParameters];
-    
+
     // set delegate,then can callback
     targetViewController.hi_private_page_delegate = viewController;
-    
+    if (block) targetViewController.hi_pBlock = block;
+
     builder.targetViewController = targetViewController;
     builder.fromViewController = viewController;
-    
+
     // record
     [self.viewControllers setObject:targetViewController forKey:path];
-    
+
     return builder;
 }
 
@@ -122,6 +138,11 @@
         // post data to delegate
         [viewController.hi_private_page_delegate recivedCallBack:callBackParameters];
         
+        return true;
+    }
+    
+    if (viewController.hi_pBlock) {
+        viewController.hi_pBlock(callBackParameters);
         return true;
     }
     

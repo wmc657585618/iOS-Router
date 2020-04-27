@@ -48,6 +48,10 @@
     return HiRouterTransitioningActionPush;
 }
 
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return UIModalPresentationFullScreen;
+}
+
 - (id)parameters {
     return @"";
 }

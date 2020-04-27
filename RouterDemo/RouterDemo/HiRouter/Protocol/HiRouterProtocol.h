@@ -43,6 +43,7 @@
 @protocol HiPageFilterProtocol <HiFilterProtocol>
 
 @property (nonatomic,readonly) HiRouterTransitioningAction transitioningAction;
+@property (nonatomic,readonly) UIModalPresentationStyle modalPresentationStyle;
 
 @end
 

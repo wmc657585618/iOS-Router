@@ -51,7 +51,7 @@
 
 + (HiRouterAction *)push {
     HiRouterAction *actionModel = [[HiRouterAction alloc] init];
-    actionModel.pModalPresentationStyle = UIModalPresentationNone;
+    actionModel.pModalPresentationStyle = UIModalPresentationFullScreen;
     actionModel.pAction = HiRouterTransitioningActionPush;
     return actionModel;
 }
