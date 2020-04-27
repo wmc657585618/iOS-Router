@@ -40,16 +40,37 @@
 
 @end
 
+@interface HiRouterAction ()
+
+@property (nonatomic,assign) UIModalPresentationStyle pModalPresentationStyle;
+@property (nonatomic,assign) HiRouterTransitioningAction pAction;
+
+@end
+
 @implementation HiRouterAction
 
-+ (HiRouterActionProperty)install {
-    
-    return ^(UIModalPresentationStyle moda, HiRouterTransitioningAction action) {
++ (HiRouterAction *)push {
+    HiRouterAction *actionModel = [[HiRouterAction alloc] init];
+    actionModel.pModalPresentationStyle = UIModalPresentationNone;
+    actionModel.pAction = HiRouterTransitioningActionPush;
+    return actionModel;
+}
+
++ (HiRouterActionProperty )present {
+    return ^(UIModalPresentationStyle moda){
         HiRouterAction *actionModel = [[HiRouterAction alloc] init];
-        actionModel.modalPresentationStyle = moda;
-        actionModel.action = action;
+        actionModel.pModalPresentationStyle = moda;
+        actionModel.pAction = HiRouterTransitioningActionPresent;
         return actionModel;
     };
+}
+
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return self.pModalPresentationStyle;
+}
+
+- (HiRouterTransitioningAction)action {
+    return self.pAction;
 }
 
 - (void)dealloc {

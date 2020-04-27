@@ -37,24 +37,20 @@
 
 - (void)hi_pushPath:(NSString *)path animated:(BOOL)animated {
     
-    HiRouterAction *action = HiRouterAction.install(UIModalPresentationFullScreen, HiRouterTransitioningActionPush);
-    [[HiRouter.instance build:path fromViewController:self action:action] buildAnimated:animated completion:nil];
+    [[HiRouter.instance build:path fromViewController:self action:HiRouterAction.push] buildAnimated:animated completion:nil];
 }
 
 - (void)hi_pushPath:(NSString *)path withParameters:(id)parameters animated:(BOOL)animated {
     
-    HiRouterAction *action = HiRouterAction.install(UIModalPresentationFullScreen, HiRouterTransitioningActionPush);
-    [[HiRouter.instance build:path fromViewController:self withParameters:parameters action:action] buildAnimated:animated completion:nil];
+    [[HiRouter.instance build:path fromViewController:self withParameters:parameters action:HiRouterAction.push] buildAnimated:animated completion:nil];
 }
 
 - (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion{
-    HiRouterAction *action = HiRouterAction.install(modalPresentationStyle, HiRouterTransitioningActionPresent);
-    [[HiRouter.instance build:path fromViewController:self withParameters:parametes action:action] buildAnimated:animated completion:completion];
+    [[HiRouter.instance build:path fromViewController:self withParameters:parametes action:HiRouterAction.present(modalPresentationStyle)] buildAnimated:animated completion:completion];
 }
 
 - (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void(^)(void))completion{
-    HiRouterAction *action = HiRouterAction.install(modalPresentationStyle, HiRouterTransitioningActionPresent);
-    [[HiRouter.instance build:path fromViewController:self action:action] buildAnimated:animated completion:completion];
+    [[HiRouter.instance build:path fromViewController:self action:HiRouterAction.present(modalPresentationStyle)] buildAnimated:animated completion:completion];
 }
 
 - (void)hi_callBackParameters:(id)callBackParameters {

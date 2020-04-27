@@ -25,13 +25,15 @@
 @end
 
 @class HiRouterAction;
-typedef HiRouterAction *(^HiRouterActionProperty)(UIModalPresentationStyle modalPresentationStyle, HiRouterTransitioningAction action);
+typedef HiRouterAction *(^HiRouterActionProperty)(UIModalPresentationStyle modalPresentationStyle);
 
 @interface HiRouterAction : NSObject
 
-@property (nonatomic,copy,class,readonly) HiRouterActionProperty install;
-@property (nonatomic,assign) UIModalPresentationStyle modalPresentationStyle;
+@property (nonatomic,copy,class,readonly) HiRouterActionProperty present;
+@property (nonatomic,copy,class,readonly) HiRouterAction *push;
 
-@property (nonatomic,assign) HiRouterTransitioningAction action;
+@property (nonatomic,assign,readonly) UIModalPresentationStyle modalPresentationStyle;
+
+@property (nonatomic,assign,readonly) HiRouterTransitioningAction action;
 
 @end
