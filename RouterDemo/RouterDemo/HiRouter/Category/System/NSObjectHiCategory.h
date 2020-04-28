@@ -36,20 +36,40 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (HiRouter)<HiRouterPageProtocol>
 
+// push
+// delegate
 - (void)hi_pushPath:(NSString *)path animated:(BOOL)animated;
+
 - (void)hi_pushPath:(NSString *)path withParameters:(id)parameters animated:(BOOL)animated;
 
+// block
+- (void)hi_pushPath:(NSString *)path animated:(BOOL)animated block:(void(^)(id parameters))block;
+
+- (void)hi_pushPath:(NSString *)path withParameters:(id)parameters animated:(BOOL)animated block:(void(^)(id parameters))block;
+
+// present
+// delegate
 - (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle  animated:(BOOL)animated completion:(void(^)(void))completion;
+
 - (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle  withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion;
 
-- (void)hi_callBackParameters:(id)callBackParameters;
+// block
+- (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion block:(void(^)(id parameters))block;
 
+- (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void(^)(void))completion block:(void(^)(id parameters))block;
+
+// call back
+- (HiRouterCallBackType)hi_callBackParameters:(id)callBackParameters;
+
+// pop to last path
 - (NSError *)hi_popToPath:(NSString *)path animated:(BOOL)animated;
 - (NSError *)hi_popToPath:(NSString *)path parameters:(id)parameters animated:(BOOL)animated;
 
+// remove last path
 - (NSError *)hi_removePath:(NSString *)path;
 - (NSError *)hi_removePath:(NSString *)path parameters:(id)parameters;
 
+// notify last path
 - (NSError *)hi_postParameters:(id)parameters toPath:(NSString *)path;
 
 /**

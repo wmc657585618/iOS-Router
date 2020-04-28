@@ -26,7 +26,7 @@
     }
     
     if (viewController) {
-        if ([viewController respondsToSelector:@selector(recivedParameters:)] && parameters) {
+        if ([viewController respondsToSelector:@selector(recivedParameters:)]) {
             [viewController recivedParameters:parameters];
         }
         

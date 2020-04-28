@@ -35,6 +35,9 @@
 
 @implementation UIViewController (HiRouter)
 
+#pragma mark - push
+
+#pragma mark delegate
 - (void)hi_pushPath:(NSString *)path animated:(BOOL)animated {
     
     [[HiRouter.instance build:path fromViewController:self action:HiRouterAction.push] buildAnimated:animated completion:nil];
@@ -45,27 +48,43 @@
     [[HiRouter.instance build:path fromViewController:self withParameters:parameters action:HiRouterAction.push] buildAnimated:animated completion:nil];
 }
 
-- (void)hi_pushPath:(NSString *)path animated:(BOOL)animated block:(HiRouterCallBlock)block {
+#pragma mark  block
+- (void)hi_pushPath:(NSString *)path animated:(BOOL)animated block:(void(^)(id parameters))block {
     
     [[HiRouter.instance build:path fromViewController:self withParameters:nil action:HiRouterAction.push block:block] buildAnimated:animated completion:nil];
 }
 
-- (void)hi_pushPath:(NSString *)path withParameters:(id)parameters animated:(BOOL)animated block:(HiRouterCallBlock)block {
+- (void)hi_pushPath:(NSString *)path withParameters:(id)parameters animated:(BOOL)animated block:(void(^)(id parameters))block {
     
-    [[HiRouter.instance build:path fromViewController:self withParameters:parameters action:HiRouterAction.push] buildAnimated:animated completion:nil];
+    [[HiRouter.instance build:path fromViewController:self withParameters:parameters action:HiRouterAction.push block:block] buildAnimated:animated completion:nil];
 }
 
-- (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion{
+#pragma mark - push
+
+#pragma mark - present
+#pragma mark delegate
+- (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion {
     [[HiRouter.instance build:path fromViewController:self withParameters:parametes action:HiRouterAction.present(modalPresentationStyle)] buildAnimated:animated completion:completion];
 }
 
-- (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void(^)(void))completion{
+- (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void(^)(void))completion {
     [[HiRouter.instance build:path fromViewController:self action:HiRouterAction.present(modalPresentationStyle)] buildAnimated:animated completion:completion];
 }
 
-- (void)hi_callBackParameters:(id)callBackParameters {
+#pragma mark block
+- (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion block:(void(^)(id parameters))block {
+    [[HiRouter.instance build:path fromViewController:self withParameters:parametes action:HiRouterAction.present(modalPresentationStyle) block:block] buildAnimated:animated completion:completion];
+}
+
+- (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void(^)(void))completion block:(void(^)(id parameters))block {
+    [[HiRouter.instance build:path fromViewController:self action:HiRouterAction.present(modalPresentationStyle) block:block] buildAnimated:animated completion:completion];
+}
+
+#pragma mark - present
+
+- (HiRouterCallBackType)hi_callBackParameters:(id)callBackParameters {
     
-    [HiRouter.instance routerCallBackFromViewController:self callBackParameters:callBackParameters];
+    return [HiRouter.instance routerCallBackFromViewController:self callBackParameters:callBackParameters];
 }
 
 - (NSError *)hi_popToPath:(NSString *)path animated:(BOOL)animated {

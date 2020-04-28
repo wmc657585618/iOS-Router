@@ -10,6 +10,8 @@
 #import "HiRouter+Filter.h"
 #import "HiDealloc.h"
 
+typedef void(^HiRouterCallBlock)(id parameters);
+
 // private delegate
 @interface UIViewController (HiRouter_page_delegate)<HiRouterPageProtocol>
 

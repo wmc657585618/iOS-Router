@@ -10,8 +10,6 @@
 #import "HiRouterProtocol.h"
 
 /******************** page ********************/
-typedef void(^HiRouterCallBlock)(id parameters);
-
 typedef NS_ENUM(NSUInteger, HiRouterCallBackType) {
     HiRouterCallBackTypeDelegate, // delegate 成功
     HiRouterCallBackTypeBlock,// block 成功
@@ -21,19 +19,19 @@ typedef NS_ENUM(NSUInteger, HiRouterCallBackType) {
 @interface HiRouter (Page)
 
 - (HiRouterBuilder *) build:(NSString *)path;
-- (HiRouterBuilder *) build:(NSString *)path block:(HiRouterCallBlock)block;
+- (HiRouterBuilder *) build:(NSString *)path block:(void(^)(id parameters))block;
 
 - (HiRouterBuilder *) build:(NSString *)path action:(HiRouterAction *)action;
-- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterAction *)action block:(HiRouterCallBlock)block;
+- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterAction *)action block:(void(^)(id parameters))block;
 
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterAction *)action;
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterAction *)action block:(HiRouterCallBlock)block;
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterAction *)action block:(void(^)(id parameters))block;
 
 /** delegate */
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action;
 
 /** block */
-- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action block:(HiRouterCallBlock)block;
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action block:(void(^)(id parameters))block;
 
 /** 优先 delegate */
 - (HiRouterCallBackType) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters;
