@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
  * instance
  */
 @property (readonly, nonatomic, class) HiRouter *instance;
-- (instancetype)init NS_UNAVAILABLE;
 
 @property (readonly, nonatomic) NSDictionary<NSString *, NSString *> *routeDictionary;
 @property (readonly, nonatomic) NSDictionary<NSString *, id<HiPageFilterProtocol>> *pageFilters;
