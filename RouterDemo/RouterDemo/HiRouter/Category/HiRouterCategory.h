@@ -12,6 +12,12 @@
 /******************** page ********************/
 typedef void(^HiRouterCallBlock)(id parameters);
 
+typedef NS_ENUM(NSUInteger, HiRouterCallBackType) {
+    HiRouterCallBackTypeDelegate, // delegate 成功
+    HiRouterCallBackTypeBlock,// block 成功
+    HiRouterCallBackTypeNone,// 失败
+};
+
 @interface HiRouter (Page)
 
 - (HiRouterBuilder *) build:(NSString *)path;
@@ -27,7 +33,7 @@ typedef void(^HiRouterCallBlock)(id parameters);
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController withParameters:(id)parameters action:(HiRouterAction *)action block:(HiRouterCallBlock)block;
 
 /** 优先 delegate */
-- (BOOL) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters;
+- (HiRouterCallBackType) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters;
 
 @end
 

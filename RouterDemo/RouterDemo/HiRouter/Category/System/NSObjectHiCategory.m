@@ -45,6 +45,16 @@
     [[HiRouter.instance build:path fromViewController:self withParameters:parameters action:HiRouterAction.push] buildAnimated:animated completion:nil];
 }
 
+- (void)hi_pushPath:(NSString *)path animated:(BOOL)animated block:(HiRouterCallBlock)block {
+    
+    [[HiRouter.instance build:path fromViewController:self withParameters:nil action:HiRouterAction.push block:block] buildAnimated:animated completion:nil];
+}
+
+- (void)hi_pushPath:(NSString *)path withParameters:(id)parameters animated:(BOOL)animated block:(HiRouterCallBlock)block {
+    
+    [[HiRouter.instance build:path fromViewController:self withParameters:parameters action:HiRouterAction.push] buildAnimated:animated completion:nil];
+}
+
 - (void)hi_presentPath:(NSString *)path modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle withParameters:(id)parametes animated:(BOOL)animated completion:(void(^)(void))completion{
     [[HiRouter.instance build:path fromViewController:self withParameters:parametes action:HiRouterAction.present(modalPresentationStyle)] buildAnimated:animated completion:completion];
 }

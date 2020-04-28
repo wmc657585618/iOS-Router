@@ -79,15 +79,30 @@
 #pragma mark - public
 - (HiRouterBuilder *) build:(NSString *)path {
     
-    return [self build:path action:nil];
+    return [self build:path action:nil block:nil];
+}
+
+- (HiRouterBuilder *) build:(NSString *)path block:(HiRouterCallBlock)block {
+    
+    return [self build:path action:nil block:block];
 }
 
 - (HiRouterBuilder *) build:(NSString *)path action:(HiRouterAction *)action {
     
-    return [self build:path fromViewController:nil action:action];
+    return [self build:path fromViewController:nil action:action block:nil];
+}
+
+- (HiRouterBuilder *) build:(NSString *)path action:(HiRouterAction *)action block:(HiRouterCallBlock)block {
+    
+    return [self build:path fromViewController:nil action:action block:block];
 }
 
 - (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterAction *)action {
+    
+    return [self build:path fromViewController:viewController withParameters:nil action:action];
+}
+
+- (HiRouterBuilder *) build:(NSString *)path fromViewController:(UIViewController<HiRouterPageProtocol> *)viewController action:(HiRouterAction *)action block:(HiRouterCallBlock)block {
     
     return [self build:path fromViewController:viewController withParameters:nil action:action];
 }
@@ -119,7 +134,7 @@
     UIViewController<HiRouterPageProtocol> *targetViewController = [self viewControllerWithPath:realPath parameters:realParameters];
 
     // set delegate,then can callback
-    targetViewController.hi_private_page_delegate = viewController;
+    if(viewController) targetViewController.hi_private_page_delegate = viewController;
     if (block) targetViewController.hi_pBlock = block;
 
     builder.targetViewController = targetViewController;
@@ -131,22 +146,21 @@
     return builder;
 }
 
-- (BOOL) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters {
+- (HiRouterCallBackType) routerCallBackFromViewController:(UIViewController<HiRouterPageProtocol> *)viewController callBackParameters:(id)callBackParameters {
     
     if ([viewController.hi_private_page_delegate respondsToSelector:@selector(recivedCallBack:)]) {
         
         // post data to delegate
         [viewController.hi_private_page_delegate recivedCallBack:callBackParameters];
-        
-        return true;
+        return HiRouterCallBackTypeDelegate;
     }
     
     if (viewController.hi_pBlock) {
         viewController.hi_pBlock(callBackParameters);
-        return true;
+        return HiRouterCallBackTypeBlock;
     }
     
-    return false;
+    return HiRouterCallBackTypeNone;
 }
 
 @end
