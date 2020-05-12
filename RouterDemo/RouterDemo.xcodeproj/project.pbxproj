@@ -41,6 +41,7 @@
 		1CD3FC5D21CE4CF600B8C924 /* HiCallBackSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC5C21CE4CF600B8C924 /* HiCallBackSubViewController.m */; };
 		1CD3FC6121CE4E0100B8C924 /* HiNetworkFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6021CE4E0100B8C924 /* HiNetworkFilterViewController.m */; };
 		1CD3FC6421CE517500B8C924 /* HiNetworkFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */; };
+		2802B536246A5453004109C8 /* NSObjectHiExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802B535246A5453004109C8 /* NSObjectHiExtension.m */; };
 		283474552455490A0031E0CE /* HiDealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 283474542455490A0031E0CE /* HiDealloc.m */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,8 @@
 		1CD3FC6021CE4E0100B8C924 /* HiNetworkFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNetworkFilterViewController.m; sourceTree = "<group>"; };
 		1CD3FC6221CE517500B8C924 /* HiNetworkFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNetworkFilter.h; sourceTree = "<group>"; };
 		1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNetworkFilter.m; sourceTree = "<group>"; };
+		2802B534246A5453004109C8 /* NSObjectHiExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObjectHiExtension.h; sourceTree = "<group>"; };
+		2802B535246A5453004109C8 /* NSObjectHiExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObjectHiExtension.m; sourceTree = "<group>"; };
 		283474532455490A0031E0CE /* HiDealloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiDealloc.h; sourceTree = "<group>"; };
 		283474542455490A0031E0CE /* HiDealloc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiDealloc.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +237,7 @@
 		1C65582720F5FC4C00862997 /* RouterDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2802B530246A5293004109C8 /* HiObject */,
 				1C14AB9021D364B500DE248C /* HiRouter */,
 				1C65584C20F5FCF100862997 /* ViewController */,
 				1C65585020F5FCF800862997 /* Other */,
@@ -344,6 +348,15 @@
 				1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */,
 			);
 			path = NetworkFilter;
+			sourceTree = "<group>";
+		};
+		2802B530246A5293004109C8 /* HiObject */ = {
+			isa = PBXGroup;
+			children = (
+				2802B534246A5453004109C8 /* NSObjectHiExtension.h */,
+				2802B535246A5453004109C8 /* NSObjectHiExtension.m */,
+			);
+			path = HiObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,6 +471,7 @@
 				1C14ABA821D364B500DE248C /* HiRouterVMImplementation.m in Sources */,
 				1C97793821D08D3500C9859A /* HiRootTableModel.m in Sources */,
 				1C1B89B522410FAD00E3C1FE /* HiNavigationFirstViewControoler.m in Sources */,
+				2802B536246A5453004109C8 /* NSObjectHiExtension.m in Sources */,
 				1CD3FC6421CE517500B8C924 /* HiNetworkFilter.m in Sources */,
 				1C14ABA621D364B500DE248C /* NSObjectHiCategory.m in Sources */,
 				1C97795A21D0B70900C9859A /* HiViewModelViewController.m in Sources */,
