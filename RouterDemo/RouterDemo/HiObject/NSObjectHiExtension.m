@@ -103,10 +103,10 @@
 #pragma mark - dictionary
 @implementation NSDictionary (HiCategory)
 
-- (HiObjectStruc)hi_objectForkey:(NSString *)key class:(Class)class{
+- (HiObjectStruct)hi_objectForkey:(NSString *)key class:(Class)class{
     
     id objc = [self hi_valueForKey:key];
-    HiObjectStruc dictionary;
+    HiObjectStruct dictionary;
     dictionary.objc = objc;
     dictionary.result = [objc isKindOfClass:class];
     return dictionary;
@@ -129,7 +129,7 @@
 
 - (nullable NSString *)hi_stringForKey:(NSString *)defaultName {
     
-    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSString.class];
+    HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSString.class];
     
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     if ([dictionaryStruce.objc respondsToSelector:@selector(stringValue)]){ // number 可以转 string
@@ -141,7 +141,7 @@
 
 - (nullable NSArray *)hi_arrayForKey:(NSString *)defaultName {
     
-    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSArray.class];
+    HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSArray.class];
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     
     return nil;
@@ -149,7 +149,7 @@
 
 - (nullable NSDictionary<NSString *, id> *)hi_dictionaryForKey:(NSString *)defaultName {
     
-    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
+    HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     
     return nil;
@@ -157,7 +157,7 @@
 
 - (nullable NSString *)hi_numberForKey:(NSString *)defaultName {
     
-    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
+    HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     return nil;
 }
@@ -214,8 +214,8 @@
 
 @implementation NSArray (HiCategory)
 
-- (HiObjectStruc)hi_objectAtIndex:(NSUInteger)index class:(Class)class {
-    HiObjectStruc arrayStruct;
+- (HiObjectStruct)hi_objectAtIndex:(NSUInteger)index class:(Class)class {
+    HiObjectStruct arrayStruct;
 
     if (index < self.count) {
         
@@ -235,7 +235,7 @@
 }
 
 - (nullable NSString *)hi_stringAtIndex:(NSUInteger)index {
-    HiObjectStruc arrayStruct = [self hi_objectAtIndex:index class:NSString.class];
+    HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSString.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
     if ([arrayStruct.objc respondsToSelector:@selector(stringValue)]){ // number 可以转 string
@@ -246,21 +246,21 @@
 }
 
 - (nullable NSString *)hi_numberAtIndex:(NSUInteger)index {
-    HiObjectStruc arrayStruct = [self hi_objectAtIndex:index class:NSNumber.class];
+    HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSNumber.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
     return nil;
 }
 
 - (nullable NSArray *)hi_arrayAtIndex:(NSUInteger)index {
-    HiObjectStruc arrayStruct = [self hi_objectAtIndex:index class:NSArray.class];
+    HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSArray.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
     return nil;
 }
 
 - (nullable NSDictionary *)hi_dictionaryAtIndex:(NSUInteger)index {
-    HiObjectStruc arrayStruct = [self hi_objectAtIndex:index class:NSDictionary.class];
+    HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSDictionary.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
     return nil;

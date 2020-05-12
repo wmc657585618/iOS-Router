@@ -26,12 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 typedef struct {
     id objc;
     BOOL result; // 是否是同类型
-} HiObjectStruc;
+} HiObjectStruct;
 
 #pragma mark - dictionary
 @interface NSDictionary (HiCategory)
 
-- (HiObjectStruc)hi_objectForkey:(NSString *)key class:(Class)class;
+- (HiObjectStruct)hi_objectForkey:(NSString *)key class:(Class)class;
 
 - (nullable id)hi_valueForKey:(NSString *)defaultName;
 
@@ -75,7 +75,7 @@ typedef struct {
 
 #pragma mark - array
 @interface NSArray (HiCategory)
-- (HiObjectStruc)hi_objectAtIndex:(NSUInteger)index class:(Class)class;
+- (HiObjectStruct)hi_objectAtIndex:(NSUInteger)index class:(Class)class;
 
 - (nullable id)hi_objectAtIndex:(NSUInteger)index;
 
