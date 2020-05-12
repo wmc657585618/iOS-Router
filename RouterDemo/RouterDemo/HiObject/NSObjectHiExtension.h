@@ -41,7 +41,7 @@ typedef struct {
 
 - (nullable NSString *)hi_stringForKey:(NSString *)defaultName;
 
-- (nullable NSString *)hi_numberForKey:(NSString *)defaultName;
+- (nullable NSNumber *)hi_numberForKey:(NSString *)defaultName;
 
 - (nullable NSArray *)hi_arrayForKey:(NSString *)defaultName;
 
@@ -81,7 +81,7 @@ typedef struct {
 
 - (nullable NSString *)hi_stringAtIndex:(NSUInteger)index;
 
-- (nullable NSString *)hi_numberAtIndex:(NSUInteger)index;
+- (nullable NSNumber *)hi_numberAtIndex:(NSUInteger)index;
 
 - (nullable NSArray *)hi_arrayAtIndex:(NSUInteger)index;
 

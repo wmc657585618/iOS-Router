@@ -155,7 +155,7 @@
     return nil;
 }
 
-- (nullable NSString *)hi_numberForKey:(NSString *)defaultName {
+- (nullable NSNumber *)hi_numberForKey:(NSString *)defaultName {
     
     HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
     if (dictionaryStruce.result) return dictionaryStruce.objc;
@@ -245,7 +245,7 @@
     return nil;
 }
 
-- (nullable NSString *)hi_numberAtIndex:(NSUInteger)index {
+- (nullable NSNumber *)hi_numberAtIndex:(NSUInteger)index {
     HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSNumber.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
