@@ -42,7 +42,7 @@
 		1CD3FC6121CE4E0100B8C924 /* HiNetworkFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6021CE4E0100B8C924 /* HiNetworkFilterViewController.m */; };
 		1CD3FC6421CE517500B8C924 /* HiNetworkFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */; };
 		2802B536246A5453004109C8 /* NSObjectHiExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802B535246A5453004109C8 /* NSObjectHiExtension.m */; };
-		283474552455490A0031E0CE /* HiDealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 283474542455490A0031E0CE /* HiDealloc.m */; };
+		2845072E246D3DD6004E7466 /* UIViewHiExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2845072D246D3DD6004E7466 /* UIViewHiExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,8 +115,8 @@
 		1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNetworkFilter.m; sourceTree = "<group>"; };
 		2802B534246A5453004109C8 /* NSObjectHiExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObjectHiExtension.h; sourceTree = "<group>"; };
 		2802B535246A5453004109C8 /* NSObjectHiExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObjectHiExtension.m; sourceTree = "<group>"; };
-		283474532455490A0031E0CE /* HiDealloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiDealloc.h; sourceTree = "<group>"; };
-		283474542455490A0031E0CE /* HiDealloc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiDealloc.m; sourceTree = "<group>"; };
+		2845072C246D3DD6004E7466 /* UIViewHiExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewHiExtension.h; sourceTree = "<group>"; };
+		2845072D246D3DD6004E7466 /* UIViewHiExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewHiExtension.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,10 +133,10 @@
 		1C14AB9021D364B500DE248C /* HiRouter */ = {
 			isa = PBXGroup;
 			children = (
-				1C14AB9121D364B500DE248C /* HiRouterManager.h */,
+				2845072B246D3D9A004E7466 /* Extension */,
+				2845072A246D3D86004E7466 /* Main */,
 				1C14AB9221D364B500DE248C /* Category */,
 				1C14AB9E21D364B500DE248C /* Entity */,
-				1C14ABA321D364B500DE248C /* HiRouterDefine.h */,
 				1C14ABA421D364B500DE248C /* Protocol */,
 			);
 			path = HiRouter;
@@ -149,8 +149,6 @@
 				1C14AB9621D364B500DE248C /* HiRouterCategory.h */,
 				1C14AB9721D364B500DE248C /* Implementation */,
 				1C14AB9B21D364B500DE248C /* Filter */,
-				283474532455490A0031E0CE /* HiDealloc.h */,
-				283474542455490A0031E0CE /* HiDealloc.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -237,7 +235,6 @@
 		1C65582720F5FC4C00862997 /* RouterDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2802B530246A5293004109C8 /* HiObject */,
 				1C14AB9021D364B500DE248C /* HiRouter */,
 				1C65584C20F5FCF100862997 /* ViewController */,
 				1C65585020F5FCF800862997 /* Other */,
@@ -350,13 +347,24 @@
 			path = NetworkFilter;
 			sourceTree = "<group>";
 		};
-		2802B530246A5293004109C8 /* HiObject */ = {
+		2845072A246D3D86004E7466 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1C14ABA321D364B500DE248C /* HiRouterDefine.h */,
+				1C14AB9121D364B500DE248C /* HiRouterManager.h */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2845072B246D3D9A004E7466 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				2802B534246A5453004109C8 /* NSObjectHiExtension.h */,
 				2802B535246A5453004109C8 /* NSObjectHiExtension.m */,
+				2845072C246D3DD6004E7466 /* UIViewHiExtension.h */,
+				2845072D246D3DD6004E7466 /* UIViewHiExtension.m */,
 			);
-			path = HiObject;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,13 +466,13 @@
 				1C65583820F5FC4E00862997 /* main.m in Sources */,
 				1C14ABAB21D364B500DE248C /* HiRouterBuilder.m in Sources */,
 				1CD3FC5621CE4A0000B8C924 /* HiParametesReceiveViewController.m in Sources */,
-				283474552455490A0031E0CE /* HiDealloc.m in Sources */,
 				1C97792F21D0806D00C9859A /* HiPageSub2ViewController.m in Sources */,
 				1CD3FC5A21CE4CB300B8C924 /* HiCallBackViewController.m in Sources */,
 				1C1B89AB2241038F00E3C1FE /* HiRouterViewControllerImplementation.m in Sources */,
 				1CD3FC5D21CE4CF600B8C924 /* HiCallBackSubViewController.m in Sources */,
 				1CD3FC4821CE3CD100B8C924 /* HiRootViewController.m in Sources */,
 				1CD3FC5021CE422C00B8C924 /* HiParametesViewController.m in Sources */,
+				2845072E246D3DD6004E7466 /* UIViewHiExtension.m in Sources */,
 				1C14ABAA21D364B500DE248C /* HiRouter+Filter.m in Sources */,
 				1C1B89BB22410FDA00E3C1FE /* HiNavigationThirdViewControoler.m in Sources */,
 				1CD3FC6121CE4E0100B8C924 /* HiNetworkFilterViewController.m in Sources */,

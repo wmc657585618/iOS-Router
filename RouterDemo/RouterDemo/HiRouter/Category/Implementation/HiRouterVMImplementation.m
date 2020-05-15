@@ -7,7 +7,7 @@
 //
 
 #import "HiRouterCategory.h"
-#import "HiDealloc.h"
+#import "NSObjectHiExtension.h"
 
 @interface NSObject (hi_delegate)<HiRouterViewModel>
 

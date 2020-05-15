@@ -13,6 +13,30 @@ NS_ASSUME_NONNULL_BEGIN
 #define HiBlock(block,...) if (block) block(__VA_ARGS__);
 #define HiObjectBlock(objc,block,...) if (block) {objc = block(__VA_ARGS__);};
 
+
+/**
+ OBJC_ASSOCIATION_ASSIGN 对象 realse 之后, 再次引用会 crash
+ HiDealloc : 当 对象的 OBJC_ASSOCIATION_ASSIGN 引用 realse 之后 会设置为 nil
+ */
+@interface NSObject (HiProperty)
+
+// 添加 property
+
+- (void)hi_addAssingPropertyForKey:(const void *)key value:(id _Nullable)value;
+
+- (void)hi_addRetainNonatomicPropertyForKey:(const void *)key value:(id _Nullable)value;
+
+- (void)hi_addCopyNonatomicPropertyForKey:(const void *)key value:(id _Nullable)value;
+
+- (void)hi_addRetainPropertyForKey:(const void *)key value:(id _Nullable)value;
+
+- (void)hi_addCopyPropertyForKey:(const void *)key value:(id _Nullable)value;
+
+- (id)hi_getValueForKey:(const void *)key;
+
+@end
+
+
 @interface NSObject (HiObserver)
 
 - (void)hi_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(nullable void *)context;
@@ -26,12 +50,11 @@ NS_ASSUME_NONNULL_BEGIN
 typedef struct {
     id objc;
     BOOL result; // 是否是同类型
-} HiObjectStruct;
+} HiObjectStruc;
 
-#pragma mark - dictionary
 @interface NSDictionary (HiCategory)
 
-- (HiObjectStruct)hi_objectForkey:(NSString *)key class:(Class)class;
+- (HiObjectStruc)hi_objectForkey:(NSString *)key class:(Class)class;
 
 - (nullable id)hi_valueForKey:(NSString *)defaultName;
 
@@ -75,7 +98,7 @@ typedef struct {
 
 #pragma mark - array
 @interface NSArray (HiCategory)
-- (HiObjectStruct)hi_objectAtIndex:(NSUInteger)index class:(Class)class;
+- (HiObjectStruc)hi_objectAtIndex:(NSUInteger)index class:(Class)class;
 
 - (nullable id)hi_objectAtIndex:(NSUInteger)index;
 

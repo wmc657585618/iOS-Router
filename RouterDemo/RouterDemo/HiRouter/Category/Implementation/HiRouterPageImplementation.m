@@ -8,7 +8,7 @@
 
 #import "HiRouterCategory.h"
 #import "HiRouter+Filter.h"
-#import "HiDealloc.h"
+#import "NSObjectHiExtension.h"
 
 typedef void(^HiRouterCallBlock)(id parameters);
 

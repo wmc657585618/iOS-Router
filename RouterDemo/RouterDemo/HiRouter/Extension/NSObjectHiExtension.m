@@ -7,8 +7,100 @@
 //
 
 #import "NSObjectHiExtension.h"
-#import "HiDealloc.h"
+#import <objc/runtime.h>
 
+typedef void(^HiPropertyBlock)(void);
+#pragma mark - interface
+@interface HiPropertyObserver : NSObject
+
+@property (nonatomic,weak) NSObject *observer;
+@property (nonatomic,copy) HiPropertyBlock block;
+
+@end
+
+@interface NSObject (HiPropertyPrivate)
+
+/**
+ 当 observer realse 时, observer 会通知当前对象的持有者 将当前对象置为 nil
+ */
+@property (nonatomic,strong) HiPropertyObserver *deallocObserver;
+
+@end
+
+#pragma mark - implementation
+@implementation HiPropertyObserver
+
+- (instancetype)initWithBlock:(HiPropertyBlock)block
+{
+    self = [super init];
+    if (self) {
+        _block = block;
+    }
+    return self;
+}
+
+- (void)dealloc {
+    if(self.block) self.block();
+}
+
+@end
+
+@implementation NSObject (HiProperty)
+
+- (void)setDeallocObserver:(HiPropertyObserver *)deallocObserver {
+    objc_setAssociatedObject(self, @selector(deallocObserver), deallocObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (HiPropertyObserver *)deallocObserver {
+    return objc_getAssociatedObject(self, @selector(deallocObserver));
+}
+
+
+- (void)hi_addObserverWithBlock:(HiPropertyBlock)block{
+    self.deallocObserver = [[HiPropertyObserver alloc] initWithBlock:block];
+}
+
+- (void)hi_addPropertyForKey:(const void *)key value:(id)value policy:(objc_AssociationPolicy)policy {
+    
+    if ([value isKindOfClass:NSObject.class]) {
+        NSObject *object = value;
+        __weak typeof(self) weak = self;
+        [object hi_addObserverWithBlock:^{
+            __strong typeof(weak) strong = weak;
+            [strong hi_addPropertyForKey:key value:nil policy:policy];
+        }];
+    }
+    objc_setAssociatedObject(self, key, value, policy);
+}
+
+#pragma mark - public
+- (void)hi_addAssingPropertyForKey:(const void *)key value:(id _Nullable)value {
+    [self hi_addPropertyForKey:key value:value policy:OBJC_ASSOCIATION_ASSIGN];
+}
+
+- (void)hi_addRetainNonatomicPropertyForKey:(const void *)key value:(id _Nullable)value {
+    [self hi_addPropertyForKey:key value:value policy:OBJC_ASSOCIATION_RETAIN_NONATOMIC];
+}
+
+- (void)hi_addCopyNonatomicPropertyForKey:(const void *)key value:(id _Nullable)value {
+    [self hi_addPropertyForKey:key value:value policy:OBJC_ASSOCIATION_COPY_NONATOMIC];
+}
+
+- (void)hi_addRetainPropertyForKey:(const void *)key value:(id _Nullable)value {
+    [self hi_addPropertyForKey:key value:value policy:OBJC_ASSOCIATION_RETAIN];
+}
+
+- (void)hi_addCopyPropertyForKey:(const void *)key value:(id _Nullable)value {
+    [self hi_addPropertyForKey:key value:value policy:OBJC_ASSOCIATION_COPY];
+}
+
+- (id)hi_getValueForKey:(const void *)key {
+    return objc_getAssociatedObject(self, key);
+}
+
+@end
+
+#pragma mark - observer
 @interface NSObject ()
 
 @property (nonatomic,strong,readonly) NSMutableDictionary<NSString *,NSHashTable *> *keyObserverMap;
@@ -103,10 +195,10 @@
 #pragma mark - dictionary
 @implementation NSDictionary (HiCategory)
 
-- (HiObjectStruct)hi_objectForkey:(NSString *)key class:(Class)class{
+- (HiObjectStruc)hi_objectForkey:(NSString *)key class:(Class)class{
     
     id objc = [self hi_valueForKey:key];
-    HiObjectStruct dictionary;
+    HiObjectStruc dictionary;
     dictionary.objc = objc;
     dictionary.result = [objc isKindOfClass:class];
     return dictionary;
@@ -129,7 +221,7 @@
 
 - (nullable NSString *)hi_stringForKey:(NSString *)defaultName {
     
-    HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSString.class];
+    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSString.class];
     
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     if ([dictionaryStruce.objc respondsToSelector:@selector(stringValue)]){ // number 可以转 string
@@ -141,7 +233,7 @@
 
 - (nullable NSArray *)hi_arrayForKey:(NSString *)defaultName {
     
-    HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSArray.class];
+    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSArray.class];
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     
     return nil;
@@ -149,7 +241,7 @@
 
 - (nullable NSDictionary<NSString *, id> *)hi_dictionaryForKey:(NSString *)defaultName {
     
-    HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
+    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     
     return nil;
@@ -157,7 +249,7 @@
 
 - (nullable NSNumber *)hi_numberForKey:(NSString *)defaultName {
     
-    HiObjectStruct dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
+    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     return nil;
 }
@@ -214,8 +306,8 @@
 
 @implementation NSArray (HiCategory)
 
-- (HiObjectStruct)hi_objectAtIndex:(NSUInteger)index class:(Class)class {
-    HiObjectStruct arrayStruct;
+- (HiObjectStruc)hi_objectAtIndex:(NSUInteger)index class:(Class)class {
+    HiObjectStruc arrayStruct;
 
     if (index < self.count) {
         
@@ -235,7 +327,7 @@
 }
 
 - (nullable NSString *)hi_stringAtIndex:(NSUInteger)index {
-    HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSString.class];
+    HiObjectStruc arrayStruct = [self hi_objectAtIndex:index class:NSString.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
     if ([arrayStruct.objc respondsToSelector:@selector(stringValue)]){ // number 可以转 string
@@ -246,21 +338,21 @@
 }
 
 - (nullable NSNumber *)hi_numberAtIndex:(NSUInteger)index {
-    HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSNumber.class];
+    HiObjectStruc arrayStruct = [self hi_objectAtIndex:index class:NSNumber.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
     return nil;
 }
 
 - (nullable NSArray *)hi_arrayAtIndex:(NSUInteger)index {
-    HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSArray.class];
+    HiObjectStruc arrayStruct = [self hi_objectAtIndex:index class:NSArray.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
     return nil;
 }
 
 - (nullable NSDictionary *)hi_dictionaryAtIndex:(NSUInteger)index {
-    HiObjectStruct arrayStruct = [self hi_objectAtIndex:index class:NSDictionary.class];
+    HiObjectStruc arrayStruct = [self hi_objectAtIndex:index class:NSDictionary.class];
      
     if (arrayStruct.result) return arrayStruct.objc;
     return nil;
