@@ -69,11 +69,17 @@ typedef HiLayoutRelatedModel * _Nullable (^HiLayoutAttributeBlock)(NSLayoutAttri
 @property (nonatomic,readonly) HiLayoutMultiplierModel *centerX;                      //X轴中心
 @property (nonatomic,readonly) HiLayoutMultiplierModel *centerY;                      //Y轴中心
 
+/** item2 的 NSLayoutAttribute 和 item1 相同*/
+@property (nonatomic,readonly) HiLayoutConstantBlock value;
+
 @end
 
 @interface HiLayoutItemModel : HiConstantModel
 
 @property (nonatomic,readonly) HiLayoutItemBlock item;
+
+/** 除了 width height 之外, 都是 相对 super view */
+@property (nonatomic,readonly) HiLayoutConstantBlock value;
 
 @end
 
@@ -110,6 +116,7 @@ typedef HiLayoutRelatedModel * _Nullable (^HiLayoutAttributeBlock)(NSLayoutAttri
 
 @end
 
+typedef void(^HiConstraintBlock)(UIView * _Nonnull hivcs);
 @interface UIView (HiConstraint)
 
 @property (nonatomic,readonly) HiLayoutRelatedModel *hi_left_cs;                         //左侧
@@ -122,6 +129,8 @@ typedef HiLayoutRelatedModel * _Nullable (^HiLayoutAttributeBlock)(NSLayoutAttri
 @property (nonatomic,readonly) HiLayoutRelatedModel *hi_height_cs;                       //高度
 @property (nonatomic,readonly) HiLayoutRelatedModel *hi_centerX_cs;                      //X轴中心
 @property (nonatomic,readonly) HiLayoutRelatedModel *hi_centerY_cs;                      //Y轴中心
+
+- (void)hi_addConstraints:(HiConstraintBlock)block;
 
 @end
 

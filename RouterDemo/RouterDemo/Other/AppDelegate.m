@@ -31,8 +31,7 @@
     
     [self.window makeKeyAndVisible];
     
-    UIView *view = [[UIView alloc] init];
-    view.translatesAutoresizingMaskIntoConstraints = false;
+    UIView *view = nil;
     view.hi_right_cs.equal.item(nil).bottom.multiplier(100).constant(10);
     return YES;
 }
