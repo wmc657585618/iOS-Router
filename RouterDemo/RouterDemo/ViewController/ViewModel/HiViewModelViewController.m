@@ -9,7 +9,6 @@
 #import "HiViewModelViewController.h"
 #import "HiViewModelView.h"
 #import "HiViewModelReceiveView.h"
-#import "UIViewHiExtension.h"
 
 @interface HiViewModelViewController ()
 @property (nonatomic,strong) HiViewModelView *vmView;

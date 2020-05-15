@@ -67,7 +67,14 @@
     __weak typeof(self) weak = self;
     return ^(CGFloat constant) {
         __strong typeof(weak) strong = weak;
-        return [NSLayoutConstraint constraintWithItem:strong.itemValue1 attribute:strong.attributeValue1 relatedBy:strong.relationValue toItem:strong.itemValue2 attribute:strong.attributeValue2 multiplier:strong.multiplierValue constant:constant];
+        NSLayoutConstraint *contraint = nil;
+        
+        if (strong.itemValue2 && strong.itemValue1) {
+            
+            contraint = [NSLayoutConstraint constraintWithItem:strong.itemValue1 attribute:strong.attributeValue1 relatedBy:strong.relationValue toItem:strong.itemValue2 attribute:strong.attributeValue2 multiplier:strong.multiplierValue constant:constant];
+            
+        }
+        return contraint;
     };
 }
 
@@ -82,6 +89,7 @@
     return ^(CGFloat multiplier) {
         __strong typeof(weak) strong = weak;
         HiLayoutConstantModel *model = [[HiLayoutConstantModel alloc] init];
+        model.itemValue1 = strong.itemValue1;
         model.attributeValue1 = strong.attributeValue1;
         model.relationValue = strong.relationValue;
         model.itemValue2 = strong.itemValue2;
@@ -96,18 +104,65 @@
 #pragma mark ************************ HiLayoutItemAttributeModel ************************
 @implementation HiLayoutItemAttributeModel
 
+- (HiLayoutMultiplierModel *)modelForAttribute:(NSLayoutAttribute)attribute{
+    
+    HiLayoutMultiplierModel *model = [[HiLayoutMultiplierModel alloc] init];
+    model.itemValue1 = self.itemValue1;
+    model.attributeValue1 = self.attributeValue1;
+    model.relationValue = self.relationValue;
+    model.itemValue2 = self.itemValue2;
+    model.attributeValue2 = attribute;
+    return model;
+}
+
 - (HiLayoutItemAttributeBlock)attribute {
     __weak typeof(self) weak = self;
     return ^(NSLayoutAttribute attribute) {
         __strong typeof(weak) strong = weak;
-        HiLayoutMultiplierModel *model = [[HiLayoutMultiplierModel alloc] init];
-        model.attributeValue1 = strong.attributeValue1;
-        model.relationValue = strong.relationValue;
-        model.itemValue2 = strong.itemValue2;
-        model.attributeValue2 = attribute;
-        return model;
+        return [strong modelForAttribute:attribute];
     };
 }
+
+- (HiLayoutMultiplierModel *)left {
+    return [self modelForAttribute:NSLayoutAttributeLeft];
+}
+
+- (HiLayoutMultiplierModel *)right {
+    return [self modelForAttribute:NSLayoutAttributeRight];
+}
+
+- (HiLayoutMultiplierModel *)top {
+    return [self modelForAttribute:NSLayoutAttributeTop];
+}
+
+- (HiLayoutMultiplierModel *)bottom {
+    return [self modelForAttribute:NSLayoutAttributeBottom];
+}
+
+- (HiLayoutMultiplierModel *)leading {
+    return [self modelForAttribute:NSLayoutAttributeLeading];
+}
+
+- (HiLayoutMultiplierModel *)trailing {
+    return [self modelForAttribute:NSLayoutAttributeTrailing];
+}
+
+- (HiLayoutMultiplierModel *)width {
+    return [self modelForAttribute:NSLayoutAttributeHeight];
+}
+
+- (HiLayoutMultiplierModel *)height {
+    return [self modelForAttribute:NSLayoutAttributeHeight];
+}
+
+- (HiLayoutMultiplierModel *)centerX {
+    return [self modelForAttribute:NSLayoutAttributeCenterX];
+}
+
+- (HiLayoutMultiplierModel *)centerY {
+    return [self modelForAttribute:NSLayoutAttributeCenterY];
+}
+
 
 @end
 
@@ -119,6 +174,7 @@
     return ^(id item) {
         __strong typeof(weak) strong = weak;
         HiLayoutItemAttributeModel *model = [[HiLayoutItemAttributeModel alloc] init];
+        model.itemValue1 = strong.itemValue1;
         model.attributeValue1 = strong.attributeValue1;
         model.relationValue = strong.relationValue;
         model.itemValue2 = item;
@@ -131,39 +187,32 @@
 #pragma mark ************************ HiLayoutRelatedModel ************************
 @implementation HiLayoutRelatedModel
 
+- (HiLayoutItemModel *)modelForRelation:(NSLayoutRelation)relation {
+    HiLayoutItemModel *model = [[HiLayoutItemModel alloc] init];
+    model.itemValue1 = self.itemValue1;
+    model.attributeValue1 = self.attributeValue1;
+    model.relationValue = relation;
+    return model;
+}
+
 - (HiLayoutRelatedBlock)relate {
     __weak typeof(self) weak = self;
     return ^(NSLayoutRelation relate){
         __strong typeof(weak) strong = weak;
-        HiLayoutItemModel *model = [[HiLayoutItemModel alloc] init];
-        model.attributeValue1 = strong.attributeValue1;
-        model.relationValue = relate;
-        return model;
+        return [strong modelForRelation:relate];
     };
 }
 
 - (HiLayoutItemModel *)lessThanOrEqual {
-
-    HiLayoutItemModel *model = [[HiLayoutItemModel alloc] init];
-    model.attributeValue1 = self.attributeValue1;
-    model.relationValue = NSLayoutRelationLessThanOrEqual;
-    return model;
+    return [self modelForRelation:NSLayoutRelationLessThanOrEqual];
 }
 
 - (HiLayoutItemModel *)equal {
-    
-    HiLayoutItemModel *model = [[HiLayoutItemModel alloc] init];
-    model.attributeValue1 = self.attributeValue1;
-    model.relationValue = NSLayoutRelationEqual;
-    return model;
+    return [self modelForRelation:NSLayoutRelationEqual];
 }
 
 - (HiLayoutItemModel *)greaterThanOrEqual {
-    
-    HiLayoutItemModel *model = [[HiLayoutItemModel alloc] init];
-    model.attributeValue1 = self.attributeValue1;
-    model.relationValue = NSLayoutRelationGreaterThanOrEqual;
-    return model;
+    return [self modelForRelation:NSLayoutRelationGreaterThanOrEqual];
 }
 
 @end
@@ -173,8 +222,11 @@
 
 - (HiLayoutAttributeBlock)attribute {
     
+    __weak typeof(self) weak = self;
     return ^(NSLayoutAttribute attribute) {
+        __strong typeof(weak) strong = weak;
         HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+        model.itemValue1 = strong.itemValue1;
         model.attributeValue1 = attribute;
         return model;
     };
@@ -291,122 +343,72 @@
 @implementation UIView (HiConstraint)
 
 - (HiLayoutRelatedModel *)hi_left_cs {
-    SEL sel = @selector(hi_left_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeLeft;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeLeft;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_right_cs {
-    SEL sel = @selector(hi_right_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeRight;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeRight;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_top_cs {
-    SEL sel = @selector(hi_top_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeTop;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeTop;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_bottom_cs {
-    SEL sel = @selector(hi_bottom_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeBottom;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeBottom;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_leading_cs {
-    SEL sel = @selector(hi_leading_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeLeading;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeLeading;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_trailing_cs {
-    SEL sel = @selector(hi_trailing_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeTrailing;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeTrailing;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_width_cs {
-    SEL sel = @selector(hi_width_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeWidth;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeWidth;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_height_cs {
-    SEL sel = @selector(hi_height_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeHeight;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeHeight;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_centerX_cs {
-    SEL sel = @selector(hi_centerX_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeCenterX;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeCenterX;
     return model;
 }
 
 - (HiLayoutRelatedModel *)hi_centerY_cs {
-    SEL sel = @selector(hi_centerY_cs);
-    HiLayoutRelatedModel *model = [self hi_getValueForKey:sel];
-    if (!model) {
-        model = [[HiLayoutRelatedModel alloc] init];
-        model.itemValue1 = self;
-        model.attributeValue1 = NSLayoutAttributeCenterY;
-        [self hi_addRetainPropertyForKey:sel value:model];
-    }
+    HiLayoutRelatedModel *model = [[HiLayoutRelatedModel alloc] init];
+    model.itemValue1 = self;
+    model.attributeValue1 = NSLayoutAttributeCenterY;
     return model;
 }
 @end

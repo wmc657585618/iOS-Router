@@ -36,6 +36,7 @@ typedef HiLayoutRelatedModel * _Nullable (^HiLayoutAttributeBlock)(NSLayoutAttri
 
 @end
 
+
 #pragma mark - constant
 @interface HiConstantModel : NSObject
 
@@ -55,29 +56,40 @@ typedef HiLayoutRelatedModel * _Nullable (^HiLayoutAttributeBlock)(NSLayoutAttri
 
 @interface HiLayoutItemAttributeModel : HiConstantModel
 
-@property (nonatomic,copy,readonly) HiLayoutItemAttributeBlock attribute;
+@property (nonatomic,readonly) HiLayoutItemAttributeBlock attribute;
+
+@property (nonatomic,readonly) HiLayoutMultiplierModel *left;                         //左侧
+@property (nonatomic,readonly) HiLayoutMultiplierModel *right;                        //右侧
+@property (nonatomic,readonly) HiLayoutMultiplierModel *top;                          //上方
+@property (nonatomic,readonly) HiLayoutMultiplierModel *bottom;                       //下方
+@property (nonatomic,readonly) HiLayoutMultiplierModel *leading;                      //首部
+@property (nonatomic,readonly) HiLayoutMultiplierModel *trailing;                     //尾部
+@property (nonatomic,readonly) HiLayoutMultiplierModel *width;                        //宽度
+@property (nonatomic,readonly) HiLayoutMultiplierModel *height;                       //高度
+@property (nonatomic,readonly) HiLayoutMultiplierModel *centerX;                      //X轴中心
+@property (nonatomic,readonly) HiLayoutMultiplierModel *centerY;                      //Y轴中心
 
 @end
 
 @interface HiLayoutItemModel : HiConstantModel
 
-@property (nonatomic,copy,readonly) HiLayoutItemBlock item;
+@property (nonatomic,readonly) HiLayoutItemBlock item;
 
 @end
 
 @interface HiLayoutRelatedModel : HiConstantModel
 
-@property (nonatomic,copy,readonly) HiLayoutRelatedBlock relate;
+@property (nonatomic,readonly) HiLayoutRelatedBlock relate;
 
-@property (nonatomic,strong,readonly) HiLayoutItemModel *equal;
-@property (nonatomic,strong,readonly) HiLayoutItemModel *lessThanOrEqual;
-@property (nonatomic,strong,readonly) HiLayoutItemModel *greaterThanOrEqual;
+@property (nonatomic,readonly) HiLayoutItemModel *equal;
+@property (nonatomic,readonly) HiLayoutItemModel *lessThanOrEqual;
+@property (nonatomic,readonly) HiLayoutItemModel *greaterThanOrEqual;
 
 @end
 
 @interface HiLayoutAttributeModel : HiConstantModel
 
-@property (nonatomic,copy,readonly) HiLayoutAttributeBlock attribute;
+@property (nonatomic,readonly) HiLayoutAttributeBlock attribute;
 
 @end
 
@@ -85,30 +97,31 @@ typedef HiLayoutRelatedModel * _Nullable (^HiLayoutAttributeBlock)(NSLayoutAttri
 
 @interface UIView (HiCategory)
 
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_left;                         //左侧
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_right;                        //右侧
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_top;                          //上方
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_bottom;                       //下方
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_leading;                      //首部
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_trailing;                     //尾部
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_width;                        //宽度
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_height;                       //高度
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_centerX;                      //X轴中心
-@property (nonatomic,strong,readonly) HiLayoutModel *hi_centerY;                      //Y轴中心
+@property (nonatomic,readonly) HiLayoutModel *hi_left;                         //左侧
+@property (nonatomic,readonly) HiLayoutModel *hi_right;                        //右侧
+@property (nonatomic,readonly) HiLayoutModel *hi_top;                          //上方
+@property (nonatomic,readonly) HiLayoutModel *hi_bottom;                       //下方
+@property (nonatomic,readonly) HiLayoutModel *hi_leading;                      //首部
+@property (nonatomic,readonly) HiLayoutModel *hi_trailing;                     //尾部
+@property (nonatomic,readonly) HiLayoutModel *hi_width;                        //宽度
+@property (nonatomic,readonly) HiLayoutModel *hi_height;                       //高度
+@property (nonatomic,readonly) HiLayoutModel *hi_centerX;                      //X轴中心
+@property (nonatomic,readonly) HiLayoutModel *hi_centerY;                      //Y轴中心
+
 @end
 
 @interface UIView (HiConstraint)
 
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_left_cs;                         //左侧
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_right_cs;                        //右侧
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_top_cs;                          //上方
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_bottom_cs;                       //下方
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_leading_cs;                      //首部
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_trailing_cs;                     //尾部
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_width_cs;                        //宽度
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_height_cs;                       //高度
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_centerX_cs;                      //X轴中心
-@property (nonatomic,strong,readonly) HiLayoutRelatedModel *hi_centerY_cs;                      //Y轴中心
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_left_cs;                         //左侧
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_right_cs;                        //右侧
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_top_cs;                          //上方
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_bottom_cs;                       //下方
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_leading_cs;                      //首部
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_trailing_cs;                     //尾部
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_width_cs;                        //宽度
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_height_cs;                       //高度
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_centerX_cs;                      //X轴中心
+@property (nonatomic,readonly) HiLayoutRelatedModel *hi_centerY_cs;                      //Y轴中心
 
 @end
 

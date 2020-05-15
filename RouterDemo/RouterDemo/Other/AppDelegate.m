@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "HiRouterManager.h"
 #import "HiRouterPath.h"
+#import "UIViewHiExtension.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +31,9 @@
     
     [self.window makeKeyAndVisible];
     
+    UIView *view = [[UIView alloc] init];
+    view.translatesAutoresizingMaskIntoConstraints = false;
+    view.hi_right_cs.equal.item(nil).bottom.multiplier(100).constant(10);
     return YES;
 }
 
