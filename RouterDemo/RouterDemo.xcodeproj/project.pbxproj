@@ -43,6 +43,9 @@
 		1CD3FC6421CE517500B8C924 /* HiNetworkFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */; };
 		2802B536246A5453004109C8 /* NSObjectHiExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802B535246A5453004109C8 /* NSObjectHiExtension.m */; };
 		2845072E246D3DD6004E7466 /* UIViewHiExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2845072D246D3DD6004E7466 /* UIViewHiExtension.m */; };
+		28D04A4D24723041005801DE /* UIViewHiFrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D04A4C24723041005801DE /* UIViewHiFrameExtension.m */; };
+		28D04A5024725C6C005801DE /* UIViewHiConstraintExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D04A4F24725C6C005801DE /* UIViewHiConstraintExtension.m */; };
+		28D04A5324725CAF005801DE /* UIViewHiCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D04A5224725CAF005801DE /* UIViewHiCommon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +120,12 @@
 		2802B535246A5453004109C8 /* NSObjectHiExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObjectHiExtension.m; sourceTree = "<group>"; };
 		2845072C246D3DD6004E7466 /* UIViewHiExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewHiExtension.h; sourceTree = "<group>"; };
 		2845072D246D3DD6004E7466 /* UIViewHiExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewHiExtension.m; sourceTree = "<group>"; };
+		28D04A4B24723041005801DE /* UIViewHiFrameExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewHiFrameExtension.h; sourceTree = "<group>"; };
+		28D04A4C24723041005801DE /* UIViewHiFrameExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewHiFrameExtension.m; sourceTree = "<group>"; };
+		28D04A4E24725C6C005801DE /* UIViewHiConstraintExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewHiConstraintExtension.h; sourceTree = "<group>"; };
+		28D04A4F24725C6C005801DE /* UIViewHiConstraintExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewHiConstraintExtension.m; sourceTree = "<group>"; };
+		28D04A5124725CAF005801DE /* UIViewHiCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewHiCommon.h; sourceTree = "<group>"; };
+		28D04A5224725CAF005801DE /* UIViewHiCommon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewHiCommon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,6 +372,12 @@
 				2802B535246A5453004109C8 /* NSObjectHiExtension.m */,
 				2845072C246D3DD6004E7466 /* UIViewHiExtension.h */,
 				2845072D246D3DD6004E7466 /* UIViewHiExtension.m */,
+				28D04A5124725CAF005801DE /* UIViewHiCommon.h */,
+				28D04A5224725CAF005801DE /* UIViewHiCommon.m */,
+				28D04A4B24723041005801DE /* UIViewHiFrameExtension.h */,
+				28D04A4C24723041005801DE /* UIViewHiFrameExtension.m */,
+				28D04A4E24725C6C005801DE /* UIViewHiConstraintExtension.h */,
+				28D04A4F24725C6C005801DE /* UIViewHiConstraintExtension.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -459,9 +474,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28D04A5024725C6C005801DE /* UIViewHiConstraintExtension.m in Sources */,
 				1C14ABA721D364B500DE248C /* HiRouterPageImplementation.m in Sources */,
+				28D04A5324725CAF005801DE /* UIViewHiCommon.m in Sources */,
 				1C97793221D0812900C9859A /* HiPageErrorViewController.m in Sources */,
 				1C97792921D07FD700C9859A /* HiPageFilterViewController.m in Sources */,
+				28D04A4D24723041005801DE /* UIViewHiFrameExtension.m in Sources */,
 				1C97792C21D0806200C9859A /* HiPageSub1ViewController.m in Sources */,
 				1C65583820F5FC4E00862997 /* main.m in Sources */,
 				1C14ABAB21D364B500DE248C /* HiRouterBuilder.m in Sources */,
