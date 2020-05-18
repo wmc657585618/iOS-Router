@@ -161,7 +161,13 @@ typedef struct {
         }
         
     } else {
-        value2 = [self valueForView:self.itemValue2 inSuperView:superView attribute:self.attributeValue2];
+        
+        if (self.itemValue2.superview == superView) { // 相同super
+            value2 = [self frame:self.itemValue2.frame forAttribute:self.attributeValue2];
+        } else {
+            
+            value2 = [self valueForView:self.itemValue2 inSuperView:superView attribute:self.attributeValue2];
+        }
     }
     
     CGFloat value =  value2 * self.multiplierValue + constant;
@@ -217,7 +223,7 @@ typedef struct {
 #pragma mark - ************* property *************
 @implementation HiFramConstantModel
 
-- (HiFramConstantBlock)constant {
+- (HiFramConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat constant) {
         __strong typeof(weak) strong = weak;
@@ -240,6 +246,14 @@ typedef struct {
         model.attributeValue2 = strong.attributeValue2;
         model.multiplierValue = multiplier;
         return model;
+    };
+}
+
+- (HiFramConstantBlock)value {
+    __weak typeof(self) weak = self;
+    return ^(CGFloat constant) {
+        __strong typeof(weak) strong = weak;
+        return [strong valueForConstant:constant];
     };
 }
 

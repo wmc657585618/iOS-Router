@@ -17,7 +17,7 @@ HiFramConstantModel;
 typedef HiFrameItemAttributeModel * _Nullable (^HiFrameRelatedBlock)(UIView *view);
 typedef HiFrameMultiplierModel * _Nullable (^HiFrameItemAttributeBlock)(NSLayoutAttribute attribute);
 typedef HiFramConstantModel * _Nullable (^HiFrameMultiplierBlock)(CGFloat multiplier);
-typedef CGFloat (^HiFramConstantBlock)(CGFloat constant);
+typedef CGFloat (^HiFramConstantBlock)(CGFloat constant); // 对应的值 比如 x y bottom ...
 
 typedef void(^HiLayoutFrameBlock)(UIView *hivlf);
 
@@ -28,13 +28,15 @@ typedef void(^HiLayoutFrameBlock)(UIView *hivlf);
 
 @interface HiFramConstantModel : HiLayoutFrameModel
 
-@property (nonatomic,copy,readonly) HiFramConstantBlock constant;
+@property (nonatomic,copy,readonly) HiFramConstantBlock value;
 
 @end
 
 @interface HiFrameMultiplierModel : HiLayoutFrameModel
 
 @property (nonatomic,copy,readonly) HiFrameMultiplierBlock multiplier;
+
+@property (nonatomic,readonly) HiFramConstantBlock value;
 
 @end
 

@@ -55,6 +55,7 @@
     
     return contraint;
 }
+
 @end
 
 #pragma mark ************************ HiLayoutConstantModel ************************
@@ -64,14 +65,16 @@
     __weak typeof(self) weak = self;
     return ^(CGFloat constant) {
         __strong typeof(weak) strong = weak;
-        NSLayoutConstraint *contraint = nil;
-        
-        if (strong.itemValue2 && strong.itemValue1) {
-            
-            contraint = [NSLayoutConstraint constraintWithItem:strong.itemValue1 attribute:strong.attributeValue1 relatedBy:strong.relationValue toItem:strong.itemValue2 attribute:strong.attributeValue2 multiplier:strong.multiplierValue constant:constant];
-            
-        }
+        NSLayoutConstraint *contraint = [NSLayoutConstraint constraintWithItem:strong.itemValue1 attribute:strong.attributeValue1 relatedBy:strong.relationValue toItem:strong.itemValue2 attribute:strong.attributeValue2 multiplier:strong.multiplierValue constant:constant];
         return contraint;
+    };
+}
+
+- (HiLayoutConstantBlock)value {
+    __weak typeof(self) weak = self;
+    return ^(CGFloat contant) {
+        __strong typeof(weak) strong = weak;
+        return [strong constraintForConstant:contant];
     };
 }
 
@@ -93,6 +96,14 @@
         model.attributeValue2 = strong.attributeValue2;
         model.multiplierValue = multiplier;
         return model;
+    };
+}
+
+- (HiLayoutConstantBlock)value {
+    __weak typeof(self) weak = self;
+    return ^(CGFloat contant) {
+        __strong typeof(weak) strong = weak;
+        return [strong constraintForConstant:contant];
     };
 }
 

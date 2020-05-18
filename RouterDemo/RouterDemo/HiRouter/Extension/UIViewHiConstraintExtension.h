@@ -36,13 +36,15 @@ typedef void(^HiConstraintBlock)(UIView * _Nonnull hivcs);
 
 @interface HiLayoutConstantModel : HiConstantModel
 
-@property (nonatomic,copy,readonly) HiLayoutConstantBlock constant;
+@property (nonatomic,copy,readonly) HiLayoutConstantBlock constant; // 只创建 不添加
+@property (nonatomic,copy,readonly) HiLayoutConstantBlock value; // 创建 并且 添加
 
 @end
 
 @interface HiLayoutMultiplierModel : HiConstantModel
 
 @property (nonatomic,copy,readonly) HiLayoutMultiplierBlock multiplier;
+@property (nonatomic,readonly) HiLayoutConstantBlock value;
 
 @end
 
