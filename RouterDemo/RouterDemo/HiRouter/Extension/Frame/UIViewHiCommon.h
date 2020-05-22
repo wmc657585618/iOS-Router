@@ -22,4 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface UIView (HiFrameProperty)
+
+- (CGFloat)frameValueForAtrribute:(NSLayoutAttribute)attribute;
+
+- (CGFloat)boundsValueForAtrribute:(NSLayoutAttribute)attribute;
+
+- (CGFloat)valueChangedInView:(UIView *)view forAttribute:(NSLayoutAttribute)attribute;
+
+@end
+
 NS_ASSUME_NONNULL_END

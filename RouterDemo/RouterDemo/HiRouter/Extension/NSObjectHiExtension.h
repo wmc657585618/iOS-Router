@@ -13,15 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 #define HiBlock(block,...) if (block) block(__VA_ARGS__);
 #define HiObjectBlock(objc,block,...) if (block) {objc = block(__VA_ARGS__);};
 
-
 /**
  OBJC_ASSOCIATION_ASSIGN 对象 realse 之后, 再次引用会 crash
- HiDealloc : 当 对象的 OBJC_ASSOCIATION_ASSIGN 引用 realse 之后 会设置为 nil
+ 当 对象的 OBJC_ASSOCIATION_ASSIGN 引用 realse 之后 会设置为 nil
  */
 @interface NSObject (HiProperty)
 
 // 添加 property
-
 - (void)hi_addAssingPropertyForKey:(const void *)key value:(id _Nullable)value;
 
 - (void)hi_addRetainNonatomicPropertyForKey:(const void *)key value:(id _Nullable)value;

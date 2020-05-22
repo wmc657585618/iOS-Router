@@ -249,7 +249,7 @@ typedef void(^HiPropertyBlock)(void);
 
 - (nullable NSNumber *)hi_numberForKey:(NSString *)defaultName {
     
-    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSDictionary.class];
+    HiObjectStruc dictionaryStruce = [self hi_objectForkey:defaultName class:NSNumber.class];
     if (dictionaryStruce.result) return dictionaryStruce.objc;
     return nil;
 }

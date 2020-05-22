@@ -88,3 +88,66 @@
 }
 
 @end
+
+#pragma mark - ************* view property *************
+
+@implementation UIView (HiFrameProperty)
+
+/** 在天朝 NSLayoutAttributeLeft 和 NSLayoutAttributeLeading 是一个效果的，布局习惯从左到右 */
+- (CGFloat)frame:(CGRect)frame forAttribute:(NSLayoutAttribute)attribute{
+    
+    switch (attribute) {
+        case NSLayoutAttributeLeft:
+        case NSLayoutAttributeLeading:
+            return CGRectGetMinX(frame);
+            
+        case NSLayoutAttributeRight:
+        case NSLayoutAttributeTrailing:
+            return CGRectGetMaxX(frame);
+            
+        case NSLayoutAttributeTop:
+            return CGRectGetMinY(frame);
+            
+        case NSLayoutAttributeBottom:
+            return CGRectGetMaxY(frame);
+            
+        case NSLayoutAttributeWidth:
+            return CGRectGetWidth(frame);
+            
+        case NSLayoutAttributeHeight:
+            return CGRectGetHeight(frame);
+            
+        case NSLayoutAttributeCenterX:
+            return frame.origin.x + frame.size.width * 0.5;
+            
+        case NSLayoutAttributeCenterY:
+            return frame.origin.y + frame.size.height * 0.5;
+
+        default:
+            return 0;
+    }
+}
+
+- (CGFloat)frameValueForAtrribute:(NSLayoutAttribute)attribute {
+    return [self frame:self.frame forAttribute:attribute];
+}
+
+- (CGFloat)boundsValueForAtrribute:(NSLayoutAttribute)attribute {
+    return [self frame:self.bounds forAttribute:attribute];
+}
+
+- (CGFloat)valueChangedInView:(UIView *)view forAttribute:(NSLayoutAttribute)attribute {
+    
+    if ([self.superview isEqual:view]) { // 返回 self
+        return [self frameValueForAtrribute:attribute];
+    }
+    
+    if ([self isEqual:view]) {
+        return [self boundsValueForAtrribute:attribute];
+    }
+    
+    CGRect frame = [self frameConvertToView:view];
+    return [self frame:frame forAttribute:attribute];
+}
+
+@end
