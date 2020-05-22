@@ -240,7 +240,7 @@
 }
 
 - (HiLayoutMultiplierModel *)width {
-    return [self modelForAttribute:NSLayoutAttributeHeight];
+    return [self modelForAttribute:NSLayoutAttributeWidth];
 }
 
 - (HiLayoutMultiplierModel *)height {
