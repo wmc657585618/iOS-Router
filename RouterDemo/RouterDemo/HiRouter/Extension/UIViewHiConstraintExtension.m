@@ -84,8 +84,8 @@
 
 @end
 
-#pragma mark - Model
-@interface HiConstantModel ()
+#pragma mark ************************ HiLayoutConstantModel ************************
+@interface HiLayoutConstantModel ()
 
 @property (nonatomic,weak) UIView *itemValue1;
 @property (nonatomic,weak) id itemValue2;
@@ -96,7 +96,7 @@
 
 @end
 
-@implementation HiConstantModel
+@implementation HiLayoutConstantModel
 
 - (instancetype)init
 {
@@ -107,13 +107,13 @@
     return self;
 }
 
-- (NSLayoutConstraint *)constraintForConstant:(CGFloat)constant {
+- (NSLayoutConstraint *)valueForConstant:(CGFloat)constant {
     NSLayoutConstraint *contraint = nil;
     
     if (self.itemValue1) {
         HiConstraint *builder = [[HiConstraint alloc] init];
         
-        contraint = [NSLayoutConstraint constraintWithItem:self.itemValue1 attribute:self.attributeValue1 relatedBy:self.relationValue toItem:self.itemValue2 attribute:self.attributeValue2 multiplier:self.multiplierValue constant:constant];
+        contraint = [self constraintForConstant:constant];
         
         builder.constraint = contraint;
         
@@ -129,6 +129,9 @@
         } else if (nil == self.itemValue2 && self.itemValue1) {
             
             builder.contraintView = self.itemValue1;
+        } else {
+            // 不添加
+            return contraint;
         }
         
         [self.itemValue1 addHiConstraint:builder];
@@ -137,25 +140,32 @@
     return contraint;
 }
 
-@end
+- (NSLayoutConstraint *)constraintForConstant:(CGFloat)constant {
+    return [NSLayoutConstraint constraintWithItem:self.itemValue1 attribute:self.attributeValue1 relatedBy:self.relationValue toItem:self.itemValue2 attribute:self.attributeValue2 multiplier:self.multiplierValue constant:constant];;
+}
 
-#pragma mark ************************ HiLayoutConstantModel ************************
-@implementation HiLayoutConstantModel
-
-- (HiLayoutConstantBlock)constant {
-    __weak typeof(self) weak = self;
-    return ^(CGFloat constant) {
-        __strong typeof(weak) strong = weak;
-        NSLayoutConstraint *contraint = [NSLayoutConstraint constraintWithItem:strong.itemValue1 attribute:strong.attributeValue1 relatedBy:strong.relationValue toItem:strong.itemValue2 attribute:strong.attributeValue2 multiplier:strong.multiplierValue constant:constant];
-        return contraint;
-    };
+- (void)propertyForModel:(HiLayoutConstantModel *)model{
+    model.itemValue1 = self.itemValue1;
+    model.itemValue2 = self.itemValue2;
+    model.attributeValue1 = self.attributeValue1;
+    model.attributeValue2 = self.attributeValue2;
+    model.relationValue = self.relationValue;
+    model.multiplierValue = self.multiplierValue;
 }
 
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        return [strong constraintForConstant:contant];
+        return [strong valueForConstant:contant];
+    };
+}
+
+- (HiLayoutConstantBlock)constant {
+    __weak typeof(self) weak = self;
+    return ^(CGFloat constant) {
+        __strong typeof(weak) strong = weak;
+        return [strong constraintForConstant:constant];
     };
 }
 
@@ -170,21 +180,9 @@
     return ^(CGFloat multiplier) {
         __strong typeof(weak) strong = weak;
         HiLayoutConstantModel *model = [[HiLayoutConstantModel alloc] init];
-        model.itemValue1 = strong.itemValue1;
-        model.attributeValue1 = strong.attributeValue1;
-        model.relationValue = strong.relationValue;
-        model.itemValue2 = strong.itemValue2;
-        model.attributeValue2 = strong.attributeValue2;
+        [strong propertyForModel:model];
         model.multiplierValue = multiplier;
         return model;
-    };
-}
-
-- (HiLayoutConstantBlock)value {
-    __weak typeof(self) weak = self;
-    return ^(CGFloat contant) {
-        __strong typeof(weak) strong = weak;
-        return [strong constraintForConstant:contant];
     };
 }
 
@@ -192,18 +190,33 @@
 
 @implementation HiLayoutRelatedModel
 
+- (void)updatePropety{
+
+    self.attributeValue2 = self.attributeValue1;
+    
+    BOOL notCheck = NSLayoutAttributeWidth == self.attributeValue1 || NSLayoutAttributeHeight == self.attributeValue1;
+    
+    if (!notCheck && [self.itemValue1 isKindOfClass:UIView.class]) {
+        UIView *view = (UIView *)self.itemValue1;
+        self.itemValue2 = view.superview;
+    }
+}
+
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        strong.attributeValue2 = strong.attributeValue1;
-        
-        BOOL notCheck = NSLayoutAttributeWidth == strong.attributeValue1 || NSLayoutAttributeHeight == strong.attributeValue1;
-        
-        if (!notCheck && [strong.itemValue1 isKindOfClass:UIView.class]) {
-            UIView *view = (UIView *)strong.itemValue1;
-            strong.itemValue2 = view.superview;
-        }
+        [self updatePropety];
+        return [strong valueForConstant:contant];
+    };
+}
+
+- (HiLayoutConstantBlock)constant {
+    
+    __weak typeof(self) weak = self;
+    return ^(CGFloat contant) {
+        __strong typeof(weak) strong = weak;
+        [self updatePropety];
         return [strong constraintForConstant:contant];
     };
 }
@@ -216,10 +229,7 @@
 - (HiLayoutMultiplierModel *)modelForAttribute:(NSLayoutAttribute)attribute{
     
     HiLayoutMultiplierModel *model = [[HiLayoutMultiplierModel alloc] init];
-    model.itemValue1 = self.itemValue1;
-    model.attributeValue1 = self.attributeValue1;
-    model.relationValue = self.relationValue;
-    model.itemValue2 = self.itemValue2;
+    [self propertyForModel:model];
     model.attributeValue2 = attribute;
     return model;
 }
@@ -232,14 +242,6 @@
     };
 }
 
-- (HiLayoutMultiplierModel *)left {
-    return [self modelForAttribute:NSLayoutAttributeLeft];
-}
-
-- (HiLayoutMultiplierModel *)right {
-    return [self modelForAttribute:NSLayoutAttributeRight];
-}
-
 - (HiLayoutMultiplierModel *)top {
     return [self modelForAttribute:NSLayoutAttributeTop];
 }
@@ -248,31 +250,20 @@
     return [self modelForAttribute:NSLayoutAttributeBottom];
 }
 
-- (HiLayoutMultiplierModel *)leading {
-    return [self modelForAttribute:NSLayoutAttributeLeading];
-}
-
-- (HiLayoutMultiplierModel *)trailing {
-    return [self modelForAttribute:NSLayoutAttributeTrailing];
-}
-
-- (HiLayoutMultiplierModel *)width {
-    return [self modelForAttribute:NSLayoutAttributeWidth];
-}
-
-- (HiLayoutMultiplierModel *)height {
-    return [self modelForAttribute:NSLayoutAttributeHeight];
-}
-
-- (HiLayoutMultiplierModel *)centerX {
-    return [self modelForAttribute:NSLayoutAttributeCenterX];
-}
-
 - (HiLayoutMultiplierModel *)centerY {
     return [self modelForAttribute:NSLayoutAttributeCenterY];
 }
 
 - (HiLayoutConstantBlock)value {
+    __weak typeof(self) weak = self;
+    return ^(CGFloat contant) {
+        __strong typeof(weak) strong = weak;
+        strong.attributeValue2 = strong.attributeValue1;
+        return [strong valueForConstant:contant];
+    };
+}
+
+- (HiLayoutConstantBlock)constant {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
@@ -291,27 +282,39 @@
     return ^(id item) {
         __strong typeof(weak) strong = weak;
         HiLayoutItemVerticalAttributeModel *model = [[HiLayoutItemVerticalAttributeModel alloc] init];
-        model.itemValue1 = strong.itemValue1;
-        model.attributeValue1 = strong.attributeValue1;
-        model.relationValue = strong.relationValue;
+        [strong propertyForModel:model];
         model.itemValue2 = item;
         return model;
     };
+}
+
+- (void)updatePropety{
+
+    self.attributeValue2 = self.attributeValue1;
+    
+    BOOL notCheck = NSLayoutAttributeWidth == self.attributeValue1 || NSLayoutAttributeHeight == self.attributeValue1;
+    
+    if (!notCheck && [self.itemValue1 isKindOfClass:UIView.class]) {
+        UIView *view = (UIView *)self.itemValue1;
+        self.itemValue2 = view.superview;
+    }
 }
 
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        strong.attributeValue2 = strong.attributeValue1;
-        
-        BOOL notCheck = NSLayoutAttributeWidth == strong.attributeValue1 || NSLayoutAttributeHeight == strong.attributeValue1;
-        
-        if (!notCheck && [strong.itemValue1 isKindOfClass:UIView.class]) {
-            UIView *view = (UIView *)strong.itemValue1;
-            strong.itemValue2 = view.superview;
-        }
-        
+        [self updatePropety];
+        return [strong valueForConstant:contant];
+    };
+}
+
+- (HiLayoutConstantBlock)constant {
+    
+    __weak typeof(self) weak = self;
+    return ^(CGFloat contant) {
+        __strong typeof(weak) strong = weak;
+        [self updatePropety];
         return [strong constraintForConstant:contant];
     };
 }
@@ -323,8 +326,7 @@
 
 - (HiLayoutItemVerticalModel *)modelForRelation:(NSLayoutRelation)relation {
     HiLayoutItemVerticalModel *model = [[HiLayoutItemVerticalModel alloc] init];
-    model.itemValue1 = self.itemValue1;
-    model.attributeValue1 = self.attributeValue1;
+    [self propertyForModel:model];
     model.relationValue = relation;
     return model;
 }
@@ -337,16 +339,40 @@
     };
 }
 
-- (HiLayoutItemVerticalModel *)lessThanOrEqual {
-    return [self modelForRelation:NSLayoutRelationLessThanOrEqual];
+- (HiLayoutItemVerticalBlock)lessThanOrEqual {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemVerticalAttributeModel *model = [[HiLayoutItemVerticalAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationLessThanOrEqual;
+        return model;
+    };
 }
 
-- (HiLayoutItemVerticalModel *)equal {
-    return [self modelForRelation:NSLayoutRelationEqual];
+- (HiLayoutItemVerticalBlock)equal {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemVerticalAttributeModel *model = [[HiLayoutItemVerticalAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationEqual;
+        return model;
+    };
 }
 
-- (HiLayoutItemVerticalModel *)greaterThanOrEqual {
-    return [self modelForRelation:NSLayoutRelationGreaterThanOrEqual];
+- (HiLayoutItemVerticalBlock)greaterThanOrEqual {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemVerticalAttributeModel *model = [[HiLayoutItemVerticalAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationGreaterThanOrEqual;
+        return model;
+    };
 }
 
 @end
@@ -357,10 +383,7 @@
 - (HiLayoutMultiplierModel *)modelForAttribute:(NSLayoutAttribute)attribute{
     
     HiLayoutMultiplierModel *model = [[HiLayoutMultiplierModel alloc] init];
-    model.itemValue1 = self.itemValue1;
-    model.attributeValue1 = self.attributeValue1;
-    model.relationValue = self.relationValue;
-    model.itemValue2 = self.itemValue2;
+    [self propertyForModel:model];
     model.attributeValue2 = attribute;
     return model;
 }
@@ -381,14 +404,6 @@
     return [self modelForAttribute:NSLayoutAttributeRight];
 }
 
-- (HiLayoutMultiplierModel *)top {
-    return [self modelForAttribute:NSLayoutAttributeTop];
-}
-
-- (HiLayoutMultiplierModel *)bottom {
-    return [self modelForAttribute:NSLayoutAttributeBottom];
-}
-
 - (HiLayoutMultiplierModel *)leading {
     return [self modelForAttribute:NSLayoutAttributeLeading];
 }
@@ -397,20 +412,8 @@
     return [self modelForAttribute:NSLayoutAttributeTrailing];
 }
 
-- (HiLayoutMultiplierModel *)width {
-    return [self modelForAttribute:NSLayoutAttributeWidth];
-}
-
-- (HiLayoutMultiplierModel *)height {
-    return [self modelForAttribute:NSLayoutAttributeHeight];
-}
-
 - (HiLayoutMultiplierModel *)centerX {
     return [self modelForAttribute:NSLayoutAttributeCenterX];
-}
-
-- (HiLayoutMultiplierModel *)centerY {
-    return [self modelForAttribute:NSLayoutAttributeCenterY];
 }
 
 - (HiLayoutConstantBlock)value {
@@ -418,7 +421,7 @@
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
         strong.attributeValue2 = strong.attributeValue1;
-        return [strong constraintForConstant:contant];
+        return [strong valueForConstant:contant];
     };
 }
 
@@ -432,27 +435,39 @@
     return ^(id item) {
         __strong typeof(weak) strong = weak;
         HiLayoutItemHorizontalAttributeModel *model = [[HiLayoutItemHorizontalAttributeModel alloc] init];
-        model.itemValue1 = strong.itemValue1;
-        model.attributeValue1 = strong.attributeValue1;
-        model.relationValue = strong.relationValue;
+        [strong propertyForModel:model];
         model.itemValue2 = item;
         return model;
     };
+}
+
+- (void)updatePropety{
+
+    self.attributeValue2 = self.attributeValue1;
+    
+    BOOL notCheck = NSLayoutAttributeWidth == self.attributeValue1 || NSLayoutAttributeHeight == self.attributeValue1;
+    
+    if (!notCheck && [self.itemValue1 isKindOfClass:UIView.class]) {
+        UIView *view = (UIView *)self.itemValue1;
+        self.itemValue2 = view.superview;
+    }
 }
 
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        strong.attributeValue2 = strong.attributeValue1;
-        
-        BOOL notCheck = NSLayoutAttributeWidth == strong.attributeValue1 || NSLayoutAttributeHeight == strong.attributeValue1;
-        
-        if (!notCheck && [strong.itemValue1 isKindOfClass:UIView.class]) {
-            UIView *view = (UIView *)strong.itemValue1;
-            strong.itemValue2 = view.superview;
-        }
-        
+        [self updatePropety];
+        return [strong valueForConstant:contant];
+    };
+}
+
+- (HiLayoutConstantBlock)constant {
+    
+    __weak typeof(self) weak = self;
+    return ^(CGFloat contant) {
+        __strong typeof(weak) strong = weak;
+        [self updatePropety];
         return [strong constraintForConstant:contant];
     };
 }
@@ -478,16 +493,40 @@
     };
 }
 
-- (HiLayoutItemHorizontalModel *)lessThanOrEqual {
-    return [self modelForRelation:NSLayoutRelationLessThanOrEqual];
+- (HiLayoutItemHorizontalBlock)lessThanOrEqual {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemHorizontalAttributeModel *model = [[HiLayoutItemHorizontalAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationLessThanOrEqual;
+        return model;
+    };
 }
 
-- (HiLayoutItemHorizontalModel *)equal {
-    return [self modelForRelation:NSLayoutRelationEqual];
+- (HiLayoutItemHorizontalBlock)equal {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemHorizontalAttributeModel *model = [[HiLayoutItemHorizontalAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationEqual;
+        return model;
+    };
 }
 
-- (HiLayoutItemHorizontalModel *)greaterThanOrEqual {
-    return [self modelForRelation:NSLayoutRelationGreaterThanOrEqual];
+- (HiLayoutItemHorizontalBlock)greaterThanOrEqual {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemHorizontalAttributeModel *model = [[HiLayoutItemHorizontalAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationGreaterThanOrEqual;
+        return model;
+    };
 }
 
 @end
@@ -514,30 +553,6 @@
     };
 }
 
-- (HiLayoutMultiplierModel *)left {
-    return [self modelForAttribute:NSLayoutAttributeLeft];
-}
-
-- (HiLayoutMultiplierModel *)right {
-    return [self modelForAttribute:NSLayoutAttributeRight];
-}
-
-- (HiLayoutMultiplierModel *)top {
-    return [self modelForAttribute:NSLayoutAttributeTop];
-}
-
-- (HiLayoutMultiplierModel *)bottom {
-    return [self modelForAttribute:NSLayoutAttributeBottom];
-}
-
-- (HiLayoutMultiplierModel *)leading {
-    return [self modelForAttribute:NSLayoutAttributeLeading];
-}
-
-- (HiLayoutMultiplierModel *)trailing {
-    return [self modelForAttribute:NSLayoutAttributeTrailing];
-}
-
 - (HiLayoutMultiplierModel *)width {
     return [self modelForAttribute:NSLayoutAttributeWidth];
 }
@@ -546,20 +561,12 @@
     return [self modelForAttribute:NSLayoutAttributeHeight];
 }
 
-- (HiLayoutMultiplierModel *)centerX {
-    return [self modelForAttribute:NSLayoutAttributeCenterX];
-}
-
-- (HiLayoutMultiplierModel *)centerY {
-    return [self modelForAttribute:NSLayoutAttributeCenterY];
-}
-
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
         strong.attributeValue2 = strong.attributeValue1;
-        return [strong constraintForConstant:contant];
+        return [strong valueForConstant:contant];
     };
 }
 
@@ -581,19 +588,33 @@
     };
 }
 
+- (void)updatePropety{
+
+    self.attributeValue2 = self.attributeValue1;
+    
+    BOOL notCheck = NSLayoutAttributeWidth == self.attributeValue1 || NSLayoutAttributeHeight == self.attributeValue1;
+    
+    if (!notCheck && [self.itemValue1 isKindOfClass:UIView.class]) {
+        UIView *view = (UIView *)self.itemValue1;
+        self.itemValue2 = view.superview;
+    }
+}
+
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        strong.attributeValue2 = strong.attributeValue1;
-        
-        BOOL notCheck = NSLayoutAttributeWidth == strong.attributeValue1 || NSLayoutAttributeHeight == strong.attributeValue1;
-        
-        if (!notCheck && [strong.itemValue1 isKindOfClass:UIView.class]) {
-            UIView *view = (UIView *)strong.itemValue1;
-            strong.itemValue2 = view.superview;
-        }
-        
+        [self updatePropety];
+        return [strong valueForConstant:contant];
+    };
+}
+
+- (HiLayoutConstantBlock)constant {
+    
+    __weak typeof(self) weak = self;
+    return ^(CGFloat contant) {
+        __strong typeof(weak) strong = weak;
+        [self updatePropety];
         return [strong constraintForConstant:contant];
     };
 }
@@ -605,8 +626,7 @@
 
 - (HiLayoutItemSizeModel *)modelForRelation:(NSLayoutRelation)relation {
     HiLayoutItemSizeModel *model = [[HiLayoutItemSizeModel alloc] init];
-    model.itemValue1 = self.itemValue1;
-    model.attributeValue1 = self.attributeValue1;
+    [self propertyForModel:model];
     model.relationValue = relation;
     return model;
 }
@@ -619,16 +639,40 @@
     };
 }
 
-- (HiLayoutItemSizeModel *)lessThanOrEqual {
-    return [self modelForRelation:NSLayoutRelationLessThanOrEqual];
+- (HiLayoutItemSizeBlock)equal {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemSizeAttributeModel *model = [[HiLayoutItemSizeAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationEqual;
+        return model;
+    };
 }
 
-- (HiLayoutItemSizeModel *)equal {
-    return [self modelForRelation:NSLayoutRelationEqual];
+- (HiLayoutItemSizeBlock)lessThanOrEqual {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemSizeAttributeModel *model = [[HiLayoutItemSizeAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationLessThanOrEqual;
+        return model;
+    };
 }
 
-- (HiLayoutItemSizeModel *)greaterThanOrEqual {
-    return [self modelForRelation:NSLayoutRelationGreaterThanOrEqual];
+- (HiLayoutItemSizeBlock)greaterThanOrEqual {
+    __weak typeof(self) weak = self;
+    return ^(id item) {
+        __strong typeof(weak) strong = weak;
+        HiLayoutItemSizeAttributeModel *model = [[HiLayoutItemSizeAttributeModel alloc] init];
+        [strong propertyForModel:model];
+        model.itemValue2 = item;
+        model.relationValue = NSLayoutRelationGreaterThanOrEqual;
+        return model;
+    };
 }
 
 - (HiLayoutConstantVoidBlock)autoValue {
@@ -641,30 +685,27 @@
 #pragma mark - ********** Constraint **********
 @implementation UIView (HiConstraint)
 
-- (HiLayoutRelatedHorizontalModel *)horizontalModelForAttribute:(NSLayoutAttribute)attribute{
-    HiLayoutRelatedHorizontalModel *model = [[HiLayoutRelatedHorizontalModel alloc] init];
+- (void)setModel:(HiLayoutConstantModel *)model attribute:(NSLayoutAttribute)attribute {
     model.itemValue1 = self;
     model.attributeValue1 = attribute;
-    
     self.builder.options = [HiOptions viewOptions:self.builder.options forAttribute:attribute];
+}
+
+- (HiLayoutRelatedHorizontalModel *)horizontalModelForAttribute:(NSLayoutAttribute)attribute{
+    HiLayoutRelatedHorizontalModel *model = [[HiLayoutRelatedHorizontalModel alloc] init];
+    [self setModel:model attribute:attribute];
     return model;
 }
 
 - (HiLayoutRelatedVerticalModel *)verticalModelForAttribute:(NSLayoutAttribute)attribute{
     HiLayoutRelatedVerticalModel *model = [[HiLayoutRelatedVerticalModel alloc] init];
-    model.itemValue1 = self;
-    model.attributeValue1 = attribute;
-    
-    self.builder.options = [HiOptions viewOptions:self.builder.options forAttribute:attribute];
+    [self setModel:model attribute:attribute];
     return model;
 }
 
 - (HiLayoutRelatedSizeModel *)sizeModelForAttribute:(NSLayoutAttribute)attribute{
     HiLayoutRelatedSizeModel *model = [[HiLayoutRelatedSizeModel alloc] init];
-    model.itemValue1 = self;
-    model.attributeValue1 = attribute;
-    
-    self.builder.options = [HiOptions viewOptions:self.builder.options forAttribute:attribute];
+    [self setModel:model attribute:attribute];
     return model;
 }
 

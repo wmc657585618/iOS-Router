@@ -50,35 +50,27 @@ typedef HiLayoutItemSizeModel * _Nullable (^HiLayoutRelatedSizeBlock)(NSLayoutRe
 
 typedef void(^HiConstraintBlock)(UIView *builder);
 
-@interface HiConstantModel : NSObject
+@interface HiLayoutConstantModel : NSObject
+
+@property (nonatomic,readonly) HiLayoutConstantBlock value;// 创建 并且 添加
+@property (nonatomic,readonly) HiLayoutConstantBlock constant; // 只创建 不添加
 
 @end
 
-@interface HiLayoutConstantModel : HiConstantModel
-
-@property (nonatomic,copy,readonly) HiLayoutConstantBlock constant; // 只创建 不添加
-@property (nonatomic,copy,readonly) HiLayoutConstantBlock value; // 创建 并且 添加
-
-@end
-
-@interface HiLayoutMultiplierModel : HiConstantModel
+@interface HiLayoutMultiplierModel : HiLayoutConstantModel
 
 @property (nonatomic,copy,readonly) HiLayoutMultiplierBlock multiplier;
-@property (nonatomic,readonly) HiLayoutConstantBlock value;
 
 @end
 
 
 #pragma mark - ************* common *************
-@interface HiLayoutRelatedModel : HiConstantModel
-
-/** 除了 width height 之外, 都是 相对 super view */
-@property (nonatomic,readonly) HiLayoutConstantBlock value;
+@interface HiLayoutRelatedModel : HiLayoutConstantModel
 
 @end
 
 #pragma mark - ************* Vertical *************
-@interface HiLayoutItemVerticalAttributeModel : HiConstantModel
+@interface HiLayoutItemVerticalAttributeModel : HiLayoutConstantModel
 
 @property (nonatomic,readonly) HiLayoutItemAttributeBlock attribute;
 
@@ -86,17 +78,11 @@ typedef void(^HiConstraintBlock)(UIView *builder);
 @property (nonatomic,readonly) HiLayoutMultiplierModel *bottom;                       //下方
 @property (nonatomic,readonly) HiLayoutMultiplierModel *centerY;                      //Y轴中心
 
-/** item2 的 NSLayoutAttribute 和 item1 相同*/
-@property (nonatomic,readonly) HiLayoutConstantBlock value;
-
 @end
 
-@interface HiLayoutItemVerticalModel : HiConstantModel
+@interface HiLayoutItemVerticalModel : HiLayoutConstantModel
 
 @property (nonatomic,readonly) HiLayoutItemVerticalBlock item;
-
-/** 除了 width height 之外, 都是 相对 super view */
-@property (nonatomic,readonly) HiLayoutConstantBlock value;
 
 @end
 
@@ -104,14 +90,14 @@ typedef void(^HiConstraintBlock)(UIView *builder);
 
 @property (nonatomic,readonly) HiLayoutRelatedVerticalBlock relate;
 
-@property (nonatomic,readonly) HiLayoutItemVerticalModel *equal;
-@property (nonatomic,readonly) HiLayoutItemVerticalModel *lessThanOrEqual;
-@property (nonatomic,readonly) HiLayoutItemVerticalModel *greaterThanOrEqual;
+@property (nonatomic,readonly) HiLayoutItemVerticalBlock equal;
+@property (nonatomic,readonly) HiLayoutItemVerticalBlock lessThanOrEqual;
+@property (nonatomic,readonly) HiLayoutItemVerticalBlock greaterThanOrEqual;
 
 @end
 
 #pragma mark - ************* Horizontal *************
-@interface HiLayoutItemHorizontalAttributeModel : HiConstantModel
+@interface HiLayoutItemHorizontalAttributeModel : HiLayoutConstantModel
 
 @property (nonatomic,readonly) HiLayoutItemAttributeBlock attribute;
 
@@ -121,17 +107,11 @@ typedef void(^HiConstraintBlock)(UIView *builder);
 @property (nonatomic,readonly) HiLayoutMultiplierModel *trailing;                     //尾部
 @property (nonatomic,readonly) HiLayoutMultiplierModel *centerX;                      //X轴中心
 
-/** item2 的 NSLayoutAttribute 和 item1 相同*/
-@property (nonatomic,readonly) HiLayoutConstantBlock value;
-
 @end
 
-@interface HiLayoutItemHorizontalModel : HiConstantModel
+@interface HiLayoutItemHorizontalModel : HiLayoutConstantModel
 
 @property (nonatomic,readonly) HiLayoutItemHorizontalBlock item;
-
-/** 除了 width height 之外, 都是 相对 super view */
-@property (nonatomic,readonly) HiLayoutConstantBlock value;
 
 @end
 
@@ -139,25 +119,22 @@ typedef void(^HiConstraintBlock)(UIView *builder);
 
 @property (nonatomic,readonly) HiLayoutRelatedHorizontalBlock relate;
 
-@property (nonatomic,readonly) HiLayoutItemHorizontalModel *equal;
-@property (nonatomic,readonly) HiLayoutItemHorizontalModel *lessThanOrEqual;
-@property (nonatomic,readonly) HiLayoutItemHorizontalModel *greaterThanOrEqual;
+@property (nonatomic,readonly) HiLayoutItemHorizontalBlock equal;
+@property (nonatomic,readonly) HiLayoutItemHorizontalBlock lessThanOrEqual;
+@property (nonatomic,readonly) HiLayoutItemHorizontalBlock greaterThanOrEqual;
 
 @end
 
 #pragma mark - ************* Size *************
-@interface HiLayoutItemSizeAttributeModel : HiConstantModel
+@interface HiLayoutItemSizeAttributeModel : HiLayoutConstantModel
 
 @property (nonatomic,readonly) HiLayoutItemAttributeBlock attribute;
 @property (nonatomic,readonly) HiLayoutMultiplierModel *width;                        //宽度
 @property (nonatomic,readonly) HiLayoutMultiplierModel *height;                       //高度
 
-/** item2 的 NSLayoutAttribute 和 item1 相同*/
-@property (nonatomic,readonly) HiLayoutConstantBlock value;
-
 @end
 
-@interface HiLayoutItemSizeModel : HiConstantModel
+@interface HiLayoutItemSizeModel : HiLayoutConstantModel
 
 @property (nonatomic,readonly) HiLayoutItemSizeBlock item;
 
@@ -170,9 +147,9 @@ typedef void(^HiConstraintBlock)(UIView *builder);
 
 @property (nonatomic,readonly) HiLayoutRelatedSizeBlock relate;
 
-@property (nonatomic,readonly) HiLayoutItemSizeModel *equal;
-@property (nonatomic,readonly) HiLayoutItemSizeModel *lessThanOrEqual;
-@property (nonatomic,readonly) HiLayoutItemSizeModel *greaterThanOrEqual;
+@property (nonatomic,readonly) HiLayoutItemSizeBlock equal;
+@property (nonatomic,readonly) HiLayoutItemSizeBlock lessThanOrEqual;
+@property (nonatomic,readonly) HiLayoutItemSizeBlock greaterThanOrEqual;
 @property (nonatomic,readonly) HiLayoutConstantVoidBlock autoValue;
 
 @end
