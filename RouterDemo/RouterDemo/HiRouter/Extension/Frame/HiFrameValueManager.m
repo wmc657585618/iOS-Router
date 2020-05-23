@@ -6,11 +6,11 @@
 //  Copyright © 2020 Four. All rights reserved.
 //
 
-#import "HiFrameOptionManager.h"
+#import "HiFrameValueManager.h"
 #import "HiOptions.h"
 #import "HiFrameValueModel.h"
 
-@interface HiFrameOptionManager ()
+@interface HiFrameValueManager ()
 
 @property (nonatomic,strong) HiFrameValueModel *frameValue;
 
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation HiFrameOptionManager
+@implementation HiFrameValueManager
 
 - (HiFrameValueModel *)frameValue {
     if(!_frameValue) _frameValue = [[HiFrameValueModel alloc] init];

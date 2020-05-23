@@ -11,7 +11,7 @@
 
 @interface HiLayoutFrameModel ()
 
-@property (nonatomic,strong) HiFrameOptionManager *option;
+@property (nonatomic,strong) HiFrameValueManager *option;
 @property (nonatomic,weak) UIView *itemValue1;
 @property (nonatomic,weak) UIView *itemValue2;
 @property (nonatomic,assign) NSLayoutAttribute attributeValue1; // of self
@@ -21,7 +21,7 @@
 @end
 
 @implementation HiLayoutFrameModel
-- (instancetype)initWithOption:(HiFrameOptionManager *)option attribute:(NSLayoutAttribute)attribute
+- (instancetype)initWithOption:(HiFrameValueManager *)option attribute:(NSLayoutAttribute)attribute
 {
     self = [super init];
     if (self) {
@@ -202,7 +202,7 @@
     };
 }
 
-- (instancetype)initWithOption:(HiFrameOptionManager *)option attribute:(NSLayoutAttribute)attribute
+- (instancetype)initWithOption:(HiFrameValueManager *)option attribute:(NSLayoutAttribute)attribute
 {
     self = [super initWithOption:option attribute:attribute];
     if (self) {

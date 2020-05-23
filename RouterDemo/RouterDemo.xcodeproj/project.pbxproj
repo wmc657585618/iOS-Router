@@ -44,7 +44,7 @@
 		28323D172477CA2F00AD0D44 /* NSObjectHiExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28323CFF2477CA2F00AD0D44 /* NSObjectHiExtension.m */; };
 		28323D182477CA2F00AD0D44 /* UIButtonHiExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28323D022477CA2F00AD0D44 /* UIButtonHiExtension.m */; };
 		28323D192477CA2F00AD0D44 /* HiOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 28323D052477CA2F00AD0D44 /* HiOptions.m */; };
-		28323D1A2477CA2F00AD0D44 /* HiFrameOptionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28323D072477CA2F00AD0D44 /* HiFrameOptionManager.m */; };
+		28323D1A2477CA2F00AD0D44 /* HiFrameValueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28323D072477CA2F00AD0D44 /* HiFrameValueManager.m */; };
 		28323D1B2477CA2F00AD0D44 /* HiFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28323D092477CA2F00AD0D44 /* HiFrameModel.m */; };
 		28323D1C2477CA2F00AD0D44 /* HiFrameValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28323D0B2477CA2F00AD0D44 /* HiFrameValueModel.m */; };
 		28323D1D2477CA2F00AD0D44 /* HiFrameBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 28323D0D2477CA2F00AD0D44 /* HiFrameBuilder.m */; };
@@ -128,12 +128,12 @@
 		28323D022477CA2F00AD0D44 /* UIButtonHiExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonHiExtension.m; sourceTree = "<group>"; };
 		28323D042477CA2F00AD0D44 /* HiOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiOptions.h; sourceTree = "<group>"; };
 		28323D052477CA2F00AD0D44 /* HiOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiOptions.m; sourceTree = "<group>"; };
-		28323D072477CA2F00AD0D44 /* HiFrameOptionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiFrameOptionManager.m; sourceTree = "<group>"; };
+		28323D072477CA2F00AD0D44 /* HiFrameValueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiFrameValueManager.m; sourceTree = "<group>"; };
 		28323D082477CA2F00AD0D44 /* HiFrameBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiFrameBuilder.h; sourceTree = "<group>"; };
 		28323D092477CA2F00AD0D44 /* HiFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiFrameModel.m; sourceTree = "<group>"; };
 		28323D0A2477CA2F00AD0D44 /* UIViewHiCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewHiCommon.h; sourceTree = "<group>"; };
 		28323D0B2477CA2F00AD0D44 /* HiFrameValueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiFrameValueModel.m; sourceTree = "<group>"; };
-		28323D0C2477CA2F00AD0D44 /* HiFrameOptionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiFrameOptionManager.h; sourceTree = "<group>"; };
+		28323D0C2477CA2F00AD0D44 /* HiFrameValueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiFrameValueManager.h; sourceTree = "<group>"; };
 		28323D0D2477CA2F00AD0D44 /* HiFrameBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiFrameBuilder.m; sourceTree = "<group>"; };
 		28323D0E2477CA2F00AD0D44 /* HiFrameValueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiFrameValueModel.h; sourceTree = "<group>"; };
 		28323D0F2477CA2F00AD0D44 /* UIViewHiCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewHiCommon.m; sourceTree = "<group>"; };
@@ -409,8 +409,8 @@
 				28323D0D2477CA2F00AD0D44 /* HiFrameBuilder.m */,
 				28323D102477CA2F00AD0D44 /* HiFrameModel.h */,
 				28323D092477CA2F00AD0D44 /* HiFrameModel.m */,
-				28323D0C2477CA2F00AD0D44 /* HiFrameOptionManager.h */,
-				28323D072477CA2F00AD0D44 /* HiFrameOptionManager.m */,
+				28323D0C2477CA2F00AD0D44 /* HiFrameValueManager.h */,
+				28323D072477CA2F00AD0D44 /* HiFrameValueManager.m */,
 				28323D0E2477CA2F00AD0D44 /* HiFrameValueModel.h */,
 				28323D0B2477CA2F00AD0D44 /* HiFrameValueModel.m */,
 				28323D0A2477CA2F00AD0D44 /* UIViewHiCommon.h */,
@@ -546,7 +546,7 @@
 				1C14ABA821D364B500DE248C /* HiRouterVMImplementation.m in Sources */,
 				28323D182477CA2F00AD0D44 /* UIButtonHiExtension.m in Sources */,
 				1C97793821D08D3500C9859A /* HiRootTableModel.m in Sources */,
-				28323D1A2477CA2F00AD0D44 /* HiFrameOptionManager.m in Sources */,
+				28323D1A2477CA2F00AD0D44 /* HiFrameValueManager.m in Sources */,
 				1C1B89B522410FAD00E3C1FE /* HiNavigationFirstViewControoler.m in Sources */,
 				1CD3FC6421CE517500B8C924 /* HiNetworkFilter.m in Sources */,
 				1C14ABA621D364B500DE248C /* NSObjectHiCategory.m in Sources */,

@@ -156,6 +156,7 @@ typedef void(^HiConstraintBlock)(UIView *builder);
 
 #pragma mark - ************* Constraint *************
 
+typedef NSLayoutConstraint * _Nullable (^HiConstraintAttributeBlock)(NSLayoutAttribute attribute);
 @interface UIView (HiConstraint)
 
 @property (nonatomic,readonly) HiLayoutRelatedHorizontalModel *hi_left;                         //左侧
@@ -168,6 +169,9 @@ typedef void(^HiConstraintBlock)(UIView *builder);
 @property (nonatomic,readonly) HiLayoutRelatedSizeModel *hi_height;                       //高度
 @property (nonatomic,readonly) HiLayoutRelatedHorizontalModel *hi_centerX;                      //X轴中心
 @property (nonatomic,readonly) HiLayoutRelatedVerticalModel *hi_centerY;                      //Y轴中心
+
+@property (nonatomic,readonly) HiConstraintAttributeBlock hi_update;
+@property (nonatomic,readonly) HiConstraintAttributeBlock hi_remove;
 
 - (void)hi_addConstraints:(HiConstraintBlock)block;
 

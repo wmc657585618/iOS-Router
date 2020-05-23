@@ -16,7 +16,8 @@ typedef struct {
     BOOL available; // 是否是 合格
 } HiFrameStruct;
 
-@interface HiFrameOptionManager : NSObject
+// 管理 frame 的 x y w h ...
+@interface HiFrameValueManager : NSObject
 
 /** 添加 options */
 - (void)optionWithAttribute:(NSLayoutAttribute)attribute;

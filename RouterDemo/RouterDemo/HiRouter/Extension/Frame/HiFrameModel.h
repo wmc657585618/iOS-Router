@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HiFrameOptionManager.h"
+#import "HiFrameValueManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -67,7 +67,7 @@ typedef CGFloat (^HiFramConstantBlock)(CGFloat constant); // 对应的值 比如
 /** 除了 width height 之外, 都是 相对 super view */
 @property (nonatomic,readonly) HiFramConstantBlock value;
 
-- (instancetype)initWithOption:(HiFrameOptionManager *)option attribute:(NSLayoutAttribute)attribute;
+- (instancetype)initWithOption:(HiFrameValueManager *)option attribute:(NSLayoutAttribute)attribute;
 
 @end
 

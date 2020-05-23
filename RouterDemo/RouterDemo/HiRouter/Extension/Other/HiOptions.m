@@ -48,7 +48,7 @@
     
     if (HiViewOptionsWidth & options) [string appendFormat:@"W - "];
     
-    if (HiViewOptionsHeight & options) [string appendFormat:@"l - "];
+    if (HiViewOptionsHeight & options) [string appendFormat:@"H - "];
 
     return string;
 }
@@ -78,7 +78,10 @@
             
         default:
 #ifdef DEBUG
-            NSLog(@"👉👉👉 组合:%@是不合格的, 请检查",[self stringForOptions:options]);
+            {
+                NSString *string = [[NSString alloc] initWithFormat:@"👉👉👉 组合:%@是不合格的, 请检查",[self stringForOptions:options]];
+                @throw [NSException exceptionWithName:@"HiConstraint" reason:string userInfo:nil];
+            }
 #endif
             return false;
     }
@@ -140,7 +143,9 @@
     
     if (option & options) {
         #ifdef DEBUG
-                    NSLog(@"👉👉👉 重复添加 %@",[self stringForOptions:option]);
+            NSString *string = [[NSString alloc] initWithFormat:@"👉👉👉 重复添加 %@",[self stringForOptions:option]];
+            @throw [NSException exceptionWithName:@"HiConstraint" reason:string userInfo:nil];
+
         #endif
         return options; // 已经有了
     }

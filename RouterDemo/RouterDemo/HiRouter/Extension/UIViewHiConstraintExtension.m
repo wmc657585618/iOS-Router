@@ -29,6 +29,15 @@
 @property (nonatomic,assign) HiViewOptions options;
 @property (nonatomic,strong) NSMutableArray<HiConstraint *> *constraints;
 
+@property (nonatomic,strong) HiConstraint *constraintL;
+@property (nonatomic,strong) HiConstraint *constraintR;
+@property (nonatomic,strong) HiConstraint *constraintT;
+@property (nonatomic,strong) HiConstraint *constraintB;
+@property (nonatomic,strong) HiConstraint *constraintW;
+@property (nonatomic,strong) HiConstraint *constraintH;
+@property (nonatomic,strong) HiConstraint *constraintCX;
+@property (nonatomic,strong) HiConstraint *constraintCY;
+
 @end
 
 @implementation HiConstraintBuilder
@@ -82,6 +91,104 @@
     [self.builder.constraints removeAllObjects];
 }
 
+- (HiConstraint *)hi_constrainForAttribute:(NSLayoutAttribute)attribute{
+    switch (attribute) {
+        case NSLayoutAttributeLeft:
+            return self.builder.constraintL;
+            
+        case NSLayoutAttributeRight:
+            return self.builder.constraintR;
+            
+        case NSLayoutAttributeTop:
+            return self.builder.constraintT;
+
+        case NSLayoutAttributeBottom:
+            return self.builder.constraintB;
+
+        case NSLayoutAttributeLeading:
+            return self.builder.constraintL;
+
+        case NSLayoutAttributeTrailing:
+            return self.builder.constraintT;
+
+        case NSLayoutAttributeWidth:
+            return self.builder.constraintW;
+
+        case NSLayoutAttributeHeight:
+            return self.builder.constraintH;
+
+        case NSLayoutAttributeCenterX:
+            return self.builder.constraintCX;
+
+        case NSLayoutAttributeCenterY:
+            return self.builder.constraintCY;
+            
+        default:
+            return nil;
+    }
+}
+
+- (NSLayoutConstraint *)constraintForAttribute:(NSLayoutAttribute)attribute {
+    return [self hi_constrainForAttribute:attribute].constraint;
+}
+
+- (void)addConstraint:(HiConstraint *)constraint attribute:(NSLayoutAttribute)attribute{
+    
+    switch (attribute) {
+        case NSLayoutAttributeLeft:
+            self.builder.constraintL = constraint;
+            break;
+            
+        case NSLayoutAttributeRight:
+            self.builder.constraintR = constraint;
+            break;
+            
+        case NSLayoutAttributeTop:
+            self.builder.constraintT = constraint;
+            break;
+
+        case NSLayoutAttributeBottom:
+            self.builder.constraintB = constraint;
+            break;
+
+        case NSLayoutAttributeLeading:
+            self.builder.constraintL = constraint;
+            break;
+
+        case NSLayoutAttributeTrailing:
+            self.builder.constraintT = constraint;
+            break;
+
+        case NSLayoutAttributeWidth:
+            self.builder.constraintW = constraint;
+            break;
+
+        case NSLayoutAttributeHeight:
+            self.builder.constraintH = constraint;
+            break;
+
+        case NSLayoutAttributeCenterX:
+            self.builder.constraintCX = constraint;
+            break;
+
+        case NSLayoutAttributeCenterY:
+            self.builder.constraintCY = constraint;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (NSLayoutConstraint *)removeConstrainForAttribute:(NSLayoutAttribute)attribute{
+    HiConstraint *constraint = [self hi_constrainForAttribute:attribute];
+    NSLayoutConstraint *c = constraint.constraint;
+    [constraint.contraintView removeConstraint:c];
+    [self addConstraint:nil attribute:attribute];
+
+    return c;
+}
+
 @end
 
 #pragma mark ************************ HiLayoutConstantModel ************************
@@ -133,7 +240,8 @@
             // 不添加
             return contraint;
         }
-        
+        self.itemValue1.builder.options = [HiOptions viewOptions:self.itemValue1.builder.options forAttribute:self.attributeValue1];
+        [self.itemValue1 addConstraint:builder attribute:self.attributeValue1];
         [self.itemValue1 addHiConstraint:builder];
     }
     
@@ -676,7 +784,12 @@
 }
 
 - (HiLayoutConstantVoidBlock)autoValue {
-    return ^{};
+    // 记录一下
+    __weak typeof(self) weak = self;
+    return ^{
+        __strong typeof(weak) strong = weak;
+        strong.itemValue1.builder.options = [HiOptions viewOptions:strong.itemValue1.builder.options forAttribute:strong.attributeValue1];
+    };
 }
 
 @end
@@ -688,7 +801,6 @@
 - (void)setModel:(HiLayoutConstantModel *)model attribute:(NSLayoutAttribute)attribute {
     model.itemValue1 = self;
     model.attributeValue1 = attribute;
-    self.builder.options = [HiOptions viewOptions:self.builder.options forAttribute:attribute];
 }
 
 - (HiLayoutRelatedHorizontalModel *)horizontalModelForAttribute:(NSLayoutAttribute)attribute{
@@ -757,6 +869,22 @@
         [self creatConstraint];
     }
     block = nil;
+}
+
+- (HiConstraintAttributeBlock)hi_update {
+    __weak typeof(self) weak = self;
+    return ^(NSLayoutAttribute attribute) {
+        __strong typeof(weak) strong = weak;
+        return [strong constraintForAttribute:attribute];
+    };
+}
+
+- (HiConstraintAttributeBlock)hi_remove {
+    __weak typeof(self) weak = self;
+    return ^(NSLayoutAttribute attribute) {
+        __strong typeof(weak) strong = weak;
+        return [strong removeConstrainForAttribute:attribute];
+    };
 }
 
 @end

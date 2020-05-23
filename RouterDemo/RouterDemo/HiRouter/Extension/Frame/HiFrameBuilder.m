@@ -8,7 +8,7 @@
 
 #import "HiFrameBuilder.h"
 #import "UIViewHiCommon.h"
-#import "HiFrameOptionManager.h"
+#import "HiFrameValueManager.h"
 
 @interface HiFrameBuilder ()
 
@@ -17,7 +17,7 @@
 @property (nonatomic,assign,readonly) CGRect frame;
 @property (nonatomic,assign,readonly) CGRect bounds;
 
-@property (nonatomic,strong) HiFrameOptionManager *optionManager;
+@property (nonatomic,strong) HiFrameValueManager *valueManager;
 
 @end
 
@@ -33,21 +33,21 @@
     return self;
 }
 
-- (HiFrameOptionManager *)optionManager {
-    if(!_optionManager) _optionManager = [[HiFrameOptionManager alloc] initWitView:self.view];
-    return _optionManager;
+- (HiFrameValueManager *)valueManager {
+    if(!_valueManager) _valueManager = [[HiFrameValueManager alloc] initWitView:self.view];
+    return _valueManager;
 }
 
 - (void)updateFrame{
 
-    HiFrameStruct st = self.optionManager.frameStruct;
+    HiFrameStruct st = self.valueManager.frameStruct;
     if (st.available) self.view.frame = st.frame;
 }
 
 #pragma mark - public
 - (HiFrameRelatedModel *)modelForAttribute:(NSLayoutAttribute)attribute{
-    HiFrameRelatedModel *model = [[HiFrameRelatedModel alloc] initWithOption:self.optionManager attribute:attribute];
-    [self.optionManager optionWithAttribute:attribute];
+    HiFrameRelatedModel *model = [[HiFrameRelatedModel alloc] initWithOption:self.valueManager attribute:attribute];
+    [self.valueManager optionWithAttribute:attribute];
     return model;
 }
 
