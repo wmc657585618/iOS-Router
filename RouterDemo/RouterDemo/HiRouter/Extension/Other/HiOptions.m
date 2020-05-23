@@ -138,7 +138,12 @@
     // 原来是 空
     if(HiViewOptionsNone == options) return option;
     
-    if (option & options) return options; // 已经有了
+    if (option & options) {
+        #ifdef DEBUG
+                    NSLog(@"👉👉👉 重复添加 %@",[self stringForOptions:option]);
+        #endif
+        return options; // 已经有了
+    }
     
     return options | option;
 }
