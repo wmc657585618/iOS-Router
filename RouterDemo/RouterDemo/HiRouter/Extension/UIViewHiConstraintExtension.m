@@ -225,8 +225,8 @@
         builder.constraint = contraint;
         
         // 约束要加在 同一个父类上
-        if ([self.itemValue2 isKindOfClass:UIView.class] && [self.itemValue1 isKindOfClass:UIView.class]) {
-            UIView *view1 = (UIView *)self.itemValue1;
+        if ([self.itemValue2 isKindOfClass:UIView.class]) {
+            UIView *view1 = self.itemValue1;
             UIView *view2 = (UIView *)self.itemValue2;
             if ([view1.superview isEqual:view2]) {
                 builder.contraintView = view2;
@@ -259,6 +259,29 @@
     model.attributeValue2 = self.attributeValue2;
     model.relationValue = self.relationValue;
     model.multiplierValue = self.multiplierValue;
+}
+
+- (BOOL)isSizeModelForAttribute:(NSLayoutAttribute)attribute {
+    return NSLayoutAttributeWidth == attribute || NSLayoutAttributeHeight == attribute;
+}
+
+// 设置 自己的 x y w h ...
+- (NSLayoutConstraint *)selfValueForContant:(CGFloat)constant {
+    self.attributeValue2 = self.attributeValue1;
+    if (![self isSizeModelForAttribute:self.attributeValue1]) {
+        self.itemValue2 = self.itemValue1.superview;
+    }
+    
+    return [self valueForConstant:constant];
+}
+
+- (NSLayoutConstraint *)selfConstraintForContant:(CGFloat)constant {
+    self.attributeValue2 = self.attributeValue1;
+    if (![self isSizeModelForAttribute:self.attributeValue1]) {
+        self.itemValue2 = self.itemValue1.superview;
+    }
+    
+    return [self constraintForConstant:constant];
 }
 
 - (HiLayoutConstantBlock)value {
@@ -298,24 +321,11 @@
 
 @implementation HiLayoutRelatedModel
 
-- (void)updatePropety{
-
-    self.attributeValue2 = self.attributeValue1;
-    
-    BOOL notCheck = NSLayoutAttributeWidth == self.attributeValue1 || NSLayoutAttributeHeight == self.attributeValue1;
-    
-    if (!notCheck && [self.itemValue1 isKindOfClass:UIView.class]) {
-        UIView *view = (UIView *)self.itemValue1;
-        self.itemValue2 = view.superview;
-    }
-}
-
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        [self updatePropety];
-        return [strong valueForConstant:contant];
+        return [strong selfValueForContant:contant];
     };
 }
 
@@ -324,8 +334,26 @@
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        [self updatePropety];
-        return [strong constraintForConstant:contant];
+        return [strong selfConstraintForContant:contant];
+    };
+}
+
+
+- (HiLayoutConstantBlock)greatValue {
+    __weak typeof(self) weak = self;
+    return ^(CGFloat constant) {
+        __strong typeof(weak) strong = weak;
+        strong.relationValue = NSLayoutRelationGreaterThanOrEqual;
+        return [strong selfValueForContant:constant];
+    };
+}
+
+- (HiLayoutConstantBlock)lessValue {
+    __weak typeof(self) weak = self;
+    return ^(CGFloat constant) {
+        __strong typeof(weak) strong = weak;
+        strong.relationValue = NSLayoutRelationGreaterThanOrEqual;
+        return [strong selfValueForContant:constant];
     };
 }
 
@@ -396,24 +424,11 @@
     };
 }
 
-- (void)updatePropety{
-
-    self.attributeValue2 = self.attributeValue1;
-    
-    BOOL notCheck = NSLayoutAttributeWidth == self.attributeValue1 || NSLayoutAttributeHeight == self.attributeValue1;
-    
-    if (!notCheck && [self.itemValue1 isKindOfClass:UIView.class]) {
-        UIView *view = (UIView *)self.itemValue1;
-        self.itemValue2 = view.superview;
-    }
-}
-
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        [self updatePropety];
-        return [strong valueForConstant:contant];
+        return [strong selfValueForContant:contant];
     };
 }
 
@@ -422,8 +437,7 @@
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        [self updatePropety];
-        return [strong constraintForConstant:contant];
+        return [strong selfConstraintForContant:contant];
     };
 }
 
@@ -549,24 +563,11 @@
     };
 }
 
-- (void)updatePropety{
-
-    self.attributeValue2 = self.attributeValue1;
-    
-    BOOL notCheck = NSLayoutAttributeWidth == self.attributeValue1 || NSLayoutAttributeHeight == self.attributeValue1;
-    
-    if (!notCheck && [self.itemValue1 isKindOfClass:UIView.class]) {
-        UIView *view = (UIView *)self.itemValue1;
-        self.itemValue2 = view.superview;
-    }
-}
-
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        [self updatePropety];
-        return [strong valueForConstant:contant];
+        return [strong selfValueForContant:contant];
     };
 }
 
@@ -575,8 +576,7 @@
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        [self updatePropety];
-        return [strong constraintForConstant:contant];
+        return [strong selfConstraintForContant:contant];
     };
 }
 
@@ -696,24 +696,11 @@
     };
 }
 
-- (void)updatePropety{
-
-    self.attributeValue2 = self.attributeValue1;
-    
-    BOOL notCheck = NSLayoutAttributeWidth == self.attributeValue1 || NSLayoutAttributeHeight == self.attributeValue1;
-    
-    if (!notCheck && [self.itemValue1 isKindOfClass:UIView.class]) {
-        UIView *view = (UIView *)self.itemValue1;
-        self.itemValue2 = view.superview;
-    }
-}
-
 - (HiLayoutConstantBlock)value {
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        [self updatePropety];
-        return [strong valueForConstant:contant];
+        return [strong selfValueForContant:contant];
     };
 }
 
@@ -722,8 +709,7 @@
     __weak typeof(self) weak = self;
     return ^(CGFloat contant) {
         __strong typeof(weak) strong = weak;
-        [self updatePropety];
-        return [strong constraintForConstant:contant];
+        return [strong selfConstraintForContant:contant];
     };
 }
 

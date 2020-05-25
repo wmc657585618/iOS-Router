@@ -67,6 +67,9 @@ typedef void(^HiConstraintBlock)(UIView *builder);
 #pragma mark - ************* common *************
 @interface HiLayoutRelatedModel : HiLayoutConstantModel
 
+@property (nonatomic,readonly) HiLayoutConstantBlock lessValue;
+@property (nonatomic,readonly) HiLayoutConstantBlock greatValue;
+
 @end
 
 #pragma mark - ************* Vertical *************
