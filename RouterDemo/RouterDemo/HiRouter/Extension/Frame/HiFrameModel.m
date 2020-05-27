@@ -12,7 +12,6 @@
 @interface HiLayoutFrameModel ()
 
 @property (nonatomic,strong) HiFrameValueManager *option;
-@property (nonatomic,weak) UIView *itemValue1;
 @property (nonatomic,weak) UIView *itemValue2;
 @property (nonatomic,assign) NSLayoutAttribute attributeValue1; // of self
 @property (nonatomic,assign) NSLayoutAttribute attributeValue2; // of itemValue2

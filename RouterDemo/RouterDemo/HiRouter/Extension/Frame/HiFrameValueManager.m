@@ -57,12 +57,8 @@
     [self.frameValue updateFrameValue:value forAttribute:attribute];
 }
 
-- (CGFloat)selfValueForAttribute:(NSLayoutAttribute)attribute{
-    return [self.frameValue valueForAttribute:attribute];
-}
-
 - (CGFloat)frameValueForAttribute:(NSLayoutAttribute)attribute {
-    return [self selfValueForAttribute:attribute];
+    return [self.frameValue valueForAttribute:attribute];
 }
 
 - (HiFrameStruct)frameStruct {

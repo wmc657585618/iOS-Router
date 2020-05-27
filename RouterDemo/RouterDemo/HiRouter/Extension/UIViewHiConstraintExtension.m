@@ -352,7 +352,7 @@
     __weak typeof(self) weak = self;
     return ^(CGFloat constant) {
         __strong typeof(weak) strong = weak;
-        strong.relationValue = NSLayoutRelationGreaterThanOrEqual;
+        strong.relationValue = NSLayoutRelationLessThanOrEqual;
         return [strong selfValueForContant:constant];
     };
 }

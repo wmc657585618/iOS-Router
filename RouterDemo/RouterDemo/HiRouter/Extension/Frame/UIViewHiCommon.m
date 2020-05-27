@@ -93,6 +93,10 @@
 
 @implementation UIView (HiFrameProperty)
 
+- (BOOL)isSizeForAttribute:(NSLayoutAttribute)attribute {
+    return NSLayoutAttributeWidth == attribute || NSLayoutAttributeHeight == attribute;
+}
+
 /** 在天朝 NSLayoutAttributeLeft 和 NSLayoutAttributeLeading 是一个效果的，布局习惯从左到右 */
 - (CGFloat)frame:(CGRect)frame forAttribute:(NSLayoutAttribute)attribute{
     
@@ -137,6 +141,10 @@
 }
 
 - (CGFloat)valueChangedInView:(UIView *)view forAttribute:(NSLayoutAttribute)attribute {
+    
+    if ([self isSizeForAttribute:attribute]) {
+        return [self frameValueForAtrribute:attribute];
+    }
     
     if ([self.superview isEqual:view]) { // 返回 self
         return [self frameValueForAtrribute:attribute];
