@@ -9,7 +9,7 @@
 #import "HiCallBackSubViewController.h"
 #import "HiRouterManager.h"
 
-@interface HiCallBackSubViewController ()<HiRouterPageProtocol>
+@interface HiCallBackSubViewController ()
 @property (nonatomic,strong) UITextView *textView;
 
 @end
@@ -47,7 +47,6 @@
 
 - (void)post {
 
-    [self hi_callBackParameters:self.textView.text];
     [self.navigationController popViewControllerAnimated:true];
 }
 

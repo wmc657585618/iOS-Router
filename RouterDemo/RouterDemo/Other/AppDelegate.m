@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "HiRouterManager.h"
 #import "HiRouterPath.h"
-#import "UIViewHiExtension.h"
+#import "HiRootViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,17 +17,15 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // regist route
-    [HiRouter.instance registRoute:[HiRouterPath pathDictionary]];
-    
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     self.window.backgroundColor = UIColor.whiteColor;
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HiRouter.instance build:ROOT].targetViewController];
+    @"path".hi_class = HiRootViewController.class;
+    self.window.rootViewController = [NSObject objectForPath:@"path" withInitParameters:nil];
     
     [self.window makeKeyAndVisible];
     

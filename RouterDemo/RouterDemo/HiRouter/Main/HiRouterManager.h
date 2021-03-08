@@ -9,6 +9,7 @@
 #ifndef HiRouterManager_h
 #define HiRouterManager_h
 
-#import "NSObjectHiCategory.h"
+#import "HiRouterProtocol.h"
+#import "HiRouter.h"
 
 #endif /* HiRouterManager_h */

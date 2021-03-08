@@ -9,7 +9,7 @@
 #import "HiParametesReceiveViewController.h"
 #import "HiRouterManager.h"
 
-@interface HiParametesReceiveViewController ()<HiRouterPageProtocol>
+@interface HiParametesReceiveViewController ()
 @property (nonatomic,strong) UILabel *receiveLabel;
 
 @end

@@ -9,46 +9,31 @@
 #import <Foundation/Foundation.h>
 #import "HiRouterDefine.h"
 
-#pragma mark - page
-@protocol HiRouterPageProtocol <NSObject>
+@protocol HiInit <NSObject>
+
++ (instancetype)hi_init:(id)parameters;
+
+@end
+
+@protocol HiNetWork <HiInit>
 
 @optional
-- (void)recivedParameters:(id)parameters;
+// 得到 response (回调)
+- (void)hi_response:(id)response;
 
-- (void)recivedCallBack:(id)callBack;
+// 得到 request (请求)
+- (void)hi_request:(id)request;
 
 @end
 
-#pragma mark - view model
-@protocol HiRouterViewModel <NSObject>
+@protocol HiFilter <NSObject>
 
 @optional
-- (void) received:(id)receive;
+- (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters request:(id)request;
++ (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters request:(id)request;
+
+- (HiFilterTransitionBody)hiFilterTransitioningPath:(NSString *)path init:(id)parameters request:(id)request;
++ (HiFilterTransitionBody)hiFilterTransitioningPath:(NSString *)path init:(id)parameters request:(id)request;
 
 @end
 
-#pragma mark - filter
-@protocol HiFilterProtocol <NSObject>
-
-@property (nonatomic,readonly) NSUInteger priority;
-@property (nonatomic,readonly) NSString *filterRegex;
-
-@property (nonatomic,copy) NSString *originPath;
-@property (nonatomic,readonly) NSString *forwardPath;
-
-@property (nonatomic,strong) id parameters;
-
-@end
-
-@protocol HiPageFilterProtocol <HiFilterProtocol>
-
-@property (nonatomic,readonly) HiRouterTransitioningAction transitioningAction;
-@property (nonatomic,readonly) UIModalPresentationStyle modalPresentationStyle;
-
-@end
-
-@protocol HiNetworkFilterProtocol <HiFilterProtocol>
-
-@property (nonatomic,readonly) NSString *result; // like method: get post put ...
-
-@end

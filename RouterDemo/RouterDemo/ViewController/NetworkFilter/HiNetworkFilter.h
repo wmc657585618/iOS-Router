@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiNetworkFilter : NSObject<HiNetworkFilterProtocol>
+@interface HiNetworkFilter : NSObject
 
 @property (nonatomic,copy) NSString *filter;
 @property (nonatomic,copy) NSString *forward;

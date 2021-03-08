@@ -82,6 +82,5 @@
 
 - (void)sendBack {
 
-    [self hi_postData:self.textView.text];
 }
 @end

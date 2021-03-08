@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiViewModelReceiveView : UIView<HiRouterViewModel>
+@interface HiViewModelReceiveView : UIView
 
 @end
 

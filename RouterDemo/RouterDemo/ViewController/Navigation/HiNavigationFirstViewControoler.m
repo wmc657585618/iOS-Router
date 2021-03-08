@@ -28,8 +28,6 @@
 
 - (void)buttonClicked {
     
-//    [self hi_pushPath:NAV_SECONDE animated:true];
-    [self hi_removePath:NAV_FIRST];
 }
 
 /*

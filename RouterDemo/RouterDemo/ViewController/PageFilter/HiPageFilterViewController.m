@@ -10,7 +10,7 @@
 #import "HiRouterManager.h"
 #import "HiPageFilter.h"
 
-@interface HiPageFilterViewController ()<HiRouterPageProtocol>
+@interface HiPageFilterViewController ()
 @property (nonatomic,strong) HiPageFilter *pageSub1Filer;
 @property (nonatomic,strong) HiPageFilter *pageSub2Filer;
 @property (nonatomic,strong) HiPageFilter *pageAllFiler;
@@ -74,10 +74,6 @@
     [filterAllSub setTitle:@"click sub1 or sub2" forState:UIControlStateSelected];
     [filterAllSub addTarget:self action:@selector(filterAll:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:filterAllSub];
-    
-    [HiRouter.instance registPageFilter:self.pageSub1Filer];
-    [HiRouter.instance registPageFilter:self.pageSub2Filer];
-    [HiRouter.instance registPageFilter:self.pageAllFiler];
 }
 
 - (UIButton *)buttonWithTiltel:(NSString *)title y:(CGFloat)y {
@@ -95,15 +91,12 @@
 }
 
 - (void)push2Erro {
-    [[HiRouter.instance build:PAGE_ERROR fromViewController:self action:HiRouterAction.push] buildAnimated:true completion:nil];
 }
 
 - (void)push2Sub1 {
-    [[HiRouter.instance build:PAGE_SUB_SUB1 fromViewController:self action:HiRouterAction.push] buildAnimated:true completion:nil];
 }
 
 - (void)push2Sub2 {
-    [[HiRouter.instance build:PAGE_SUB_SUB2 fromViewController:self action:HiRouterAction.push] buildAnimated:true completion:nil];
 }
 
 - (void)filterSub1:(UIButton *)button {

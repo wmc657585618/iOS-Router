@@ -9,7 +9,7 @@
 #import "HiRootViewController.h"
 #import "HiRootTableModel.h"
 
-@interface HiRootViewController ()<UITableViewDataSource,UITableViewDelegate,HiRouterPageProtocol>
+@interface HiRootViewController ()<UITableViewDataSource,UITableViewDelegate,HiInit>
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,copy) NSArray *dataSource;
@@ -102,7 +102,10 @@ static NSString *const cellID = @"HiRootViewController";
             break;
     }
 
-    [self hi_pushPath:path animated:true];
+}
+
++ (instancetype)hi_init:(id)parameters{
+    return [[self alloc] init];
 }
 
 @end

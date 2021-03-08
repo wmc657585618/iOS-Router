@@ -70,7 +70,6 @@
     [button addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];
     
     self.filter.filter = @"te";
-    [HiRouter.instance registNetworkFilter:self.filter];
     
     self.urlField = urlField;
     self.filterField = filterField;
@@ -82,10 +81,6 @@
     
     self.filter.forward = self.resultField.text;
     self.filter.filter = self.filterField.text;
-    
-    HiNetworkFilter *filter = (HiNetworkFilter *)[HiRouter.instance performURL:self.urlField.text parameters:nil];
-    
-    self.filterLabel.text = filter.forwardPath;
 }
 
 

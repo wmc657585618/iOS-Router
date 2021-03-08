@@ -9,7 +9,7 @@
 #import "HiParametesViewController.h"
 #import "HiRouterManager.h"
 
-@interface HiParametesViewController ()<HiRouterPageProtocol>
+@interface HiParametesViewController ()
 @property (nonatomic,strong) UITextView *textView;
 
 @end
@@ -46,8 +46,6 @@
 }
 
 - (void)post {
-
-    [self hi_pushPath:PARAMETES_MAIN_RECEIVE withParameters:self.textView.text animated:true];
 }
 
 @end

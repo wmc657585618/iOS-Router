@@ -7,39 +7,40 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HiRouterBuilder.h"
 #import "HiRouterProtocol.h"
+#import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@interface NSString (HiPathClass)
 
-@interface HiRouter : NSObject
-
-/**
- * instance
- */
-@property (readonly, nonatomic, class) HiRouter *instance;
-
-@property (readonly, nonatomic) NSDictionary<NSString *, NSString *> *routeDictionary;
-@property (readonly, nonatomic) NSDictionary<NSString *, id<HiPageFilterProtocol>> *pageFilters;
-@property (readonly, nonatomic) NSDictionary<NSString *, id<HiNetworkFilterProtocol>> *networkFilters;
-
-@property (readonly, nonatomic) NSMapTable<NSString *, UIViewController<HiRouterPageProtocol> *> *viewControllers;
-
-/** filte on or off, default is off*/
-@property (nonatomic,assign) BOOL pageFilte;
-
-/** filte on or off, default is off*/
-@property (nonatomic,assign) BOOL networkFilte;
-
-- (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary;
-
-/**
- regist filer
- */
-- (void) registPageFilter:(id<HiPageFilterProtocol>)filter;
-
-- (void) registNetworkFilter:(id<HiNetworkFilterProtocol>)filter;
+@property (nonatomic,strong) Class hi_class;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@interface NSObject (HiRouter)
+
++ (id)objectForPath:(NSString *)path;
+
++ (id)objectForPath:(NSString *)path withInitParameters:(id)parameters;
+
++ (id)objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
+
+- (id)objectForPath:(NSString *)path;
+
+- (id)objectForPath:(NSString *)path withInitParameters:(id)parameters;
+
+- (id)objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
+
+- (void)makeResponse:(id)response;
+
++ (void)registFilter:(id<HiFilter>)filter;
+
+@end
+
+
+@interface UIViewController (HiRouter)
+
+- (id)pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated;
+
+- (id)presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion;
+@end
+

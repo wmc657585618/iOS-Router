@@ -9,7 +9,7 @@
 #import "HiCallBackViewController.h"
 #import "HiRouterManager.h"
 
-@interface HiCallBackViewController ()<HiRouterPageProtocol>
+@interface HiCallBackViewController ()
 @property (nonatomic,strong) UILabel *receiveLabel;
 
 @end
@@ -53,7 +53,6 @@
 
 - (void)push {
 
-    [self hi_pushPath:CALLBACK_SUB animated:true];
 }
 
 - (void)recivedCallBack:(id)callBack {

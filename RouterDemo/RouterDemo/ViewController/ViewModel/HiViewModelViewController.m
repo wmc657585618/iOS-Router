@@ -47,7 +47,6 @@
     self.receiveView.frame = CGRectMake(x, CGRectGetMaxY(self.vmView.frame) + 40, width, 224);
     [self.view addSubview:self.receiveView];
     
-    [self.receiveView hi_bindObject:self.vmView];
 }
 
 @end

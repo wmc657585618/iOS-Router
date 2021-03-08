@@ -27,7 +27,7 @@
 
 - (void)buttonClicked {
     
-    [self hi_pushPath:NAV_FOURTH animated:true];
+    
 }
 
 @end

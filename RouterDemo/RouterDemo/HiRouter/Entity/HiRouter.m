@@ -7,166 +7,178 @@
 //
 
 #import "HiRouter.h"
+#import <objc/runtime.h>
 
-@interface HiRouter ()<NSCopying,NSMutableCopying>
+@implementation NSString (HiPathClass)
 
-/**
- route dictionary
- */
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSString *> *pRouteDictionary;
+- (Class)hi_class {
+    SEL key = @selector(hi_class);
+    return objc_getAssociatedObject(self, key);;
+}
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, id<HiPageFilterProtocol>> *pPageFilters;
-@property (strong, nonatomic) NSMutableDictionary<NSString *, id<HiNetworkFilterProtocol>> *pNetworFilters;
-@property (nonatomic,strong) NSMapTable<NSString *, UIViewController<HiRouterPageProtocol> *> *pViewControllers;
-
-@property (strong, nonatomic) NSLock *pageFilterLock;
-@property (strong, nonatomic) NSLock *networkFilterLock;
-@property (strong, nonatomic) NSLock *routerLock;
+- (void)setHi_class:(Class)hi_class {
+    SEL key = @selector(hi_class);
+    objc_setAssociatedObject(self, key, hi_class, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 @end
 
-static HiRouter *_instance = nil;
+@interface HiRouterDelegate : NSObject
 
-@implementation HiRouter
+@property (nonatomic, weak) id<HiNetWork> delegate;
 
-/*********** instance router ***********/
-+ (instancetype)instance {
+@end
 
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+@implementation HiRouterDelegate
 
-        _instance = (HiRouter *) [[super allocWithZone:NULL] init];
-        _instance.pageFilte = false;
-        _instance.networkFilte = false;
-    });
+@end
 
-    return _instance;
-}
+@interface NSObject (_HiRouter)<HiNetWork>
 
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
+@property (nonatomic, weak) id<HiNetWork> hi_router_delegate;
+@property (nonatomic, strong, readonly) HiRouterDelegate *hi_router_weak;
 
-    return HiRouter.instance;
-}
+@end
 
-- (id)copyWithZone:(NSZone *)zone {
+static id<HiFilter> _filter = nil;
 
-    return HiRouter.instance;
-}
+@implementation NSObject (HiRouter)
 
-- (id)mutableCopyWithZone:(NSZone *)zone {
-
-    return HiRouter.instance;
-}
-
-/*********** instance router ***********/
-
-/****************** lazy ******************/
-- (NSMutableDictionary<NSString *,NSString *> *)pRouteDictionary {
-    
-    if (!_pRouteDictionary) {
-        _pRouteDictionary = [NSMutableDictionary dictionary];
-    }
-    return _pRouteDictionary;
-}
-
-- (NSMutableDictionary *)pPageFilters {
-    
-    if (!_pPageFilters) {
-        _pPageFilters = [[NSMutableDictionary alloc] init];
-    }
-    return _pPageFilters;
-}
-
-- (NSMutableDictionary *)pNetworFilters {
-    
-    if (!_pNetworFilters) {
-        _pNetworFilters = [[NSMutableDictionary alloc] init];
-    }
-    return _pNetworFilters;
-}
-
-- (NSLock *)pageFilterLock {
-    
-    if (!_pageFilterLock) {
-        _pageFilterLock = [[NSLock alloc] init];
-    }
-    return _pageFilterLock;
-}
-
-- (NSLock *)networkFilterLock {
-    
-    if (!_networkFilterLock) {
-        _networkFilterLock = [[NSLock alloc] init];
-    }
-    return _networkFilterLock;
-}
-
-- (NSLock *)routerLock {
-    
-    if (!_routerLock) {
-        _routerLock = [[NSLock alloc] init];
-    }
-    return _routerLock;
-}
-
-- (NSMapTable *)pViewControllers {
-    if (!_pViewControllers) _pViewControllers = [NSMapTable mapTableWithKeyOptions:NSHashTableStrongMemory valueOptions:NSHashTableWeakMemory];
-    return _pViewControllers;
-}
-
-/****************** lazy ******************/
-
-#pragma mark - public
-/*********** regist router ***********/
-- (void) registRoute:(NSDictionary<NSString *, NSString *> *)routeDictionary {
-    
-    [self.routerLock lock];
-    
-    [self.pRouteDictionary addEntriesFromDictionary:routeDictionary];
-    
-    [self.routerLock unlock];
-}
-
-- (void)registPageFilter:(id<HiPageFilterProtocol>)filter {
-    
-    [self.pageFilterLock lock];
-    
-    if ([filter conformsToProtocol:@protocol(HiPageFilterProtocol)] && filter.filterRegex.length > 0) {
-        [self.pPageFilters setObject:filter forKey:filter.filterRegex];
+- (HiRouterDelegate *)hi_router_weak {
+    SEL key = @selector(hi_router_delegate);
+    HiRouterDelegate *_delegate = objc_getAssociatedObject(self, key);
+    if (!_delegate) {
+        _delegate = [[HiRouterDelegate alloc] init];
+        objc_setAssociatedObject(self, key, _delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
-    [self.pageFilterLock unlock];
+    return _delegate;
 }
 
-- (void)registNetworkFilter:(id<HiNetworkFilterProtocol>)filter {
+- (id<HiNetWork>)hi_router_delegate {
+    return self.hi_router_weak.delegate;
+}
 
-    [self.networkFilterLock lock];
-    
-    if ([filter conformsToProtocol:@protocol(HiNetworkFilterProtocol)] && filter.filterRegex > 0) {
-        [self.pNetworFilters setObject:filter forKey:filter.filterRegex];
+- (void)setHi_router_delegate:(id<HiNetWork>)hi_router_delegate {
+    self.hi_router_weak.delegate = hi_router_delegate;
+}
+
+/// MARK:- instance
+- (id)objectForPath:(NSString *)path {
+    return [self objectForPath:path withInitParameters:nil];
+}
+
+- (id)objectForPath:(NSString *)path withInitParameters:(id)parameters {
+    NSObject<HiNetWork> *objc = [NSObject objectForPath:path withInitParameters:parameters request:nil];
+    if ([self respondsToSelector:@selector(hi_response:)]) objc.hi_router_delegate = self; // 实现了+delegate
+    return objc;
+}
+
+- (id)objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
+    NSObject<HiNetWork> *objc =  [NSObject objectForPath:path withInitParameters:parameters request:request];
+    if ([self respondsToSelector:@selector(hi_response:)]) objc.hi_router_delegate = self;
+    return objc;
+}
+
+- (void)makeResponse:(id)response {
+    if ([self.hi_router_delegate respondsToSelector:@selector(hi_response:)]) {
+        [self.hi_router_delegate hi_response:response];
+    }
+}
+
+/// MARK:- class
++ (id)forwardWithPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
+    id<HiNetWork> objc = [self objectForClass:path.hi_class withParameters:parameters];
+    if (request && [objc respondsToSelector:@selector(hi_request:)]) [objc hi_request:request];
+    return objc;
+}
+
++ (id)objectForClass:(Class<HiNetWork>)cla withParameters:(id)parameters{
+    if ([cla respondsToSelector:@selector(hi_init:)]) return [cla hi_init:parameters];
+    return nil;
+}
+
+
++ (id)objectForPath:(NSString *)path {
+    return [self objectForPath:path withInitParameters:nil request:nil];
+}
+
++ (id)objectForPath:(NSString *)path withInitParameters:(id)parameters{
+    return [self objectForPath:path withInitParameters:parameters request:nil];
+}
+
++ (id)objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
+    if ([_filter respondsToSelector:@selector(hiFilterPath:init:request:)]) {// 有拦截
+        HiFilterBody forward = [_filter hiFilterPath:path init:parameters request:request];
+        return [self forwardWithPath:forward.path withInitParameters:forward.parameters request:forward.request];
     }
     
-    [self.networkFilterLock unlock];
+    return [self forwardWithPath:path withInitParameters:parameters request:request];
 }
 
-- (NSDictionary<NSString *,NSString *> *)routeDictionary {
-    
-    return self.pRouteDictionary;
++ (void)registFilter:(id<HiFilter>)filter {
+    _filter = filter;
 }
 
-- (NSDictionary *)pageFilters {
+@end
+
+
+@implementation UIViewController (HiRouter)
+
+- (id)pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated {
     
-    return self.pPageFilters;
+    return [self transitioning:HiRouterTransitionPush
+                          path:path
+                initParameters:parameters
+                       request:request
+                      animated:animated
+                    completion:nil];
 }
 
-- (NSDictionary<NSString *,id<HiNetworkFilterProtocol>> *)networkFilters {
+- (id)presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion {
     
-    return self.pNetworFilters;
+    return [self transitioning:HiRouterTransitionPresent
+                          path:path
+                initParameters:parameters
+                       request:request
+                      animated:animated
+                    completion:completion];
 }
 
-- (NSMapTable<NSString *,UIViewController<HiRouterPageProtocol> *> *)viewControllers {
+- (id)transitioning:(HiRouterTransition)transitioning path:(NSString *)path initParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion {
     
-    return self.pViewControllers;
+    UIViewController *viewController = nil;
+    HiRouterTransition _transitioning = transitioning;
+    if ([_filter respondsToSelector:@selector(hiFilterTransitioningPath:init:request:)]) {
+        
+        HiFilterTransitionBody body = [_filter hiFilterTransitioningPath:path init:parameters request:request];
+        viewController = [self objectForPath:body.path withInitParameters:body.parameters request:body.request];
+        _transitioning = body.transition;
+        
+    } else {
+        viewController = [self objectForPath:path withInitParameters:parameters request:request];
+    }
+    
+    if ([viewController isKindOfClass:UIViewController.class]) {
+        
+        switch (_transitioning) {
+                
+            case HiRouterTransitionNone:
+                break;
+
+            case HiRouterTransitionPush:
+            {
+                [self.navigationController pushViewController:viewController animated:animated];
+            }
+                break;
+            case HiRouterTransitionPresent:
+            {
+                [self presentViewController:viewController animated:animated completion:completion];
+            }
+                break;
+        }
+    }
+    return viewController;
 }
 
 @end

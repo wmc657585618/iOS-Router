@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiPageFilter : NSObject<HiPageFilterProtocol>
+@interface HiPageFilter : NSObject
 @property (nonatomic,copy) NSString *regex;
 - (instancetype)initWithFilerRegex:(NSString *)regex;
 @end
