@@ -18,14 +18,14 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     // regist route
+    [HiRouterPath loadData];
+    
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     self.window.backgroundColor = UIColor.whiteColor;
     
-    @"path".hi_class = HiRootViewController.class;
-    self.window.rootViewController = [NSObject objectForPath:@"path" withInitParameters:nil];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[NSObject objectForPath:root_controller]];
     
     [self.window makeKeyAndVisible];
     

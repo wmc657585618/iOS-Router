@@ -1,100 +1,39 @@
 #import "HiRouterPath.h"
+#import "HiRouter.h"
 
-// in HiParametesViewController.h
-NSString *const PARAMETES_MAIN= @"parametes/main";
-
-NSString *const HiParametesViewController= @"HiParametesViewController";
-
-// in HiParametesReceiveViewController.h
-NSString *const PARAMETES_MAIN_RECEIVE= @"parametes/main/receive";
-
-NSString *const HiParametesReceiveViewController= @"HiParametesReceiveViewController";
-
-// in HiCallBackViewController.h
-NSString *const CALLBACK_MAIN= @"callback/main";
-
-NSString *const HiCallBackViewController= @"HiCallBackViewController";
-
-// in HiRootViewController.h
-NSString *const ROOT= @"root";
-
-NSString *const HiRootViewController= @"HiRootViewController";
-
-// in HiCallBackSubViewController.h
-NSString *const CALLBACK_SUB= @"callback/sub";
-
-NSString *const HiCallBackSubViewController= @"HiCallBackSubViewController";
-
-// in HiNetworkFilterViewController.h
-NSString *const NETWORK_MAIN= @"network/main";
-
-NSString *const HiNetworkFilterViewController= @"HiNetworkFilterViewController";
-
-// in HiPageFilterViewController.h
-NSString *const PAGE_MAIN= @"page/main";
-
-NSString *const HiPageFilterViewController= @"HiPageFilterViewController";
-
-// in HiPageSub1ViewController.h
-NSString *const PAGE_SUB_SUB1= @"page/sub/sub1";
-
-NSString *const HiPageSub1ViewController= @"HiPageSub1ViewController";
-
-// in HiPageSub2ViewController.h
-NSString *const PAGE_SUB_SUB2= @"page/sub/sub2";
-
-NSString *const HiPageSub2ViewController= @"HiPageSub2ViewController";
-
-// in HiPageErrorViewController.h
-NSString *const PAGE_ERROR= @"page/error";
-
-NSString *const HiPageErrorViewController= @"HiPageErrorViewController";
-
-// in HiViewModelViewController.h
-NSString *const VIEWMODEL= @"viewmodel";
-
-NSString *const HiViewModelViewController= @"HiViewModelViewController";
-
-// in HiNavigationFirstViewControoler.h
-NSString *const NAV_FIRST= @"nav/first";
-
-NSString *const HiNavigationFirstViewControoler= @"HiNavigationFirstViewControoler";
-
-// in HiNavigationFourthViewControoler.h
-NSString *const NAV_FOURTH= @"nav/fourth";
-
-NSString *const HiNavigationFourthViewControoler= @"HiNavigationFourthViewControoler";
-
-// in HiNavigationThirdViewControoler.h
-NSString *const NAV_THIRD= @"nav/third";
-
-NSString *const HiNavigationThirdViewControoler= @"HiNavigationThirdViewControoler";
-
-// in HiNavigationSecondViewControoler.h
-NSString *const NAV_SECONDE= @"nav/seconde";
-
-NSString *const HiNavigationSecondViewControoler= @"HiNavigationSecondViewControoler";
-
+NSString *const viewmodel = @"viewmodel";
+NSString *const page_sub_sub1 = @"page/sub/sub1";
+NSString *const page_error = @"page/error";
+NSString *const page_sub_sub2 = @"page/sub/sub2";
+NSString *const page_main = @"page/main";
+NSString *const root_controller = @"root/controller";
+NSString *const nav_fourth = @"nav/fourth";
+NSString *const nav_first = @"nav/first";
+NSString *const nav_seconde = @"nav/seconde";
+NSString *const nav_third = @"nav/third";
+NSString *const parametes_main_receive = @"parametes/main/receive";
+NSString *const parametes_main = @"parametes/main";
+NSString *const callback_main = @"callback/main";
+NSString *const callback_sub = @"callback/sub";
+NSString *const network_main = @"network/main";
 @implementation HiRouterPath
 
-+ (NSDictionary *)pathDictionary {
-	return @{
-			PARAMETES_MAIN: @"HiParametesViewController",
-			PARAMETES_MAIN_RECEIVE: @"HiParametesReceiveViewController",
-			CALLBACK_MAIN: @"HiCallBackViewController",
-			ROOT: @"HiRootViewController",
-			CALLBACK_SUB: @"HiCallBackSubViewController",
-			NETWORK_MAIN: @"HiNetworkFilterViewController",
-			PAGE_MAIN: @"HiPageFilterViewController",
-			PAGE_SUB_SUB1: @"HiPageSub1ViewController",
-			PAGE_SUB_SUB2: @"HiPageSub2ViewController",
-			PAGE_ERROR: @"HiPageErrorViewController",
-			VIEWMODEL: @"HiViewModelViewController",
-			NAV_FIRST: @"HiNavigationFirstViewControoler",
-			NAV_FOURTH: @"HiNavigationFourthViewControoler",
-			NAV_THIRD: @"HiNavigationThirdViewControoler",
-			NAV_SECONDE: @"HiNavigationSecondViewControoler",
-			};
++ (void)loadData {
+	viewmodel.hi_class = NSClassFromString(@"HiViewModelViewController");
+	page_sub_sub1.hi_class = NSClassFromString(@"HiPageSub1ViewController");
+	page_error.hi_class = NSClassFromString(@"HiPageErrorViewController");
+	page_sub_sub2.hi_class = NSClassFromString(@"HiPageSub2ViewController");
+	page_main.hi_class = NSClassFromString(@"HiPageFilterViewController");
+	root_controller.hi_class = NSClassFromString(@"HiRootViewController");
+	nav_fourth.hi_class = NSClassFromString(@"HiNavigationFourthViewControoler");
+	nav_first.hi_class = NSClassFromString(@"HiNavigationFirstViewControoler");
+	nav_seconde.hi_class = NSClassFromString(@"HiNavigationSecondViewControoler");
+	nav_third.hi_class = NSClassFromString(@"HiNavigationThirdViewControoler");
+	parametes_main_receive.hi_class = NSClassFromString(@"HiParametesReceiveViewController");
+	parametes_main.hi_class = NSClassFromString(@"HiParametesViewController");
+	callback_main.hi_class = NSClassFromString(@"HiCallBackViewController");
+	callback_sub.hi_class = NSClassFromString(@"HiCallBackSubViewController");
+	network_main.hi_class = NSClassFromString(@"HiNetworkFilterViewController");
 }
 
 @end

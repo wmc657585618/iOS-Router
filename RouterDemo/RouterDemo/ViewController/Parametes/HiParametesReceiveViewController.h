@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiParametesReceiveViewController : HiBaseViewController
+@Router(parametes/main/receive) HiParametesReceiveViewController : HiBaseViewController
 
 @end
 

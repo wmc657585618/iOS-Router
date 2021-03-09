@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiNavigationThirdViewControoler : HiBaseViewController
+@Router(nav/third) HiNavigationThirdViewControoler : HiBaseViewController
 
 @end
 

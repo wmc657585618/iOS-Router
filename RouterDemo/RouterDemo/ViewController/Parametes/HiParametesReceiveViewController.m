@@ -43,10 +43,9 @@
     [self.view addSubview:self.receiveLabel];
 }
 
-- (void)recivedParameters:(id)parameters {
+- (void)hi_request:(id)request {
+    self.receiveLabel.text = request;
     
-    NSString *string = parameters;
-    self.receiveLabel.text = string;
 }
 
 @end

@@ -46,6 +46,7 @@
 }
 
 - (void)post {
+    [self pushPath:parametes_main_receive withInitParameters:nil request:self.textView.text animated:true];
 }
 
 @end

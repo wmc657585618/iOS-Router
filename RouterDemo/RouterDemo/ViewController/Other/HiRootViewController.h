@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@Router(root) HiRootViewController : HiBaseViewController
+@Router(root/controller) HiRootViewController : HiBaseViewController
 
 @end
 

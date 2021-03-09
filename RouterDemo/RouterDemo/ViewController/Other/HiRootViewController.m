@@ -79,29 +79,30 @@ static NSString *const cellID = @"HiRootViewController";
     
     switch (model.type) {
         case HiRootTableModelTypeNetwork:
-            path = NETWORK_MAIN;
+            path = network_main;
             break;
         case HiRootTableModelTypePage:
-            path = PAGE_MAIN;
-
+            path = page_main;
+            
             break;
         case HiRootTableModelTypeCallBack:
-            path = CALLBACK_MAIN;
+            path = callback_main;
 
             break;
         case HiRootTableModelTypeParametes:
-            path = PARAMETES_MAIN;
+            path = parametes_main;
 
             break;
         case HiRootTableModelTypeViewModel:
-            path = VIEWMODEL;
+            path = viewmodel;
 
             break;
         case HiRootTableModelTypeNavigation:
-            path = NAV_FIRST;
+            path = nav_first;
             break;
     }
 
+    [self pushPath:path withInitParameters:nil request:nil animated:true];
 }
 
 + (instancetype)hi_init:(id)parameters{

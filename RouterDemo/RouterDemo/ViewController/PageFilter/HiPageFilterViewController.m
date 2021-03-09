@@ -101,12 +101,12 @@
 
 - (void)filterSub1:(UIButton *)button {
     button.selected = !button.isSelected;
-    self.pageSub1Filer.regex = button.selected ? PAGE_SUB_SUB1 : @"none";
+    
 }
 
 - (void)filterSub2:(UIButton *)button {
     button.selected = !button.isSelected;
-    self.pageSub2Filer.regex = button.selected ? PAGE_SUB_SUB2 : @"none";
+    
 }
 
 - (void)filterAll:(UIButton *)button {

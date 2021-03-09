@@ -1,37 +1,52 @@
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-extern NSString *const PARAMETES_MAIN; // in HiParametesViewController.h
+/** in HiViewModelViewController.h */
+extern NSString *const viewmodel;
 
-extern NSString *const PARAMETES_MAIN_RECEIVE; // in HiParametesReceiveViewController.h
+/** in HiPageSub1ViewController.h */
+extern NSString *const page_sub_sub1;
 
-extern NSString *const CALLBACK_MAIN; // in HiCallBackViewController.h
+/** in HiPageErrorViewController.h */
+extern NSString *const page_error;
 
-extern NSString *const ROOT; // in HiRootViewController.h
+/** in HiPageSub2ViewController.h */
+extern NSString *const page_sub_sub2;
 
-extern NSString *const CALLBACK_SUB; // in HiCallBackSubViewController.h
+/** in HiPageFilterViewController.h */
+extern NSString *const page_main;
 
-extern NSString *const NETWORK_MAIN; // in HiNetworkFilterViewController.h
+/** in HiRootViewController.h */
+extern NSString *const root_controller;
 
-extern NSString *const PAGE_MAIN; // in HiPageFilterViewController.h
+/** in HiNavigationFourthViewControoler.h */
+extern NSString *const nav_fourth;
 
-extern NSString *const PAGE_SUB_SUB1; // in HiPageSub1ViewController.h
+/** in HiNavigationFirstViewControoler.h */
+extern NSString *const nav_first;
 
-extern NSString *const PAGE_SUB_SUB2; // in HiPageSub2ViewController.h
+/** in HiNavigationSecondViewControoler.h */
+extern NSString *const nav_seconde;
 
-extern NSString *const PAGE_ERROR; // in HiPageErrorViewController.h
+/** in HiNavigationThirdViewControoler.h */
+extern NSString *const nav_third;
 
-extern NSString *const VIEWMODEL; // in HiViewModelViewController.h
+/** in HiParametesReceiveViewController.h */
+extern NSString *const parametes_main_receive;
 
-extern NSString *const NAV_FIRST; // in HiNavigationFirstViewControoler.h
+/** in HiParametesViewController.h */
+extern NSString *const parametes_main;
 
-extern NSString *const NAV_FOURTH; // in HiNavigationFourthViewControoler.h
+/** in HiCallBackViewController.h */
+extern NSString *const callback_main;
 
-extern NSString *const NAV_THIRD; // in HiNavigationThirdViewControoler.h
+/** in HiCallBackSubViewController.h */
+extern NSString *const callback_sub;
 
-extern NSString *const NAV_SECONDE; // in HiNavigationSecondViewControoler.h
+/** in HiNetworkFilterViewController.h */
+extern NSString *const network_main;
 
 @interface HiRouterPath : NSObject
 
-@property (nonatomic, readonly, class) NSDictionary *pathDictionary;
++ (void)loadData;
 
 @end
