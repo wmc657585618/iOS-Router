@@ -32,8 +32,8 @@
 - (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters request:(id)request;
 + (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters request:(id)request;
 
-- (HiFilterTransitionBody)hiFilterTransitioningPath:(NSString *)path init:(id)parameters request:(id)request;
-+ (HiFilterTransitionBody)hiFilterTransitioningPath:(NSString *)path init:(id)parameters request:(id)request;
+- (HiFilterTransitionBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters request:(id)request;
++ (HiFilterTransitionBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters request:(id)request;
 
 @end
 

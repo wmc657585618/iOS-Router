@@ -35,7 +35,6 @@
 
 @interface NSObject (_HiRouter)<HiNetWork>
 
-@property (nonatomic, weak) id<HiNetWork> hi_router_delegate;
 @property (nonatomic, strong, readonly) HiRouterDelegate *hi_router_weak;
 
 @end
@@ -63,7 +62,8 @@ static id<HiFilter> _filter = nil;
     self.hi_router_weak.delegate = hi_router_delegate;
 }
 
-/// MARK:- instance
+/// MARK:- init
+/// MARK: instance
 - (id)objectForPath:(NSString *)path {
     return [self objectForPath:path withInitParameters:nil];
 }
@@ -80,13 +80,7 @@ static id<HiFilter> _filter = nil;
     return objc;
 }
 
-- (void)makeResponse:(id)response {
-    if ([self.hi_router_delegate respondsToSelector:@selector(hi_response:)]) {
-        [self.hi_router_delegate hi_response:response];
-    }
-}
-
-/// MARK:- class
+/// MARK: class
 + (id)forwardWithPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
     id<HiNetWork> objc = [self objectForClass:path.hi_class withParameters:parameters];
     if (request && [objc respondsToSelector:@selector(hi_request:)]) [objc hi_request:request];
@@ -116,8 +110,20 @@ static id<HiFilter> _filter = nil;
     return [self forwardWithPath:path withInitParameters:parameters request:request];
 }
 
+/// MARK:- filter
 + (void)registFilter:(id<HiFilter>)filter {
     _filter = filter;
+}
+
+/// MARK:- other
+- (void)makeResponse:(id)response {
+    if ([self.hi_router_delegate respondsToSelector:@selector(hi_response:)]) {
+        [self.hi_router_delegate hi_response:response];
+    }
+}
+
+- (void)bindObject:(id)object {
+    self.hi_router_delegate = object;
 }
 
 @end
@@ -127,33 +133,34 @@ static id<HiFilter> _filter = nil;
 
 - (id)pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated {
     
-    return [self transitioning:HiRouterTransitionPush
+    return [self transition:HiRouterTransitionPush
                           path:path
                 initParameters:parameters
                        request:request
+         modalPresentationStyle:UIModalPresentationFullScreen
                       animated:animated
                     completion:nil];
 }
 
 - (id)presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion {
     
-    return [self transitioning:HiRouterTransitionPresent
+    return [self transition:HiRouterTransitionPresent
                           path:path
                 initParameters:parameters
                        request:request
+            modalPresentationStyle:UIModalPresentationFullScreen
                       animated:animated
                     completion:completion];
 }
 
-- (id)transitioning:(HiRouterTransition)transitioning path:(NSString *)path initParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion {
-    
+- (id)transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters request:(id)request modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
     UIViewController *viewController = nil;
-    HiRouterTransition _transitioning = transitioning;
-    if ([_filter respondsToSelector:@selector(hiFilterTransitioningPath:init:request:)]) {
+    HiRouterTransition _transition = transition;
+    if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:request:)]) {
         
-        HiFilterTransitionBody body = [_filter hiFilterTransitioningPath:path init:parameters request:request];
+        HiFilterTransitionBody body = [_filter hiFilterTransition:transition path:path init:parameters request:request];
         viewController = [self objectForPath:body.path withInitParameters:body.parameters request:body.request];
-        _transitioning = body.transition;
+        _transition = body.transition;
         
     } else {
         viewController = [self objectForPath:path withInitParameters:parameters request:request];
@@ -161,13 +168,14 @@ static id<HiFilter> _filter = nil;
     
     if ([viewController isKindOfClass:UIViewController.class]) {
         
-        switch (_transitioning) {
+        switch (_transition) {
                 
             case HiRouterTransitionNone:
                 break;
 
             case HiRouterTransitionPush:
             {
+                viewController.modalPresentationStyle = modalPresentationStyle;
                 [self.navigationController pushViewController:viewController animated:animated];
             }
                 break;
