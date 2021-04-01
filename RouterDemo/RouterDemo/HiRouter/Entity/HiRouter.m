@@ -158,7 +158,7 @@ static id<HiFilter> _filter = nil;
     HiRouterTransition _transition = transition;
     if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:request:)]) {
         
-        HiFilterTransitionBody body = [_filter hiFilterTransition:transition path:path init:parameters request:request];
+        HiFilterBody body = [_filter hiFilterTransition:transition path:path init:parameters request:request];
         viewController = [self hi_objectForPath:body.path withInitParameters:body.parameters request:body.request];
         _transition = body.transition;
         
