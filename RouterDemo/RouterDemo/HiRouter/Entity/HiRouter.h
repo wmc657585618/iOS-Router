@@ -18,18 +18,18 @@
 
 @interface NSObject (HiRouter)
 
-+ (instancetype)objectForPath:(NSString *)path;
++ (instancetype)hi_instanceForPath:(NSString *)path;
 
-+ (instancetype)objectForPath:(NSString *)path withInitParameters:(id)parameters;
++ (instancetype)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters;
 
-+ (instancetype)objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
++ (instancetype)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
 
-/// instance 并添加回调 self.
-- (id)objectForPath:(NSString *)path;
+/// instance 并添加回调给 self.
+- (id)hi_objectForPath:(NSString *)path;
 
-- (id)objectForPath:(NSString *)path withInitParameters:(id)parameters;
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters;
 
-- (id)objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
 
 @property (nonatomic, weak) id<HiNetWork> hi_router_delegate;
 
@@ -47,11 +47,11 @@
 
 @interface UIViewController (HiRouter)
 
-- (id)pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated;
+- (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated;
 
-- (id)presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion;
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion;
 
-- (id)transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters request:(id)request modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion;
+- (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters request:(id)request modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion;
 
 @end
 

@@ -64,18 +64,18 @@ static id<HiFilter> _filter = nil;
 
 /// MARK:- init
 /// MARK: instance
-- (id)objectForPath:(NSString *)path {
-    return [self objectForPath:path withInitParameters:nil];
+- (id)hi_objectForPath:(NSString *)path {
+    return [self hi_objectForPath:path withInitParameters:nil];
 }
 
-- (id)objectForPath:(NSString *)path withInitParameters:(id)parameters {
-    NSObject<HiNetWork> *objc = [NSObject objectForPath:path withInitParameters:parameters request:nil];
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters {
+    NSObject<HiNetWork> *objc = [NSObject hi_instanceForPath:path withInitParameters:parameters request:nil];
     if ([self respondsToSelector:@selector(hi_response:)]) objc.hi_router_delegate = self; // 实现了+delegate
     return objc;
 }
 
-- (id)objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
-    NSObject<HiNetWork> *objc =  [NSObject objectForPath:path withInitParameters:parameters request:request];
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
+    NSObject<HiNetWork> *objc =  [NSObject hi_instanceForPath:path withInitParameters:parameters request:request];
     if ([self respondsToSelector:@selector(hi_response:)]) objc.hi_router_delegate = self;
     return objc;
 }
@@ -93,15 +93,15 @@ static id<HiFilter> _filter = nil;
 }
 
 
-+ (id)objectForPath:(NSString *)path {
-    return [self objectForPath:path withInitParameters:nil request:nil];
++ (id)hi_instanceForPath:(NSString *)path {
+    return [self hi_instanceForPath:path withInitParameters:nil request:nil];
 }
 
-+ (id)objectForPath:(NSString *)path withInitParameters:(id)parameters{
-    return [self objectForPath:path withInitParameters:parameters request:nil];
++ (id)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters{
+    return [self hi_instanceForPath:path withInitParameters:parameters request:nil];
 }
 
-+ (id)objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
++ (id)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
     if ([_filter respondsToSelector:@selector(hiFilterPath:init:request:)]) {// 有拦截
         HiFilterBody forward = [_filter hiFilterPath:path init:parameters request:request];
         return [self forwardWithPath:forward.path withInitParameters:forward.parameters request:forward.request];
@@ -131,9 +131,9 @@ static id<HiFilter> _filter = nil;
 
 @implementation UIViewController (HiRouter)
 
-- (id)pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated {
+- (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated {
     
-    return [self transition:HiRouterTransitionPush
+    return [self hi_transition:HiRouterTransitionPush
                           path:path
                 initParameters:parameters
                        request:request
@@ -142,9 +142,9 @@ static id<HiFilter> _filter = nil;
                     completion:nil];
 }
 
-- (id)presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion {
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion {
     
-    return [self transition:HiRouterTransitionPresent
+    return [self hi_transition:HiRouterTransitionPresent
                           path:path
                 initParameters:parameters
                        request:request
@@ -153,17 +153,17 @@ static id<HiFilter> _filter = nil;
                     completion:completion];
 }
 
-- (id)transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters request:(id)request modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
+- (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters request:(id)request modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
     UIViewController *viewController = nil;
     HiRouterTransition _transition = transition;
     if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:request:)]) {
         
         HiFilterTransitionBody body = [_filter hiFilterTransition:transition path:path init:parameters request:request];
-        viewController = [self objectForPath:body.path withInitParameters:body.parameters request:body.request];
+        viewController = [self hi_objectForPath:body.path withInitParameters:body.parameters request:body.request];
         _transition = body.transition;
         
     } else {
-        viewController = [self objectForPath:path withInitParameters:parameters request:request];
+        viewController = [self hi_objectForPath:path withInitParameters:parameters request:request];
     }
     
     if ([viewController isKindOfClass:UIViewController.class]) {
