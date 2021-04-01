@@ -23,19 +23,23 @@
 
 @end
 
-@interface HiRouterDelegate : NSObject
+@interface HiRouterProperty : NSObject
 
 @property (nonatomic, weak) id<HiNetWork> delegate;
+@property (nonatomic, copy) id (^block) (id parameters);
 
 @end
 
-@implementation HiRouterDelegate
+@implementation HiRouterProperty
 
 @end
 
 @interface NSObject (_HiRouter)<HiNetWork>
 
-@property (nonatomic, strong, readonly) HiRouterDelegate *hi_router_weak;
+@property (nonatomic, strong, readonly) HiRouterProperty *hi_router_property;
+
+@property (nonatomic, weak) id<HiNetWork> hi_router_delegate;
+@property (nonatomic, copy) id (^hi_router_block) (id parameters);
 
 @end
 
@@ -43,23 +47,31 @@ static id<HiFilter> _filter = nil;
 
 @implementation NSObject (HiRouter)
 
-- (HiRouterDelegate *)hi_router_weak {
+- (HiRouterProperty *)hi_router_property {
     SEL key = @selector(hi_router_delegate);
-    HiRouterDelegate *_delegate = objc_getAssociatedObject(self, key);
-    if (!_delegate) {
-        _delegate = [[HiRouterDelegate alloc] init];
-        objc_setAssociatedObject(self, key, _delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    HiRouterProperty *_router_property = objc_getAssociatedObject(self, key);
+    if (!_router_property) {
+        _router_property = [[HiRouterProperty alloc] init];
+        objc_setAssociatedObject(self, key, _router_property, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
-    return _delegate;
+    return _router_property;
 }
 
 - (id<HiNetWork>)hi_router_delegate {
-    return self.hi_router_weak.delegate;
+    return self.hi_router_property.delegate;
 }
 
 - (void)setHi_router_delegate:(id<HiNetWork>)hi_router_delegate {
-    self.hi_router_weak.delegate = hi_router_delegate;
+    self.hi_router_property.delegate = hi_router_delegate;
+}
+
+- (void)setHi_router_block:(id (^)(id))hi_router_block {
+    self.hi_router_property.block = hi_router_block;
+}
+
+- (id (^)(id))hi_router_block {
+    return self.hi_router_property.block;
 }
 
 /// MARK:- init
@@ -77,6 +89,24 @@ static id<HiFilter> _filter = nil;
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
     NSObject<HiNetWork> *objc =  [NSObject hi_instanceForPath:path withInitParameters:parameters request:request];
     if ([self respondsToSelector:@selector(hi_response:)]) objc.hi_router_delegate = self;
+    return objc;
+}
+
+- (id)hi_objectForPath:(NSString *)path complete:(id(^)(id parameters))block {
+    NSObject<HiNetWork> *objc = [self hi_objectForPath:path withInitParameters:nil];
+    objc.hi_router_block = block;
+    return objc;
+}
+
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters complete:(id(^)(id parameters))block {
+    NSObject<HiNetWork> *objc = [NSObject hi_instanceForPath:path withInitParameters:parameters request:nil];
+    objc.hi_router_block = block;
+    return objc;
+}
+
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request complete:(id(^)(id parameters))block {
+    NSObject<HiNetWork> *objc =  [NSObject hi_instanceForPath:path withInitParameters:parameters request:request];
+    objc.hi_router_block = block;
     return objc;
 }
 
@@ -117,13 +147,15 @@ static id<HiFilter> _filter = nil;
 
 /// MARK:- other
 - (void)makeResponse:(id)response {
+    
+    if (self.hi_router_block) {
+        self.hi_router_block(response);
+        return;
+    }
+    
     if ([self.hi_router_delegate respondsToSelector:@selector(hi_response:)]) {
         [self.hi_router_delegate hi_response:response];
     }
-}
-
-- (void)bindObject:(id)object {
-    self.hi_router_delegate = object;
 }
 
 @end

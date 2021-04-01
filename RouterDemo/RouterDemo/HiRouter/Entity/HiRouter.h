@@ -31,14 +31,20 @@
 
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
 
-@property (nonatomic, weak) id<HiNetWork> hi_router_delegate;
+/// block
+- (id)hi_objectForPath:(NSString *)path complete:(id(^)(id parameters))block;
 
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters complete:(id(^)(id parameters))block;
+
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request complete:(id(^)(id parameters))block;
+
+/// 添加回调
+- (void)setHi_router_delegate:(id<HiNetWork>)hi_router_delegate;
+- (void)setHi_router_block:(id (^)(id))hi_router_block;
 
 /// 回调
+/// 优先 block
 - (void)makeResponse:(id)response;
-
-/// 绑定回调对象
-- (void)bindObject:(id)object;
 
 + (void)registFilter:(id<HiFilter>)filter;
 

@@ -43,8 +43,9 @@
     [self.view addSubview:self.receiveLabel];
 }
 
-- (void)hi_request:(id)request {
+- (id)hi_request:(id)request {
     self.receiveLabel.text = request;
+    return nil;
     
 }
 

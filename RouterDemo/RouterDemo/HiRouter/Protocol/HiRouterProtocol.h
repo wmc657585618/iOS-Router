@@ -19,10 +19,10 @@
 
 @optional
 // 得到 response (回调)
-- (void)hi_response:(id)response;
+- (id)hi_response:(id)response;
 
 // 得到 request (请求)
-- (void)hi_request:(id)request;
+- (id)hi_request:(id)request;
 
 @end
 
