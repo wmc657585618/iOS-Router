@@ -137,7 +137,7 @@ static id<HiFilter> _filter = nil;
                           path:path
                 initParameters:parameters
                        request:request
-         modalPresentationStyle:UIModalPresentationFullScreen
+         modalPresentationStyle:UIModalPresentationNone
                       animated:animated
                     completion:nil];
 }
@@ -149,6 +149,17 @@ static id<HiFilter> _filter = nil;
                 initParameters:parameters
                        request:request
             modalPresentationStyle:UIModalPresentationFullScreen
+                      animated:animated
+                    completion:completion];
+}
+
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
+    
+    return [self hi_transition:HiRouterTransitionPresent
+                          path:path
+                initParameters:parameters
+                       request:request
+            modalPresentationStyle:modalPresentationStyle
                       animated:animated
                     completion:completion];
 }

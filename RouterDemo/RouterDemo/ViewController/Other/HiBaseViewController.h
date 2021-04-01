@@ -12,6 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define Router(_var_) interface
+
 @interface HiBaseViewController : UIViewController<HiNetWork>
 
 @end

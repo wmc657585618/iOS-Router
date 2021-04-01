@@ -46,7 +46,4 @@ static inline HiFilterBody hiFilterTransitioningMake(NSString *path, id paramete
     return body;
 }
 
-#define Router(_var_) interface
-
-
 #endif /* HiRouterDefine_h */
