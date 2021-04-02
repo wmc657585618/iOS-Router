@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@Router(callback/main) HiCallBackViewController : HiBaseViewController
+@interface HiCallBackViewController : HiBaseViewController
 
 @end
 

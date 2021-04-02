@@ -12,7 +12,7 @@
 
 @end
 
-@implementation HiPageSub1ViewController
+@implementation_router(page/sub/sub1,HiPageSub1ViewController)
 
 - (void)viewDidLoad {
     [super viewDidLoad];

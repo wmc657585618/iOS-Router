@@ -12,7 +12,7 @@
 
 @end
 
-@implementation HiNavigationFourthViewControoler
+@implementation_router(nav/fourth,HiNavigationFourthViewControoler)
 
 - (void)viewDidLoad {
     [super viewDidLoad];

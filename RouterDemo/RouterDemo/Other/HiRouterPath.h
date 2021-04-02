@@ -45,8 +45,3 @@ extern NSString *const callback_sub;
 /** in HiNetworkFilterViewController.h */
 extern NSString *const network_main;
 
-@interface HiRouterPath : NSObject
-
-+ (void)loadData;
-
-@end

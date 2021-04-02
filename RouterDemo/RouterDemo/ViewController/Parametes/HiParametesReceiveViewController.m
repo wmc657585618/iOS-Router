@@ -14,7 +14,7 @@
 
 @end
 
-@implementation HiParametesReceiveViewController
+@implementation_router(parametes/main/receive,HiParametesReceiveViewController)
 
 - (UILabel *)receiveLabel {
     

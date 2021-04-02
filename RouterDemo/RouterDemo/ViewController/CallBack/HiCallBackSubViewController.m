@@ -7,14 +7,13 @@
 //
 
 #import "HiCallBackSubViewController.h"
-#import "HiRouterManager.h"
 
 @interface HiCallBackSubViewController ()
 @property (nonatomic,strong) UITextView *textView;
 
 @end
 
-@implementation HiCallBackSubViewController
+@implementation_router(callback/sub, HiCallBackSubViewController)
 
 - (void)viewDidLoad {
     [super viewDidLoad];

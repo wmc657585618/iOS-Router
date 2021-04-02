@@ -7,7 +7,6 @@
 //
 
 #import "HiNetworkFilterViewController.h"
-#import "HiRouterManager.h"
 #import "HiNetworkFilter.h"
 
 @interface HiNetworkFilterViewController ()
@@ -20,7 +19,7 @@
 
 @end
 
-@implementation HiNetworkFilterViewController
+@implementation_router(network/main,HiNetworkFilterViewController)
 
 - (HiNetworkFilter *)filter {
     

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@Router(viewmodel) HiViewModelViewController : HiBaseViewController
+@interface HiViewModelViewController : HiBaseViewController
 
 @end
 

@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HiRouterPath.h"
-#import "HiRouterManager.h"
+#import "HiAnnotation.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-#define Router(_var_) interface
 
 @interface HiBaseViewController : UIViewController<HiNetWork>
 

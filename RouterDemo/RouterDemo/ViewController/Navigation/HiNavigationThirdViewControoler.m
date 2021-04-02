@@ -12,7 +12,7 @@
 
 @end
 
-@implementation HiNavigationThirdViewControoler
+@implementation_router(nav/third,HiNavigationThirdViewControoler)
 
 - (void)viewDidLoad {
     [super viewDidLoad];

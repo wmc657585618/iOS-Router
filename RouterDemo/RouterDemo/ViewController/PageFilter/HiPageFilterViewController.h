@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@Router(page/main) HiPageFilterViewController : HiBaseViewController
+@interface HiPageFilterViewController : HiBaseViewController
 
 @end
 

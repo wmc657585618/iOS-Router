@@ -12,7 +12,7 @@
 
 @end
 
-@implementation HiNavigationSecondViewControoler
+@implementation_router(nav/seconde,HiNavigationSecondViewControoler)
 
 - (void)viewDidLoad {
     [super viewDidLoad];

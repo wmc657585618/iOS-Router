@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "HiRouterManager.h"
-#import "HiRouterPath.h"
+//#import "HiRouterManager.h"
+//#import "HiRouterPath.h"
 #import "HiRootViewController.h"
 
 @interface AppDelegate ()
@@ -18,8 +18,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // regist route
-    [HiRouterPath loadData];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
