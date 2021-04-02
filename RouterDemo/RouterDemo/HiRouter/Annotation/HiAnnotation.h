@@ -12,10 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #define Router(_url_,_class_) class _class_;\
-@interface _class_##HiAnnotation : NSObject @end\
-@implementation _class_##HiAnnotation\
-+ (void)load {@#_url_.hi_class = NSClassFromString(@#_class_);}\
-@end
+__attribute__((constructor)) static void hi_##_class_()\
+{@#_url_.hi_class = NSClassFromString(@#_class_);}
 
 @interface HiAnnotation : NSObject
 

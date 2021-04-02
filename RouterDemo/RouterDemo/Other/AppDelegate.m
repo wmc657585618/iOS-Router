@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-//#import "HiRouterManager.h"
-//#import "HiRouterPath.h"
 #import "HiRootViewController.h"
 
 @interface AppDelegate ()
