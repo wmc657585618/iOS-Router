@@ -13,7 +13,8 @@
 
 @end
 
-@implementation_router(callback/sub, HiCallBackSubViewController)
+@Router(callback/sub, HiCallBackSubViewController)
+@implementation HiCallBackSubViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -18,7 +18,8 @@
 
 static NSString *const cellID = @"HiRootViewController";
 
-@implementation_router(root/controller,HiRootViewController)
+@Router(root/controller,HiRootViewController)
+@implementation HiRootViewController
 
 - (UITableView *)tableView {
  

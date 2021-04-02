@@ -12,7 +12,8 @@
 
 @end
 
-@implementation_router(nav/first,HiNavigationFirstViewControoler)
+@Router(nav/first,HiNavigationFirstViewControoler)
+@implementation HiNavigationFirstViewControoler
 
 - (void)viewDidLoad {
     [super viewDidLoad];

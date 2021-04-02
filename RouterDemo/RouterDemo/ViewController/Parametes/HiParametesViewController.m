@@ -14,7 +14,8 @@
 
 @end
 
-@implementation_router(parametes/main,HiParametesViewController)
+@Router(parametes/main,HiParametesViewController)
+@implementation HiParametesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

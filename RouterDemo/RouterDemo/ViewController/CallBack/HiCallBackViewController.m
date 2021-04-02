@@ -14,7 +14,8 @@
 
 @end
 
-@implementation_router(callback/main,HiCallBackViewController)
+@Router(callback/main,HiCallBackViewController)
+@implementation HiCallBackViewController
 
 - (UILabel *)receiveLabel {
     

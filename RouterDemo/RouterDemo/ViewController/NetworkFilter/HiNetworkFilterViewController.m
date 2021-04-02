@@ -19,7 +19,8 @@
 
 @end
 
-@implementation_router(network/main,HiNetworkFilterViewController)
+@Router(network/main,HiNetworkFilterViewController)
+@implementation HiNetworkFilterViewController
 
 - (HiNetworkFilter *)filter {
     

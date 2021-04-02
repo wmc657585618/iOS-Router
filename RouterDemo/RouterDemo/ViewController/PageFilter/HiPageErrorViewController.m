@@ -12,7 +12,8 @@
 
 @end
 
-@implementation_router(page/error,HiPageErrorViewController)
+@Router(page/error,HiPageErrorViewController)
+@implementation HiPageErrorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
