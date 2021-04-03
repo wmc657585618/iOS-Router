@@ -12,7 +12,6 @@
 
 @end
 
-@Router(page/sub/sub2,HiPageSub2ViewController)
 @implementation HiPageSub2ViewController
 
 - (void)viewDidLoad {

@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@Router(page/sub/sub1,HiPageSub1ViewController)
 @interface HiPageSub1ViewController : HiBaseViewController
 
 @end

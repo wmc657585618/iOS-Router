@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@Router(nav/fourth,HiNavigationFourthViewControoler)
 @interface HiNavigationFourthViewControoler : HiBaseViewController
 
 @end

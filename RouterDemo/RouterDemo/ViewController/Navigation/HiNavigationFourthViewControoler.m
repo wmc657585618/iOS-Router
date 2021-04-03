@@ -12,7 +12,6 @@
 
 @end
 
-@Router(nav/fourth,HiNavigationFourthViewControoler)
 @implementation HiNavigationFourthViewControoler
 
 - (void)viewDidLoad {

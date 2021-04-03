@@ -12,7 +12,6 @@
 
 @end
 
-@Router(nav/seconde,HiNavigationSecondViewControoler)
 @implementation HiNavigationSecondViewControoler
 
 - (void)viewDidLoad {

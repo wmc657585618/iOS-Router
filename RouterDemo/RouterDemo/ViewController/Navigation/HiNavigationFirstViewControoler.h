@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@Router(nav/first,HiNavigationFirstViewControoler)
 @interface HiNavigationFirstViewControoler : HiBaseViewController
 
 @end

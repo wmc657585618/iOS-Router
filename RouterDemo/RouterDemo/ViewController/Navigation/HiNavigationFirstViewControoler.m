@@ -12,7 +12,6 @@
 
 @end
 
-@Router(nav/first,HiNavigationFirstViewControoler)
 @implementation HiNavigationFirstViewControoler
 
 - (void)viewDidLoad {

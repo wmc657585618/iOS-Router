@@ -12,7 +12,6 @@
 
 @end
 
-@Router(nav/third,HiNavigationThirdViewControoler)
 @implementation HiNavigationThirdViewControoler
 
 - (void)viewDidLoad {

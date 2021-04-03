@@ -14,7 +14,6 @@
 
 @end
 
-@Router(parametes/main,HiParametesViewController)
 @implementation HiParametesViewController
 
 - (void)viewDidLoad {

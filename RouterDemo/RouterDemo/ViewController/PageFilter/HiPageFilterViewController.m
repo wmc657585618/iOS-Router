@@ -17,7 +17,6 @@
 
 @end
 
-@Router(page/main,HiPageFilterViewController)
 @implementation HiPageFilterViewController
 
 - (HiPageFilter *)pageSub1Filer {

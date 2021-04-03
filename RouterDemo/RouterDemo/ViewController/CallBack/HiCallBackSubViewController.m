@@ -13,7 +13,6 @@
 
 @end
 
-@Router(callback/sub, HiCallBackSubViewController)
 @implementation HiCallBackSubViewController
 
 - (void)viewDidLoad {

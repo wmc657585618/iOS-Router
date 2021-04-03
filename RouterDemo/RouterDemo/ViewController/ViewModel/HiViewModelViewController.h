@@ -9,7 +9,7 @@
 #import "HiBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@Router(viewmodel,HiViewModelViewController)
 @interface HiViewModelViewController : HiBaseViewController
 
 @end

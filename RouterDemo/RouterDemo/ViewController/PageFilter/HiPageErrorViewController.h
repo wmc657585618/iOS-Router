@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@Router(page/error,HiPageErrorViewController)
 @interface HiPageErrorViewController : HiBaseViewController
 
 @end

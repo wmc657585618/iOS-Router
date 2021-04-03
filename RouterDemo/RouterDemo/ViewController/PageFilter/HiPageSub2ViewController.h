@@ -9,6 +9,7 @@
 #import "HiBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@Router(page/sub/sub2,HiPageSub2ViewController)
 @interface HiPageSub2ViewController : HiBaseViewController
 
 @end

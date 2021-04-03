@@ -16,7 +16,6 @@
 
 @end
 
-@Router(viewmodel,HiViewModelViewController)
 @implementation HiViewModelViewController
 
 - (HiViewModelView *)vmView {

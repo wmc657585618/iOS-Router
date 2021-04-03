@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@Router(parametes/main,HiParametesViewController)
 @interface HiParametesViewController : HiBaseViewController
 
 @end

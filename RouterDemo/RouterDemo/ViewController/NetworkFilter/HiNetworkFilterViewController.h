@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@Router(network/main,HiNetworkFilterViewController)
 @interface HiNetworkFilterViewController : HiBaseViewController
 
 @end
