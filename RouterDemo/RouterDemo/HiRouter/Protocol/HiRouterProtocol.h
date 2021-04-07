@@ -24,6 +24,8 @@
 // 得到 request (请求)
 - (id)hi_request:(id)request;
 
++ (void)hi_request:(id)request hi_response:(id(^)(id response))response;
+
 @end
 
 @protocol HiFilter <NSObject>

@@ -110,4 +110,12 @@ static NSString *const cellID = @"HiRootViewController";
     return [[self alloc] init];
 }
 
++ (void)hi_request:(id)request hi_response:(id (^)(id))response {
+    NSLog(@"hi_request %@", request);
+    if (response) {
+        NSString *s = response(@"his is a response test");
+        NSLog(@"%@",s);
+    }
+}
+
 @end

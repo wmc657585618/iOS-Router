@@ -14,6 +14,11 @@
 
 @property (nonatomic,strong) Class hi_class;
 
+/// 调用 类方法
+/// @param request 参数
+/// @param response 回调
+- (Class)hi_request:(id)request response:(id(^)(id response))response;
+
 @end
 
 @interface NSObject (HiRouter)
@@ -31,22 +36,15 @@
 
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
 
-/// block
-- (id)hi_objectForPath:(NSString *)path complete:(id(^)(id parameters))block;
-
-- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters complete:(id(^)(id parameters))block;
-
-- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request complete:(id(^)(id parameters))block;
-
 /// 添加回调
 - (void)setHi_router_delegate:(id<HiNetWork>)hi_router_delegate;
 - (void)setHi_router_block:(id (^)(id))hi_router_block;
 
 /// 回调
 /// 优先 block
-- (void)makeResponse:(id)response;
+- (void)hi_makeResponse:(id)response;
 
-+ (void)registFilter:(id<HiFilter>)filter;
++ (void)hi_registFilter:(id<HiFilter>)filter;
 
 @end
 

@@ -21,6 +21,15 @@
     objc_setAssociatedObject(self, key, hi_class, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (Class)hi_request:(id)request response:(id(^)(id response))response {
+    Class _class = self.hi_class;
+    if ([_class respondsToSelector:@selector(hi_request:hi_response:)]) {
+        [_class hi_request:request hi_response:response];
+    }
+    return _class;
+}
+
+
 @end
 
 @interface HiRouterProperty : NSObject
@@ -70,10 +79,6 @@ static id<HiFilter> _filter = nil;
     self.hi_router_property.block = hi_router_block;
 }
 
-- (id (^)(id))hi_router_block {
-    return self.hi_router_property.block;
-}
-
 /// MARK:- init
 /// MARK: instance
 - (id)hi_objectForPath:(NSString *)path {
@@ -89,24 +94,6 @@ static id<HiFilter> _filter = nil;
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
     NSObject<HiNetWork> *objc =  [NSObject hi_instanceForPath:path withInitParameters:parameters request:request];
     if ([self respondsToSelector:@selector(hi_response:)]) objc.hi_router_delegate = self;
-    return objc;
-}
-
-- (id)hi_objectForPath:(NSString *)path complete:(id(^)(id parameters))block {
-    NSObject<HiNetWork> *objc = [self hi_objectForPath:path withInitParameters:nil];
-    objc.hi_router_block = block;
-    return objc;
-}
-
-- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters complete:(id(^)(id parameters))block {
-    NSObject<HiNetWork> *objc = [NSObject hi_instanceForPath:path withInitParameters:parameters request:nil];
-    objc.hi_router_block = block;
-    return objc;
-}
-
-- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request complete:(id(^)(id parameters))block {
-    NSObject<HiNetWork> *objc =  [NSObject hi_instanceForPath:path withInitParameters:parameters request:request];
-    objc.hi_router_block = block;
     return objc;
 }
 
@@ -141,12 +128,12 @@ static id<HiFilter> _filter = nil;
 }
 
 /// MARK:- filter
-+ (void)registFilter:(id<HiFilter>)filter {
++ (void)hi_registFilter:(id<HiFilter>)filter {
     _filter = filter;
 }
 
 /// MARK:- other
-- (void)makeResponse:(id)response {
+- (void)hi_makeResponse:(id)response {
     
     if (self.hi_router_block) {
         self.hi_router_block(response);

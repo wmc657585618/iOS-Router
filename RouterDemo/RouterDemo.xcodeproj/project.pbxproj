@@ -114,7 +114,6 @@
 			children = (
 				1CE962F62616B8B5007EA98C /* Annotation */,
 				2845072A246D3D86004E7466 /* Main */,
-				1C14AB9E21D364B500DE248C /* Entity */,
 				1C14ABA421D364B500DE248C /* Protocol */,
 			);
 			path = HiRouter;
@@ -292,11 +291,20 @@
 			path = Annotation;
 			sourceTree = "<group>";
 		};
-		2845072A246D3D86004E7466 /* Main */ = {
+		1CF5AE36261C43C700AECBA2 /* Files */ = {
 			isa = PBXGroup;
 			children = (
 				1C14ABA321D364B500DE248C /* HiRouterDefine.h */,
 				1C14AB9121D364B500DE248C /* HiRouterManager.h */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		2845072A246D3D86004E7466 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1CF5AE36261C43C700AECBA2 /* Files */,
+				1C14AB9E21D364B500DE248C /* Entity */,
 			);
 			path = Main;
 			sourceTree = "<group>";

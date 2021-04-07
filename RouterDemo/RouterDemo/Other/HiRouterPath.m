@@ -1,5 +1,4 @@
 #import "HiRouterPath.h"
-#import "HiRouter.h"
 
 NSString *const viewmodel = @"viewmodel";
 NSString *const page_sub_sub1 = @"page/sub/sub1";

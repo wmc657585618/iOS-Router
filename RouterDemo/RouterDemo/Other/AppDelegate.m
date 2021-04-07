@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "HiRootViewController.h"
+#import "HiRouterPath.h"
+#import "HiRouterManager.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,12 @@
     self.window.backgroundColor = UIColor.whiteColor;
     
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[UIViewController hi_instanceForPath:root_controller]];
+    
+    // 类方法
+    [root_controller hi_request:@"this is a request test" response:^id(id response) {
+        NSLog(@"%@",response);
+        return @"his is a return test";
+    }];
     
     [self.window makeKeyAndVisible];
     
