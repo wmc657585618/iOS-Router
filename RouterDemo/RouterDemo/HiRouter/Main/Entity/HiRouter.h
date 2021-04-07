@@ -6,9 +6,8 @@
 //  Copyright © 2018年 Four. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "HiRouterProtocol.h"
 #import <UIKit/UIKit.h>
+#import "HiRouterProtocol.h"
 
 @interface NSString (HiPathClass)
 

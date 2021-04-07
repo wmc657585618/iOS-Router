@@ -20,28 +20,25 @@ struct HiFilterBody {
     HiRouterTransition transition;
     id parameters; // init 参数
     id request;
-    id other;
 };
 
 typedef struct HiFilterBody HiFilterBody;
 
-static inline HiFilterBody hiFilterMake(NSString *path, id parameters, id request, id other) {
+static inline HiFilterBody hiFilterMake(NSString *path, id parameters, id request) {
     HiFilterBody body;
     body.path = path;
     body.parameters = parameters;
     body.request = request;
-    body.other = other;
     body.transition = HiRouterTransitionNone;
     
     return body;
 }
 
-static inline HiFilterBody hiFilterTransitioningMake(NSString *path, id parameters, id request, id other, HiRouterTransition transition) {
+static inline HiFilterBody hiFilterTransitioningMake(NSString *path, id parameters, id request, HiRouterTransition transition) {
     HiFilterBody body;
     body.path = path;
     body.parameters = parameters;
     body.request = request;
-    body.other = other;
     body.transition = transition;
     return body;
 }

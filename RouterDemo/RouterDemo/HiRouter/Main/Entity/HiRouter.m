@@ -75,6 +75,10 @@ static id<HiFilter> _filter = nil;
     self.hi_router_property.delegate = hi_router_delegate;
 }
 
+- (id (^)(id))hi_router_block {
+    return self.hi_router_property.block;
+}
+
 - (void)setHi_router_block:(id (^)(id))hi_router_block {
     self.hi_router_property.block = hi_router_block;
 }
@@ -82,33 +86,30 @@ static id<HiFilter> _filter = nil;
 /// MARK:- init
 /// MARK: instance
 - (id)hi_objectForPath:(NSString *)path {
-    return [self hi_objectForPath:path withInitParameters:nil];
+    return [self hi_objectForPath:path withInitParameters:nil request:nil];
 }
 
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters {
-    NSObject<HiNetWork> *objc = [NSObject hi_instanceForPath:path withInitParameters:parameters request:nil];
-    if ([self respondsToSelector:@selector(hi_response:)]) objc.hi_router_delegate = self; // 实现了+delegate
-    return objc;
+    return [self hi_objectForPath:path withInitParameters:parameters request:nil];
 }
 
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
     NSObject<HiNetWork> *objc =  [NSObject hi_instanceForPath:path withInitParameters:parameters request:request];
-    if ([self respondsToSelector:@selector(hi_response:)]) objc.hi_router_delegate = self;
+    objc.hi_router_delegate = self;
     return objc;
 }
 
 /// MARK: class
-+ (id)forwardWithPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
-    id<HiNetWork> objc = [self objectForClass:path.hi_class withParameters:parameters];
++ (id)hi_forwardWithPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
+    id<HiNetWork> objc = [self hi_objectForClass:path.hi_class withParameters:parameters];
     if (request && [objc respondsToSelector:@selector(hi_request:)]) [objc hi_request:request];
     return objc;
 }
 
-+ (id)objectForClass:(Class<HiNetWork>)cla withParameters:(id)parameters{
++ (id)hi_objectForClass:(Class<HiNetWork>)cla withParameters:(id)parameters{
     if ([cla respondsToSelector:@selector(hi_init:)]) return [cla hi_init:parameters];
     return nil;
 }
-
 
 + (id)hi_instanceForPath:(NSString *)path {
     return [self hi_instanceForPath:path withInitParameters:nil request:nil];
@@ -119,12 +120,12 @@ static id<HiFilter> _filter = nil;
 }
 
 + (id)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request {
+    HiFilterBody forward = hiFilterMake(path, parameters, request);
     if ([_filter respondsToSelector:@selector(hiFilterPath:init:request:)]) {// 有拦截
-        HiFilterBody forward = [_filter hiFilterPath:path init:parameters request:request];
-        return [self forwardWithPath:forward.path withInitParameters:forward.parameters request:forward.request];
+        forward = [_filter hiFilterPath:path init:parameters request:request];
     }
     
-    return [self forwardWithPath:path withInitParameters:parameters request:request];
+    return [self hi_forwardWithPath:forward.path withInitParameters:forward.parameters request:forward.request];
 }
 
 /// MARK:- filter

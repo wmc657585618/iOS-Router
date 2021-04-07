@@ -16,8 +16,4 @@ __attribute__((constructor)) static inline void hi_##_class_()\
 {@#_url_.hi_class = NSClassFromString(@#_class_);}\
 __attribute__((objc_runtime_name(#_class_)))
 
-@interface HiAnnotation : NSObject
-
-@end
-
 NS_ASSUME_NONNULL_END

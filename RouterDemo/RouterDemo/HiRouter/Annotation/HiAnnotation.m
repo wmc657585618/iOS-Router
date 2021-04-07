@@ -7,7 +7,3 @@
 //
 
 #import "HiAnnotation.h"
-
-@implementation HiAnnotation
-
-@end
