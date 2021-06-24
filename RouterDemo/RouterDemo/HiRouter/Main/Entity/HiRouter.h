@@ -20,6 +20,9 @@
 
 @end
 
+/// 只能注册一次
+extern inline void hi_registFilter(id<HiFilter> filter);
+
 @interface NSObject (HiRouter)
 
 + (instancetype)hi_instanceForPath:(NSString *)path;
@@ -28,11 +31,13 @@
 
 + (instancetype)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
 
-/// instance 并添加回调给 self.
+/// 创建 path 相对的 实例对象
 - (id)hi_objectForPath:(NSString *)path;
 
+/// 创建 path 相对的 实例对象
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters;
 
+/// 创建 path 相对的 实例对象
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
 
 /// 添加回调
@@ -42,8 +47,6 @@
 /// 回调
 /// 优先 block
 - (void)hi_makeResponse:(id)response;
-
-+ (void)hi_registFilter:(id<HiFilter>)filter;
 
 @end
 

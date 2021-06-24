@@ -53,6 +53,9 @@
 @end
 
 static id<HiFilter> _filter = nil;
+inline void hi_registFilter(id<HiFilter> filter) {
+    if (!_filter)_filter = filter;
+}
 
 @implementation NSObject (HiRouter)
 
@@ -106,7 +109,7 @@ static id<HiFilter> _filter = nil;
     return objc;
 }
 
-+ (id)hi_objectForClass:(Class<HiNetWork>)cla withParameters:(id)parameters{
++ (id)hi_objectForClass:(Class<HiInit>)cla withParameters:(id)parameters{
     if ([cla respondsToSelector:@selector(hi_init:)]) return [cla hi_init:parameters];
     return nil;
 }
@@ -126,11 +129,6 @@ static id<HiFilter> _filter = nil;
     }
     
     return [self hi_forwardWithPath:forward.path withInitParameters:forward.parameters request:forward.request];
-}
-
-/// MARK:- filter
-+ (void)hi_registFilter:(id<HiFilter>)filter {
-    _filter = filter;
 }
 
 /// MARK:- other

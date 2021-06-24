@@ -15,15 +15,22 @@
 
 @end
 
-@protocol HiNetWork <HiInit>
+@protocol HiNetWork <NSObject>
 
 @optional
-// 得到 response (回调)
+/// 得到 response (回调)
 - (id)hi_response:(id)response;
 
-// 得到 request (请求)
+/// 得到 request (请求)
 - (id)hi_request:(id)request;
 
+@end
+
+@protocol HiClass <NSObject>
+
+/// 类 实现调用
+/// @param request 请求
+/// @param response 回调
 + (void)hi_request:(id)request hi_response:(id(^)(id response))response;
 
 @end
