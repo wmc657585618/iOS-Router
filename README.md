@@ -3,6 +3,7 @@
 ## 描述
 + router 是为了解耦合而写的,包括了界面解耦,view-model 解耦
 
+# 2.0.0 之前
 ### 页面 (pages) 
 
 #### 注册路由
@@ -143,3 +144,90 @@ url 预处理
 */
 @property (nonatomic,readonly) NSString *result;
 ```
+
+# 2.0.0
+## 使用
+### 注册
+
+#### 注解
+```
+@Router(xxxx/xxxx, AAAAAAContreoller)
+@interface AAAAAAContreoller : UIViewController
+```
+#### 非注解
+```
+@"xxxx/xxxx".hi_class = [AAAAAAContreoller class];
+```
+
+### 实例化
+```
++ (instancetype)hi_instanceForPath:(NSString *)path;
+
++ (instancetype)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters;
+
++ (instancetype)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
+```
+
+- ```AAAAAAContreoller *viewController = [AAAAAAContreoller hi_instanceForPath:@"xxxx/xxxx"];```
+
+```
+/// 创建 path 相对的 实例对象
+- (id)hi_objectForPath:(NSString *)path;
+
+/// 创建 path 相对的 实例对象
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters;
+
+/// 创建 path 相对的 实例对象
+- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
+```
+- ```AAAAAAContreoller *viewController = [objc hi_instanceForPath:@"xxxx/xxxx"];```
+
+### protocol
+```
+@protocol HiInit <NSObject>
+
++ (instancetype)hi_init:(id)parameters;
+
+@end
+
+@protocol HiNetWork <NSObject>
+
+@optional
+/// 得到 response (回调)
+- (id)hi_response:(id)response;
+
+/// 得到 request (请求)
+- (id)hi_request:(id)request;
+
+@end
+```
+#### 实现
+```
+@implementation AAAAAAContreoller
+
++ (instancetype)hi_init:(id)parameters{
+    return [[self alloc] init];
+}
+
+// 请求参数
+- (id)hi_request:(id)request {
+    
+}
+
+// 回调参数
+- (id)hi_response:(id)response {
+    
+}
+@end
+```
+
+### 回调
+```
+/// 回调
+/// 优先 block
+- (void)hi_makeResponse:(id)response;
+```
+- ```[objc hi_makeResponse:@"test"];```
+
+
+
