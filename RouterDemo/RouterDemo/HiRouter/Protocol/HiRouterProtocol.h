@@ -38,11 +38,11 @@
 @protocol HiFilter <NSObject>
 
 @optional
-/// push
+/// 创建
 - (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters request:(id)request;
 + (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters request:(id)request;
 
-/// present
+/// 转场
 - (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters request:(id)request;
 + (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters request:(id)request;
 
