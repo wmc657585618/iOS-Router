@@ -188,7 +188,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
     if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:request:)]) {
         
         HiFilterBody body = [_filter hiFilterTransition:transition path:path init:parameters request:request];
-        viewController = [self hi_objectForPath:body.path withInitParameters:body.parameters request:body.request];
+        viewController = [NSObject hi_forwardWithPath:body.path withInitParameters:body.parameters request:body.request];
         _transition = body.transition;
         
     } else {
