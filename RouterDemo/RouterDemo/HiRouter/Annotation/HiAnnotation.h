@@ -11,9 +11,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#if DEBUG
+
+#define hi_construct(_class_) __attribute__((objc_runtime_name(#_class_)))
+
+#elif
+
+#define hi_construct(_class_)
+
+#endif
+
 #define Router(_url_,_class_) class _class_;\
-__attribute__((constructor)) static inline void hi_##_class_()\
+__attribute__((constructor)) static inline void hi_router_##_class_()\
 {@#_url_.hi_class = NSClassFromString(@#_class_);}\
-__attribute__((objc_runtime_name(#_class_)))
+hi_construct(_class_)
 
 NS_ASSUME_NONNULL_END
