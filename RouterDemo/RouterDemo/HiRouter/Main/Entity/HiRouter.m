@@ -169,6 +169,17 @@ inline void hi_registFilter(id<HiFilter> filter) {
                     completion:completion];
 }
 
+- (void)viewController:(UIViewController *)viewController pushAnimated:(BOOL)animated{
+    if ([self isKindOfClass:UINavigationController.class]) {
+        
+        UINavigationController *navigationController = (UINavigationController *)self;
+        [navigationController pushViewController:viewController animated:animated];
+
+    } else {
+        [self.navigationController pushViewController:viewController animated:animated];
+    }
+}
+
 - (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
     UIViewController *viewController = nil;
     HiRouterTransition _transition = transition;
@@ -191,19 +202,12 @@ inline void hi_registFilter(id<HiFilter> filter) {
 
             case HiRouterTransitionPush:
             {
-                viewController.modalPresentationStyle = modalPresentationStyle;
-                if ([self isKindOfClass:UINavigationController.class]) {
-                    
-                    UINavigationController *navigationController = (UINavigationController *)self;
-                    [navigationController pushViewController:viewController animated:animated];
-
-                } else {
-                    [self.navigationController pushViewController:viewController animated:animated];
-                }
+                [self viewController:viewController pushAnimated:animated];
             }
                 break;
             case HiRouterTransitionPresent:
             {
+                viewController.modalPresentationStyle = modalPresentationStyle;
                 [self presentViewController:viewController animated:animated completion:completion];
             }
                 break;
