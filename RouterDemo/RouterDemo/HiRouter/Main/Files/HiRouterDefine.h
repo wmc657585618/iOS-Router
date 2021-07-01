@@ -24,21 +24,19 @@ struct HiFilterBody {
 
 typedef struct HiFilterBody HiFilterBody;
 
-static inline HiFilterBody hiFilterMake(NSString *path, id parameters, id request) {
+static inline HiFilterBody hiFilterMake(NSString *path, id parameters) {
     HiFilterBody body;
     body.path = path;
     body.parameters = parameters;
-    body.request = request;
     body.transition = HiRouterTransitionNone;
     
     return body;
 }
 
-static inline HiFilterBody hiFilterTransitioningMake(NSString *path, id parameters, id request, HiRouterTransition transition) {
+static inline HiFilterBody hiFilterTransitioningMake(NSString *path, id parameters, HiRouterTransition transition) {
     HiFilterBody body;
     body.path = path;
     body.parameters = parameters;
-    body.request = request;
     body.transition = transition;
     return body;
 }

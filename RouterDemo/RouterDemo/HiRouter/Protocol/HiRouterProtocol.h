@@ -39,12 +39,12 @@
 
 @optional
 /// 创建
-- (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters request:(id)request;
-+ (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters request:(id)request;
+- (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters;
++ (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters;
 
 /// 转场
-- (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters request:(id)request;
-+ (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters request:(id)request;
+- (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters;
++ (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters;
 
 @end
 

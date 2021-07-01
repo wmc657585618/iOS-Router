@@ -29,16 +29,11 @@ extern inline void hi_registFilter(id<HiFilter> filter);
 
 + (instancetype)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters;
 
-+ (instancetype)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
-
 /// 创建 path 相对的 实例对象
 - (id)hi_objectForPath:(NSString *)path;
 
 /// 创建 path 相对的 实例对象
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters;
-
-/// 创建 path 相对的 实例对象
-- (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters request:(id)request;
 
 /// 添加回调
 - (void)setHi_router_delegate:(id<HiNetWork>)hi_router_delegate;
@@ -56,11 +51,11 @@ extern inline void hi_registFilter(id<HiFilter> filter);
 /// self 是 UINavigationController 或者 UIViewController
 /// UINavigationController 直接 push
 /// UIViewController 调用 self.navigationController push
-- (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated;
+- (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated;
 
-- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion;
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated completion:(void (^)(void))completion;
 
-- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion;
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion;
 
 @end
 

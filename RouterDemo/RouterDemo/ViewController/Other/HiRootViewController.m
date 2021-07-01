@@ -103,7 +103,7 @@ static NSString *const cellID = @"HiRootViewController";
             break;
     }
 
-    [self hi_pushPath:path withInitParameters:nil request:nil animated:true];
+    [self hi_pushPath:path withInitParameters:nil animated:true];
 }
 
 + (instancetype)hi_init:(id)parameters{
