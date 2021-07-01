@@ -53,6 +53,9 @@ extern inline void hi_registFilter(id<HiFilter> filter);
 
 @interface UIViewController (HiRouter)
 
+/// self 是 UINavigationController 或者 UIViewController
+/// UINavigationController 直接 push
+/// UIViewController 调用 self.navigationController push
 - (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated;
 
 - (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters request:(id)request animated:(BOOL)animated completion:(void (^)(void))completion;

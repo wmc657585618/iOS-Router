@@ -205,7 +205,14 @@ inline void hi_registFilter(id<HiFilter> filter) {
             case HiRouterTransitionPush:
             {
                 viewController.modalPresentationStyle = modalPresentationStyle;
-                [self.navigationController pushViewController:viewController animated:animated];
+                if ([self isKindOfClass:UINavigationController.class]) {
+                    
+                    UINavigationController *navigationController = (UINavigationController *)self;
+                    [navigationController pushViewController:viewController animated:animated];
+
+                } else {
+                    [self.navigationController pushViewController:viewController animated:animated];
+                }
             }
                 break;
             case HiRouterTransitionPresent:

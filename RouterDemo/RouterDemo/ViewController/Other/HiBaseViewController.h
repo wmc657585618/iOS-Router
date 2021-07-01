@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HiRouterPath.h"
-#import "HiAnnotation.h"
+#import "HiRouterManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

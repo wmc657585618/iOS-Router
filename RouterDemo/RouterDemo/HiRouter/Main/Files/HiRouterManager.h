@@ -11,5 +11,6 @@
 
 #import "HiRouterProtocol.h"
 #import "HiRouter.h"
+#import "HiAnnotation.h"
 
 #endif /* HiRouterManager_h */
