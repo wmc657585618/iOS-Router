@@ -98,10 +98,6 @@ inline void hi_registFilter(id<HiFilter> filter) {
 }
 
 /// MARK: class
-+ (id)hi_forwardWithPath:(NSString *)path withInitParameters:(id)parameters {
-    return [self hi_objectForClass:path.hi_class withParameters:parameters];
-}
-
 + (id)hi_objectForClass:(Class<HiInit>)cla withParameters:(id)parameters{
     if ([cla respondsToSelector:@selector(hi_init:)]) return [cla hi_init:parameters];
     return nil;
@@ -117,9 +113,8 @@ inline void hi_registFilter(id<HiFilter> filter) {
         forward = [_filter hiFilterPath:path init:parameters];
     }
     
-    return [self hi_forwardWithPath:forward.path withInitParameters:forward.parameters];
+    return [self hi_objectForClass:forward.path.hi_class withParameters:forward.parameters];
 }
-
 
 /// MARK:- other
 - (void)hi_makeResponse:(id)response {
@@ -186,7 +181,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
     if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:)]) {
         
         HiFilterBody body = [_filter hiFilterTransition:transition path:path init:parameters];
-        viewController = [NSObject hi_forwardWithPath:body.path withInitParameters:body.parameters];
+        viewController = [NSObject hi_objectForClass:body.path.hi_class withParameters:body.parameters];
         _transition = body.transition;
         
     } else {
