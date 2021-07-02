@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define hi_construct(_class_) __attribute__((objc_runtime_name(#_class_)))
 
-#elif
+#else
 
 #define hi_construct(_class_)
 
