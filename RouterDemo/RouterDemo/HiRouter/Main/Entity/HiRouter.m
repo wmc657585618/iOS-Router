@@ -149,7 +149,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
     return [self hi_transition:HiRouterTransitionPresent
                           path:path
                 initParameters:parameters
-            modalPresentationStyle:UIModalPresentationFullScreen
+        modalPresentationStyle:UIModalPresentationFullScreen
                       animated:animated
                     completion:completion];
 }
