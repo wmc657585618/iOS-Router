@@ -179,13 +179,10 @@ inline void hi_registFilter(id<HiFilter> filter) {
     UIViewController *viewController = nil;
     HiFilterBody _body = hiFilterTransitioningMake(path, parameters, transition, modalPresentationStyle);
     if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:modal:)]) {
-        
         _body = [_filter hiFilterTransition:transition path:path init:parameters modal:modalPresentationStyle];
-        viewController = [NSObject hi_objectForClass:_body.path.hi_class withParameters:_body.parameters];
-        
-    } else {
-        viewController = [self hi_objectForPath:path withInitParameters:parameters];
     }
+    
+    viewController = [NSObject hi_objectForClass:_body.path.hi_class withParameters:_body.parameters];
     
     if ([viewController isKindOfClass:UIViewController.class]) {
         
