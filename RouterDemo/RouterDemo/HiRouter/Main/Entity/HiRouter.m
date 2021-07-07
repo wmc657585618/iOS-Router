@@ -159,7 +159,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
     return [self hi_transition:HiRouterTransitionPresent
                           path:path
                 initParameters:parameters
-            modalPresentationStyle:modalPresentationStyle
+        modalPresentationStyle:modalPresentationStyle
                       animated:animated
                     completion:completion];
 }
