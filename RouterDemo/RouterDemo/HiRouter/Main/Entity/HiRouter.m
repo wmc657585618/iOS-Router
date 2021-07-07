@@ -139,7 +139,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
     return [self hi_transition:HiRouterTransitionPush
                           path:path
                 initParameters:parameters
-         modalPresentationStyle:UIModalPresentationNone
+         modalPresentationStyle:UIModalPresentationFullScreen
                       animated:animated
                     completion:nil];
 }
@@ -178,11 +178,11 @@ inline void hi_registFilter(id<HiFilter> filter) {
 - (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
     UIViewController *viewController = nil;
     HiRouterTransition _transition = transition;
-    if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:)]) {
+    HiFilterBody _body = hiFilterTransitioningMake(path, parameters, transition, modalPresentationStyle);
+    if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:modal:)]) {
         
-        HiFilterBody body = [_filter hiFilterTransition:transition path:path init:parameters];
-        viewController = [NSObject hi_objectForClass:body.path.hi_class withParameters:body.parameters];
-        _transition = body.transition;
+        _body = [_filter hiFilterTransition:transition path:path init:parameters modal:modalPresentationStyle];
+        viewController = [NSObject hi_objectForClass:_body.path.hi_class withParameters:_body.parameters];
         
     } else {
         viewController = [self hi_objectForPath:path withInitParameters:parameters];
@@ -202,7 +202,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
                 break;
             case HiRouterTransitionPresent:
             {
-                viewController.modalPresentationStyle = modalPresentationStyle;
+                viewController.modalPresentationStyle = _body.modal;
                 [self presentViewController:viewController animated:animated completion:completion];
             }
                 break;

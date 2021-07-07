@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Four. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "HiRouterDefine.h"
 
 @protocol HiInit <NSObject>
@@ -43,8 +43,8 @@
 + (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters;
 
 /// 转场
-- (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters;
-+ (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters;
+- (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters modal:(UIModalPresentationStyle)modal;
++ (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters modal:(UIModalPresentationStyle)modal;
 
 @end
 

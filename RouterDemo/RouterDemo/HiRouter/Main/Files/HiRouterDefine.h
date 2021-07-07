@@ -18,6 +18,7 @@ typedef enum : NSUInteger {
 struct HiFilterBody {
     NSString *path;
     HiRouterTransition transition;
+    UIModalPresentationStyle modal;
     id parameters; // init 参数
     id request;
 };
@@ -29,15 +30,17 @@ static inline HiFilterBody hiFilterMake(NSString *path, id parameters) {
     body.path = path;
     body.parameters = parameters;
     body.transition = HiRouterTransitionNone;
-    
+    body.modal = UIModalPresentationFullScreen;
+
     return body;
 }
 
-static inline HiFilterBody hiFilterTransitioningMake(NSString *path, id parameters, HiRouterTransition transition) {
+static inline HiFilterBody hiFilterTransitioningMake(NSString *path, id parameters, HiRouterTransition transition, UIModalPresentationStyle modal) {
     HiFilterBody body;
     body.path = path;
     body.parameters = parameters;
     body.transition = transition;
+    body.modal = modal;
     return body;
 }
 
