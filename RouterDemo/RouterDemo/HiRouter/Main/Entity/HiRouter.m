@@ -177,7 +177,6 @@ inline void hi_registFilter(id<HiFilter> filter) {
 
 - (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
     UIViewController *viewController = nil;
-    HiRouterTransition _transition = transition;
     HiFilterBody _body = hiFilterTransitioningMake(path, parameters, transition, modalPresentationStyle);
     if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:modal:)]) {
         
@@ -190,7 +189,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
     
     if ([viewController isKindOfClass:UIViewController.class]) {
         
-        switch (_transition) {
+        switch (_body.transition) {
                 
             case HiRouterTransitionNone:
                 break;
