@@ -177,16 +177,16 @@ inline void hi_registFilter(id<HiFilter> filter) {
 
 - (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
     
-    HiFilterBody _body = hiFilterTransitioningMake(path, parameters, transition, modalPresentationStyle);
+    HiFilterBody filter = hiFilterTransitioningMake(path, parameters, transition, modalPresentationStyle);
     if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:modal:)]) {
-        _body = [_filter hiFilterTransition:transition path:path init:parameters modal:modalPresentationStyle];
+        filter = [_filter hiFilterTransition:transition path:path init:parameters modal:modalPresentationStyle];
     }
     
-    UIViewController *viewController = [NSObject hi_objectForClass:_body.path.hi_class withParameters:_body.parameters];
+    UIViewController *viewController = [NSObject hi_objectForClass:filter.path.hi_class withParameters:filter.parameters];
     
     if ([viewController isKindOfClass:UIViewController.class]) {
         
-        switch (_body.transition) {
+        switch (filter.transition) {
                 
             case HiRouterTransitionNone:
                 break;
@@ -198,7 +198,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
                 break;
             case HiRouterTransitionPresent:
             {
-                viewController.modalPresentationStyle = _body.modal;
+                viewController.modalPresentationStyle = filter.modal;
                 [self presentViewController:viewController animated:animated completion:completion];
             }
                 break;
