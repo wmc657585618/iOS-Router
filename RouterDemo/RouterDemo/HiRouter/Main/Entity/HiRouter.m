@@ -9,16 +9,20 @@
 #import "HiRouter.h"
 #import <objc/runtime.h>
 
+static NSMutableDictionary *_dictionary = nil;
 @implementation NSString (HiPathClass)
 
 - (Class)hi_class {
-    SEL key = @selector(hi_class);
-    return objc_getAssociatedObject(self, key);;
+    return [_dictionary valueForKey:self];
 }
 
 - (void)setHi_class:(Class)hi_class {
-    SEL key = @selector(hi_class);
-    objc_setAssociatedObject(self, key, hi_class, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dictionary = [NSMutableDictionary dictionary];
+    });
+    [_dictionary setValue:hi_class forKey:self];
 }
 
 - (Class)hi_request:(id)request response:(id(^)(id response))response {
@@ -28,7 +32,6 @@
     }
     return _class;
 }
-
 
 @end
 
