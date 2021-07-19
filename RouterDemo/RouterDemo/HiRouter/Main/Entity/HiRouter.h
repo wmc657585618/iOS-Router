@@ -41,7 +41,7 @@ extern inline void hi_registFilter(id<HiFilter> filter);
 
 /// 回调
 /// 优先 block
-- (void)hi_makeResponse:(id)response;
+- (id)hi_makeResponse:(id)response;
 
 @end
 

@@ -120,16 +120,17 @@ inline void hi_registFilter(id<HiFilter> filter) {
 }
 
 /// MARK:- other
-- (void)hi_makeResponse:(id)response {
+- (id)hi_makeResponse:(id)response {
     
     if (self.hi_router_block) {
-        self.hi_router_block(response);
-        return;
+        return self.hi_router_block(response);
     }
     
     if ([self.hi_router_delegate respondsToSelector:@selector(hi_response:)]) {
-        [self.hi_router_delegate hi_response:response];
+        return [self.hi_router_delegate hi_response:response];
     }
+    
+    return nil;
 }
 
 @end
