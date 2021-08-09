@@ -25,11 +25,17 @@
 
 - (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
 
-    HiResponse *response = [HiResponse responseWithPath:path parameters:parameters modal:modalPresentationStyle transition:transition];
+    HiResponse *response = [HiResponse instanceWithPath:path parameters:parameters modal:modalPresentationStyle transition:transition];
 
-    if ([self.hi_filter respondsToSelector:@selector(hiFilterTransition:response:)]) {
-        HiEnvironment *env = [HiEnvironment environmentWithPath:path parameters:parameters modal:modalPresentationStyle transition:transition];
-        [self.hi_filter hiFilterTransition:env response:response];
+    if (self.hi_filterChain.count) {
+        HiEnvironment *env = [HiEnvironment instanceWithPath:path parameters:parameters modal:modalPresentationStyle transition:transition];
+
+        for (id<HiFilter> filter in self.hi_filterChain) {
+            if (env.isBreak) break;
+            if ([filter respondsToSelector:@selector(hiFilterTransition:response:)]) {
+                [filter hiFilterTransition:env response:response];
+            }
+        }
     }
     
     UIViewController *viewController = [UIViewController hi_objectForClass:response.path.hi_class withParameters:response.parameters];

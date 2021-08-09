@@ -20,16 +20,15 @@
 }
 
 + (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response{
-    /// 为了区分是否过滤 添加了 parameters
-    if ([env.path isEqualToString:filter_normal] && env.parameters) {
-    }
-}
-
-- (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response{
+    [env breakChain];
     /// 为了区分是否过滤 添加了 parameters
     if ([env.path isEqualToString:filter_normal] && env.parameters) {
         response.path = error;
     }
+}
+
+- (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response{
+    [HiRouterFilter hiFilterTransition:env response:response];
 }
 
 @end

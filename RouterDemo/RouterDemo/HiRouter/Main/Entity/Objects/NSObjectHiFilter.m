@@ -12,14 +12,14 @@
 @implementation NSObject (HiFilter)
 
 - (void)becomeFilter {
-    if ([self conformsToProtocol:@protocol(HiFilter)]) {
-        if (!self.hi_filter) self.hi_filter = self;
+    if ([self conformsToProtocol:@protocol(HiFilter)] && ![self.hi_filterChain containsObject:self]) {
+        [self.hi_filterChain addObject:self];
     }
 }
 
 + (void)becomeFilter {
-    if ([self conformsToProtocol:@protocol(HiFilter)]) {
-        if (!self.hi_filter) self.hi_filter = self;
+    if ([self conformsToProtocol:@protocol(HiFilter)] && ![self.hi_filterChain containsObject:self]) {
+        [self.hi_filterChain addObject:self];
     }
 }
 

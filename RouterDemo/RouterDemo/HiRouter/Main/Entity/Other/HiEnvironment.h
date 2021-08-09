@@ -6,25 +6,17 @@
 //  Copyright © 2021 Four. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "HiRouterDefine.h"
+#import "HiBody.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 路由环境参数
-@interface HiEnvironment : NSObject
+@interface HiEnvironment : HiBody
 
-+ (instancetype)environmentWithPath:(NSString *)path parameters:(id)parameters modal:(UIModalPresentationStyle)modal transition:(HiRouterTransition)transition;
-+ (instancetype)environmentWithPath:(NSString *)path parameters:(id)parameters;
-/// 转场
-@property (nonatomic, assign) HiRouterTransition transition;
+/// filter 中是否结束循环
+@property (nonatomic, assign, readonly) BOOL isBreak;
 
-@property (nonatomic, assign) UIModalPresentationStyle modal;
-/// 路径
-@property (nonatomic, copy) NSString *path;
-/// 初始化参数
-@property (nonatomic, strong) id parameters;
-
-
+/// 结束循环
+- (void)breakChain;
 @end
 
 NS_ASSUME_NONNULL_END

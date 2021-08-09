@@ -20,10 +20,10 @@
 
 @interface NSObject (HiRouterPrivate)
 
-@property (nonatomic, strong, readonly) HiRouterProperty *hi_router_property;
+@property (nonatomic, strong, readonly) HiRouterProperty<HiFilter> *hi_router_property;
 
-@property (nonatomic, strong) id hi_filter;
-@property (nonatomic, strong, class) id hi_filter;
+@property (nonatomic, strong, readonly) NSMutableArray<HiFilter> *hi_filterChain;
+@property (nonatomic, strong, class, readonly) NSMutableArray *hi_filterChain;
 
 @property (nonatomic, weak, readonly) id<HiNetWork> hi_router_delegate;
 @property (nonatomic, copy, readonly) id (^hi_router_block) (id parameters);

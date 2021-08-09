@@ -14,7 +14,7 @@
 
 @end
 
-static id _filter = nil;
+static NSMutableArray *_hi_filterChain = nil;
 
 @implementation NSObject (HiRouterPrivate)
 
@@ -37,22 +37,18 @@ static id _filter = nil;
     return self.hi_router_property.block;
 }
 
-- (void)setHi_filter:(id)hi_filter {
-    _filter = hi_filter;
+- (NSMutableArray *)hi_filterChain {
+    return [NSObject hi_filterChain];
 }
 
-- (id)hi_filter {
-    return _filter;
++ (NSMutableArray *)hi_filterChain {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _hi_filterChain = [NSMutableArray array];
+    });
+    
+    return _hi_filterChain;
 }
-
-+ (void)setHi_filter:(id)hi_filter {
-    _filter = hi_filter;
-}
-
-+ (id)hi_filter {
-    return _filter;
-}
-
 /// MARK: class
 + (id)hi_objectForClass:(Class<HiInit>)cla withParameters:(id)parameters{
     if ([cla respondsToSelector:@selector(hi_init:)]) return [cla hi_init:parameters];
