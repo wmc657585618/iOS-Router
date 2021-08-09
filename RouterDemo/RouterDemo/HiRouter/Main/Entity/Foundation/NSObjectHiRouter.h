@@ -1,9 +1,9 @@
 //
-//  Router.h
-//  Router
+//  NSObjectHiRouter.h
+//  RouterDemo
 //
-//  Created by Four on 2018/7/10.
-//  Copyright © 2018年 Four. All rights reserved.
+//  Created by four on 2021/8/9.
+//  Copyright © 2021 Four. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -15,8 +15,8 @@
 
 /// 调用 类方法
 /// @param request 参数
-/// @param response 回调
-- (Class)hi_request:(id)request response:(id(^)(id response))response;
+/// @return response
+- (id)hi_request:(id)request;
 
 @end
 
@@ -39,10 +39,5 @@
 /// 回调
 /// 优先 block
 - (id)hi_makeResponse:(id)response;
-
-/// 过滤器 遵守 HiFilter 协议的
-/// 只能有一个过滤器,多个 只有第一个 遵守 HiFilter 协议的 有效
-- (void)becomeFilter;
-+ (void)becomeFilter;
 
 @end

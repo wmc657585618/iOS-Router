@@ -12,6 +12,8 @@ typedef NS_ENUM(NSUInteger, HiRootCellType) {
     HiRootCellType0,// 传值
     HiRootCellType1,// 回调
     HiRootCellType2,// 过滤
+    HiRootCellType3,
+    HiRootCellType4,
 };
 
 @interface HiRootCellModel : NSObject
@@ -59,7 +61,9 @@ static NSString *const kCellId = @"UITableViewCell";
         HiRootCellModel *model0 = [HiRootCellModel title:@"传值" type:HiRootCellType0 detail:@"将 hello world 传到下个页面"];
         HiRootCellModel *model1 = [HiRootCellModel title:@"回调" type:HiRootCellType1 detail:@"收到下个页面 回调的 hello world"];
         HiRootCellModel *model2 = [HiRootCellModel title:@"过滤" type:HiRootCellType2 detail:@"过滤"];
-        _dataSource = @[model0, model1, model2];
+        HiRootCellModel *model3 = [HiRootCellModel title:@"调用类方法" type:HiRootCellType3 detail:@"NSLog 输出"];
+        HiRootCellModel *model4 = [HiRootCellModel title:@"实例化一个对象" type:HiRootCellType4 detail:@"NSLog 输出"];
+        _dataSource = @[model0, model1, model2, model3, model4];
     }
     
     return _dataSource;
@@ -118,6 +122,19 @@ static NSString *const kCellId = @"UITableViewCell";
         case HiRootCellType2:
             [self hi_pushPath:filter withInitParameters:nil animated:true];
 
+            break;
+        case HiRootCellType3:
+        {
+            NSLog(@"%@",[@"class/method" hi_request:@"root 调用"]);
+        }
+            break;
+        case HiRootCellType4:
+        {
+            // 实例方法
+//            NSLog(@"实例化一个对象 %@",[self hi_objectForPath:@"class/init"]);
+            // 类方法
+            NSLog(@"实例化一个对象 %@",[NSObject hi_instanceForPath:@"class/init"]);
+        }
             break;
     }
 }

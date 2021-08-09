@@ -11,36 +11,7 @@
 
 @implementation UIViewController (HiRouter)
 
-- (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated {
-    
-    return [self hi_transition:HiRouterTransitionPush
-                          path:path
-                initParameters:parameters
-         modalPresentationStyle:UIModalPresentationFullScreen
-                      animated:animated
-                    completion:nil];
-}
-
-- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated completion:(void (^)(void))completion {
-    
-    return [self hi_transition:HiRouterTransitionPresent
-                          path:path
-                initParameters:parameters
-        modalPresentationStyle:UIModalPresentationFullScreen
-                      animated:animated
-                    completion:completion];
-}
-
-- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
-    
-    return [self hi_transition:HiRouterTransitionPresent
-                          path:path
-                initParameters:parameters
-        modalPresentationStyle:modalPresentationStyle
-                      animated:animated
-                    completion:completion];
-}
-
+#pragma mark *********** private ***********
 - (void)viewController:(UIViewController *)viewController pushAnimated:(BOOL)animated{
     if ([self isKindOfClass:UINavigationController.class]) {
         
@@ -87,6 +58,46 @@
         }
     }
     return viewController;
+}
+
+#pragma mark *********** public ***********
+- (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated {
+    
+    return [self hi_transition:HiRouterTransitionPush
+                          path:path
+                initParameters:parameters
+         modalPresentationStyle:UIModalPresentationFullScreen
+                      animated:animated
+                    completion:nil];
+}
+
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated {
+    return [self hi_transition:HiRouterTransitionPresent
+                          path:path
+                initParameters:parameters
+        modalPresentationStyle:UIModalPresentationFullScreen
+                      animated:animated
+                    completion:nil];
+}
+
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated completion:(void (^)(void))completion {
+    
+    return [self hi_transition:HiRouterTransitionPresent
+                          path:path
+                initParameters:parameters
+        modalPresentationStyle:UIModalPresentationFullScreen
+                      animated:animated
+                    completion:completion];
+}
+
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
+    
+    return [self hi_transition:HiRouterTransitionPresent
+                          path:path
+                initParameters:parameters
+        modalPresentationStyle:modalPresentationStyle
+                      animated:animated
+                    completion:completion];
 }
 
 @end

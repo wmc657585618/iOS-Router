@@ -6,7 +6,7 @@
 //  Copyright © 2021 Four. All rights reserved.
 //
 
-#import "HiRouter.h"
+#import "NSObjectHiRouter.h"
 
 @interface UIViewController (HiRouter)
 
@@ -15,6 +15,7 @@
 /// UIViewController 调用 self.navigationController push
 - (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated;
 
+- (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated;
 - (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated completion:(void (^)(void))completion;
 
 - (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion;

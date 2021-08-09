@@ -35,11 +35,11 @@
     
     // 注册过滤器
     // 类方法
-    [HiRouterFilter becomeFilter];
+//    [HiRouterFilter becomeFilter];
     
     // 实例方法
-//    HiRouterFilter *filter = [[HiRouterFilter alloc] init];
-//    [filter becomeFilter];
+    HiRouterFilter *filter = [[HiRouterFilter alloc] init];
+    [filter becomeFilter];
 
     [self.window makeKeyAndVisible];
     

@@ -1,13 +1,12 @@
 //
-//  Router.m
-//  Router
+//  NSObjectHiRouter.m
+//  RouterDemo
 //
-//  Created by Four on 2018/7/10.
-//  Copyright © 2018年 Four. All rights reserved.
+//  Created by four on 2021/8/9.
+//  Copyright © 2021 Four. All rights reserved.
 //
 
-#import "HiRouter.h"
-#import "HiRouterProperty.h"
+#import "NSObjectHiRouter.h"
 #import "HiRouterPrivate.h"
 
 static NSMutableDictionary *_dictionary = nil;
@@ -26,12 +25,12 @@ static NSMutableDictionary *_dictionary = nil;
     [_dictionary setValue:hi_class forKey:self];
 }
 
-- (Class)hi_request:(id)request response:(id(^)(id response))response {
+- (id)hi_request:(id)request{
     Class _class = self.hi_class;
-    if ([_class respondsToSelector:@selector(hi_request:hi_response:)]) {
-        [_class hi_request:request hi_response:response];
+    if ([_class respondsToSelector:@selector(hi_request:)]) {
+        return [_class hi_request:request];
     }
-    return _class;
+    return nil;
 }
 
 @end
@@ -54,8 +53,7 @@ static NSMutableDictionary *_dictionary = nil;
 }
 
 - (id)hi_objectForPath:(NSString *)path withInitParameters:(id)parameters {
-    NSObject<HiNetWork> *objc = [NSObject hi_instanceForPath:path withInitParameters:parameters];
-    return objc;
+    return [NSObject hi_instanceForPath:path withInitParameters:parameters];;
 }
 
 + (id)hi_instanceForPath:(NSString *)path {
@@ -88,17 +86,4 @@ static NSMutableDictionary *_dictionary = nil;
     return nil;
 }
 
-- (void)becomeFilter {
-    if ([self conformsToProtocol:@protocol(HiFilter)]) {
-        if (!self.hi_filter) self.hi_filter = self;
-    }
-}
-
-+ (void)becomeFilter {
-    if ([self conformsToProtocol:@protocol(HiFilter)]) {
-        if (!self.hi_filter) self.hi_filter = self;
-    }
-}
-
 @end
-

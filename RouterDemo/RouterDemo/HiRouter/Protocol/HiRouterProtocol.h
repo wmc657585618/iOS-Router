@@ -30,8 +30,7 @@
 
 /// 类 实现调用
 /// @param request 请求
-/// @param response 回调
-+ (void)hi_request:(id)request hi_response:(id(^)(id response))response;
++ (id)hi_request:(id)request;
 
 @end
 
