@@ -12,5 +12,6 @@
 #import "HiRouterProtocol.h"
 #import "HiRouter.h"
 #import "HiAnnotation.h"
+#import "UIViewControllerHiRouter.h"
 
 #endif /* HiRouterManager_h */
