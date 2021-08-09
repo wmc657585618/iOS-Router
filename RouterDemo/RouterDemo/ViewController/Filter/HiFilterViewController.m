@@ -20,7 +20,7 @@
 - (UIButton *)button {
     if (!_button) {
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button setTitle:@"正常页面" forState:UIControlStateNormal];
+        [_button setTitle:@"点击跳转正常页面" forState:UIControlStateNormal];
         [_button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         [_button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -30,7 +30,7 @@
 - (UIButton *)button1 {
     if (!_button1) {
         _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button1 setTitle:@"过滤页面" forState:UIControlStateNormal];
+        [_button1 setTitle:@"点击跳转过滤页面" forState:UIControlStateNormal];
         [_button1 setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         [_button1 addTarget:self action:@selector(buttonClicked1:) forControlEvents:UIControlEventTouchUpInside];
     }

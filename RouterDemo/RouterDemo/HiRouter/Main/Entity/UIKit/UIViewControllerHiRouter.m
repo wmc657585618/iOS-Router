@@ -24,22 +24,24 @@
 }
 
 - (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
+
+    HiResponse *response = hiFilterTransitioningMake(path, parameters, transition, modalPresentationStyle);
     
-    HiFilterBody filter = hiFilterTransitioningMake(path, parameters, transition, modalPresentationStyle);
-    if ([self.hi_filter respondsToSelector:@selector(hiFilterTransition:)]) {
+    if ([self.hi_filter respondsToSelector:@selector(hiFilterTransition:response:)]) {
         HiEnvironment *env = [[HiEnvironment alloc] init];
         env.path = path;
         env.parameters = parameters;
         env.transition = transition;
         env.modal = modalPresentationStyle;
-        filter = [self.hi_filter hiFilterTransition:env];
+        
+        [self.hi_filter hiFilterTransition:env response:response];
     }
     
-    UIViewController *viewController = [UIViewController hi_objectForClass:filter.path.hi_class withParameters:filter.parameters];
+    UIViewController *viewController = [UIViewController hi_objectForClass:response.path.hi_class withParameters:response.parameters];
     
     if ([viewController isKindOfClass:UIViewController.class]) {
         
-        switch (filter.transition) {
+        switch (response.transition) {
                 
             case HiRouterTransitionNone:
                 break;
@@ -51,7 +53,7 @@
                 break;
             case HiRouterTransitionPresent:
             {
-                viewController.modalPresentationStyle = filter.modal;
+                viewController.modalPresentationStyle = response.modal;
                 [self presentViewController:viewController animated:animated completion:completion];
             }
                 break;

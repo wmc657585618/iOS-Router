@@ -11,30 +11,25 @@
 
 @implementation HiRouterFilter
 
-+ (HiFilterBody)hiFilterPath:(HiEnvironment *)env {
++ (void)hiFilterPath:(HiEnvironment *)env response:(HiResponse *)response{
     
-    return hiFilterMake(env.path, env.parameters);
 }
 
-- (HiFilterBody)hiFilterPath:(HiEnvironment *)env {
+- (void)hiFilterPath:(HiEnvironment *)env response:(HiResponse *)response{
     
-    return hiFilterMake(env.path, env.parameters);
 }
 
-+ (HiFilterBody)hiFilterTransition:(HiEnvironment *)env {
++ (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response{
     /// 为了区分是否过滤 添加了 parameters
     if ([env.path isEqualToString:filter_normal] && env.parameters) {
-        return hiFilterTransitioningMake(error, env.parameters, env.transition, env.modal);
     }
-    return hiFilterTransitioningMake(env.path, env.parameters, env.transition, env.modal);
 }
 
-- (HiFilterBody)hiFilterTransition:(HiEnvironment *)env {
+- (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response{
     /// 为了区分是否过滤 添加了 parameters
     if ([env.path isEqualToString:filter_normal] && env.parameters) {
-        return hiFilterTransitioningMake(error, env.parameters, env.transition, env.modal);
+        response.path = error;
     }
-    return hiFilterTransitioningMake(env.path, env.parameters, env.transition, env.modal);
 }
 
 @end

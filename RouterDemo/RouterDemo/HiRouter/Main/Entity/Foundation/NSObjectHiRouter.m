@@ -61,15 +61,16 @@ static NSMutableDictionary *_dictionary = nil;
 }
 
 + (id)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters{
-    HiFilterBody forward = hiFilterMake(path, parameters);
-    if ([self.hi_filter respondsToSelector:@selector(hiFilterPath:)]) {// 有拦截
+    HiResponse *response = hiFilterMake(path, parameters);
+    if ([self.hi_filter respondsToSelector:@selector(hiFilterPath:response:)]) {// 有拦截
         HiEnvironment *env = [[HiEnvironment alloc] init];
         env.parameters = parameters;
         env.path = path;
-        forward = [self.hi_filter hiFilterPath:env];
+        
+        [self.hi_filter hiFilterPath:env response:response];
     }
     
-    return [self hi_objectForClass:forward.path.hi_class withParameters:forward.parameters];
+    return [self hi_objectForClass:response.path.hi_class withParameters:response.parameters];
 }
 
 /// MARK:- other

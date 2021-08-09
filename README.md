@@ -211,14 +211,25 @@ url 预处理
 
 // 请求参数
 - (id)hi_request:(id)request {
-    
+    return @"";
 }
 
 // 回调参数
 - (id)hi_response:(id)response {
-    
+    return @"";
 }
 @end
+```
+
+### 调用
+#### ViewController
+```
+[self hi_pushPath:parameters withInitParameters:@"hello world" animated:true];
+```
+
+#### 实例化一个对象
+```
+[NSObject hi_instanceForPath:@"xxxx"]
 ```
 
 ### 回调
@@ -227,7 +238,28 @@ url 预处理
 /// 优先 block
 - (void)hi_makeResponse:(id)response;
 ```
-- ```[objc hi_makeResponse:@"test"];```
+
+```
+[objc hi_makeResponse:@"test"];
+```
 
 
 
+## 过滤器
+```
+/// 过滤器 遵守 HiFilter 协议的
+/// 只能有一个过滤器,多个 只有第一个 遵守 HiFilter 协议的 有效
+- (void)becomeFilter;
++ (void)becomeFilter;
+```
+
+### 实现
+```
+- (HiFilterBody)hiFilterPath:(HiEnvironment *)env {
+    return hiFilterMake(env.path, env.parameters);
+}
+
+- (HiFilterBody)hiFilterTransition:(HiEnvironment *)env {
+    return hiFilterTransitioningMake(env.path, env.parameters, env.transition, env.modal);
+}
+```
