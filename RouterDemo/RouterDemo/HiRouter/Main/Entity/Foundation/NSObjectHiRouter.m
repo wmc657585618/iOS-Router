@@ -61,12 +61,9 @@ static NSMutableDictionary *_dictionary = nil;
 }
 
 + (id)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters{
-    HiResponse *response = hiFilterMake(path, parameters);
+    HiResponse *response = [HiResponse responseWithPath:path parameters:parameters];
     if ([self.hi_filter respondsToSelector:@selector(hiFilterPath:response:)]) {// 有拦截
-        HiEnvironment *env = [[HiEnvironment alloc] init];
-        env.parameters = parameters;
-        env.path = path;
-        
+        HiEnvironment *env = [HiEnvironment environmentWithPath:path parameters:parameters];
         [self.hi_filter hiFilterPath:env response:response];
     }
     

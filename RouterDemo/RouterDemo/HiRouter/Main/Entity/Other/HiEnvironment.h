@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 路由环境参数
 @interface HiEnvironment : NSObject
 
++ (instancetype)environmentWithPath:(NSString *)path parameters:(id)parameters modal:(UIModalPresentationStyle)modal transition:(HiRouterTransition)transition;
++ (instancetype)environmentWithPath:(NSString *)path parameters:(id)parameters;
 /// 转场
 @property (nonatomic, assign) HiRouterTransition transition;
 
@@ -21,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *path;
 /// 初始化参数
 @property (nonatomic, strong) id parameters;
+
 
 @end
 

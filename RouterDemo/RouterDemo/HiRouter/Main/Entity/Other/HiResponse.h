@@ -15,20 +15,8 @@
 @property (nonatomic, assign) HiRouterTransition transition;
 @property (nonatomic, assign) UIModalPresentationStyle modal;
 @property (nonatomic, strong) id parameters; // init 参数
-@property (nonatomic, strong) id request;
+
++ (instancetype)responseWithPath:(NSString *)path parameters:(id)parameters modal:(UIModalPresentationStyle)modal transition:(HiRouterTransition)transition;
++ (instancetype)responseWithPath:(NSString *)path parameters:(id)parameters;
 
 @end
-
-static inline HiResponse * hiFilterTransitioningMake(NSString *path, id parameters, HiRouterTransition transition, UIModalPresentationStyle modal) {
-    HiResponse *body = [[HiResponse alloc] init];
-    body.path = path;
-    body.parameters = parameters;
-    body.transition = transition;
-    body.modal = modal;
-    return body;
-}
-
-static inline HiResponse * hiFilterMake(NSString *path, id parameters) {
-    return hiFilterTransitioningMake(path, parameters, HiRouterTransitionNone, UIModalPresentationFullScreen);
-}
-
