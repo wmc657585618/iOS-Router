@@ -1,5 +1,5 @@
 //
-//  HiCallBack ViewController.h
+//  HiParametersViewController.h
 //  RouterDemo
 //
 //  Created by four on 2021/8/9.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiCallBackViewController : HiBaseViewController
+@interface HiParametersViewController : HiBaseViewController
 
 @end
 

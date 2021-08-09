@@ -55,10 +55,7 @@ static NSMutableDictionary *_dictionary = nil;
 
 @end
 
-static id<HiFilter> _filter = nil;
-inline void hi_registFilter(id<HiFilter> filter) {
-    if (!_filter)_filter = filter;
-}
+static id _filter = nil;
 
 @implementation NSObject (HiRouter)
 
@@ -85,7 +82,7 @@ inline void hi_registFilter(id<HiFilter> filter) {
     return self.hi_router_property.block;
 }
 
-- (void)setHi_router_block:(id (^)(id))hi_router_block {
+- (void)setHi_router_block:(id (^)(id response))hi_router_block {
     self.hi_router_property.block = hi_router_block;
 }
 
@@ -112,8 +109,11 @@ inline void hi_registFilter(id<HiFilter> filter) {
 
 + (id)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters{
     HiFilterBody forward = hiFilterMake(path, parameters);
-    if ([_filter respondsToSelector:@selector(hiFilterPath:init:)]) {// 有拦截
-        forward = [_filter hiFilterPath:path init:parameters];
+    if ([_filter respondsToSelector:@selector(hiFilterPath:)]) {// 有拦截
+        HiEnvironment *env = [[HiEnvironment alloc] init];
+        env.parameters = parameters;
+        env.path = path;
+        forward = [_filter hiFilterPath:env];
     }
     
     return [self hi_objectForClass:forward.path.hi_class withParameters:forward.parameters];
@@ -133,8 +133,19 @@ inline void hi_registFilter(id<HiFilter> filter) {
     return nil;
 }
 
-@end
+- (void)becomeFilter {
+    if ([self conformsToProtocol:@protocol(HiFilter)]) {
+        if (!_filter)_filter = self;
+    }
+}
 
++ (void)becomeFilter {
+    if ([self conformsToProtocol:@protocol(HiFilter)]) {
+        if (!_filter)_filter = self;
+    }
+}
+
+@end
 
 @implementation UIViewController (HiRouter)
 
@@ -182,8 +193,13 @@ inline void hi_registFilter(id<HiFilter> filter) {
 - (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
     
     HiFilterBody filter = hiFilterTransitioningMake(path, parameters, transition, modalPresentationStyle);
-    if ([_filter respondsToSelector:@selector(hiFilterTransition:path:init:modal:)]) {
-        filter = [_filter hiFilterTransition:transition path:path init:parameters modal:modalPresentationStyle];
+    if ([_filter respondsToSelector:@selector(hiFilterTransition:)]) {
+        HiEnvironment *env = [[HiEnvironment alloc] init];
+        env.path = path;
+        env.parameters = parameters;
+        env.transition = transition;
+        env.modal = modalPresentationStyle;
+        filter = [_filter hiFilterTransition:env];
     }
     
     UIViewController *viewController = [NSObject hi_objectForClass:filter.path.hi_class withParameters:filter.parameters];

@@ -2,62 +2,51 @@
 //  HiCallBackViewController.m
 //  RouterDemo
 //
-//  Created by four on 2018/12/22.
-//  Copyright © 2018 Four. All rights reserved.
+//  Created by four on 2021/8/9.
+//  Copyright © 2021 Four. All rights reserved.
 //
 
 #import "HiCallBackViewController.h"
-#import "HiRouterManager.h"
 
 @interface HiCallBackViewController ()
-@property (nonatomic,strong) UILabel *receiveLabel;
+
+@property (nonatomic, strong) UIButton *button;
+
+@property (nonatomic, strong) UILabel *label;
 
 @end
 
 @implementation HiCallBackViewController
 
-- (UILabel *)receiveLabel {
-    
-    if (!_receiveLabel) {
-        _receiveLabel = [[UILabel alloc] init];
+- (UIButton *)button {
+    if (!_button) {
+        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_button setTitle:@"点我发送 hello world" forState:UIControlStateNormal];
+        [_button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        [_button addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _receiveLabel;
+    return _button;
+}
+- (UILabel *)label {
+    if (!_label) {
+        _label = [[UILabel alloc] init];
+        _label.textAlignment = NSTextAlignmentCenter;
+    }
+    return _label;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.button];
+    self.button.frame = CGRectMake(40, 100, 200, 20);
     
-    self.view.backgroundColor = UIColor.whiteColor;
-    
-    CGFloat x = 20;
-    CGFloat width = self.view.frame.size.width - x * 2;
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 100, width, 44)];
-    label.text = @"get parametes";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.backgroundColor = UIColor.groupTableViewBackgroundColor;
-    [self.view addSubview:label];
-    
-    self.receiveLabel.frame = CGRectMake(x, CGRectGetMaxY(label.frame) + 20, width, 140);
-    self.receiveLabel.backgroundColor = UIColor.groupTableViewBackgroundColor;
-    [self.view addSubview:self.receiveLabel];
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = UIColor.groupTableViewBackgroundColor;
-    [button setTitle:@"push" forState:UIControlStateNormal];
-    button.frame = CGRectMake((self.view.frame.size.width - 100) * 0.5, CGRectGetMaxY(self.receiveLabel.frame) + 20, 100, 44);
-    [button setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
-    [self.view addSubview:button];
-    [button addTarget:self action:@selector(push) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.label];
+    self.label.frame = CGRectMake(0, 130, self.view.frame.size.width, 44.0);
 }
 
-- (void)push {
-
-}
-
-- (void)recivedCallBack:(id)callBack {
-    
-    self.receiveLabel.text = callBack;
+- (void)buttonClicked {
+    NSString *res = [self hi_makeResponse:@"hello world"];
+    self.label.text = res;
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  HiCallBack ViewController.h
+//  HiErrorViewController.h
 //  RouterDemo
 //
 //  Created by four on 2021/8/9.
@@ -9,8 +9,8 @@
 #import "HiBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface HiCallBackViewController : HiBaseViewController
+@Router(error, HiErrorViewController)
+@interface HiErrorViewController : HiBaseViewController
 
 @end
 

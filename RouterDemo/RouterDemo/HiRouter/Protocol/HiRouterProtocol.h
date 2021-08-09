@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HiRouterDefine.h"
+#import "HiEnvironment.h"
 
 @protocol HiInit <NSObject>
 
@@ -39,12 +39,12 @@
 
 @optional
 /// 创建
-- (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters;
-+ (HiFilterBody)hiFilterPath:(NSString *)path init:(id)parameters;
+- (HiFilterBody)hiFilterPath:(HiEnvironment *)env;
++ (HiFilterBody)hiFilterPath:(HiEnvironment *)env;
 
 /// 转场
-- (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters modal:(UIModalPresentationStyle)modal;
-+ (HiFilterBody)hiFilterTransition:(HiRouterTransition)transition path:(NSString *)path init:(id)parameters modal:(UIModalPresentationStyle)modal;
+- (HiFilterBody)hiFilterTransition:(HiEnvironment *)env;
++ (HiFilterBody)hiFilterTransition:(HiEnvironment *)env;
 
 @end
 

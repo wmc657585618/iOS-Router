@@ -8,32 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1C14ABAC21D364B500DE248C /* HiRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C14ABA121D364B500DE248C /* HiRouter.m */; };
-		1C1B89B522410FAD00E3C1FE /* HiNavigationFirstViewControoler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89B422410FAD00E3C1FE /* HiNavigationFirstViewControoler.m */; };
-		1C1B89B822410FCB00E3C1FE /* HiNavigationSecondViewControoler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89B722410FCB00E3C1FE /* HiNavigationSecondViewControoler.m */; };
-		1C1B89BB22410FDA00E3C1FE /* HiNavigationThirdViewControoler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89BA22410FDA00E3C1FE /* HiNavigationThirdViewControoler.m */; };
-		1C1B89BE22410FEB00E3C1FE /* HiNavigationFourthViewControoler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B89BD22410FEB00E3C1FE /* HiNavigationFourthViewControoler.m */; };
+		1C176EA826C0C95500C542C3 /* HiEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EA726C0C95500C542C3 /* HiEnvironment.m */; };
+		1C176EAB26C0CC6700C542C3 /* HiRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EAA26C0CC6700C542C3 /* HiRootViewController.m */; };
+		1C176EAF26C0CC8700C542C3 /* HiBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EAE26C0CC8700C542C3 /* HiBaseViewController.m */; };
+		1C176EB726C0D36900C542C3 /* HiErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EB626C0D36900C542C3 /* HiErrorViewController.m */; };
+		1C176EBC26C0D6A400C542C3 /* HiParametersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EBB26C0D6A400C542C3 /* HiParametersViewController.m */; };
+		1C176EBF26C0D6B300C542C3 /* HiCallBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EBE26C0D6B300C542C3 /* HiCallBackViewController.m */; };
+		1C176EC226C0D76D00C542C3 /* HiRouterManulRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EC126C0D76D00C542C3 /* HiRouterManulRegister.m */; };
+		1C176EC626C0FA9E00C542C3 /* HiFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EC526C0FA9E00C542C3 /* HiFilterViewController.m */; };
+		1C176EC926C1028900C542C3 /* HiRouterFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EC826C1028900C542C3 /* HiRouterFilter.m */; };
+		1C176ECC26C104C500C542C3 /* HiFilterNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176ECB26C104C500C542C3 /* HiFilterNormalViewController.m */; };
 		1C65583220F5FC4D00862997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C65583120F5FC4D00862997 /* Assets.xcassets */; };
 		1C65583520F5FC4D00862997 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C65583320F5FC4D00862997 /* LaunchScreen.storyboard */; };
 		1C65583820F5FC4E00862997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65583720F5FC4E00862997 /* main.m */; };
 		1C65585320F5FCF800862997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65585220F5FCF800862997 /* AppDelegate.m */; };
-		1C97792921D07FD700C9859A /* HiPageFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97792821D07FD700C9859A /* HiPageFilterViewController.m */; };
-		1C97792C21D0806200C9859A /* HiPageSub1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97792B21D0806200C9859A /* HiPageSub1ViewController.m */; };
-		1C97792F21D0806D00C9859A /* HiPageSub2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97792E21D0806D00C9859A /* HiPageSub2ViewController.m */; };
-		1C97793221D0812900C9859A /* HiPageErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97793121D0812900C9859A /* HiPageErrorViewController.m */; };
-		1C97793521D0899500C9859A /* HiPageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97793421D0899500C9859A /* HiPageFilter.m */; };
-		1C97793821D08D3500C9859A /* HiRootTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97793721D08D3500C9859A /* HiRootTableModel.m */; };
-		1C97795A21D0B70900C9859A /* HiViewModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97795921D0B70900C9859A /* HiViewModelViewController.m */; };
-		1C97796021D0C24100C9859A /* HiViewModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97795F21D0C24100C9859A /* HiViewModelView.m */; };
-		1C97796621D0C5FB00C9859A /* HiViewModelReceiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C97796521D0C5FB00C9859A /* HiViewModelReceiveView.m */; };
-		1CB3D09221DDB98300E66BF1 /* HiRouterPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB3D09121DDB98300E66BF1 /* HiRouterPath.m */; };
-		1CB3D09521DDCB9800E66BF1 /* HiBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB3D09421DDCB9800E66BF1 /* HiBaseViewController.m */; };
-		1CD3FC4821CE3CD100B8C924 /* HiRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC4721CE3CD100B8C924 /* HiRootViewController.m */; };
-		1CD3FC5021CE422C00B8C924 /* HiParametesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC4F21CE422C00B8C924 /* HiParametesViewController.m */; };
-		1CD3FC5621CE4A0000B8C924 /* HiParametesReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC5521CE4A0000B8C924 /* HiParametesReceiveViewController.m */; };
-		1CD3FC5A21CE4CB300B8C924 /* HiCallBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC5921CE4CB300B8C924 /* HiCallBackViewController.m */; };
-		1CD3FC5D21CE4CF600B8C924 /* HiCallBackSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC5C21CE4CF600B8C924 /* HiCallBackSubViewController.m */; };
-		1CD3FC6121CE4E0100B8C924 /* HiNetworkFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6021CE4E0100B8C924 /* HiNetworkFilterViewController.m */; };
-		1CD3FC6421CE517500B8C924 /* HiNetworkFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */; };
 		1CE962F92616B8E0007EA98C /* HiAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE962F82616B8E0007EA98C /* HiAnnotation.m */; };
 /* End PBXBuildFile section */
 
@@ -43,14 +31,26 @@
 		1C14ABA121D364B500DE248C /* HiRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiRouter.m; sourceTree = "<group>"; };
 		1C14ABA321D364B500DE248C /* HiRouterDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterDefine.h; sourceTree = "<group>"; };
 		1C14ABA521D364B500DE248C /* HiRouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterProtocol.h; sourceTree = "<group>"; };
-		1C1B89B322410FAD00E3C1FE /* HiNavigationFirstViewControoler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNavigationFirstViewControoler.h; sourceTree = "<group>"; };
-		1C1B89B422410FAD00E3C1FE /* HiNavigationFirstViewControoler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNavigationFirstViewControoler.m; sourceTree = "<group>"; };
-		1C1B89B622410FCB00E3C1FE /* HiNavigationSecondViewControoler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNavigationSecondViewControoler.h; sourceTree = "<group>"; };
-		1C1B89B722410FCB00E3C1FE /* HiNavigationSecondViewControoler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNavigationSecondViewControoler.m; sourceTree = "<group>"; };
-		1C1B89B922410FDA00E3C1FE /* HiNavigationThirdViewControoler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNavigationThirdViewControoler.h; sourceTree = "<group>"; };
-		1C1B89BA22410FDA00E3C1FE /* HiNavigationThirdViewControoler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNavigationThirdViewControoler.m; sourceTree = "<group>"; };
-		1C1B89BC22410FEB00E3C1FE /* HiNavigationFourthViewControoler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNavigationFourthViewControoler.h; sourceTree = "<group>"; };
-		1C1B89BD22410FEB00E3C1FE /* HiNavigationFourthViewControoler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNavigationFourthViewControoler.m; sourceTree = "<group>"; };
+		1C176EA626C0C95500C542C3 /* HiEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiEnvironment.h; sourceTree = "<group>"; };
+		1C176EA726C0C95500C542C3 /* HiEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiEnvironment.m; sourceTree = "<group>"; };
+		1C176EA926C0CC6700C542C3 /* HiRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRootViewController.h; sourceTree = "<group>"; };
+		1C176EAA26C0CC6700C542C3 /* HiRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiRootViewController.m; sourceTree = "<group>"; };
+		1C176EAD26C0CC8700C542C3 /* HiBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBaseViewController.h; sourceTree = "<group>"; };
+		1C176EAE26C0CC8700C542C3 /* HiBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBaseViewController.m; sourceTree = "<group>"; };
+		1C176EB526C0D36900C542C3 /* HiErrorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiErrorViewController.h; sourceTree = "<group>"; };
+		1C176EB626C0D36900C542C3 /* HiErrorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiErrorViewController.m; sourceTree = "<group>"; };
+		1C176EBA26C0D6A400C542C3 /* HiParametersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiParametersViewController.h; sourceTree = "<group>"; };
+		1C176EBB26C0D6A400C542C3 /* HiParametersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiParametersViewController.m; sourceTree = "<group>"; };
+		1C176EBD26C0D6B300C542C3 /* HiCallBackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiCallBackViewController.h; sourceTree = "<group>"; };
+		1C176EBE26C0D6B300C542C3 /* HiCallBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiCallBackViewController.m; sourceTree = "<group>"; };
+		1C176EC026C0D76D00C542C3 /* HiRouterManulRegister.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouterManulRegister.h; sourceTree = "<group>"; };
+		1C176EC126C0D76D00C542C3 /* HiRouterManulRegister.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiRouterManulRegister.m; sourceTree = "<group>"; };
+		1C176EC426C0FA9E00C542C3 /* HiFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiFilterViewController.h; sourceTree = "<group>"; };
+		1C176EC526C0FA9E00C542C3 /* HiFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiFilterViewController.m; sourceTree = "<group>"; };
+		1C176EC726C1028900C542C3 /* HiRouterFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouterFilter.h; sourceTree = "<group>"; };
+		1C176EC826C1028900C542C3 /* HiRouterFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiRouterFilter.m; sourceTree = "<group>"; };
+		1C176ECA26C104C500C542C3 /* HiFilterNormalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiFilterNormalViewController.h; sourceTree = "<group>"; };
+		1C176ECB26C104C500C542C3 /* HiFilterNormalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiFilterNormalViewController.m; sourceTree = "<group>"; };
 		1C65582520F5FC4C00862997 /* RouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C65583120F5FC4D00862997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C65583420F5FC4D00862997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,42 +58,7 @@
 		1C65583720F5FC4E00862997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1C65585120F5FCF800862997 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1C65585220F5FCF800862997 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1C97792721D07FD700C9859A /* HiPageFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiPageFilterViewController.h; sourceTree = "<group>"; };
-		1C97792821D07FD700C9859A /* HiPageFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiPageFilterViewController.m; sourceTree = "<group>"; };
-		1C97792A21D0806200C9859A /* HiPageSub1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiPageSub1ViewController.h; sourceTree = "<group>"; };
-		1C97792B21D0806200C9859A /* HiPageSub1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiPageSub1ViewController.m; sourceTree = "<group>"; };
-		1C97792D21D0806D00C9859A /* HiPageSub2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiPageSub2ViewController.h; sourceTree = "<group>"; };
-		1C97792E21D0806D00C9859A /* HiPageSub2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiPageSub2ViewController.m; sourceTree = "<group>"; };
-		1C97793021D0812900C9859A /* HiPageErrorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiPageErrorViewController.h; sourceTree = "<group>"; };
-		1C97793121D0812900C9859A /* HiPageErrorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiPageErrorViewController.m; sourceTree = "<group>"; };
-		1C97793321D0899500C9859A /* HiPageFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiPageFilter.h; sourceTree = "<group>"; };
-		1C97793421D0899500C9859A /* HiPageFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiPageFilter.m; sourceTree = "<group>"; };
-		1C97793621D08D3500C9859A /* HiRootTableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRootTableModel.h; sourceTree = "<group>"; };
-		1C97793721D08D3500C9859A /* HiRootTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiRootTableModel.m; sourceTree = "<group>"; };
-		1C97795821D0B70900C9859A /* HiViewModelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiViewModelViewController.h; sourceTree = "<group>"; };
-		1C97795921D0B70900C9859A /* HiViewModelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiViewModelViewController.m; sourceTree = "<group>"; };
-		1C97795E21D0C24100C9859A /* HiViewModelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiViewModelView.h; sourceTree = "<group>"; };
-		1C97795F21D0C24100C9859A /* HiViewModelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiViewModelView.m; sourceTree = "<group>"; };
-		1C97796421D0C5FB00C9859A /* HiViewModelReceiveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiViewModelReceiveView.h; sourceTree = "<group>"; };
-		1C97796521D0C5FB00C9859A /* HiViewModelReceiveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiViewModelReceiveView.m; sourceTree = "<group>"; };
 		1CB3D09021DDB98300E66BF1 /* HiRouterPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouterPath.h; sourceTree = "<group>"; };
-		1CB3D09121DDB98300E66BF1 /* HiRouterPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiRouterPath.m; sourceTree = "<group>"; };
-		1CB3D09321DDCB9800E66BF1 /* HiBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBaseViewController.h; sourceTree = "<group>"; };
-		1CB3D09421DDCB9800E66BF1 /* HiBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBaseViewController.m; sourceTree = "<group>"; };
-		1CD3FC4621CE3CD100B8C924 /* HiRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRootViewController.h; sourceTree = "<group>"; };
-		1CD3FC4721CE3CD100B8C924 /* HiRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiRootViewController.m; sourceTree = "<group>"; };
-		1CD3FC4E21CE422C00B8C924 /* HiParametesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiParametesViewController.h; sourceTree = "<group>"; };
-		1CD3FC4F21CE422C00B8C924 /* HiParametesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiParametesViewController.m; sourceTree = "<group>"; };
-		1CD3FC5421CE4A0000B8C924 /* HiParametesReceiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiParametesReceiveViewController.h; sourceTree = "<group>"; };
-		1CD3FC5521CE4A0000B8C924 /* HiParametesReceiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiParametesReceiveViewController.m; sourceTree = "<group>"; };
-		1CD3FC5821CE4CB300B8C924 /* HiCallBackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiCallBackViewController.h; sourceTree = "<group>"; };
-		1CD3FC5921CE4CB300B8C924 /* HiCallBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiCallBackViewController.m; sourceTree = "<group>"; };
-		1CD3FC5B21CE4CF600B8C924 /* HiCallBackSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiCallBackSubViewController.h; sourceTree = "<group>"; };
-		1CD3FC5C21CE4CF600B8C924 /* HiCallBackSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiCallBackSubViewController.m; sourceTree = "<group>"; };
-		1CD3FC5F21CE4E0100B8C924 /* HiNetworkFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNetworkFilterViewController.h; sourceTree = "<group>"; };
-		1CD3FC6021CE4E0100B8C924 /* HiNetworkFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNetworkFilterViewController.m; sourceTree = "<group>"; };
-		1CD3FC6221CE517500B8C924 /* HiNetworkFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiNetworkFilter.h; sourceTree = "<group>"; };
-		1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiNetworkFilter.m; sourceTree = "<group>"; };
 		1CE962F72616B8E0007EA98C /* HiAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiAnnotation.h; sourceTree = "<group>"; };
 		1CE962F82616B8E0007EA98C /* HiAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +89,8 @@
 			children = (
 				1C14AB9F21D364B500DE248C /* HiRouter.h */,
 				1C14ABA121D364B500DE248C /* HiRouter.m */,
+				1C176EA626C0C95500C542C3 /* HiEnvironment.h */,
+				1C176EA726C0C95500C542C3 /* HiEnvironment.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -136,19 +103,62 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		1C1B89B222410F6500E3C1FE /* Navigation */ = {
+		1C176EAC26C0CC7D00C542C3 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				1C1B89B322410FAD00E3C1FE /* HiNavigationFirstViewControoler.h */,
-				1C1B89B422410FAD00E3C1FE /* HiNavigationFirstViewControoler.m */,
-				1C1B89B622410FCB00E3C1FE /* HiNavigationSecondViewControoler.h */,
-				1C1B89B722410FCB00E3C1FE /* HiNavigationSecondViewControoler.m */,
-				1C1B89B922410FDA00E3C1FE /* HiNavigationThirdViewControoler.h */,
-				1C1B89BA22410FDA00E3C1FE /* HiNavigationThirdViewControoler.m */,
-				1C1B89BC22410FEB00E3C1FE /* HiNavigationFourthViewControoler.h */,
-				1C1B89BD22410FEB00E3C1FE /* HiNavigationFourthViewControoler.m */,
+				1C176EAD26C0CC8700C542C3 /* HiBaseViewController.h */,
+				1C176EAE26C0CC8700C542C3 /* HiBaseViewController.m */,
 			);
-			path = Navigation;
+			path = Base;
+			sourceTree = "<group>";
+		};
+		1C176EB026C0CC8D00C542C3 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				1C176EA926C0CC6700C542C3 /* HiRootViewController.h */,
+				1C176EAA26C0CC6700C542C3 /* HiRootViewController.m */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		1C176EB426C0D35900C542C3 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				1C176EB526C0D36900C542C3 /* HiErrorViewController.h */,
+				1C176EB626C0D36900C542C3 /* HiErrorViewController.m */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		1C176EB826C0D68B00C542C3 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				1C176EBA26C0D6A400C542C3 /* HiParametersViewController.h */,
+				1C176EBB26C0D6A400C542C3 /* HiParametersViewController.m */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		1C176EB926C0D69400C542C3 /* CallBack */ = {
+			isa = PBXGroup;
+			children = (
+				1C176EBD26C0D6B300C542C3 /* HiCallBackViewController.h */,
+				1C176EBE26C0D6B300C542C3 /* HiCallBackViewController.m */,
+			);
+			path = CallBack;
+			sourceTree = "<group>";
+		};
+		1C176EC326C0FA8E00C542C3 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				1C176EC426C0FA9E00C542C3 /* HiFilterViewController.h */,
+				1C176EC526C0FA9E00C542C3 /* HiFilterViewController.m */,
+				1C176ECA26C104C500C542C3 /* HiFilterNormalViewController.h */,
+				1C176ECB26C104C500C542C3 /* HiFilterNormalViewController.m */,
+				1C176EC726C1028900C542C3 /* HiRouterFilter.h */,
+				1C176EC826C1028900C542C3 /* HiRouterFilter.m */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		1C65581C20F5FC4C00862997 = {
@@ -184,13 +194,12 @@
 		1C65584C20F5FCF100862997 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1C1B89B222410F6500E3C1FE /* Navigation */,
-				1C97795721D0B6ED00C9859A /* ViewModel */,
-				1C97792621D07FB800C9859A /* PageFilter */,
-				1CD3FC5E21CE4DF300B8C924 /* NetworkFilter */,
-				1CD3FC5721CE4CA200B8C924 /* CallBack */,
-				1CD3FC4D21CE422100B8C924 /* Parametes */,
-				1C65586E20F6022800862997 /* Other */,
+				1C176EC326C0FA8E00C542C3 /* Filter */,
+				1C176EB926C0D69400C542C3 /* CallBack */,
+				1C176EB826C0D68B00C542C3 /* Parameters */,
+				1C176EB426C0D35900C542C3 /* Error */,
+				1C176EB026C0CC8D00C542C3 /* Root */,
+				1C176EAC26C0CC7D00C542C3 /* Base */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -201,85 +210,10 @@
 				1C65585120F5FCF800862997 /* AppDelegate.h */,
 				1C65585220F5FCF800862997 /* AppDelegate.m */,
 				1CB3D09021DDB98300E66BF1 /* HiRouterPath.h */,
-				1CB3D09121DDB98300E66BF1 /* HiRouterPath.m */,
+				1C176EC026C0D76D00C542C3 /* HiRouterManulRegister.h */,
+				1C176EC126C0D76D00C542C3 /* HiRouterManulRegister.m */,
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		1C65586E20F6022800862997 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				1CD3FC4621CE3CD100B8C924 /* HiRootViewController.h */,
-				1CD3FC4721CE3CD100B8C924 /* HiRootViewController.m */,
-				1CB3D09321DDCB9800E66BF1 /* HiBaseViewController.h */,
-				1CB3D09421DDCB9800E66BF1 /* HiBaseViewController.m */,
-				1C97793621D08D3500C9859A /* HiRootTableModel.h */,
-				1C97793721D08D3500C9859A /* HiRootTableModel.m */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		1C97792621D07FB800C9859A /* PageFilter */ = {
-			isa = PBXGroup;
-			children = (
-				1C97792721D07FD700C9859A /* HiPageFilterViewController.h */,
-				1C97792821D07FD700C9859A /* HiPageFilterViewController.m */,
-				1C97792A21D0806200C9859A /* HiPageSub1ViewController.h */,
-				1C97792B21D0806200C9859A /* HiPageSub1ViewController.m */,
-				1C97792D21D0806D00C9859A /* HiPageSub2ViewController.h */,
-				1C97792E21D0806D00C9859A /* HiPageSub2ViewController.m */,
-				1C97793021D0812900C9859A /* HiPageErrorViewController.h */,
-				1C97793121D0812900C9859A /* HiPageErrorViewController.m */,
-				1C97793321D0899500C9859A /* HiPageFilter.h */,
-				1C97793421D0899500C9859A /* HiPageFilter.m */,
-			);
-			path = PageFilter;
-			sourceTree = "<group>";
-		};
-		1C97795721D0B6ED00C9859A /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				1C97795821D0B70900C9859A /* HiViewModelViewController.h */,
-				1C97795921D0B70900C9859A /* HiViewModelViewController.m */,
-				1C97795E21D0C24100C9859A /* HiViewModelView.h */,
-				1C97795F21D0C24100C9859A /* HiViewModelView.m */,
-				1C97796421D0C5FB00C9859A /* HiViewModelReceiveView.h */,
-				1C97796521D0C5FB00C9859A /* HiViewModelReceiveView.m */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		1CD3FC4D21CE422100B8C924 /* Parametes */ = {
-			isa = PBXGroup;
-			children = (
-				1CD3FC4E21CE422C00B8C924 /* HiParametesViewController.h */,
-				1CD3FC4F21CE422C00B8C924 /* HiParametesViewController.m */,
-				1CD3FC5421CE4A0000B8C924 /* HiParametesReceiveViewController.h */,
-				1CD3FC5521CE4A0000B8C924 /* HiParametesReceiveViewController.m */,
-			);
-			path = Parametes;
-			sourceTree = "<group>";
-		};
-		1CD3FC5721CE4CA200B8C924 /* CallBack */ = {
-			isa = PBXGroup;
-			children = (
-				1CD3FC5821CE4CB300B8C924 /* HiCallBackViewController.h */,
-				1CD3FC5921CE4CB300B8C924 /* HiCallBackViewController.m */,
-				1CD3FC5B21CE4CF600B8C924 /* HiCallBackSubViewController.h */,
-				1CD3FC5C21CE4CF600B8C924 /* HiCallBackSubViewController.m */,
-			);
-			path = CallBack;
-			sourceTree = "<group>";
-		};
-		1CD3FC5E21CE4DF300B8C924 /* NetworkFilter */ = {
-			isa = PBXGroup;
-			children = (
-				1CD3FC5F21CE4E0100B8C924 /* HiNetworkFilterViewController.h */,
-				1CD3FC6021CE4E0100B8C924 /* HiNetworkFilterViewController.m */,
-				1CD3FC6221CE517500B8C924 /* HiNetworkFilter.h */,
-				1CD3FC6321CE517500B8C924 /* HiNetworkFilter.m */,
-			);
-			path = NetworkFilter;
 			sourceTree = "<group>";
 		};
 		1CE962F62616B8B5007EA98C /* Annotation */ = {
@@ -401,32 +335,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C97793221D0812900C9859A /* HiPageErrorViewController.m in Sources */,
-				1C97792921D07FD700C9859A /* HiPageFilterViewController.m in Sources */,
-				1C97792C21D0806200C9859A /* HiPageSub1ViewController.m in Sources */,
+				1C176EC226C0D76D00C542C3 /* HiRouterManulRegister.m in Sources */,
 				1C65583820F5FC4E00862997 /* main.m in Sources */,
-				1CD3FC5621CE4A0000B8C924 /* HiParametesReceiveViewController.m in Sources */,
-				1C97792F21D0806D00C9859A /* HiPageSub2ViewController.m in Sources */,
-				1CD3FC5A21CE4CB300B8C924 /* HiCallBackViewController.m in Sources */,
+				1C176EBF26C0D6B300C542C3 /* HiCallBackViewController.m in Sources */,
 				1CE962F92616B8E0007EA98C /* HiAnnotation.m in Sources */,
-				1CD3FC5D21CE4CF600B8C924 /* HiCallBackSubViewController.m in Sources */,
-				1CD3FC4821CE3CD100B8C924 /* HiRootViewController.m in Sources */,
-				1CD3FC5021CE422C00B8C924 /* HiParametesViewController.m in Sources */,
-				1C1B89BB22410FDA00E3C1FE /* HiNavigationThirdViewControoler.m in Sources */,
-				1CD3FC6121CE4E0100B8C924 /* HiNetworkFilterViewController.m in Sources */,
-				1C97793821D08D3500C9859A /* HiRootTableModel.m in Sources */,
-				1C1B89B522410FAD00E3C1FE /* HiNavigationFirstViewControoler.m in Sources */,
-				1CD3FC6421CE517500B8C924 /* HiNetworkFilter.m in Sources */,
-				1C97795A21D0B70900C9859A /* HiViewModelViewController.m in Sources */,
-				1CB3D09521DDCB9800E66BF1 /* HiBaseViewController.m in Sources */,
-				1C97796021D0C24100C9859A /* HiViewModelView.m in Sources */,
-				1C97796621D0C5FB00C9859A /* HiViewModelReceiveView.m in Sources */,
+				1C176EA826C0C95500C542C3 /* HiEnvironment.m in Sources */,
 				1C14ABAC21D364B500DE248C /* HiRouter.m in Sources */,
-				1C97793521D0899500C9859A /* HiPageFilter.m in Sources */,
-				1CB3D09221DDB98300E66BF1 /* HiRouterPath.m in Sources */,
-				1C1B89BE22410FEB00E3C1FE /* HiNavigationFourthViewControoler.m in Sources */,
-				1C1B89B822410FCB00E3C1FE /* HiNavigationSecondViewControoler.m in Sources */,
+				1C176EB726C0D36900C542C3 /* HiErrorViewController.m in Sources */,
+				1C176EAF26C0CC8700C542C3 /* HiBaseViewController.m in Sources */,
+				1C176EC926C1028900C542C3 /* HiRouterFilter.m in Sources */,
 				1C65585320F5FCF800862997 /* AppDelegate.m in Sources */,
+				1C176EC626C0FA9E00C542C3 /* HiFilterViewController.m in Sources */,
+				1C176EAB26C0CC6700C542C3 /* HiRootViewController.m in Sources */,
+				1C176ECC26C104C500C542C3 /* HiFilterNormalViewController.m in Sources */,
+				1C176EBC26C0D6A400C542C3 /* HiParametersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

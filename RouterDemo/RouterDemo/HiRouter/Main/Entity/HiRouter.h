@@ -20,9 +20,6 @@
 
 @end
 
-/// 只能注册一次
-extern inline void hi_registFilter(id<HiFilter> filter);
-
 @interface NSObject (HiRouter)
 
 + (instancetype)hi_instanceForPath:(NSString *)path;
@@ -37,11 +34,16 @@ extern inline void hi_registFilter(id<HiFilter> filter);
 
 /// 添加回调
 - (void)setHi_router_delegate:(id<HiNetWork>)hi_router_delegate;
-- (void)setHi_router_block:(id (^)(id))hi_router_block;
+- (void)setHi_router_block:(id (^)(id response))hi_router_block;
 
 /// 回调
 /// 优先 block
 - (id)hi_makeResponse:(id)response;
+
+/// 过滤器 遵守 HiFilter 协议的
+/// 只能有一个过滤器,多个 只有第一个 遵守 HiFilter 协议的 有效
+- (void)becomeFilter;
++ (void)becomeFilter;
 
 @end
 

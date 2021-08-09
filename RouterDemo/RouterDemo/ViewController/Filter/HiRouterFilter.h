@@ -1,16 +1,16 @@
 //
-//  HiCallBack ViewController.h
+//  HiRouterFilter.h
 //  RouterDemo
 //
 //  Created by four on 2021/8/9.
 //  Copyright © 2021 Four. All rights reserved.
 //
 
-#import "HiBaseViewController.h"
-
+#import <Foundation/Foundation.h>
+#import "HiRouterProtocol.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HiCallBackViewController : HiBaseViewController
+@interface HiRouterFilter : NSObject<HiFilter>
 
 @end
 
