@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HiEnvironment.h"
-#import "HiResponse.h"
+#import "HiFilterProtocol.h"
 
 @protocol HiInit <NSObject>
 
@@ -39,12 +38,12 @@
 
 @optional
 /// 创建
-- (void)hiFilterPath:(HiEnvironment *)env response:(HiResponse *)response;
-+ (void)hiFilterPath:(HiEnvironment *)env response:(HiResponse *)response;
+- (void)hiFilterPath:(HiFilterEnvironment)env response:(HiFilterResponse)response;
++ (void)hiFilterPath:(HiFilterEnvironment)env response:(HiFilterResponse)response;
 
 /// 转场
-- (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response;
-+ (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response;
+- (void)hiFilterTransition:(HiFilterEnvironment)env response:(HiFilterResponse)response;
++ (void)hiFilterTransition:(HiFilterEnvironment)env response:(HiFilterResponse)response;
 
 @end
 

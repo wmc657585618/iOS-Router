@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "HiRouterProtocol.h"
-
+#import "HiResponse.h"
+#import "HiEnvironment.h"
 
 @interface HiRouterProperty : NSObject
 

@@ -11,15 +11,15 @@
 
 @implementation HiRouterFilter
 
-+ (void)hiFilterPath:(HiEnvironment *)env response:(HiResponse *)response{
++ (void)hiFilterPath:(HiFilterEnvironment)env response:(HiFilterResponse)response{
     
 }
 
-- (void)hiFilterPath:(HiEnvironment *)env response:(HiResponse *)response{
+- (void)hiFilterPath:(HiFilterEnvironment)env response:(HiFilterResponse)response{
     
 }
 
-+ (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response{
++ (void)hiFilterTransition:(HiFilterEnvironment)env response:(HiFilterResponse)response{
     [env breakChain];
     /// 为了区分是否过滤 添加了 parameters
     if ([env.path isEqualToString:filter_normal] && env.parameters) {
@@ -27,7 +27,7 @@
     }
 }
 
-- (void)hiFilterTransition:(HiEnvironment *)env response:(HiResponse *)response{
+- (void)hiFilterTransition:(HiFilterEnvironment)env response:(HiFilterResponse)response{
     [HiRouterFilter hiFilterTransition:env response:response];
 }
 

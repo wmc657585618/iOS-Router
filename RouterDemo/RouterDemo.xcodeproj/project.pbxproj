@@ -32,8 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C14AB9121D364B500DE248C /* HiRouterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterManager.h; sourceTree = "<group>"; };
-		1C14ABA321D364B500DE248C /* HiRouterDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterDefine.h; sourceTree = "<group>"; };
+		1C14AB9121D364B500DE248C /* HiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiManager.h; sourceTree = "<group>"; };
+		1C14ABA321D364B500DE248C /* HiDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiDefine.h; sourceTree = "<group>"; };
 		1C14ABA521D364B500DE248C /* HiRouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiRouterProtocol.h; sourceTree = "<group>"; };
 		1C176EA626C0C95500C542C3 /* HiEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiEnvironment.h; sourceTree = "<group>"; };
 		1C176EA726C0C95500C542C3 /* HiEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiEnvironment.m; sourceTree = "<group>"; };
@@ -69,6 +69,9 @@
 		1C176EEC26C1257700C542C3 /* HiResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiResponse.m; sourceTree = "<group>"; };
 		1C176EEE26C1384500C542C3 /* HiBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBody.h; sourceTree = "<group>"; };
 		1C176EEF26C1384500C542C3 /* HiBody.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBody.m; sourceTree = "<group>"; };
+		1C176EF126C2162F00C542C3 /* HiFilterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiFilterProtocol.h; sourceTree = "<group>"; };
+		1C176EF426C2176E00C542C3 /* HiProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiProtocol.h; sourceTree = "<group>"; };
+		1C176EF726C219B300C542C3 /* HiRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouter.h; sourceTree = "<group>"; };
 		1C65582520F5FC4C00862997 /* RouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C65583120F5FC4D00862997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C65583420F5FC4D00862997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,7 +110,7 @@
 			children = (
 				1C176EE526C11A2600C542C3 /* Foundation */,
 				1C176EE426C11A1800C542C3 /* UIKit */,
-				1C176EDD26C115A700C542C3 /* Other */,
+				1C176EDD26C115A700C542C3 /* Filter */,
 				1C176EDC26C1158500C542C3 /* Objects */,
 			);
 			path = Entity;
@@ -117,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				1C14ABA521D364B500DE248C /* HiRouterProtocol.h */,
+				1C176EF126C2162F00C542C3 /* HiFilterProtocol.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -191,7 +195,7 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
-		1C176EDD26C115A700C542C3 /* Other */ = {
+		1C176EDD26C115A700C542C3 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
 				1C176EA626C0C95500C542C3 /* HiEnvironment.h */,
@@ -201,7 +205,7 @@
 				1C176EEE26C1384500C542C3 /* HiBody.h */,
 				1C176EEF26C1384500C542C3 /* HiBody.m */,
 			);
-			path = Other;
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		1C176EE426C11A1800C542C3 /* UIKit */ = {
@@ -298,8 +302,10 @@
 		1CF5AE36261C43C700AECBA2 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				1C14ABA321D364B500DE248C /* HiRouterDefine.h */,
-				1C14AB9121D364B500DE248C /* HiRouterManager.h */,
+				1C176EF426C2176E00C542C3 /* HiProtocol.h */,
+				1C14ABA321D364B500DE248C /* HiDefine.h */,
+				1C14AB9121D364B500DE248C /* HiManager.h */,
+				1C176EF726C219B300C542C3 /* HiRouter.h */,
 			);
 			path = Files;
 			sourceTree = "<group>";

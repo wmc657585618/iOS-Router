@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HiRouterPath.h"
-#import "HiRouterManager.h"
+#import "HiManager.h"
 #import "HiRouterManulRegister.h"
 
 #import "HiRouterFilter.h"

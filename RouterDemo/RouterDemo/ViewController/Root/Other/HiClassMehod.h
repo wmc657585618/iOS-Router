@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HiRouterManager.h"
+#import "HiManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @Router(class/method, HiClassMehod)

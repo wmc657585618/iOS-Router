@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HiRouterDefine.h"
+#import "HiFilterProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

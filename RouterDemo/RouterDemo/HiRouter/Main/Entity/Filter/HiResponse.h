@@ -8,6 +8,6 @@
 
 #import "HiBody.h"
 
-@interface HiResponse : HiBody
+@interface HiResponse : HiBody<HiFilterResponse>
 
 @end

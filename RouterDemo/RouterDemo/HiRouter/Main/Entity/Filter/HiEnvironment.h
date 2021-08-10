@@ -10,13 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// 路由环境参数
-@interface HiEnvironment : HiBody
+@interface HiEnvironment : HiBody<HiFilterEnvironment>
 
-/// filter 中是否结束循环
-@property (nonatomic, assign, readonly) BOOL isBreak;
-
-/// 结束循环
-- (void)breakChain;
 @end
 
 NS_ASSUME_NONNULL_END

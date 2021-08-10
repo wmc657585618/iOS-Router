@@ -13,6 +13,7 @@
 @property (nonatomic, assign) BOOL isBreak;
 
 @end
+
 @implementation HiEnvironment
 
 - (void)breakChain {
