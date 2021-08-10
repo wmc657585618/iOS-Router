@@ -9,23 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HiDefine.h"
 
-@protocol HiFilterURN <NSObject>
-
-@property (nullable, copy, readonly) NSString *scheme;
-@property (nullable, copy, readonly) NSString *path;
-
-@end
-
 @protocol HiFilterEnvironment <NSObject>
-
-/// 路径
-@property (nonatomic, strong, readonly) id<HiFilterURN> _Nonnull urn;
 
 /// 转场
 @property (nonatomic, assign, readonly) HiRouterTransition transition;
 
 @property (nonatomic, assign, readonly) UIModalPresentationStyle modal;
-
+/// 路径
+@property (nonatomic, copy, readonly) NSString * _Nullable path;
 /// 初始化参数
 @property (nonatomic, strong, readonly) id _Nullable parameters;
 

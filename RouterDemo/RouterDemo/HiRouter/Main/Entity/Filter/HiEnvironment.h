@@ -7,7 +7,6 @@
 //
 
 #import "HiBody.h"
-#import "HiURN.h"
 
 /// 路由环境参数
 @interface HiEnvironment : HiBody<HiFilterEnvironment>

@@ -22,7 +22,7 @@
 + (void)hiFilterTransition:(HiFilterEnvironment)env response:(HiFilterResponse)response{
     [env breakChain];
     /// 为了区分是否过滤 添加了 parameters
-    if ([env.urn.path isEqualToString:filter_normal] && env.parameters) {
+    if ([env.path isEqualToString:filter_normal] && env.parameters) {
         response.path = error;
     }
 }
