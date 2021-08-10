@@ -24,6 +24,7 @@
     /// 为了区分是否过滤 添加了 parameters
     if ([env.path isEqualToString:filter_normal] && env.parameters) {
         response.path = error;
+//        response.transition = HiRouterTransitionPresent;
     }
 }
 

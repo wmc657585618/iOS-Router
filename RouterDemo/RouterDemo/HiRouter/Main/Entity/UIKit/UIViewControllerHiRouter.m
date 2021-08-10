@@ -12,7 +12,7 @@
 @implementation UIViewController (HiRouter)
 
 #pragma mark *********** private ***********
-- (void)viewController:(UIViewController *)viewController pushAnimated:(BOOL)animated{
+- (void)hi_viewController:(UIViewController *)viewController pushAnimated:(BOOL)animated{
     if ([self isKindOfClass:UINavigationController.class]) {
         
         UINavigationController *navigationController = (UINavigationController *)self;
@@ -21,6 +21,32 @@
     } else {
         [self.navigationController pushViewController:viewController animated:animated];
     }
+}
+
+- (id)hi_viewControllerWithResopnse:(HiResponse *)response animated:(BOOL)animated completion:(void (^)(void))completion {
+    
+    UIViewController *viewController = [UIViewController hi_objectForClass:response.path.hi_class withParameters:response.parameters];
+    
+    if ([viewController isKindOfClass:UIViewController.class]) {
+        
+        switch (response.transition) {
+                
+            case HiRouterTransitionNone:
+                break;
+
+            case HiRouterTransitionPush:
+                [self hi_viewController:viewController pushAnimated:animated];
+
+                break;
+            case HiRouterTransitionPresent:
+            {
+                viewController.modalPresentationStyle = response.modal;
+                [self presentViewController:viewController animated:animated completion:completion];
+            }
+                break;
+        }
+    }
+    return viewController;
 }
 
 - (id)hi_transition:(HiRouterTransition)transition path:(NSString *)path initParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion {
@@ -38,29 +64,7 @@
         }
     }
     
-    UIViewController *viewController = [UIViewController hi_objectForClass:response.path.hi_class withParameters:response.parameters];
-    
-    if ([viewController isKindOfClass:UIViewController.class]) {
-        
-        switch (response.transition) {
-                
-            case HiRouterTransitionNone:
-                break;
-
-            case HiRouterTransitionPush:
-            {
-                [self viewController:viewController pushAnimated:animated];
-            }
-                break;
-            case HiRouterTransitionPresent:
-            {
-                viewController.modalPresentationStyle = response.modal;
-                [self presentViewController:viewController animated:animated completion:completion];
-            }
-                break;
-        }
-    }
-    return viewController;
+    return [self hi_viewControllerWithResopnse:response animated:animated completion:completion];
 }
 
 #pragma mark *********** public ***********
