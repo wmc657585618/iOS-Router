@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HiRouterProtocol.h"
-NS_ASSUME_NONNULL_BEGIN
 
 @interface HiRouterFilter : NSObject<HiFilter>
 
 @end
-
-NS_ASSUME_NONNULL_END

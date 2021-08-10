@@ -24,6 +24,7 @@
 		1C176EEA26C11F0A00C542C3 /* HiClassMehod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EE926C11F0A00C542C3 /* HiClassMehod.m */; };
 		1C176EED26C1257700C542C3 /* HiResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EEC26C1257700C542C3 /* HiResponse.m */; };
 		1C176EF026C1384500C542C3 /* HiBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EEF26C1384500C542C3 /* HiBody.m */; };
+		1C176EFC26C2290400C542C3 /* HiURN.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C176EFB26C2290400C542C3 /* HiURN.m */; };
 		1C65583220F5FC4D00862997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C65583120F5FC4D00862997 /* Assets.xcassets */; };
 		1C65583520F5FC4D00862997 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C65583320F5FC4D00862997 /* LaunchScreen.storyboard */; };
 		1C65583820F5FC4E00862997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65583720F5FC4E00862997 /* main.m */; };
@@ -72,6 +73,8 @@
 		1C176EF126C2162F00C542C3 /* HiFilterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiFilterProtocol.h; sourceTree = "<group>"; };
 		1C176EF426C2176E00C542C3 /* HiProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiProtocol.h; sourceTree = "<group>"; };
 		1C176EF726C219B300C542C3 /* HiRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiRouter.h; sourceTree = "<group>"; };
+		1C176EFA26C2290400C542C3 /* HiURN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiURN.h; sourceTree = "<group>"; };
+		1C176EFB26C2290400C542C3 /* HiURN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiURN.m; sourceTree = "<group>"; };
 		1C65582520F5FC4C00862997 /* RouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C65583120F5FC4D00862997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C65583420F5FC4D00862997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -187,8 +190,6 @@
 		1C176EDC26C1158500C542C3 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				1C176EE126C1189B00C542C3 /* NSObjectHiFilter.h */,
-				1C176EE226C1189B00C542C3 /* NSObjectHiFilter.m */,
 				1C176ED626C1115100C542C3 /* HiRouterPrivate.h */,
 				1C176ED726C1115100C542C3 /* HiRouterPrivate.m */,
 			);
@@ -204,6 +205,8 @@
 				1C176EEC26C1257700C542C3 /* HiResponse.m */,
 				1C176EEE26C1384500C542C3 /* HiBody.h */,
 				1C176EEF26C1384500C542C3 /* HiBody.m */,
+				1C176EFA26C2290400C542C3 /* HiURN.h */,
+				1C176EFB26C2290400C542C3 /* HiURN.m */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -222,6 +225,8 @@
 			children = (
 				1C176ED926C1153100C542C3 /* NSObjectHiRouter.h */,
 				1C176EDA26C1153100C542C3 /* NSObjectHiRouter.m */,
+				1C176EE126C1189B00C542C3 /* NSObjectHiFilter.h */,
+				1C176EE226C1189B00C542C3 /* NSObjectHiFilter.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 				1C176EEA26C11F0A00C542C3 /* HiClassMehod.m in Sources */,
 				1C176EC626C0FA9E00C542C3 /* HiFilterViewController.m in Sources */,
 				1C176EAB26C0CC6700C542C3 /* HiRootViewController.m in Sources */,
+				1C176EFC26C2290400C542C3 /* HiURN.m in Sources */,
 				1C176ECC26C104C500C542C3 /* HiFilterNormalViewController.m in Sources */,
 				1C176EBC26C0D6A400C542C3 /* HiParametersViewController.m in Sources */,
 			);

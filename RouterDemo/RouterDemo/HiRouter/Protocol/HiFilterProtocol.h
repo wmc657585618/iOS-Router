@@ -9,22 +9,32 @@
 #import <UIKit/UIKit.h>
 #import "HiDefine.h"
 
+@protocol HiFilterURN <NSObject>
+
+@property (nullable, copy, readonly) NSString *scheme;
+@property (nullable, copy, readonly) NSString *path;
+
+@end
+
 @protocol HiFilterEnvironment <NSObject>
+
+/// 路径
+@property (nonatomic, strong, readonly) id<HiFilterURN> _Nonnull urn;
 
 /// 转场
 @property (nonatomic, assign, readonly) HiRouterTransition transition;
 
 @property (nonatomic, assign, readonly) UIModalPresentationStyle modal;
-/// 路径
-@property (nonatomic, copy, readonly) NSString *path;
+
 /// 初始化参数
-@property (nonatomic, strong, readonly) id parameters;
+@property (nonatomic, strong, readonly) id _Nullable parameters;
 
 /// filter 中是否结束循环
 @property (nonatomic, assign, readonly) BOOL isBreak;
 
 /// 结束循环
 - (void)breakChain;
+
 
 @end
 
@@ -35,9 +45,9 @@
 
 @property (nonatomic, assign) UIModalPresentationStyle modal;
 /// 路径
-@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) NSString * _Nullable path;
 /// 初始化参数
-@property (nonatomic, strong) id parameters;
+@property (nonatomic, strong) id _Nullable parameters;
 
 @end
 
