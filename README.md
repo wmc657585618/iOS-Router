@@ -1,5 +1,7 @@
 # iOS-Router
 
+##  **运行之前 注释 Run Script**
+
 ## 描述
 + router 是为了解耦合而写的,包括了界面解耦,view-model 解耦
 
@@ -151,12 +153,12 @@ url 预处理
 
 #### 注解
 ```
-@Router(xxxx/xxxx, AAAAAAContreoller)
-@interface AAAAAAContreoller : UIViewController
+@Router(xxxx/xxxx, XXXX)
+@interface XXXXX : XXXXXX
 ```
 #### 非注解
 ```
-@"xxxx/xxxx".hi_class = [AAAAAAContreoller class];
+@"xxxx/xxxx".hi_class = [XXXXX class];
 ```
 
 ### 实例化
@@ -201,65 +203,29 @@ url 预处理
 
 @end
 ```
-#### 实现
-```
-@implementation AAAAAAContreoller
-
-+ (instancetype)hi_init:(id)parameters{
-    return [[self alloc] init];
-}
-
-// 请求参数
-- (id)hi_request:(id)request {
-    return @"";
-}
-
-// 回调参数
-- (id)hi_response:(id)response {
-    return @"";
-}
-@end
-```
-
-### 调用
-#### ViewController
-```
-[self hi_pushPath:parameters withInitParameters:@"hello world" animated:true];
-```
-
-#### 实例化一个对象
-```
-[NSObject hi_instanceForPath:@"xxxx"]
-```
-
-### 回调
-```
-/// 回调
-/// 优先 block
-- (void)hi_makeResponse:(id)response;
-```
-
-```
-[objc hi_makeResponse:@"test"];
-```
-
 
 
 ## 过滤器
 ```
-/// 过滤器 遵守 HiFilter 协议的
-/// 只能有一个过滤器,多个 只有第一个 遵守 HiFilter 协议的 有效
 - (void)becomeFilter;
 + (void)becomeFilter;
 ```
 
-### 实现
+### protocol
 ```
-- (HiFilterBody)hiFilterPath:(HiEnvironment *)env {
-    return hiFilterMake(env.path, env.parameters);
-}
+/// 过滤器
+@protocol HiFilter <NSObject>
 
-- (HiFilterBody)hiFilterTransition:(HiEnvironment *)env {
-    return hiFilterTransitioningMake(env.path, env.parameters, env.transition, env.modal);
-}
+@optional
+/// 创建
+- (void)hiFilterPath:(HiFilterEnvironment)env response:(HiFilterResponse)response;
++ (void)hiFilterPath:(HiFilterEnvironment)env response:(HiFilterResponse)response;
+
+/// 转场
+- (void)hiFilterTransition:(HiFilterEnvironment)env response:(HiFilterResponse)response;
++ (void)hiFilterTransition:(HiFilterEnvironment)env response:(HiFilterResponse)response;
+
+@end
 ```
+### 文档
+[v2.1.0](./RouterDemo/Doc/v2.1.0/html/index.html)

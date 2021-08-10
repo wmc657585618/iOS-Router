@@ -15,9 +15,14 @@
 /// UIViewController 调用 self.navigationController push
 - (id)hi_pushPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated;
 
+
+/// present full screen viewController. 无回调
 - (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated;
+
+/// present full screen viewController.
 - (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters animated:(BOOL)animated completion:(void (^)(void))completion;
 
+/// present viewController.
 - (id)hi_presentPath:(NSString *)path withInitParameters:(id)parameters modalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle animated:(BOOL)animated completion:(void (^)(void))completion;
 
 @end

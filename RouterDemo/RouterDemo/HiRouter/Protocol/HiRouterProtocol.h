@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HiFilterProtocol.h"
 
+/// 构造
 @protocol HiInit <NSObject>
 
 + (instancetype)hi_init:(id)parameters;
 
 @end
 
+/// 数据传输
 @protocol HiNetWork <NSObject>
 
 @optional
@@ -26,6 +28,7 @@
 
 @end
 
+/// 调用 类方法
 @protocol HiClass <NSObject>
 
 /// 类 实现调用
@@ -34,6 +37,7 @@
 
 @end
 
+/// 过滤器
 @protocol HiFilter <NSObject>
 
 @optional

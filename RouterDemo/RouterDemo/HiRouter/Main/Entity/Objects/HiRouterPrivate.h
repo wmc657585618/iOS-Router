@@ -23,7 +23,10 @@
 
 @property (nonatomic, strong, readonly) HiRouterProperty<HiFilter> *hi_router_property;
 
+/// 过滤器链
 @property (nonatomic, strong, readonly) NSMutableArray<HiFilter> *hi_filterChain;
+
+/// 过滤器链
 @property (nonatomic, strong, class, readonly) NSMutableArray *hi_filterChain;
 
 @property (nonatomic, weak, readonly) id<HiNetWork> hi_router_delegate;

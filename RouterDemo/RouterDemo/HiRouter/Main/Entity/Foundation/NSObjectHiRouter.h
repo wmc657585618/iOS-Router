@@ -22,8 +22,10 @@
 
 @interface NSObject (HiRouter)
 
+/// 实例化
 + (instancetype)hi_instanceForPath:(NSString *)path;
 
+/// 实例化
 + (instancetype)hi_instanceForPath:(NSString *)path withInitParameters:(id)parameters;
 
 /// 创建 path 相对的 实例对象

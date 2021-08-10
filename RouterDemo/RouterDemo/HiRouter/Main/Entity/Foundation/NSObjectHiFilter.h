@@ -12,6 +12,8 @@
 
 /// 过滤器 遵守 HiFilter 协议
 - (void)becomeFilter;
+
+/// 过滤器 遵守 HiFilter 协议
 + (void)becomeFilter;
 
 @end

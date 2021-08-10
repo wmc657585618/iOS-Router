@@ -402,7 +402,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${SRCROOT}/router_automatic.sh\"\n";
+			shellScript = "#\"${SRCROOT}/router_automatic.sh\"\nappledoc \\\n--output ./Doc/v2.1.0 \\\n-i *.m \\\n--project-name \"RouterDemo\" \\\n--project-company \"Apple\" \\\n--company-id \"com.four.iOS\" \\\n--no-create-docset \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n./RouterDemo/HiRouter/\nexit 0\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
