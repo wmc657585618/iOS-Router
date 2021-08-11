@@ -8,5 +8,5 @@ Pod::Spec.new do |s|
     s.license      = "MIT"
     s.platform     = :ios, "7.0"
     s.source       = { :git => "https://github.com/wmc657585618/iOS-Router.git", :tag => "#{s.version}" }
-    s.source_files  = "RouterDemo/RouterDemo/HiRouter/**/*.{h,m}"
+    s.source_files  = "HiRouter/**/*.{h,m}"
 end

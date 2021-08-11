@@ -1,0 +1,16 @@
+PODS:
+  - HiRouter (2.1.0)
+
+DEPENDENCIES:
+  - HiRouter (from `./`)
+
+EXTERNAL SOURCES:
+  HiRouter:
+    :path: "./"
+
+SPEC CHECKSUMS:
+  HiRouter: 8387bb20e5d90fa44c6db303de2d58efba50c7f5
+
+PODFILE CHECKSUM: 1b3b48920def5eb867855c39dfe7f106e27a0420
+
+COCOAPODS: 1.10.1
