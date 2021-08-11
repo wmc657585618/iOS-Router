@@ -1,4 +1,14 @@
-.DS_Store
-.xcuserstate
+# Xcode
+*.xccheckout
 
-.idea/
+*.xcuserstate
+
+*.xcscmblueprint
+
+*.xcscheme
+
+*.xcworkspace
+
+DerivedData
+
+.idea
